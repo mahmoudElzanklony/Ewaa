@@ -1,0 +1,52 @@
+<?php
+
+return [
+    // home page
+   'for'=>'ل',
+   'sale'=>'البيع',
+   'and'=>'و',
+   'rent'=>'التأجير',
+   'properties'=>'عقارات',
+   'compounds'=>'كومبودنات',
+   'compounds_info'=>'قارن بين جميع الكمبوندات بالتفصيل',
+   'properties_info'=>'ابحث عن عقارات للبيع والأيجار',
+   'know'=>'أعرف',
+   'search'=>'أبحث',
+   'online_expos_info'=>'احجز عروض حصرية بالكرت كارد',
+   'mortgage'=>'تمويل',
+   'mortgage_info'=>'احصل علي تمويل عقاري بكل سهوله',
+   'valuation'=>'تقييم عقاري',
+   'estimate_property'=>'قيم سعر اي عقار بسهولة وسرعة',
+   'prices_guide'=>'أسعار العقارات',
+   'know_the_meter_price'=>'اعرف سعر المتر في المناطق المختلفة',
+   'ask_neighbours'=>'أسئل أهل المنطقة',
+   'get_honest_answers'=>'احصل علي اجابات دقيقه من سكان اهل المنطقه',
+   'top_agent'=>'الوسطاء المتميزون',
+   'find_top_experienced_agent'=>'تواصل مع افضل الوسطاء العقاريين',
+   'real_state_index'=>'المؤشر العقاري',
+   'understand_market_demand'=>'تعرف علي مستوي الطلب و وضع السوق ',
+   'advices_tips'=>'نصائح عامه',
+   'learn_before'=>'تصفح معلومات ونصائح قيمة وعملية',
+   'know_more'=>'اعرف اكتر',
+   'services_give_you_decisions'=>'تمكنك خدماتنا من اتخاذ اهم القرارات المالية',
+   'ad'=>'اعلن',
+   'list_property'=>'أعلن عن عقارك',
+   'reach_million_of_users'=>'اول لملايين من زوار الموقع شهريا',
+   'list_company_properties'=>'أعلن عن عقار شركتك',
+   'join_thousands_of_companies'=>'انضم لألاف الشركات التي تعتمد علينا',
+
+   // Auth page
+   'sign_up'=>'حساب جديد',
+   'sign_in'=>'تسجيل دخول',
+   'email'=>'البريد الألكتروني',
+   'password'=>'كلمة المرور',
+   'username'=>'اسم المستخدم',
+   'address'=>'العنوان',
+   'phone'=>'رقم الهاتف',
+   'private_owner'=>'مالك عقار',
+   'freelancer'=>'مسوق عقاري',
+   'coupounded_developer'=>'مطور كومبوند',
+   'brokerage_company'=>'شركات التسويق',
+   'user_type'=>'نوع المستخدم'
+
+];

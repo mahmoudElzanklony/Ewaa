@@ -1,0 +1,152 @@
+@import '~bootstrap';
+@import "variables";
+body{
+   // font-family: 'Cairo';
+    font-family:"URW DIN Arabic" !important;
+}
+@font-face {
+    font-family:"URW DIN Arabic";
+    src: url("FontsFree-Net-URW-DIN-Arabic-1.ttf") format("truetype");
+}
+*{
+    //  touch-action: auto !important;
+    white-space: normal;
+}
+.col-lg-3,.col-md-6{
+    touch-action: auto !important;
+}
+body {
+    font-family: 'Cairo';
+}
+.html-content{
+    display: none;
+}
+a{
+    text-decoration: none !important;
+    &:hover{
+        color:$main_color;
+    }
+    &:focus{
+        background-color: transparent;
+    }
+}
+@media (max-width: 900px) {
+    .navbar-expand-lg > .container{
+        padding-right: 10px !important;
+        padding-left: 10px !important;
+    }
+}
+.alert{
+    padding: 8px;
+    margin-top: 10px;
+}
+.admin-nav + div{
+    overflow: hidden;
+}
+.slick-list{
+    direction: ltr !important;
+}
+.slick-prev:before, .slick-next:before {
+    font-family: 'slick';
+    font-size: 30px !important;
+    line-height: 1;
+    opacity: 1 !important;
+    color: $main_color !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.slick-list{
+    width: 96% !important;
+    margin: auto !important;
+}
+
+
+
+@media (max-width:900px) {
+    .slick-list{
+        width:88% !important;
+    }
+}
+.slick-prev{
+    right: 0px !important;
+    z-index: 9999 !important;
+}
+.slick-next{
+    left: 0 !important;
+    z-index: 9999 !important;
+}
+
+.alert-info{
+    background-color: #ffba080a;
+    border: 1px solid $yellow;
+    color: $yellow;
+    font-size: $paragraph;
+}
+.big{
+    font-size: $paragraph;
+    font-weight: bold;
+    color:$blue;
+}
+p{
+    font-size: $paragraph;
+    margin: 0px;
+}
+h2{
+    font-size: $semi_big;
+    margin: 0px;
+    font-weight: bold;
+}
+button{
+    font-size: $button;
+}
+i{
+    font-size: $semi_big;
+}
+input{
+    outline: none;
+}
+ul{
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+.container{
+    position: relative;
+}
+
+input:focus{
+    box-shadow: 0px -1px 7px 3px #ddd;
+}
+
+.big-button{
+    width: 165px !important;
+    border-radius: 50px !important;
+}
+.btn-main-color{
+    background-color: $main_color;
+    color:white;
+    padding: 8px 15px;
+    border-radius: 10px;
+    @extend .big-button;
+}
+.btn-main-color-outline{
+    border: 2px solid $main_color_white;
+    color:$black;
+    padding: 8px 15px;
+    border-radius: 10px;
+    transition: 0.5s all;
+    @extend .big-button;
+    &:hover{
+        background-color: $main_color;
+        color:white;
+    }
+}
+
+
+
+
+// edit on bootstrap classes
+.btn-primary{
+    background-color: $main_color;
+    border-color: transparent;
+}

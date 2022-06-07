@@ -1,0 +1,35 @@
+*:not(i) {
+  text-align: left;
+  color: #03071E;
+  direction: ltr;
+}
+
+.form-control {
+  text-align: left;
+}
+
+.up-page {
+  bottom: 15px;
+  left: 15px;
+}
+.up-page i {
+  left: 8px;
+  top: 2px;
+}
+
+nav .dropdown-menu a span:first-of-type {
+  margin-right: 10px;
+}
+
+/*---------------------------------------------start of home page-----------------------------------------*/
+.sub-data .sub a > span:first-of-type {
+  margin-right: 20px;
+}
+.sub-data .sub a div p:first-of-type span:nth-of-type(2) {
+  margin-right: 5px;
+}
+.sub-data .sub a > span:last-of-type {
+  right: 10px;
+}
+
+/*---------------------------------------------end of home page-----------------------------------------*/
