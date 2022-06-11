@@ -34,6 +34,28 @@ nav {
     }
 }
 
+.input-icon{
+    span{
+        left: 10px;
+    }
+}
+
+
+.input-radius-radio{
+    margin-left: 10px;
+}
+
+
+.progress-form{
+    span:not(:last-of-type)::before{
+        content: '';
+        right: 34px;
+    }
+    span:nth-of-type(3)::before{
+        right: 36px;
+    }
+}
+
 
 /*---------------------------------------------start of home page-----------------------------------------*/
 .sub-data {
@@ -57,3 +79,23 @@ nav {
 }
 
 /*---------------------------------------------end of home page-----------------------------------------*/
+/*---------------------------------------------start of filter page-----------------------------------------*/
+.special_radio_container {
+    .special_radio {
+        input{
+            margin-right: -35px;
+        }
+        input.active{
+            margin-right: 0px;
+        }
+    }
+}
+/*---------------------------------------------end of filter page-----------------------------------------*/
+
+/*---------------------------------------------start of neighbour page------------------------------------*/
+.pages{
+    span{
+        margin-left: 10px;
+    }
+}
+/*---------------------------------------------end of neighbour page------------------------------------*/

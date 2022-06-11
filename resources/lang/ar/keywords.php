@@ -47,6 +47,111 @@ return [
    'freelancer'=>'مسوق عقاري',
    'coupounded_developer'=>'مطور كومبوند',
    'brokerage_company'=>'شركات التسويق',
-   'user_type'=>'نوع المستخدم'
+   'user_type'=>'نوع المستخدم',
+   'have_already_account'=>'تمتلك بالفعل حساب معنا',
+   'forget_password'=>'نسيت كلمه المرور',
+   'dont_have_account'=>'لا تمتلك حساب معنا',
+
+   // search filter page
+   'area'=>'منطقه',
+   'category'=>'القسم',
+   'type'=>'النوع',
+   'price_range'=>'السعر',
+   'min_price'=>'اقل سعر',
+   'max_price'=>'اعلي سعر',
+   'more_filters'=>'خيارات اعلي',
+   'less_filters'=>'خيارات اقل',
+   'area_range'=>'المساحه',
+   'min_area'=>'أقل مساحة',
+   'max_area'=>'أكبر مساحه',
+   'payment_methods'=>'طرق الدفع',
+   'all_options'=>'كل الخيارات',
+   'cash'=>'كاش',
+   'installments'=>'تقسيط',
+   'listings_available_for_mortgage'=>'عقارات متاحة للتمويل العقاري',
+   'all_financing_options'=>'جميع خيارات التمويل',
+   'cbe_initiative'=>'مبادرة البنك المركزى 3%',
+   'cbe_another_initiative'=>'مبادرة البنك المركزى 8%',
+   'commercial_financing'=>'التمويل التجاري',
+   'view'=>'الإطلالة',
+   'keywords'=>'بحث بالكلمة',
+   'result_filtering'=>'عرض النتائج لـ',
+   'listings_with_photos_only'=>'الأعلانات المصوره فقط',
+   'listings_inside_compounds_only'=>'عقارات داخل كوبوند فقط',
+   'direct_from_the_owner_listings'=>'عقارات من المالك مباشرة',
+   'sort_by'=>'رتب النتائج حسب',
+   'newest_first'=>'الأحدث أولا',
+   'lowest_price'=>'أقل سعر',
+   'height_price'=>'أعلي سعر',
+   'smallest_area'=>'مساحه أقل',
+   'largest_area'=>'مساحة أكبر',
+   'search'=>'بحث',
+   'listings_at_egypt'=>'عقارات في مصر',
+   'properties_for_sale'=>'عقارات للبيع',
+
+
+   // start of market place page------------------------------------------------
+   'city_or_neighbour_streetname'=>'المدينة او الحي او اسم الشارع',
+   'properties_for_rent'=>'عقارات للايجار',
+    'show_more'=>'أظهار المزيد',
+    'do_you_need_help'=>'هل تحتاج الي مساعده',
+    'to_get_best_results'=>'للحصول على نتائج اسرع و اكثر ، نرشح لك أن نتواصل مع أكبر المكاتب العقارية - لمساعدتك في العثور على ماتبحث عنه .',
+    'registered_at_date'=>'سجل في تاريخ',
+    'close'=>'أغلاق',
+    'pound'=>'جنية',
+    'meter'=>'متر',
+    'verified'=>'موثق',
+    'sponsored'=>'ممول',
+    'request_contact'=>'طلب اتصال',
+   // end of market place page------------------------------------------------
+
+   // start of neighbour page------------------------------------------------
+    'egypt_properties'=>'عقارات مصر',
+    'neighborhood_prices'=>'اسعار العقارات',
+    'real_estate_prices_in_egypt'=>'اسعار العقارات في مصر',
+    'search_inside_the_cities_of_egypt'=>'عقارات في مدن مصر',
+   // end of neighbour page------------------------------------------------
+
+
+
+
+  // start of listing post initialize----------------------------------------------------
+    'listing_type'=>'النوع',
+    'listing_section'=>'القسم',
+    'location'=>'المكان',
+    'choose_property_type'=>'اختر نوع العقار',
+    'select_location'=>'أختر المكان',
+    'listing_data'=>'بيانات العقار',
+    'listing_info'=>'تفاصيل العقار',
+    'listing_images'=>'صور العقار',
+    'next'=>'التالي',
+  // end of listing post initialize----------------------------------------------------
+
+
+  // start of listing post info ----------------------------------------------------
+    'title_in_english'=>'عنوان الأعلان بالأنجليزي',
+    'title_in_arabic'=>'عنوان الأعلان بالعربي',
+    'description_in_english'=>'تفاصيل الأعلان بالأنجليزي',
+    'description_in_arabic'=>'تفاصيل الأعلان بالعربي',
+    'youtube_video_url'=>'رابط الفديو يوتيوب',
+    'advertiser_details'=>'بيانات المعلن',
+    'phone_number'=>'رقم الهاتف',
+    'if_you_want_to_update_the_current_phone_number_please_go_to'=>'ذا أردت تعديل رقم الهاتف فرجاء اذهب',
+    'my_account'=>'اعدادتي',
+    'this_number_has_whatsapp'=>'يوجد WhatsApp علي هذا الرقم',
+    'contact_me_by_email'=>'تواصل معي عن طريق الأيمل',
+    'property_details'=>'وصف العقار',
+    'size_in_meters'=>'المساحه (بالمتر)',
+    'view'=>'تطلي علي',
+    'price_egp'=>'السعر بالجنيه',
+    'payment_method'=>'طريقة الدفع',
+    'rooms'=>'الغرف',
+    'floor'=>'الدور',
+    'bathrooms'=>'الحمامات',
+    'building_year'=>'سنة البناء / التسليم',
+    'finishing_type'=>'نوع التشطيب',
+    'property_address'=>'عنوان العقار',
+    'mark_your_listing_location'=>'حدد مكان العقار على الخريطة',
+  // end of listing post info ----------------------------------------------------
 
 ];

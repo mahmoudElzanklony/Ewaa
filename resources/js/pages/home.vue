@@ -5,7 +5,7 @@
             <div class="layer">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-8">
                             <p>
                                 <span>10000</span>
                                 <span>{{  }}</span>

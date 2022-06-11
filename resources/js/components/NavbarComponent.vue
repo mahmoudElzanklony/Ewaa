@@ -7,7 +7,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse  justify-content-between" id="navbarSupportedContent">
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle d-flex align-items-center" href="#"  role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -16,7 +16,7 @@
                             <span><i class="ri-arrow-drop-down-fill"></i></span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <inertia-link href="#">
+                            <inertia-link href="/search-page-filter">
                                 <span><i class="ri-building-line"></i></span>
                                 <span>{{ switchWord('buildings') }}</span>
                             </inertia-link>
@@ -170,11 +170,16 @@ export default {
     .navbar-brand{
         margin-right: 5%;
     }
+    .dropdown-menu{
+        right: 0px;
+        left: unset;
+    }
 }
 nav {
     padding: 0px;
     box-shadow: 1px 1px 1px 1px #ddd;
     background-color: white !important;
+
     .navbar-brand{
         margin: 0px;
         font-size: 30px;
@@ -241,7 +246,7 @@ nav {
             }
 
             a:nth-of-type(2) {
-                background-color: $gray;
+                background-color: $white_gray;
             }
         }
     }
@@ -291,7 +296,12 @@ nav {
 .dropdown-toggle::after{
     display: none;
 }
-
+@media (min-width: 992px) {
+    nav ul:first-of-type .nav-item:nth-of-type(2) div,
+    nav ul:first-of-type .nav-item:nth-of-type(3) div{
+        width:203px;
+    }
+}
 @media (max-width:992px) {
     .navbar-collapse {
         flex-wrap: wrap;

@@ -22,6 +22,13 @@
                                        class="btn btn-primary"
                                        :value="keywords.sign_in">
                             </div>
+                            <p class="text-center">
+                                <inertia-link href="#">{{ keywords.forget_password }}</inertia-link>
+                            </p>
+                            <p class="text-center">
+                                <span>{{ keywords.dont_have_account }} ? </span>
+                                <inertia-link href="/register">{{ keywords.sign_up }}</inertia-link>
+                            </p>
                         </form>
                     </div>
                     <div class="col-md-6">

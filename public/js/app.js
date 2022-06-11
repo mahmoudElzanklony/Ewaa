@@ -2005,524 +2005,24 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
-function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
 
 jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).on('load', function () {// PAGE IS FULLY LOADED
-    // FADE OUT YOUR OVERLAYING DIV
-    //   $('#loading_wrap').fadeOut();
-    //  $('.content').fadeIn();
-  });
-  /*(function (){
-      console.log('-----------------|||||||------------------------');
-      $.ajaxSetup({
-          error : function(jqXHR, textStatus, errorThrown) {
-              console.log(jqXHR);
-              console.log(errorThrown);
-              if (jqXHR.status == 404) {
-                  alert("Element not found.");
-              } else {
-                  alert("Error: " + textStatus + ": " + errorThrown);
-              }
-          }
-      });
-  }())*/
-  // hover on categories at navbar
+  /*--------------------------start of public actions at all pages -------------------------------*/
+  // border radius input first
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.content').on('click', '.special_radio_container .special_radio', function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).parent().parent().find('.active').removeClass('active');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).find('input').addClass('active');
+  }); // border radius input last
 
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.content').on('click', 'nav .second_nav .categories p', function (e) {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).next().slideToggle();
-
-    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).find('span:last-of-type i').hasClass('ri-arrow-down-s-line')) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).find('span:last-of-type i').removeClass('ri-arrow-down-s-line').addClass('ri-arrow-up-s-line');
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.content').on('click', '.input-radius-radio', function () {
+    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).find('input').attr('type') == 'radio') {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).parent().find('.active').removeClass('active');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass('active');
     } else {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).find('span:last-of-type i').removeClass('ri-arrow-up-s-line').addClass('ri-arrow-down-s-line');
-    }
-
-    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()('nav .second_nav .list').hasClass('show')) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('nav .second_nav .list').slideUp();
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('nav .second_nav .list').removeClass('show');
-    }
-
-    e.stopPropagation();
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.content').on('click', function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('nav .second_nav ul.list_cats').slideUp();
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.content').on('click', 'nav .second_nav .cats .inner li span i', function (e) {
-    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).hasClass('ri-arrow-down-s-line')) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).removeClass('ri-arrow-down-s-line').addClass('ri-arrow-up-s-line');
-    } else {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).removeClass('ri-arrow-up-s-line').addClass('ri-arrow-down-s-line');
-    }
-
-    e.stopPropagation();
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).parent().next().slideToggle();
-  }); // $('body').niceScroll();
-  // ========================================socket====================================================/
-
-  /*var socket = io.connect('https://'+window.location.host+':8081',  { transports: ['websocket', 'polling', 'flashsocket'] });
-  socket.on('new_order',function (data){
-      if(data.user == 'admin'){
-          if($('nav .second_nav .list ul li').eq(2).find('a').html() == 'الأداره ') {
-              var span = $('nav .first_nav .important_icons .nofi span').eq(0);
-              span.fadeIn();
-              span.html(Number(span.html()) + 1);
-          }
-      }
-  });*/
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).scroll(function () {
-    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).scrollTop() > 400) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.up-page').fadeIn();
-    } else {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.up-page').fadeOut();
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).find('input').toggleClass('active');
     }
   });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.up-page').click(function () {
-    console.log('clicked');
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('html , body').animate({
-      scrollTop: '0px'
-    });
-  }); // detect number of files uploaded
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.content').on('change', '.bk-input-file', function () {
-    console.log();
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).find('p').html(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).find('input')[0].files.length);
-  }); //  user actions (profile - login - logout)
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.content').on('click', 'nav .first_nav .important_icons div:last-of-type', function (e) {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).find('ul').slideToggle();
-    e.stopPropagation();
-  }); // click on first navbar icon at mobile
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.content').on('click', 'nav .first_nav .nav_icon', function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).parent().parent().find('>div:not(.logo)').slideToggle(function () {
-      if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).is(':visible')) {
-        if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).hasClass('important_icons')) jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).css('display', 'flex');
-      }
-    });
-  }); // click on second navbar icon at mobile
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.content').on('click', 'nav .second_nav .nav_icon', function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).parent().find('.list').slideToggle();
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).parent().find('.list').toggleClass('show');
-  }); // set direction of list products
-  //   $('.products .container .slick-slider > div').css('direction','ltr');
-  // products page-----------------------------------------------------
-  // drop down filter
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.content').on('click', 'form .main-dropdown > p span:last-of-type i , form .main-dropdown > span:last-of-type i', function () {
-    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).hasClass('ri-arrow-drop-down-line')) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).removeClass('ri-arrow-drop-down-line').addClass('ri-arrow-drop-up-line');
-    } else {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).removeClass('ri-arrow-drop-up-line').addClass('ri-arrow-drop-down-line');
-    }
-
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).parent().parent().next().slideToggle();
-  }); // end of products page-------------------------------------------
-  // product details switch between data [rates - comments - seller info]
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.content').on('click', '.other_info ul li', function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).parent().find('.active').removeClass();
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass('active');
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).parent().parent().parent().find('.other_info_data .container > div').fadeOut();
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).parent().parent().parent().find('.other_info_data .container > div').eq(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).index()).fadeIn();
-  }); // change image of product page
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.content').on('click', '.product-details .image .images > img', function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).parent().parent().find('>img').attr('src', jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('src'));
-  }); // adding product button
-
-  /*
-  $('.plus').click(function(){
-     var input_val = $(this).next().val();
-     if(input_val == ""){
-         input_val = 0;
-     }
-     $(this).next().val(parseInt(input_val) + 1) ;
-  });
-  $('.minus').click(function(){
-      var input_val = $(this).prev().val();
-      if(input_val == ""){
-          input_val = 0;
-      }
-      if(parseInt(input_val) - 1 > 0) {
-          $(this).prev().val(parseInt(input_val) - 1);
-      }else{
-          $(this).prev().val(0);
-      }
-  });
-  */
-  // most questions page slide up and down question content
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.content').on('click', '.mostquestions .all_questions .question .heading', function () {
-    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).find('i').hasClass('ri-arrow-down-s-line')) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).find('i').removeClass('ri-arrow-down-s-line').addClass('ri-arrow-up-s-line');
-    } else {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).find('i').removeClass('ri-arrow-up-s-line').addClass('ri-arrow-down-s-line');
-    }
-
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).next().slideToggle();
-  });
-  /*-------------------------------------start of checkout----------------------------*/
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.content').on('change', '.checkout .payment form .payment-type input', function () {
-    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val() == "visa") {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.checkout .visa input').attr('required', 'required');
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.checkout .visa').fadeIn();
-    } else {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.checkout .visa input').removeAttr('required');
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.checkout .visa').fadeOut();
-    }
-  });
-  /*--------------------------------------end of checkout-----------------------------*/
-
-  /*--------------------------------------start of profile-----------------------------*/
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.content').on('click', '.payments_types form .input-icon span', function ($e) {
-    var actions = [];
-    var target = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
-
-    if (window.vm.$page.props.lang == 'ar') {
-      actions['delete'] = 'هل انت متأكد من عمليه الحذف';
-      actions['cancel'] = 'الغاء';
-      actions['ok'] = 'نعم';
-      actions['success'] = 'تم المسح بنجاح';
-    } else {
-      actions['delete'] = 'are you sure from delete';
-      actions['cancel'] = 'cancel';
-      actions['ok'] = 'ok';
-      actions['success'] = 'deleted successfully';
-    }
-
-    Swal.fire({
-      icon: 'error',
-      title: actions['delete'],
-      showCancelButton: true,
-      confirmButtonText: actions['ok'],
-      cancelButtonText: actions['cancel'],
-      confirmButtonColor: '#03071E',
-      cancelButtonColor: '#9D0208'
-    }).then(function (result) {
-      /* Read more about isConfirmed, isDenied below */
-      if (result.isConfirmed) {
-        target.parent().parent().remove();
-        Toast.fire({
-          icon: 'success',
-          title: actions['success']
-        });
-      }
-    });
-  });
-  /*--------------------------------------end of profile-----------------------------*/
-
-  /*-------------------------------start of create-product----------------------------------*/
-  // product status
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.content').on('click', '.product_status .dropdown-menu div input[type=radio]', function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).parent().siblings().removeClass('active');
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).parent().addClass('active');
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.product_status button').text(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).next().html());
-  }); // delete special discount case
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.content').on('click', '.create-product .special_discount span i', function () {
-    if (document.URL.indexOf('editproduct') > 0) {
-      var actions = {};
-
-      if (window.vm.$page.props.lang == 'ar') {
-        actions['delete'] = 'هل انت متأكد من عمليه الحذف';
-        actions['cancel'] = 'الغاء';
-        actions['ok'] = 'نعم';
-        actions['success'] = 'تم مسح المقاس بنجاح';
-      } else {
-        actions['delete'] = 'are you sure from delete';
-        actions['cancel'] = 'cancel';
-        actions['ok'] = 'ok';
-        actions['success'] = 'size is deleted successfully';
-      }
-
-      var ev = this;
-      console.log(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('discount_case_id'));
-
-      if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('discount_case_id')) {
-        var data = {
-          operation: 'delete',
-          discount_case_id: jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('discount_case_id')
-        };
-        jquery__WEBPACK_IMPORTED_MODULE_0___default().ajax({
-          headers: {
-            'X-CSRF-TOKEN': jquery__WEBPACK_IMPORTED_MODULE_0___default()('meta[name="csrf-token"]').attr('content')
-          },
-          url: '/profile/deletespecialdiscountcase',
-          type: 'POST',
-          data: data,
-          dataType: 'JSON',
-          success: function success(data) {
-            Toast.fire({
-              icon: 'success',
-              title: actions['success']
-            });
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(ev).parent().parent().remove();
-          }
-        });
-      } else {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).parent().parent().remove();
-      }
-    } else {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).parent().parent().remove();
-    }
-  }); // add special discount cases
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.content').on('click', '.create-product .add_special_discount', function () {
-    var actions = [];
-
-    if (window.vm.$page.props.lang == 'ar') {
-      actions['min'] = 'اقل قيمه';
-      actions['max'] = 'اقصي قيمه';
-      actions['discount'] = 'نسبه الخصم';
-    } else {
-      actions['min'] = 'min pieces';
-      actions['max'] = 'max pieces';
-      actions['discount'] = 'discount percentage';
-    }
-
-    var html_output = '<div class="special_discount mb-2"><span><i class="ri-close-line"></i></span><input name="min_request_order[]" type="number" placeholder="' + actions['min'] + '" required><input name="max_request_order[]" type="number" placeholder="' + actions['max'] + '" required><input name="discount_request_order[]" type="number" placeholder="' + actions['discount'] + '" required></div>';
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).prev().append(html_output);
-  }); // show , hide price of question answer
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.content').on('click', '.create-product .questions .question .outer .inner button', function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).prev().fadeIn();
-  }); // remove question answer
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.content').on('click', '.create-product .question div.inner span', function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).parent().remove();
-  }); // delete size
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.content').on('click', '.outer_sizes .inner_sizes div span', function () {
-    if (document.URL.indexOf('editproduct') > 0) {
-      var actions = {};
-
-      if (window.vm.$page.props.lang == 'ar') {
-        actions['delete'] = 'هل انت متأكد من عمليه الحذف';
-        actions['cancel'] = 'الغاء';
-        actions['ok'] = 'نعم';
-        actions['success'] = 'تم مسح المقاس بنجاح';
-      } else {
-        actions['delete'] = 'are you sure from delete';
-        actions['cancel'] = 'cancel';
-        actions['ok'] = 'ok';
-        actions['success'] = 'size is deleted successfully';
-      }
-
-      var ev = this;
-
-      if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('color') || jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('size')) {
-        var data = {
-          operation: 'delete',
-          product_id: jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('el_id'),
-          color: jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('color'),
-          size: jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('size'),
-          type: jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('type'),
-          id: jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('id')
-        };
-        jquery__WEBPACK_IMPORTED_MODULE_0___default().ajax({
-          headers: {
-            'X-CSRF-TOKEN': jquery__WEBPACK_IMPORTED_MODULE_0___default()('meta[name="csrf-token"]').attr('content')
-          },
-          url: '/profile/updateproductsize',
-          type: 'POST',
-          data: data,
-          dataType: 'JSON',
-          success: function success(data) {
-            Toast.fire({
-              icon: 'success',
-              title: actions['success']
-            });
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(ev).parent().remove();
-          }
-        });
-      } else {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).parent().remove();
-      }
-    } else {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).parent().remove();
-    }
-  }); // add new size
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.content').on('click', '.outer_sizes > button', function () {
-    var parent = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).parent();
-
-    if (window.vm.$page.props.lang == 'ar') {
-      var size = 'المقاس';
-    } else {
-      var size = 'size;';
-    }
-
-    var html_input = '<div><input name="sizes[]" placeholder="' + size + '"><span><i class="ri-close-line"></i></span></div>';
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).prev().append(html_input);
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.content').on('change', '.sub_cats_product_creation select', function () {
-    // check if nex is there is another select
-    var output = {};
-    var parent_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
-    jquery__WEBPACK_IMPORTED_MODULE_0___default().ajax({
-      headers: {
-        'X-CSRF-TOKEN': jquery__WEBPACK_IMPORTED_MODULE_0___default()('meta[name="csrf-token"]').attr('content')
-      },
-      url: '/categories/getchilren',
-      type: 'POST',
-      data: {
-        parent_id: parent_id
-      },
-      dataType: 'JSON',
-      async: false,
-      success: function success(data) {
-        output = data;
-      }
-    });
-
-    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(event.target).next().length > 0) {
-      // i found another select
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(event.target).nextAll().remove();
-    }
-
-    if (Object.keys(output).length > 0) {
-      var select = '<select class="form-control" name="main_category_id[]" required><option value="">';
-      select += event.target.firstElementChild.text;
-      select += '</option>';
-
-      for (var _i = 0, _Object$keys = Object.keys(output); _i < _Object$keys.length; _i++) {
-        var op = _Object$keys[_i];
-        select += '<option value="' + output[op]['id'] + '">' + output[op]['name'] + '</option>';
-      }
-
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(event.target).parent().append(select);
-    }
-  }); // detect number of files upload
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.content').on('click', '.inputs_colors_data .color_field input[type="file"]', function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).parent().find('p').html(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this)[0].files.length);
-  }); // remove color_size field input
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.content').on('click', '.color_field > span', function () {
-    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('color') == undefined || jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('product_id') == undefined) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).parent().remove();
-    } else {
-      var tar = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).parent();
-      var color = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('color');
-      var product_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('product_id');
-      var actions = [];
-
-      if (window.vm.$page.props.lang == 'ar') {
-        actions['delete'] = 'هل انت متأكد من عمليه الحذف';
-        actions['cancel'] = 'الغاء';
-        actions['ok'] = 'نعم';
-        actions['success'] = 'تم مسح المقاسات بالصور المخصصه لهذا اللون  بنجاح';
-      } else {
-        actions['delete'] = 'are you sure from delete';
-        actions['cancel'] = 'cancel';
-        actions['ok'] = 'ok';
-        actions['success'] = 'sizes , photos of product color are deleted successfully';
-      }
-
-      Swal.fire({
-        icon: 'error',
-        title: actions['delete'],
-        showCancelButton: true,
-        confirmButtonText: actions['ok'],
-        cancelButtonText: actions['cancel'],
-        confirmButtonColor: '#03071E',
-        cancelButtonColor: '#9D0208'
-      }).then(function (result) {
-        /* Read more about isConfirmed, isDenied below */
-        if (result.isConfirmed) {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default().ajax({
-            headers: {
-              'X-CSRF-TOKEN': jquery__WEBPACK_IMPORTED_MODULE_0___default()('meta[name="csrf-token"]').attr('content')
-            },
-            url: '/products/deletecolor',
-            type: 'POST',
-            data: {
-              color: color,
-              product_id: product_id
-            },
-            dataType: 'JSON',
-            success: function success(data) {
-              Toast.fire({
-                icon: 'success',
-                title: actions['success']
-              });
-              tar.remove();
-            }
-          });
-        }
-      });
-    }
-  }); // price required
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.question div.inner input:last-of-type').change(function () {
-    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val().length > 0) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).parent().parent().find('.inner  input:last-of-type').attr('required', 'required');
-    } else {
-      // he remove value from price
-      // check if there is any price has value
-      var check_price_no = 0;
-
-      var _iterator = _createForOfIteratorHelper(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).parent().parent().find('.inner  input:last-of-type')),
-          _step;
-
-      try {
-        for (_iterator.s(); !(_step = _iterator.n()).done;) {
-          var input = _step.value;
-          console.log(input);
-
-          if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(input).val().length > 0) {
-            check_price_no++;
-          }
-        }
-      } catch (err) {
-        _iterator.e(err);
-      } finally {
-        _iterator.f();
-      }
-
-      if (check_price_no > 0) {
-        // found price input
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).parent().parent().find('.inner  input:last-of-type').attr('required', 'required');
-      } else {
-        // no found price
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).parent().parent().find('.inner  input:last-of-type').removeAttr('required');
-      }
-    }
-  });
-  /*-------------------------------end of create-product----------------------------------*/
-
-  /*-------------------------------start of dashboard----------------------------------*/
-  // delete bneksy shipment record
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.content').on('click', '.bneksy_shipment_info tbody tr td span', function () {
-    var parent = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).parent().parent();
-    Swal.fire({
-      icon: 'error',
-      title: 'هل انت متأكد من عمليه الحذف',
-      showCancelButton: true,
-      confirmButtonText: 'نعم',
-      cancelButtonText: 'لا',
-      confirmButtonColor: '#03071E',
-      cancelButtonColor: '#9D0208'
-    }).then(function (result) {
-      /* Read more about isConfirmed, isDenied below */
-      if (result.isConfirmed) {
-        parent.remove();
-      }
-    });
-  });
-  /*-------------------------------end of dashboard----------------------------------*/
+  /*--------------------------end of public actions at all pages -------------------------------*/
 });
 
 /***/ }),
@@ -57903,6 +57403,26 @@ var map = {
 		"./resources/js/Pages/home.vue",
 		"resources_js_Pages_home_vue"
 	],
+	"./listingpost/info.vue": [
+		"./resources/js/Pages/listingpost/info.vue",
+		"resources_js_Pages_listingpost_info_vue"
+	],
+	"./listingpost/initialize.vue": [
+		"./resources/js/Pages/listingpost/initialize.vue",
+		"resources_js_Pages_listingpost_initialize_vue"
+	],
+	"./neighbours.vue": [
+		"./resources/js/Pages/neighbours.vue",
+		"resources_js_Pages_neighbours_vue"
+	],
+	"./sales.vue": [
+		"./resources/js/Pages/sales.vue",
+		"resources_js_Pages_sales_vue"
+	],
+	"./search_page_filters.vue": [
+		"./resources/js/Pages/search_page_filters.vue",
+		"resources_js_Pages_search_page_filters_vue"
+	],
 	"./sign_in.vue": [
 		"./resources/js/Pages/sign_in.vue",
 		"resources_js_Pages_sign_in_vue"
@@ -58048,7 +57568,7 @@ module.exports = webpackAsyncContext;
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames based on template
-/******/ 			return "js/" + chunkId + "." + {"resources_js_Pages_home_vue":"19b7b61c5aa357bc35e7","resources_js_Pages_sign_in_vue":"e5d63106c245bc722bfc","resources_js_Pages_sign_up_vue":"fc9931de2723e2bf6b53"}[chunkId] + ".js";
+/******/ 			return "js/" + chunkId + "." + {"resources_js_Pages_home_vue":"616d1eed6aa72e90f771","resources_js_Pages_listingpost_info_vue":"ce916c0995499ae0297b","resources_js_Pages_listingpost_initialize_vue":"fd4c4db013f9cbd26002","resources_js_Pages_neighbours_vue":"94dbaf5a54f3a90a55c3","resources_js_Pages_sales_vue":"b5de61d585226b593d2f","resources_js_Pages_search_page_filters_vue":"0fa3fd323ad1edb11d74","resources_js_Pages_sign_in_vue":"a9c2ef751d4be0d9ae46","resources_js_Pages_sign_up_vue":"99c764f7c1483a72fffe"}[chunkId] + ".js";
 /******/ 		};
 /******/ 	})();
 /******/ 	

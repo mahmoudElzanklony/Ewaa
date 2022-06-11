@@ -33,6 +33,7 @@ return [
     'reach_million_of_users'=>'Reach millions of users directly',
     'list_company_properties'=>'List company properties',
     'join_thousands_of_companies'=>'join thousands of companies now',
+
     // Auth page
     'sign_up'=>'Sign up',
     'sign_in'=>'Sign in',
@@ -46,4 +47,114 @@ return [
     'coupounded_developer'=>'Coupounded developer',
     'brokerage_company'=>'Brokerage company',
     'user_type'=>'user type',
+    'have_already_account'=>'have already account ',
+    'forget_password'=>'forget password',
+    'dont_have_account'=>'dont have account',
+
+
+
+    // search filter page
+    'area'=>'Area',
+    'category'=>'Category',
+    'type'=>'Property_type',
+    'price_range'=>'Price range',
+    'min_price'=>'Min price',
+    'max_price'=>'Max price',
+    'more_filters'=>'More filters',
+    'less_filters'=>'Less filters',
+    'area_range'=>'Area range',
+    'min_area'=>'Min area',
+    'max_area'=>'Max area',
+    'payment_methods'=>'Payment methods',
+    'all_options'=>'All',
+    'cash'=>'Cash',
+    'installments'=>'Installments',
+    'listings_available_for_mortgage'=>'Listings available for mortgage',
+    'all_financing_options'=>'all financing options',
+    'cbe_initiative'=>'CBE 3% Initiative',
+    'cbe_another_initiative'=>'CBE 8% Initiative',
+    'commercial_financing'=>'Commercial financing',
+    'view'=>'View',
+    'keywords'=>'Keywords',
+    'result_filtering'=>'Results filters',
+    'listings_with_photos_only'=>'Listings with photos only',
+    'listings_inside_compounds_only'=>'Listings inside compounds only',
+    'direct_from_the_owner_listings'=>'Direct from the owner listings',
+    'sort_by'=>'Sort By',
+    'newest_first'=>'Newest first',
+    'lowest_price'=>'Lowest price',
+    'height_price'=>'Height price',
+    'smallest_area'=>'Smallest area',
+    'largest_area'=>'Largest area',
+    'search'=>'Search',
+    'listings_at_egypt'=>'Real estate in Egypt',
+    'properties_for_sale'=>'Properties For Sale',
+
+
+    // start of market place page------------------------------------------------
+    'city_or_neighbour_streetname'=>'City or Neighborhood or Street name',
+    'properties_for_rent'=>'Properties for rent',
+    'show_more'=>'Show more',
+    'do_you_need_help'=>'Do you need help',
+    'to_get_best_results'=>'To get faster and more results, we recommend that you contact the largest real estate offices - to help you find what you are looking for.',
+    'registered_at_date'=>'Registered at date',
+    'close'=>'close',
+    'pound'=>'pound',
+    'meter'=>'meter',
+    'verified'=>'verified',
+    'sponsored'=>'sponsored',
+    'request_contact'=>'request contact',
+    // end of market place page------------------------------------------------
+
+
+    // start of neighbour page------------------------------------------------
+    'egypt_properties'=>'Egypt Real Estate',
+    'neighborhood_prices'=>'Neighborhoods prices',
+    'real_estate_prices_in_egypt'=>'Real estate prices in Egypt',
+    'search_inside_the_cities_of_egypt'=>'Search inside the cities of Egypt',
+    // end of neighbour page------------------------------------------------
+
+
+
+    // start of listing post ----------------------------------------------------
+    'listing_type'=>'Listing Type',
+    'listing_section'=>'Listing Section',
+    'location'=>'Location',
+    'choose_property_type'=>'choose property type',
+    'select_location'=>'select location',
+    'listing_data'=>'listing data',
+    'listing_info'=>'listing info',
+    'listing_images'=>'listing images',
+    'next'=>'التالي',
+    // end of listing post ----------------------------------------------------
+
+
+
+    // start of listing post info ----------------------------------------------------
+    'title_in_english'=>'عنوان الأعلان بالأنجليزي',
+    'title_in_arabic'=>'عنوان الأعلان بالعربي',
+    'description_in_english'=>'تفاصيل الأعلان بالأنجليزي',
+    'description_in_arabic'=>'تفاصيل الأعلان بالعربي',
+    'youtube_video_url'=>'رابط الفديو يوتيوب',
+    'advertiser_details'=>'بيانات المعلن',
+    'phone_number'=>'رقم الهاتف',
+    'if_you_want_to_update_the_current_phone_number_please_go_to'=>'ذا أردت تعديل رقم الهاتف فرجاء اذهب',
+    'my_account'=>'اعدادتي',
+    'this_number_has_whatsapp'=>'يوجد WhatsApp علي هذا الرقم',
+    'contact_me_by_email'=>'تواصل معي عن طريق الأيمل',
+    'property_details'=>'وصف العقار',
+    'size_in_meters'=>'المساحه (بالمتر)',
+    'view'=>'تطلي علي',
+    'price_egp'=>'السعر بالجنيه',
+    'payment_method'=>'طريقة الدفع',
+    'rooms'=>'الغرف',
+    'floor'=>'الدور',
+    'bathrooms'=>'الحمامات',
+    'building_year'=>'سنة البناء / التسليم',
+    'finishing_type'=>'نوع التشطيب',
+    'property_address'=>'عنوان العقار',
+    'mark_your_listing_location'=>'حدد مكان العقار على الخريطة',
+    // end of listing post info ----------------------------------------------------
+
+
 ];

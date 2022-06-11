@@ -25,6 +25,22 @@ nav .dropdown-menu a span:first-of-type {
   margin-left: 10px;
 }
 
+.input-icon span {
+  left: 10px;
+}
+
+.input-radius-radio {
+  margin-left: 10px;
+}
+
+.progress-form span:not(:last-of-type)::before {
+  content: "";
+  right: 34px;
+}
+.progress-form span:nth-of-type(3)::before {
+  right: 36px;
+}
+
 /*---------------------------------------------start of home page-----------------------------------------*/
 .sub-data .sub a > span:first-of-type {
   margin-left: 20px;
@@ -37,3 +53,18 @@ nav .dropdown-menu a span:first-of-type {
 }
 
 /*---------------------------------------------end of home page-----------------------------------------*/
+/*---------------------------------------------start of filter page-----------------------------------------*/
+.special_radio_container .special_radio input {
+  margin-right: -35px;
+}
+.special_radio_container .special_radio input.active {
+  margin-right: 0px;
+}
+
+/*---------------------------------------------end of filter page-----------------------------------------*/
+/*---------------------------------------------start of neighbour page------------------------------------*/
+.pages span {
+  margin-left: 10px;
+}
+
+/*---------------------------------------------end of neighbour page------------------------------------*/

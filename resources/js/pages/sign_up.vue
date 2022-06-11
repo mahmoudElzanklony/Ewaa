@@ -42,6 +42,10 @@
                                        class="btn btn-primary"
                                        :value="keywords.sign_up">
                             </div>
+                            <p class="text-center">
+                                <span>{{ keywords.have_already_account }} ? </span>
+                                <inertia-link href="/login">{{ keywords.sign_in }}</inertia-link>
+                            </p>
                         </form>
                     </div>
                     <div class="col-md-6">
@@ -82,6 +86,14 @@ export default {
         background-color: #b2dfdb5e;
         width: 100%;
         height: 100%;
+    }
+}
+form{
+    p{
+        span,a{
+            font-size: $paragraph;
+        }
+
     }
 }
 </style>
