@@ -51,6 +51,9 @@ return [
    'have_already_account'=>'تمتلك بالفعل حساب معنا',
    'forget_password'=>'نسيت كلمه المرور',
    'dont_have_account'=>'لا تمتلك حساب معنا',
+   'send'=>'أرسال',
+   'make_new_password'=>'أنشاء كلمه مرور جديدة',
+   'password_confirmed'=>'تأكيد كلمة المرور الجديدة',
 
    // search filter page
    'area'=>'منطقه',
@@ -68,6 +71,7 @@ return [
    'all_options'=>'كل الخيارات',
    'cash'=>'كاش',
    'installments'=>'تقسيط',
+   'cash_or_installments'=>'كاش او تقسيط',
    'listings_available_for_mortgage'=>'عقارات متاحة للتمويل العقاري',
    'all_financing_options'=>'جميع خيارات التمويل',
    'cbe_initiative'=>'مبادرة البنك المركزى 3%',
@@ -125,6 +129,7 @@ return [
     'listing_info'=>'تفاصيل العقار',
     'listing_images'=>'صور العقار',
     'next'=>'التالي',
+    'previous'=>'السابق',
   // end of listing post initialize----------------------------------------------------
 
 
@@ -143,6 +148,7 @@ return [
     'property_details'=>'وصف العقار',
     'size_in_meters'=>'المساحه (بالمتر)',
     'view'=>'تطلي علي',
+    'select_view'=>'أختر الأطلالة',
     'price_egp'=>'السعر بالجنيه',
     'payment_method'=>'طريقة الدفع',
     'rooms'=>'الغرف',
@@ -150,8 +156,65 @@ return [
     'bathrooms'=>'الحمامات',
     'building_year'=>'سنة البناء / التسليم',
     'finishing_type'=>'نوع التشطيب',
+    'super_lux'=>'سوبر لوكس',
+    'extra_super_lux'=>'اكسترا سوبر لوكس',
+    'lux'=>'لوكس',
+    'semi_finished'=>'نص تشطيب',
+    'without_finish'=>'بدون تشطيب',
     'property_address'=>'عنوان العقار',
     'mark_your_listing_location'=>'حدد مكان العقار على الخريطة',
-  // end of listing post info ----------------------------------------------------
+    'kindly_read_terms_and_instructions_of_adding_listings_on_ewaa'=>'الرجاء قراءة شروط وتعليمات إضافة الإعلانات على ايواء',
+    'here'=>'هنا',
+
+    // end of listing post info ----------------------------------------------------
+
+
+
+    // start of listing photos  ----------------------------------------------------
+    'add_your_photos'=>'أصف صور عقارك',
+    'please_make_sure_each_photo_is_smaller_than'=>'برجاء تحميل صور أصغر حجما من 2 ميجابايت و عليك اختيار 10 صور فقط على الأكثر',
+    'drop_your_images_here'=>'قم بسحب وإلقاء الصور هنا',
+    'add_files'=>'تصفح',
+
+    // end of listing photos  ----------------------------------------------------
+
+
+
+    // start of listing details
+    'show_phone_number'=>'اظهر رقم الهاتف',
+    'send_email'=>'ارسل بريد الكتروني',
+    'get_help'=>'طلب المساعده',
+    'see_this_properties_also'=>'شاهد هذه العقارات ايضا',
+    'listing'=>'اعلان',
+    'listing_details'=>'تفاصيل الاعلان',
+    'listing_description'=>'وصف الاعلان',
+    'pound'=>'جنية',
+    'want_help'=>'هل تحتاج الي مزيد من المساعدة ؟',
+    'get_help_from'=>'تواصل مع أكبر الشركات في كمبوندات أخرى بالعاصمة الإدارية الجديدة',
+    'view_properties_from_this_seller'=>'اظهر اعلانات هذا البائع',
+    'enter_your_info_to_contact_with_seller'=>'ادخل بيناتك للتواصل مع المعلن',
+    'note_you_write_it'=>'هذه الملاحظة خاصة بك و لن تظهر على الإعلان أو للمُعلن, يمكنك الرجوع لهذه الملاحظة عن طريق الرجوع ل نشاطاتي',
+    'note'=>'ملاحظاتي',
+    'share'=>'مشاركه',
+    'favourite'=>'المفضلة',
+    'save'=>'حفظ',
+    'share_listing'=>'شارك هذا العقار',
+    // end of listing details  ----------------------------------------------------
+
+
+
+
+
+    // start of governments  ----------------------------------------------------
+    'price_guides'=>'دليل الأسعار',
+    // end of governments  ----------------------------------------------------
+
+
+    // start of notifications  ----------------------------------------------------
+    'notifications'=>'الأشعارات',
+    'your_notifications'=>'اشعاراتك',
+    // end of notifications  ----------------------------------------------------
+
+
 
 ];

@@ -170,6 +170,58 @@ export default {
                   en:'Market Research',
                   tu:'',
               },
+              big_photo_upload:{
+                  ar:'مساحه الصوره المرفوعه اكبر من 2 ميجا',
+                  en:'size of photo uploaded is more than 2 mega',
+                  tu:'',
+              },
+              big_photo_upload_error_preview:{
+                  ar:'لن نستطع من عرض الصور التي مساحتها اكبر من 2 ميجا',
+                  en:'we cant preview photo uploaded that size is more than 2 mega',
+                  tu:'',
+              },
+              you_exceed_number_of_uploaded:{
+                  ar:'لقد تجاوزت عدد الصور المسموح به للرفع',
+                  en:'you exceed number of photos uploaded',
+                  tu:'',
+              },
+              added_to_fav:{
+                  ar:'تم الأضافه الي المفضلة بنجاح',
+                  en:'added to favourite successfully',
+                  tu:'',
+              },
+              removed_from_fav:{
+                  ar:'تمت الأزالة من المفضلة بنجاح',
+                  en:'removed from favourite successfully',
+                  tu:'',
+              },
+              do_you_need_help:{
+                  ar:'هل تحتاج الي مساعده',
+                  en:'Do you need help',
+                  tu:'',
+              },
+              to_get_best_results:{
+                  ar:'للحصول على نتائج اسرع و اكثر ، نرشح لك أن نتواصل مع أكبر المكاتب العقارية - لمساعدتك في العثور على ماتبحث عنه .',
+                  en:'To get faster and more results, we recommend that you contact the largest real estate offices - to help you find what you are looking for.',
+                  tu:'',
+              },
+              registered_at_date:{
+                  ar:'سجل في تاريخ',
+                  en:'Registered at date',
+                  tu:'',
+              },
+              properties:{
+                  ar:'عقارات مصر',
+                  en:'Properties',
+                  tu:'',
+              },
+              request_contact:{
+                  ar:'طلب اتصال',
+                  en:'request contact',
+                  tu:'',
+              }
+
+
 
 
 

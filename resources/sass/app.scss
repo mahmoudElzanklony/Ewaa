@@ -117,12 +117,92 @@ ul{
     padding: 0px;
     margin: 0px;
 }
+textarea{
+    height: 100px;
+    resize: none;
+}
 .container{
     position: relative;
 }
 
 input:focus{
     box-shadow: 0px -1px 7px 3px #ddd;
+}
+h2.main-title{
+    span:first-of-type{
+        color:$main_color;
+        margin-left: 6px;
+        position: relative;
+        top:2px;
+    }
+}
+
+
+.drag-drop-files{
+    border: 2px dashed #ddd;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+    input{
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        z-index: 99999;
+        width:100%;
+    }
+    p{
+        width:100%;
+    }
+    button{
+        position: relative;
+        display: inline-flex;
+        span:first-of-type{
+            margin:0px 4px;
+            color:white;
+        }
+        span:last-of-type{
+            height: 25px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            top:2px;
+            i{
+                color:white;
+            }
+        }
+    }
+}
+.preview-uploaded-images{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px 0px;
+    .image{
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 5px;
+        margin-bottom: 10px;
+        img{
+            width: 100%;
+            border-radius: 10px;
+            height: 130px;
+            max-width: 155px;
+            object-fit: contain;
+        }
+        p{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            span:last-of-type{
+                color:$red;
+                cursor: pointer;
+            }
+        }
+    }
 }
 // *********************************start of public classes *///////////////////////////////
 .big-button{
@@ -241,6 +321,9 @@ input:focus{
 }
 
 .pages{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
     .container{
         display: flex;
         align-items: center;
@@ -259,7 +342,7 @@ input:focus{
         position: relative;
         top:2px;
     }
-    span.active{
+    .active{
         color:$main_color;
     }
 }
@@ -288,6 +371,9 @@ input:focus{
         border: 2px solid $main_color;
         i{
             color:$main_color;
+        }
+        &::before{
+            background-color: $main_color !important;
         }
     }
     span.active + p{
@@ -341,6 +427,31 @@ input:focus{
 }
 
 
+.toggle-checkbox-status{
+    position: relative;
+    appearance: none;
+    width: 60px;
+    height: 30px;
+    background-color: $gray;
+    border-radius: 30px;
+    top: 3px;
+    transition: 0.5s all;
+}
+.toggle-checkbox-status:checked{
+    background-color: $sub_main_color;
+}
+.toggle-checkbox-status::before{
+    content: '';
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 50%;
+    display: block;
+    position: absolute;
+    top: 5px;
+    transition: 0.5s all;
+}
+
 /*-------------------------------------------end of public classes-------------------------------------*/
 
 
@@ -352,6 +463,14 @@ input:focus{
         background-color: $main_color;
     }
 }
+.btn-outline-primary{
+    border-color: $main_color;
+    &:hover{
+        background-color: $main_color;
+        border-color: $main_color;
+    }
+}
+
 .modal-header{
     align-items: center;
     justify-content: space-between;

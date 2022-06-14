@@ -21,9 +21,8 @@
 
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" defer integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" defer integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="https://cdn.ckeditor.com/4.16.2/full/ckeditor.js" async></script>
-      <script src="https://www.merchant.geidea.net/hpp/geideapay.min.js" defer>
-      </script>
+
+
 
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -44,14 +43,14 @@
 
       <script src="{{ mix('/js/app.js') }}" defer></script>
       <style>
-          body{
+          /*body{
               overflow: hidden;
           }
           .content > div:first-of-type , .content > section:first-of-type{
               height: calc(100vh);
               overflow: auto;
               direction: ltr;
-          }
+          }*/
 
       </style>
   </head>
@@ -63,6 +62,10 @@
     <div class="content">
         @inertia
     </div>
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDgIAtyby96ja8LMC5kTGfKuAfTgBEXDnk&callback=initMap&v=weekly"
+
+></script>
 
   </body>
 </html>

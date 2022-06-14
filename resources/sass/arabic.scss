@@ -56,6 +56,20 @@ nav {
     }
 }
 
+.toggle-checkbox-status::before{
+    left:4px;
+}
+.toggle-checkbox-status:checked::before{
+    left:unset;
+    right: 4px;
+}
+
+.preview-uploaded-images{
+    .image{
+        margin-left: 15px;
+    }
+}
+
 
 /*---------------------------------------------start of home page-----------------------------------------*/
 .sub-data {
@@ -94,7 +108,7 @@ nav {
 
 /*---------------------------------------------start of neighbour page------------------------------------*/
 .pages{
-    span{
+    span , a{
         margin-left: 10px;
     }
 }

@@ -41,6 +41,19 @@ nav .dropdown-menu a span:first-of-type {
   right: 36px;
 }
 
+.toggle-checkbox-status::before {
+  left: 4px;
+}
+
+.toggle-checkbox-status:checked::before {
+  left: unset;
+  right: 4px;
+}
+
+.preview-uploaded-images .image {
+  margin-left: 15px;
+}
+
 /*---------------------------------------------start of home page-----------------------------------------*/
 .sub-data .sub a > span:first-of-type {
   margin-left: 20px;
@@ -63,7 +76,7 @@ nav .dropdown-menu a span:first-of-type {
 
 /*---------------------------------------------end of filter page-----------------------------------------*/
 /*---------------------------------------------start of neighbour page------------------------------------*/
-.pages span {
+.pages span, .pages a {
   margin-left: 10px;
 }
 

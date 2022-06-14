@@ -1,4 +1,5 @@
 <template>
+
     <section class="sales">
         <navbar-component></navbar-component>
         <div class="container mt-4 mb-2">
@@ -118,32 +119,21 @@
                             </div>
                         </div>
                         <div class="col-lg-4">
-                            <div class="contact-offices">
-                                <p>{{ keywords.do_you_need_help }}</p>
-                                <p>{{ keywords.to_get_best_results }}</p>
-                                <form>
-                                    <div class="office d-flex
-                                    align-items-center justify-content-between flex-wrap" v-for="i in 5" :key="i">
-                                        <input type="checkbox">
-                                        <img src="/images/sales/one.jpg">
-                                        <div>
-                                            <p>Aqar Guide Real Estate</p>
-                                            <p>{{ keywords.registered_at_date }}</p>
-                                        </div>
-                                        <div>
-                                            <p><strong>4504</strong></p>
-                                            <p>{{ keywords.properties }}</p>
-                                        </div>
-                                    </div>
-                                    <input type="submit" class="btn btn-primary"
-                                           :value="keywords.request_contact">
-                                </form>
+                            <div class="offices">
+                                <p>{{ keywords.do_you_need_help }} </p>
+                                <p>{{ keywords.to_get_best_results }} </p>
+                                <contact-office v-for="i in  5" :key="i"
+                                                name="Aqar Guide Real Estate"
+                                                number_of_listing="4500"
+                                                date="20/02/2011"
+                                ></contact-office>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
         <div class="modal fade" id="show_filter" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -164,17 +154,20 @@
                 </div>
             </div>
         </div>
+
         <footer-component></footer-component>
     </section>
+
 </template>
 
 <script>
 import NavbarComponent from "../components/NavbarComponent";
 import FooterComponent from "../components/FooterComponent";
 import FilterComponent from "../components/FilterComponent";
+import ContactOffice from "./listingpost/ContactOffice";
 export default {
     name: "sales",
-    components: {FilterComponent, FooterComponent, NavbarComponent},
+    components: {ContactOffice, FilterComponent, FooterComponent, NavbarComponent},
     props:['keywords','search_keywords'],
 }
 </script>
@@ -331,57 +324,6 @@ export default {
     }
 }
 
-.contact-offices{
-    border: 1px solid #ddd;
-    padding: 15px;
-    border-radius: 10px;
-    >p:first-of-type{
-        font-weight: bold;
-    }
-    >p{
-        margin-bottom: 10px;
-    }
-    form{
-        .office:not(:last-of-type){
-            margin-bottom: 10px;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 10px;
-        }
-        .office{
-            input{
-                width: 22px;
-                height: 22px;
-            }
-            img{
-                width: 50px;
-                height: 50px;
-                border-radius: 10px;
-                border: 1px solid #ddd;
-                padding: 2px;
-
-            }
-            div{
-                p{
-                    margin-bottom: 0px;
-                }
-                p:first-of-type{
-                    color:$dark_gray;
-                    strong{
-                        color:$dark_gray;
-                    }
-                }
-            }
-        }
-        input[type="submit"]{
-            width:80%;
-            margin: auto;
-            display: block;
-            margin-top: 20px;
-            border-radius: 20px;
-        }
-    }
-}
-
 .pages{
     a{
         margin-left: 8px;
@@ -403,6 +345,7 @@ export default {
         color: white;
     }
 }
+
 
 
 .ar{
@@ -566,6 +509,12 @@ export default {
         max-height: 500px;
         overflow: auto;
     }
+}
+
+.offices{
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
 }
 
 @media (max-width: 992px) {

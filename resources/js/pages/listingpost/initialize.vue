@@ -2,8 +2,9 @@
     <section>
         <navbar-component></navbar-component>
         <div class="container mt-4 mb-6">
-            <h2 class="d-flex align-items-center mb-4">
-                <span><i class="ri-arrow-left-s-fill"></i></span>
+            <h2 class="d-flex align-items-center mb-4 main-title">
+                <span v-if="$page.props.lang == 'ar'"><i class="ri-arrow-left-s-fill"></i></span>
+                <span v-else><i class="ri-arrow-right-s-fill"></i></span>
                 <span>{{ keywords.list_property }}</span>
             </h2>
             <div class="progress-form">
@@ -98,14 +99,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "resources/sass/variables";
-h2{
-    span:first-of-type{
-        color:$main_color;
-        margin-left: 6px;
-        position: relative;
-        top:2px;
-    }
-}
+
 
 @media (min-width: 567px) {
     form{

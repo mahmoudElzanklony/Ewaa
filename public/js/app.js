@@ -2023,6 +2023,10 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
     }
   });
   /*--------------------------end of public actions at all pages -------------------------------*/
+
+  /*--------------------------start of post info details-------------------------------*/
+
+  /*--------------------------end of post info details-------------------------------*/
 });
 
 /***/ }),
@@ -57399,9 +57403,37 @@ Vue.compile = compileToFunctions;
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var map = {
+	"./auth/forget_password.vue": [
+		"./resources/js/Pages/auth/forget_password.vue",
+		"resources_js_Pages_auth_forget_password_vue"
+	],
+	"./auth/new_password.vue": [
+		"./resources/js/Pages/auth/new_password.vue",
+		"resources_js_Pages_auth_new_password_vue"
+	],
+	"./auth/sign_in.vue": [
+		"./resources/js/Pages/auth/sign_in.vue",
+		"resources_js_Pages_auth_sign_in_vue"
+	],
+	"./auth/sign_up.vue": [
+		"./resources/js/Pages/auth/sign_up.vue",
+		"resources_js_Pages_auth_sign_up_vue"
+	],
+	"./governments.vue": [
+		"./resources/js/Pages/governments.vue",
+		"resources_js_Pages_governments_vue"
+	],
 	"./home.vue": [
 		"./resources/js/Pages/home.vue",
 		"resources_js_Pages_home_vue"
+	],
+	"./listingpost/ContactOffice.vue": [
+		"./resources/js/Pages/listingpost/ContactOffice.vue",
+		"resources_js_Pages_listingpost_ContactOffice_vue"
+	],
+	"./listingpost/details.vue": [
+		"./resources/js/Pages/listingpost/details.vue",
+		"resources_js_Pages_listingpost_details_vue"
 	],
 	"./listingpost/info.vue": [
 		"./resources/js/Pages/listingpost/info.vue",
@@ -57411,9 +57443,17 @@ var map = {
 		"./resources/js/Pages/listingpost/initialize.vue",
 		"resources_js_Pages_listingpost_initialize_vue"
 	],
+	"./listingpost/photos.vue": [
+		"./resources/js/Pages/listingpost/photos.vue",
+		"resources_js_Pages_listingpost_photos_vue"
+	],
 	"./neighbours.vue": [
 		"./resources/js/Pages/neighbours.vue",
 		"resources_js_Pages_neighbours_vue"
+	],
+	"./notifications.vue": [
+		"./resources/js/Pages/notifications.vue",
+		"resources_js_Pages_notifications_vue"
 	],
 	"./sales.vue": [
 		"./resources/js/Pages/sales.vue",
@@ -57422,14 +57462,6 @@ var map = {
 	"./search_page_filters.vue": [
 		"./resources/js/Pages/search_page_filters.vue",
 		"resources_js_Pages_search_page_filters_vue"
-	],
-	"./sign_in.vue": [
-		"./resources/js/Pages/sign_in.vue",
-		"resources_js_Pages_sign_in_vue"
-	],
-	"./sign_up.vue": [
-		"./resources/js/Pages/sign_up.vue",
-		"resources_js_Pages_sign_up_vue"
 	]
 };
 function webpackAsyncContext(req) {
@@ -57568,7 +57600,7 @@ module.exports = webpackAsyncContext;
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames based on template
-/******/ 			return "js/" + chunkId + "." + {"resources_js_Pages_home_vue":"616d1eed6aa72e90f771","resources_js_Pages_listingpost_info_vue":"ce916c0995499ae0297b","resources_js_Pages_listingpost_initialize_vue":"fd4c4db013f9cbd26002","resources_js_Pages_neighbours_vue":"94dbaf5a54f3a90a55c3","resources_js_Pages_sales_vue":"b5de61d585226b593d2f","resources_js_Pages_search_page_filters_vue":"0fa3fd323ad1edb11d74","resources_js_Pages_sign_in_vue":"a9c2ef751d4be0d9ae46","resources_js_Pages_sign_up_vue":"99c764f7c1483a72fffe"}[chunkId] + ".js";
+/******/ 			return "js/" + chunkId + "." + {"resources_js_Pages_auth_forget_password_vue":"065730eda51d2f80b25c","resources_js_Pages_auth_new_password_vue":"b175b44a2a49308188c2","resources_js_Pages_auth_sign_in_vue":"c8a86ca89fe3a3554ed3","resources_js_Pages_auth_sign_up_vue":"7ab4cbf9cbcc24594484","resources_js_Pages_governments_vue":"3e00be9206dcf01c025f","resources_js_Pages_home_vue":"7b038936e6e8f722d95b","resources_js_Pages_listingpost_ContactOffice_vue":"594e6d731c793ec4cc70","resources_js_Pages_listingpost_details_vue":"acc1fa928afb3e64ac48","resources_js_Pages_listingpost_info_vue":"4c59b827fcf32c6d1d88","resources_js_Pages_listingpost_initialize_vue":"ba9549046251292dd1da","resources_js_Pages_listingpost_photos_vue":"26819596da52ce7b70bd","resources_js_Pages_neighbours_vue":"d995b84f18aeb8d810e7","resources_js_Pages_notifications_vue":"0fda684adf61dcfb6f6c","resources_js_Pages_sales_vue":"52af057825077c758ea2","resources_js_Pages_search_page_filters_vue":"887d948265ec8452661e"}[chunkId] + ".js";
 /******/ 		};
 /******/ 	})();
 /******/ 	
