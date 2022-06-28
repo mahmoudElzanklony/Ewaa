@@ -1,5 +1,17 @@
 <template>
     <div class="listing-details-info">
+        <!--------------if its added to favourite--------------- -->
+        <span class="fav" v-if="fav">
+            <i @click="toggle_fav" class="ri-heart-fill"></i>
+        </span>
+        <!--------------if its added to favourite--------------- -->
+
+        <!--------------if its added to note--------------- -->
+        <span class="edit" v-if="note">
+            <i  @click="$emit('write_note',[10,'abc note'])" class="ri-edit-fill"></i>
+        </span>
+        <!--------------if its added to note--------------- -->
+
         <inertia-link href="#">
             <div class="image">
                 <img :src="'/images/sales/'+image">
@@ -10,19 +22,57 @@
             </div>
             <p><strong>{{ info }}</strong></p>
             <p>{{ address }}</p>
+            <!--------- if this is a compound ----- -->
+            <div v-if="compound" class="d-flex info_icons justify-content-around">
+                <p class="d-flex align-items-center">
+                    <span><i class="ri-fullscreen-line"></i></span>
+                    <span>90 {{ switchWord('meter') }}</span>
+                </p>
+                <p class="d-flex align-items-center">
+                    <span><i class="ri-hotel-bed-line"></i></span>
+                    <span>1 {{ switchWord('baths') }}</span>
+                </p>
+                <p class="d-flex align-items-center">
+                    <span><i class="ri-hotel-bed-line"></i></span>
+                    <span>1 {{ switchWord('bath') }}</span>
+                </p>
+            </div>
+            <!------------end of its a coumpond --------------- -->
             <p>
                 <span>{{ price }}</span>
                 <span v-if="$page.props.lang == 'ar'">جنيه</span>
                 <span v-else>EGY</span>
+            </p>
+            <p v-if="average">
+                <span v-if="$page.props.lang == 'ar'">متوسط سعر المتر</span>
+                <span v-else>Meter average price</span>
             </p>
         </inertia-link>
     </div>
 </template>
 
 <script>
+import SwitchLangWord from "../mixin/SwitchLangWord";
 export default {
     name: "ListingPostComponent",
-    props:['image','number_of_images','info','address','price'],
+    mixins:[SwitchLangWord],
+    props:['image','number_of_images','info','address','price','average','compound','beds','baths','area','fav','note'],
+    methods:{
+        toggle_fav:function (){
+            let title = '';
+            if($(event.target).hasClass('ri-heart-fill')){
+                $(event.target).removeClass('ri-heart-fill').addClass('ri-heart-line');
+                title = this.switchWord('removed_from_fav_successfully');
+            }else{
+                $(event.target).removeClass('ri-heart-line').addClass('ri-heart-fill');
+                title = this.switchWord('added_to_fav_successfully');
+            }
+            Toast.fire({
+                icon:'success',
+                title:title
+            })
+        }
+    }
 }
 </script>
 
@@ -33,6 +83,19 @@ export default {
     border-radius: 8px;
     margin-bottom: 15px;
     overflow: hidden;
+    position: relative;
+    >span{
+        position: absolute;
+        top:5px;
+        z-index: 99999999999999999999999999999999;
+        cursor: pointer;
+    }
+    >span.fav{
+        color:$red;
+    }
+    >span.edit{
+        color:$dark_gray;
+    }
     .image {
         position: relative;
         img {
@@ -49,6 +112,13 @@ export default {
             }
         }
     }
+    .info_icons{
+        p{
+            span:nth-of-type(odd){
+                color:$gray;
+            }
+        }
+    }
     a {
         > p {
             padding: 4px 8px;
@@ -61,7 +131,7 @@ export default {
         }
 
         > p:nth-of-type(2) {
-            color: $dark_gray;;
+            color: $dark_gray;
         }
 
         > p:nth-of-type(3) {
@@ -70,12 +140,21 @@ export default {
                 font-weight: bold;
             }
         }
+        >p:last-of-type{
+            span{
+                font-weight: bold;
+                color:$main_color;
+            }
+        }
     }
 
 }
 
 .ar{
     .listing-details-info {
+        >span{
+            left:5px;
+        }
         .image {
             p {
                 right: 0px;
@@ -88,14 +167,16 @@ export default {
 }
 
 .en{
-    .ar{
-        .listing-details-info {
-            .image {
-                p {
-                    left: 0px;
-                    span {
-                        margin-right: 5px;
-                    }
+    .listing-details-info {
+        >span{
+            right: 5px;
+        }
+        .image {
+
+            p {
+                left: 0px;
+                span {
+                    margin-right: 5px;
                 }
             }
         }

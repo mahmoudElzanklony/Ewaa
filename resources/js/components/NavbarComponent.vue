@@ -1,8 +1,9 @@
 <template>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="/" v-if="$page.props.lang == 'ar'">أيواء</a>
-            <a class="navbar-brand" href="/" v-else>Ewaa</a>
+            <a class="navbar-brand" href="/">
+                <img src="/images/logo.png">
+            </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -83,6 +84,12 @@
                             <!--                            <div class="dropdown-divider"></div>-->
                         </div>
                     </li>
+                    <li class="nav-item d-flex align-items-center">
+                        <inertia-link class="nav-link" href="#">{{ switchWord('about_us') }}</inertia-link>
+                    </li>
+                    <li class="nav-item d-flex align-items-center">
+                        <inertia-link class="nav-link" href="#">{{ switchWord('ask_home') }}</inertia-link>
+                    </li>
 
                 </ul>
                 <ul class="d-flex">
@@ -93,6 +100,7 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="/lang/ar">{{ switchWord('Arabic_Language') }}</a>
                             <a class="dropdown-item" href="/lang/en">{{ switchWord('English_Language') }}</a>
+                            <a class="dropdown-item" href="/lang/tu">{{ switchWord('Turkish_Language') }}</a>
                             <!--                            <div class="dropdown-divider"></div>-->
                         </div>
                     </li>
@@ -108,7 +116,7 @@
                                 <span>{{ switchWord('Blue') }}</span>
                             </div>
                             <div class="dropdown-menu p-0 user-info-auth" aria-labelledby="navbarDropdown">
-                                <div class="sign-form">
+                                <div class="sign-form" v-if="auth == false">
                                     <div class="p-4">
                                         <h2>{{ switchWord('sign_in') }}</h2>
                                         <p>{{ switchWord('add_ad') }}</p>
@@ -122,6 +130,71 @@
                                     <div class="p-4">
                                         <p>{{ switchWord('my_offers') }}</p>
                                         <p>{{ switchWord('get_best_offers') }}</p>
+                                    </div>
+                                </div>
+                                <div class="auth-form" v-else>
+                                    <div class="user_image">
+                                        <img src="/images/users/one.jpg">
+                                        <div>
+                                            <p>example@gmail.com</p>
+                                            <p>{{ switchWord('registered_from_date') }} 22/05/2022</p>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="list">
+                                        <p>{{ switchWord('activities') }}</p>
+                                        <ul>
+                                            <li class="d-flex align-items-center justify-content-between">
+                                                <p>
+                                                    <span><i class="ri-heart-line"></i></span>
+                                                    <span>{{ switchWord('my_favourite') }}</span>
+                                                </p>
+                                                <span>4</span>
+                                            </li>
+                                            <li class="d-flex align-items-center justify-content-between">
+                                                <p>
+                                                    <span><i class="ri-file-line"></i></span>
+                                                    <span>{{ switchWord('my_notes') }}</span>
+                                                </p>
+                                                <span>2</span>
+                                            </li>
+                                            <li class="d-flex align-items-center justify-content-between">
+                                                <p>
+                                                    <span><i class="ri-notification-line"></i></span>
+                                                    <span>{{ switchWord('notifications') }}</span>
+                                                </p>
+                                                <span>2</span>
+                                            </li>
+                                            <hr>
+                                            <li class="d-flex align-items-center justify-content-between">
+                                                <p>
+                                                    <span><i class="ri-building-line"></i></span>
+                                                    <span>{{ switchWord('my_listings') }}</span>
+                                                </p>
+                                                <span>2</span>
+                                            </li>
+                                            <li class="d-flex align-items-center justify-content-between">
+                                                <p>
+                                                    <span><i class="ri-bank-card-line"></i></span>
+                                                    <span>{{ switchWord('my_balance') }}</span>
+                                                </p>
+                                                <span></span>
+                                            </li>
+                                            <li class="d-flex align-items-center justify-content-between">
+                                                <p>
+                                                    <span><i class="ri-wallet-3-line"></i></span>
+                                                    <span>{{ switchWord('charge_credit') }}</span>
+                                                </p>
+                                                <span></span>
+                                            </li>
+                                            <li class="d-flex align-items-center justify-content-between">
+                                                <p>
+                                                    <span><i class="ri-logout-box-line"></i></span>
+                                                    <span>{{ switchWord('logout') }}</span>
+                                                </p>
+                                                <span></span>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
                                 <!--                            <div class="dropdown-divider"></div>-->
@@ -141,8 +214,15 @@ export default {
     mixins:[SwitchLangWord],
     data:function (){
       return {
-
+         auth:false,
       }
+    },
+    created() {
+         if(document.URL.split('status=auth')[1] != undefined){
+              this.auth = true;
+         }else{
+             this.auth = false;
+         }
     },
     methods:{
         showList:function (){
@@ -165,6 +245,26 @@ export default {
     .navbar-brand{
         margin-left: 5%;
     }
+
+    .auth-form{
+        .user_image{
+            img{
+                margin-left: 10px;
+            }
+        }
+        .list{
+            ul{
+                li{
+                    p{
+                        span:first-of-type{
+                            margin-left: 5px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 }
 .en{
     .navbar-brand{
@@ -174,8 +274,36 @@ export default {
         right: 0px;
         left: unset;
     }
+    .auth-form{
+        .user_image{
+            img{
+                margin-right: 10px;
+            }
+        }
+        .list{
+            ul{
+                li{
+                    p{
+                        span:first-of-type{
+                            margin-right: 5px;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 nav {
+    .navbar-brand{
+        img{
+            height: 50px;
+        }
+    }
+    .nav-item{
+        >a{
+            color:$black !important;
+        }
+    }
     padding: 0px;
     box-shadow: 1px 1px 1px 1px #ddd;
     background-color: white !important;
@@ -249,6 +377,52 @@ nav {
                 background-color: $white_gray;
             }
         }
+
+        .auth-form{
+            .user_image{
+                display: flex;
+                align-items: center;
+                padding: 10px;
+                img{
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                }
+                div{
+                    p:last-of-type{
+                        color:$gray;
+                        margin-top: 5px;
+                    }
+                }
+            }
+            .list{
+                >p{
+                    padding: 0px 10px;
+                    margin-top: 15px;
+                    margin-bottom: 10px;
+                }
+                ul{
+                    li{
+                        padding:3px 10px;
+                        p{
+                            span{
+                                font-size: $small;
+                            }
+                            span:last-of-type{
+                                font-weight: bold;
+                            }
+                        }
+                        >span{
+                            color:white;
+                            padding:0px 5px;
+                            border-radius: 3px;
+                            background-color: $main_color;
+                        }
+                    }
+                }
+            }
+        }
+
     }
 }
 .nav-link{
@@ -289,6 +463,7 @@ nav {
             font-size: 10px;
             display: block;
             position: relative;
+            text-align: center;
             top: -8px;
         }
     }
@@ -336,6 +511,13 @@ nav {
         .nav-link {
             padding-left: 0px;
         }
+    }
+}
+
+@media (max-width: 767px) {
+    .auth-form , .sign-form{
+        max-height: 400px;
+        overflow: auto;
     }
 }
 

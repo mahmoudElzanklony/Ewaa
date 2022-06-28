@@ -68,7 +68,7 @@ export default {
     border-radius: 5px;
     overflow: hidden;
     .layer{
-        background-color: #b2dfdb5e;
+        background-color: #ff6a1529;
         width: 100%;
         height: 100%;
     }

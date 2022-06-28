@@ -325,6 +325,8 @@ export default {
 }
 
 .pages{
+    margin: 25px auto;
+    width: fit-content;
     a{
         margin-left: 8px;
         width: 35px;

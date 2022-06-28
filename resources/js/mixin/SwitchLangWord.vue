@@ -44,6 +44,11 @@ export default {
                   en:'English Language',
                   tu:'',
               },
+              Turkish_Language:{
+                  ar:'اللغة التركية',
+                  en:'Turkish Language',
+                  tu:'',
+              },
               Help:{
                   ar:'مساعدة',
                   en:'Help',
@@ -119,6 +124,21 @@ export default {
                   en:'Sign up',
                   tu:'',
               },
+              logout:{
+                  ar:'تسجيل خروج',
+                  en:'logout',
+                  tu:'',
+              },
+              registered_from_date:{
+                 ar:'سجل منذ تاريخ ',
+                 en:'registered from date ',
+                 tu:'',
+              },
+              activities:{
+                 ar:'نشاطاتي',
+                 en:'my activities',
+                 tu:'',
+              },
               add_ad:{
                   ar:'اضف اعلانات ، ملاحظات ، المفضلات واكثر ...',
                   en:'place adds , take notes , save favorites and more ...',
@@ -136,8 +156,8 @@ export default {
               },
               // footer words
               ewaa:{
-                  ar:'أيواء',
-                  en:'Ewaa',
+                  ar:'إيواء بلس',
+                  en:'Ewaa Plus',
                   tu:'',
               },
               footer_info:{
@@ -217,10 +237,129 @@ export default {
               },
               request_contact:{
                   ar:'طلب اتصال',
-                  en:'request contact',
+                  en:'Request contact',
                   tu:'',
-              }
+              },
+              personal_info:{
+                  ar:'حسابي',
+                  en:'My Account',
+                  tu:'',
+              },
+              my_listings:{
+                  ar:'عقاراتي',
+                  en:'My Listings',
+                  tu:'',
+              },
+              my_balance:{
+                  ar:'رصيدي',
+                  en:'Credit',
+                  tu:'',
+              },
+              charge_credit:{
+                  ar:'شحن رصيد',
+                  en:'charge credit',
+                  tu:'',
+              },
 
+              statistics:{
+                  ar:'احصائياتي',
+                  en:'statistics',
+                  tu:'',
+              },
+              my_favourite:{
+                  ar:'المفضلة',
+                  en:'Favourite',
+                  tu:'',
+              },
+              my_notes:{
+                  ar:'ملاحظاتي',
+                  en:'My Notes',
+                  tu:'',
+              },
+              notifications:{
+                 ar:'الأشعارات',
+                 en:'notifications',
+                 tu:'',
+              },
+              meter:{
+                  ar:'متر',
+                  en:'Meter',
+                  tu:'',
+              },
+              bed:{
+                  ar:'سراير',
+                  en:'beds',
+                  tu:'',
+              },
+              baths:{
+                  ar:'حمام',
+                  en:'baths',
+                  tu:'',
+              },
+              added_to_fav_successfully:{
+                  ar:'تم الأضافة الي المفضلة بنجاح',
+                  en:'added to favourite successfully',
+                  tu:'',
+              },
+              removed_from_fav_successfully:{
+                  ar:'تمت الأزالة من المفضلة بنجاح',
+                  en:'removed from favourite successfully',
+                  tu:'',
+              },
+              about_us:{
+                  ar:'عن المنصة',
+                  en:'who us',
+                  tu:'',
+              },
+              ask_home:{
+                  ar:'اطلب مسكن',
+                  en:'request accommodation',
+                  tu:'',
+              },
+              please_contact_with_this_number:{
+                  ar:'برجاء التواصل مع الرقم',
+                  en:'please contact with this number',
+                  tu:'',
+              },
+              work_daily:{
+                  ar:'ساعات العمل هي من العاشره صباحا الي الثامنة مساء',
+                  en:'Business hours are from ten in the morning until eight in the evening',
+                  tu:'',
+              },
+              contact_with_us:{
+                  ar:'يمكنك التواصل معنا هنا',
+                  en:'you can contact with us',
+                  tu:'',
+              },
+              search_inside_the_cities_of_egypt:{
+                  ar:'عقارات في مدن مصر',
+                  en:'Search inside the cities of Egypt',
+                  tu:'',
+              },
+              rent:{
+                  ar:'تأجير',
+                  en:'Rent',
+                  tu:'',
+              },
+              sale:{
+                  ar:'بيع',
+                  en:'Sale',
+              },
+              share_this_link:{
+                  ar:'مشاركة هذا الرابط',
+                  en:'Share this link',
+                  tu:'',
+              },
+              close:{
+                  ar:'اغلاق',
+                  en:'Close',
+                  tu:'',
+              },
+              like_answer:{
+                  ar:'لقد تمت عملية الاعجاب بنجاح',
+                  en:'like on this answer has done successfully',
+                  tu:'',
+              },
 
 
 
@@ -234,7 +373,11 @@ export default {
             // find word first
             if(Object.keys(this.words).includes(word)){
                 // yes found it  =======> you passed english
-                return this.words[word][this.$inertia.page.props.lang];
+                if(this.$inertia.page.props.lang == "tu"){
+                    return this.words[word]['en'];
+                }else {
+                    return this.words[word][this.$inertia.page.props.lang];
+                }
             }
         },
     }

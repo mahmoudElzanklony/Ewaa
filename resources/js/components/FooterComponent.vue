@@ -42,7 +42,7 @@
                             <inertia-link href="#">
                                 <img src="/images/icons/IOS.svg">
                             </inertia-link>
-                            <inertia-link href="#">
+                            <inertia-link href="#" style="display: none">
                                 <img src="/images/icons/huawei.svg">
                             </inertia-link>
                         </div>
@@ -112,7 +112,6 @@ footer{
                 .downloads{
                     display: flex;
                     flex-wrap: wrap;
-                    justify-content: space-between;
                     margin-top: 15px;
                     margin-bottom: 15px;
                     img{
@@ -155,6 +154,11 @@ footer{
 
 .ar{
     footer{
+        .downloads{
+            a:first-of-type{
+                margin-left: 10px;
+            }
+        }
         .social{
             a{
                 margin-left: 15px;
@@ -164,6 +168,11 @@ footer{
 }
 .en{
     footer{
+        .downloads{
+            a:first-of-type{
+                margin-right: 10px;
+            }
+        }
         .social{
             a{
                 margin-right: 15px;

@@ -11,6 +11,15 @@ use App\Http\Controllers\SaleController;
 use App\Http\Controllers\NeighbourhoodController;
 use App\Http\Controllers\ListingPostController;
 use App\Http\Controllers\NotificationsController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CompoundsController;
+use App\Http\Controllers\PackagesController;
+use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\ContactUsController;
+use App\Http\Controllers\AboutUsController;
+use App\Http\Controllers\AskNeighborsController;
+use App\Http\Controllers\MerchantController;
+use App\Http\Controllers\DashboardController;
 
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\URL;
@@ -41,7 +50,8 @@ Route::group(['middleware'=>'changeLang'],function (){
     // neighbour ( prices of properties at cairo )
     Route::get('/neighborhood',[NeighbourhoodController::class,'index']);
     // governments
-    Route::get('/neighborhood/{name}',[NeighbourhoodController::class,'governments']);
+    Route::get('/neighborhood/{government}',[NeighbourhoodController::class,'governments']);
+    Route::get('/neighborhood/{government}/{city}',[NeighbourhoodController::class,'governments_city']);
     // notifications
     Route::get('/notifications',[NotificationsController::class,'index']);
     // post ad
@@ -52,5 +62,52 @@ Route::group(['middleware'=>'changeLang'],function (){
         Route::get('/photos',[ListingPostController::class,'photos']);
         // details of post
         Route::get('/details',[ListingPostController::class,'details']);
+        // confirm payment
+        Route::get('/confirm-payment',[ListingPostController::class,'confirm_payment']);
     });
+
+    Route::group(['prefix'=>'/compounds'],function(){
+        // compounds page
+        Route::get('/',[CompoundsController::class,'index']);
+    });
+
+    // profile
+    Route::group(['prefix'=>'/profile'],function(){
+        // edit
+        Route::get('/edit',[ProfileController::class,'edit']);
+        Route::get('/dashboard',[ProfileController::class,'dashboard_listings']);
+        Route::get('/statistics',[ProfileController::class,'statistics']);
+        Route::get('/favourites',[ProfileController::class,'favourites']);
+        Route::get('/notes',[ProfileController::class,'notes']);
+    });
+    // credit package
+    Route::group(['prefix'=>'/credit'],function(){
+        // charge
+        Route::get('/charge',[PackagesController::class,'charge']);
+        Route::get('/charge/package',[PackagesController::class,'package_info']);
+    });
+    // feedback
+    Route::get('/feedback',[FeedbackController::class,'index']);
+    // contact us
+    Route::get('/contactus',[ContactUsController::class,'index']);
+    // about us
+    Route::get('/aboutus',[AboutUsController::class,'index']);
+    Route::get('/terms',[AboutUsController::class,'terms']);
+    // ask neighbours
+    Route::group(['prefix'=>'/ask-neighbours'],function(){
+        //
+        Route::get('/',[AskNeighborsController::class,'index']);
+        Route::get('/{id}/answers',[AskNeighborsController::class,'answers']);
+    });
+
+    // merchant
+    Route::group(['prefix'=>'/merchant'],function(){
+        // balance
+        Route::get('/balance',[MerchantController::class,'balance']);
+    });
+
+    Route::group(['prefix'=>'/dashboard'],function(){
+        Route::get('/',[DashboardController::class,'index']);
+    });
+
 });

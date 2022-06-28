@@ -18,8 +18,6 @@
                     <p>{{ switchWord('properties') }}</p>
                 </div>
             </div>
-            <input type="submit" class="btn btn-primary"
-                   :value="switchWord('request_contact')">
         </form>
     </div>
 </template>

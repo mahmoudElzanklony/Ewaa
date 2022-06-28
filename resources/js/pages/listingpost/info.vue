@@ -174,7 +174,7 @@ export default {
     },
     methods: {
         next_step: function () {
-            this.$inertia.visit('/listing/info');
+            this.$inertia.visit('/listing/photos');
         },
         previous_step:function(){
             this.$inertia.visit('/listing/initialize');

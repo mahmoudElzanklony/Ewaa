@@ -12,6 +12,8 @@ class LangController extends Controller
             app()->setLocale('ar');
         }else if($lang == "en"){
             app()->setLocale('en');
+        }else if($lang == "tu"){
+            app()->setLocale('tu');
         }else{
             app()->setLocale('ar');
         }

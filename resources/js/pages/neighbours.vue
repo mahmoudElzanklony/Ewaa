@@ -42,7 +42,7 @@
                 </p>
                 <div>
                     <div class="row">
-                        <div class="col-lg-3 col-md-4 col-sm-6 mb-2" v-for="i in 30" :key="i">
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-2" v-for="i in 30" :key="i">
                             <inertia-link href="">
                                 <span>القاهره الكبري</span>
                                 <span>(130)</span>
@@ -52,7 +52,7 @@
                 </div>
                 <div>
                     <div class="row">
-                        <div class="col-lg-3 col-md-4 col-sm-6 mb-2" v-for="i in 30" :key="i">
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-2" v-for="i in 30" :key="i">
                             <inertia-link href="">
                                 <span>أسكندريه</span>
                                 <span>(130)</span>

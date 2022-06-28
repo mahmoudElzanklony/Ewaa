@@ -73,7 +73,7 @@ export default {
         }
         .inner{
             .notification:nth-child(odd){
-                background-color: $main_color_white;
+                background-color: #ff6a150f;
             }
             .notification{
                 border-bottom: 1px solid #dddddd;

@@ -32,6 +32,17 @@ class ListIngPostDetailsKeywords
             'share'=>trans('keywords.share'),
             'save'=>trans('keywords.save'),
             'share_listing'=>trans('keywords.share_listing'),
+            'size_in_meters'=>trans('keywords.size_in_meters'),
+            'type'=>trans('keywords.type'),
+            'price'=>trans('keywords.price'),
+            'areas'=>trans('keywords.areas'),
+            'details'=>trans('keywords.details'),
+            'video'=>trans('keywords.video'),
+            'inhabited'=>trans('keywords.inhabited'),
+            'delivered'=>trans('keywords.delivered'),
+            'in_progress'=>trans('keywords.in_progress'),
+            'show_properties'=>trans('keywords.show_properties'),
+            'map'=>trans('keywords.map'),
         ];
     }
 }

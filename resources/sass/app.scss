@@ -31,6 +31,11 @@ a{
         background-color: transparent;
     }
 }
+.dropdown-item{
+    &:focus{
+        background-color: $main_color;
+    }
+}
 .navbar-collapse{
     display: flex;
 }
@@ -327,6 +332,7 @@ h2.main-title{
     .container{
         display: flex;
         align-items: center;
+        flex-wrap: wrap;
     }
     margin: 25px 0px;
     span{
@@ -452,22 +458,143 @@ h2.main-title{
     transition: 0.5s all;
 }
 
+
+.share-link{
+    .box{
+        border: 1px solid #dddddd;
+        padding: 10px;
+        margin-top: 60px;
+        >p{
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        div{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            p:first-of-type{
+                border: 1px solid #eeeeee;
+                border-radius: 9px;
+                background-color: #eeeeee;
+                padding: 13px;
+                word-break: break-all;
+                margin-bottom: 10px;
+            }
+            p:last-of-type{
+                a{
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    width:40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    i{
+                        color:white;
+                        position: relative;
+                        top:2px;
+                    }
+                }
+                a:first-of-type{
+                    background-color: #3b5998;
+                }
+                a:last-of-type{
+                    background-color: #26a6d1;
+                }
+            }
+        }
+    }
+}
+
+
+/*--------------start of data table----------------*/
+.dataTables_wrapper{
+    margin: 25px 0px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    table{
+        width: 100% !important;
+        max-width: 100%;
+        margin-top: 20px;
+    }
+}
+.dataTables_wrapper .dataTables_filter input{
+    margin-right: 10px !important;
+}
+.dt-button{
+    background-color: $main_color;
+    color: white;
+    padding: 5px 15px;
+    border: none;
+    border-radius: 5px;
+    span{
+        color:white;
+    }
+}
+#myTable_wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row-reverse;
+    >div{
+        margin-left: 10px;
+    }
+    .dataTables_info{
+        margin-right: 50px;
+    }
+    table{
+        width: 100%;
+        max-width: 100%;
+    }
+}
+@media (max-width: 767px) {
+    .dataTables_wrapper{
+        justify-content: center;
+        >div{
+            margin-bottom: 15px;
+        }
+    }
+}
+/*--------------end of data table----------------*/
+
 /*-------------------------------------------end of public classes-------------------------------------*/
 
-
+.fit-content{
+    width: fit-content;
+}
 // edit on bootstrap classes
 .btn-primary{
     background-color: $main_color;
-    border-color: transparent;
+    border:none;
     &:hover{
         background-color: $main_color;
+        border: none;
     }
+    &:focus{
+        background-color: $main_color;
+        box-shadow: 0 0 0 0.2rem #fbe9e7;
+        border: none;
+        outline: none;
+    }
+}
+.btn-primary:not(:disabled):not(.disabled):active{
+    background-color: $main_color;
+    box-shadow: 0 0 0 0.2rem #fbe9e7 !important;
+    border: none;
+    outline: none;
 }
 .btn-outline-primary{
     border-color: $main_color;
     &:hover{
         background-color: $main_color;
         border-color: $main_color;
+    }
+    &:focus{
+        background-color: $main_color;
     }
 }
 

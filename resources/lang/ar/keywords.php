@@ -89,6 +89,7 @@ return [
    'height_price'=>'أعلي سعر',
    'smallest_area'=>'مساحه أقل',
    'largest_area'=>'مساحة أكبر',
+   'areas'=>'مساحات',
    'search'=>'بحث',
    'listings_at_egypt'=>'عقارات في مصر',
    'properties_for_sale'=>'عقارات للبيع',
@@ -150,6 +151,7 @@ return [
     'view'=>'تطلي علي',
     'select_view'=>'أختر الأطلالة',
     'price_egp'=>'السعر بالجنيه',
+    'price'=>'السعر',
     'payment_method'=>'طريقة الدفع',
     'rooms'=>'الغرف',
     'floor'=>'الدور',
@@ -199,6 +201,11 @@ return [
     'favourite'=>'المفضلة',
     'save'=>'حفظ',
     'share_listing'=>'شارك هذا العقار',
+    'details'=>'تفاصيل',
+    'video'=>'فديو',
+    'show_properties'=>'اظهر العقارات',
+    'map'=>'الخريطة',
+
     // end of listing details  ----------------------------------------------------
 
 
@@ -210,10 +217,277 @@ return [
     // end of governments  ----------------------------------------------------
 
 
+
+    // start of government city  ----------------------------------------------------
+    'meter_size_price'=>'متوسط سعر المتر',
+    'neighborhood'=>'الحي',
+    'apartments_average_price_per_meter'=>'متوسط سعر المتر للشقق',
+    'villas_average_price_per_meter'=>'متوسط سعر المتر للفلل',
+    'rate'=>'تقييم',
+    'overall_rate'=>'التقيم العام',
+    'social_status'=>'مستوي المنطقة',
+    'education'=>'التعليم',
+    'health_service'=>'الخدمات الصحية',
+    'peacefulness'=>'الهدوء',
+    'transportation'=>'المواصلات',
+    'shopping_dinning'=>'التسوق والمطاعم',
+    'about'=>'عن',
+    'about_us'=>'عن الموقع',
+    'terms'=>'الأحكام والشروط',
+    'explore_questions'=>'الأسئلة الأكثر نقاشا',
+    'answer'=>'اجابه',
+    'ask_explore_questions'=>'أسئل وتصفح الأسئلة',
+    'nearest_neighbourhoods_explore'=>'تصفح مناطق مشابه',
+    'search_in'=>'أبحث في',
+    // end of government city  ----------------------------------------------------
+
+
+
     // start of notifications  ----------------------------------------------------
     'notifications'=>'الأشعارات',
     'your_notifications'=>'اشعاراتك',
     // end of notifications  ----------------------------------------------------
+
+
+
+
+
+
+
+    // start of profile  ----------------------------------------------------
+    'my_profile'=>'حسابي الشخصي',
+    'my_notes'=>'ملاحظاتي',
+    'my_listings'=>'عقاراتي',
+    'my_favourite'=>'المفضلة',
+    'statistics'=>'احصائيات',
+
+
+    'change_your_info'=>'تعديل البيانات',
+    'profile_picture'=>'صورة المستخدم',
+    'current_password'=>'كلمة المرور الحالية',
+    'change_password'=>'تغيير كلمة المرور',
+    'full_name'=>'الأسم بالكامل',
+    'company_settings'=>'اعدادات الشركة',
+    'company_bio'=>'وصف الشركة',
+    'company_logo'=>'شعار الشركة',
+    'personal_info'=>'بيانات شخصية',
+    'edit_personal_info'=>'تعديل البيانات الشخصية',
+    'edit_main_info'=>'تعديل البيانات الرئيسية',
+    'age'=>'السن',
+    'gender'=>'النوع',
+    'male'=>'ذكر',
+    'female'=>'أنثي',
+    'marital_status'=>'الحالة الأجتماعية',
+    'single'=>'اعذب',
+    'engaged'=>'خاطب',
+    'married'=>'متزوج',
+    'seperated'=>'منفصل',
+    'widowed'=>'أرمل',
+    'industry'=>'مجال العمل',
+    'position'=>'وظيفتك',
+    'purpose_of_purchasing'=>'الهدف من الشراء',
+
+    'high_school'=>'ثانوية عامة',
+    'diploma'=>'دبلومة',
+    'bachelors'=>'بكالوريس',
+    'masters'=>'ماجسيتر',
+    'phd'=>'دكتوراة',
+
+    // end of profile  ----------------------------------------------------
+
+
+    // start of profile listings dashboard ----------------------------------------------------
+    'search_your_listings'=>'ابحث في عقاراتك',
+    'id_or_keyword'=>'كلمة او رقم الأعلان',
+    'live_listings'=>'الأعلانات المنشورة',
+    'live_listings_txt_info'=>'هذا القسم يعرض جميع العقارات المنشورة، يرجى ملاحظة أن العقارات تظل منشورة لمدة 6 أشهر بدءا من تاريخ نشرها.',
+    'rejected_listings'=>'إعلانات مرفوضة',
+    'rejected_listings_txt_info'=>'هذا القسم يعرض جميع العقارات التي تم رفضها من قبل نظامنا، بجانب كل عقار سوف تجد سبب الرفض. يرجى تعديل بيانات العقار .لإصلاح المشكلة، وإدخال العقار مرة أخرى. للمزيد من التفاصيل، يمكنك مراجعة شروط الإعلان على إيواء بلس',
+    'expired_listings'=>'الأعلانات المنتهية',
+    'expired_listings_txt_info'=>'هذا القسم يعرض جميع العقارات التي انتهت فترة النشر الخاصة بها ، فترة نشر العقار هي 6 أشهر.يمكنك إما إعادة نشر العقار أو حذفه، إذا اخترت أن تعيد نشر العقار، وكان العقار في منطقة مدفوعة، سيتم خصم نقاط من رصيدك.',
+    'pending_listings'=>'أعلانات قيد الأنتظار',
+    'pending_listings_txt_info'=>':هذا القسم يعرض جميع العقارات المعلقة، ويمكن أن يكون العقار قيد المراجعة، في انتظار الصور أو في انتظار الدفع',
+    'pending_listings_txt_info_first'=>'عقارات قيد المراجعة هي عقارات في انتظار مراجعة المشرف.',
+    'pending_listings_txt_info_second'=>'عقارات في انتظار الصور هي عقارات تم اضافتها بدون صور.',
+    'pending_listings_txt_info_third'=>'عقارات في انتظار الدفع هي عقارات تم إضافتها بدون استكمال عملية الدفع.',
+    'deleted_listings'=>'الأعلانات المحذوفة',
+    'deleted_listings_txt_info'=>'هذا القسم يعرض جميع العقارات التي تم حذفها من قبلك. يمكنك أن تعيد نشر العقارات المحذوفة، وإذا اخترت أن تعيد نشر العقار، وكان العقار في منطقة مدفوعة، سيتم خصم نقاط من رصيدك.',
+    'draft_listings'=>'مسودات',
+    'draft_listings_txt_info'=>'هذا القسم يعرض جميع العقارات التي تم انشائها ولم تكتمل من قبلك. يمكنك أن تعيد اكمالها لنشرها.',
+    'listing_id'=>'رقم الأعلان',
+    'listing_details_info'=>'تفاصيل العقار',
+    'listing_rejected_reasons'=>'اسباب الرفض',
+    'actions'=>'الأوامر',
+    'update'=>'تعديل',
+    'update_info'=>' تعديل البيانات',
+    'update_photos'=>' تعديل الصور',
+    'delete'=>'حذف',
+    'clear'=>'الغي',
+    // end of profile listings dashboard ----------------------------------------------------
+
+
+
+
+    // start of profile listings statics ----------------------------------------------------
+    'interactions_rate'=>'مستوي التفاعل',
+    'rating'=>'التقييم',
+    'show_rate'=>'اظهر التقييم',
+    'users_feedbacks'=>'تقييم المستخدمين',
+    'other_comments'=>'تعليقات اخري',
+    'time_period'=>'فتره زمنية',
+    'all_time'=>'كل الوقت',
+    'last_thirty_days'=>'اخر 30 يوم',
+    'last_sixty_days'=>'اخر 60 يوم',
+    'last_ninety_days'=>'اخر 90 يوم',
+    'last_thirty_days'=>'اخر 30 يوم',
+    'last_seven_days'=>'اخر 7 يوم',
+    'total_search_impressions'=>'إجمالي الظهور في البحث',
+    'total_page_views'=>'إجمالي المشاهدات',
+    'total_leads'=>'إجمالي محاولات الإتصال',
+    'average_click_rate'=>'متوسط نسبة المشاهدة',
+    'average_contact_rate'=>'متوسط نسبة الإتصال',
+    'note_you_write_it_in_profile'=>'هذه الملاحظة هي سرية ولن تظهر للمعلن او لأي شخص اخر غيرك',
+    // end of profile listings statics ----------------------------------------------------
+
+
+
+    // start of compounds ---------------------------------------------------------------------
+    'compounds_guide'=>'دليل الكمبوند',
+    'projects_with_prices_of_all_units'=>'مشروع بأسعار كل الوحدات',
+    'locations'=>'الأماكن',
+    'property_types'=>'أنواع العقارات',
+    'price_level'=>'مستوي السعر',
+    'economic'=>'أقتصادي',
+    'mid_range'=>'متوسط',
+    'luxury'=>'luxury',
+    'compound_status'=>'حالة الأنشاء',
+    'under_construction'=>'تحت الأنشاء',
+    'delivered'=>'تم التسليم',
+    'launch'=>'Launch',
+    'developer_experience'=>'خبرة المطور',
+    'has_delivered_projects'=>'لدية مشاريع تم تسلميها',
+    'has_inhabited_projects'=>'لدية مشاريع ساكنة',
+    'compound_name'=>'اسم الكمبوند',
+    'prices_start_from'=>'أسعار تبدا من',
+    'since'=>'منذ',
+    'projects'=>'مشاريع',
+    'inhabited'=>'تم السكن',
+    'in_progress'=>'قيد التطوير',
+    // end of compounds ---------------------------------------------------------------------
+
+
+   // start of confirm payment-------------------------------------------------------------
+    'for_rent'=>'للأيجار',
+    'publish_listing'=>'أنشر إعلانك',
+    'You_added_listing_in_one_of_our_paid'=>'لقد قمت باضافة اعلان في منطقة من المناطق المدفوعة تحتاح لدفع 0.5 نقطة لنشر اعلانك.',
+    'you_dont_have_enough_balance'=>'ليس لديك رصيد كافي لنشر هذا الإعلان',
+    'click_here_to_buy_one_of_our_packages'=>'اضغط هنا لشراء إحدي هذه الباقات',
+    // end of confirm payment-------------------------------------------------------------
+
+
+
+    // start of charge credit-------------------------------------------------------------
+    'sell_rent_your_properties_faster_with_ewaa'=>'قم ببيع أو تأجير عقاراتك أسرع مع إيواء بلس',
+    'list_all_your_properties_to_be_viewed_by_thousands_of_potential_clients'=>'اعلن عن عقاراتك ليشاهدها آلاف العملاء المحتملين من زوار موقعنا',
+    'tell_us_who_you_are'=>'اخبرنا من أنت',
+    'we_carefully_designed_packages_to_perfectly_fit_your_needs'=>'قمنا بإعداد الباقات بعناية لتناسب حاجتك',
+    'compound_developer'=>'مطور كمبوند',
+    // end of charge credit-------------------------------------------------------------
+
+
+
+    // start of package info-------------------------------------------------------------
+    'reach_more_clients_with_ewaa'=>'ستصل لعملاء أكثر مع ايواء',
+    'company_packages'=>' باقات التسويق',
+    'select_the_package_that_suits_your_budget_and_get_immediate_results'=>'اختر الباقة التي تناسب ميزانيتك، واحصل على نتائج فورية',
+    'recommended'=>'مفضلة',
+    'continue'=>'اشترك الان',
+    'buy_now'=>'اشترك الان',
+    'what_our_clients_say'=>'أعرف اكتر عنا',
+    'frequent_questions'=>'الاسئلة الشائعة',
+    'terms_and_conditions'=>'الأحكام والشروط',
+    'points'=>'عدد النقاط',
+    'point'=>'نقطة',
+    'featured_ads'=>'إعلانات مميزة',
+    'free_points'=>'بوستات مجانية',
+    'points_validity'=>'صلاحية النقاط',
+    'ewaa_live'=>'إيواء لايف',
+    'logo_exposure'=>'شعار الشركة',
+    'online_banner_for'=>'اونلاين بانر لمدة',
+    'month'=>'شهر',
+    'months'=>'اشهر',
+    'week'=>'اسبوع',
+    'weeks'=>'اسابيع',
+    'day'=>'يوم',
+    // end of package info-------------------------------------------------------------
+
+
+
+
+
+   // start of feedback--------------------------------------------------------------
+    'do_you_have_problem_using_our_website'=>'هل لديك مشكلة بخصوص موقعنا؟',
+    'describe_the_problem_that_you_are_facing'=>'ما هي المشكلة التي تواجهك في الموقع؟',
+    'your_name'=>'اسمك',
+    'your_email'=>'البريد الالكتروني الخاص بك',
+   // end of feedback--------------------------------------------------------------
+
+
+
+  // start of contact us -------------------------------------------------------
+    'contact_us'=>'تواصل معنا',
+    'inquiring_about_specific_property'=>'هل تريد الإستفسار عن عقار معين؟',
+    'property_answer_questions'=>'للاستفسار عن أي عقار، يرجى فتح صفحة العقار والتواصل مع المعلن مباشرة عن طريق الضغط على زر "رقم التليفون" أو عن طريق إرسال رسالة للمعلن.
+شركة ايواء لا تملك العقارات المعروضة على الموقع، لهذا في حالة رغبتك في الاستفسار عن عقار معين، يرجى التواصل مباشرة مع المعلن من داخل صفحة إعلان العقار.',
+    'contact_us_data'=>'لاى استفسارات اخرى يمكنك التواصل معنا من خلال البيانات التالية:',
+    'phone_whatapp'=>'رقم التليفون / واتساب : ',
+    'address_title'=>'21 شارع دكتور نجيب محفوظ، مدينة نصر، القاهرة',
+  // end of contact us -------------------------------------------------------
+
+
+
+  // start of merchant balance -------------------------------------------------------
+    'my_credit'=>'رصيدي',
+    'account_number'=>'رقم حسابك',
+    'current_balance'=>'رصيدك الحالي',
+    'charge_credit'=>'اشحن رصيدك',
+    'amount'=>'النقاط',
+    'balance'=>'الرصيد',
+    'description'=>'الوصف',
+    'date'=>'التاريخ',
+  // end of merchant balance -------------------------------------------------------
+
+
+
+  // start of ask neighbour -------------------------------------------------------
+    'the_most_discussed_questions'=>'الأسئلة الأكثر نقاشا',
+    'ask_your_neighbors'=>'أسئل أهل المنطقة',
+    'write_your_question_and_get_answers_from_the_community'=>'اكتب سؤالاً عن العقارات واسأل أهل المنطقة',
+    'ask_a_question_and_get_answers_from_neighbors'=>'Ask a question and get answers from neighbors',
+    'all_locations'=>'الاماكن والمناطق',
+    'in'=>'في',
+    'all_categories'=>'كل الأقسام',
+    'select_category'=>'اختر القسم',
+    'the_most_discussed'=>'الأكثر نقاشا',
+    'unanswered'=>'بدون اجابة',
+    'all_questions'=>'جميع الأسئلة',
+    'answers'=>'إجابة',
+    'add_question'=>'أضافة سؤال',
+    'city'=>'المدينة',
+    'neighbour'=>'المنطقة',
+    'select'=>'أختر',
+  // end of ask neighbour -------------------------------------------------------
+
+
+
+  // end of answers of question -------------------------------------------------------
+    'follow'=>'تابع',
+    'unfollow'=>'إلغاء المتابعة',
+    'share'=>'شارك',
+    'reply'=>'شارك في الإجابة',
+    'properties_you_may_be_interested_in'=>'عقارات قد تكون مهتمًا بها',
+  // end of answers of question -------------------------------------------------------
+
 
 
 

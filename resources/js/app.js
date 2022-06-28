@@ -38,7 +38,6 @@ Vue.use(plugin);
 
 
 
-
 window.VueRouter = VueRouter;
 
 

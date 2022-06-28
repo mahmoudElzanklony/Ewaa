@@ -2024,9 +2024,25 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
   });
   /*--------------------------end of public actions at all pages -------------------------------*/
 
-  /*--------------------------start of post info details-------------------------------*/
+  /*----------------------------start of compound details page----------------------------------*/
 
-  /*--------------------------end of post info details-------------------------------*/
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.content').on('click', '.more-info .small_images img', function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).parent().prev().find('img').attr('src', jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('src'));
+  });
+  /*----------------------------end of compound details page----------------------------------*/
+
+  /*--------------------------start of compound -------------------------------*/
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.content').on('click', '.filters form div p span i', function () {
+    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).hasClass('ri-add-line')) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).removeClass('ri-add-line').addClass('ri-subtract-fill');
+    } else {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).removeClass('ri-subtract-line').addClass('ri-add-fill');
+    }
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).parent().parent().next().slideToggle();
+  });
+  /*--------------------------end of compound-------------------------------*/
 });
 
 /***/ }),
@@ -45364,7 +45380,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /*!
- * Vue.js v2.6.13
+ * Vue.js v2.6.14
  * (c) 2014-2021 Evan You
  * Released under the MIT License.
  */
@@ -47979,7 +47995,7 @@ function normalizeScopedSlot(normalSlots, key, fn) {
     var vnode = res && res[0];
     return res && (
       !vnode ||
-      (vnode.isComment && !isAsyncPlaceholder(vnode)) // #9658, #10391
+      (res.length === 1 && vnode.isComment && !isAsyncPlaceholder(vnode)) // #9658, #10391
     ) ? undefined
       : res
   };
@@ -50857,7 +50873,7 @@ Object.defineProperty(Vue, 'FunctionalRenderContext', {
   value: FunctionalRenderContext
 });
 
-Vue.version = '2.6.13';
+Vue.version = '2.6.14';
 
 /*  */
 
@@ -57403,6 +57419,14 @@ Vue.compile = compileToFunctions;
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var map = {
+	"./Dashboard/index.vue": [
+		"./resources/js/Pages/Dashboard/index.vue",
+		"resources_js_Pages_Dashboard_index_vue"
+	],
+	"./about_us.vue": [
+		"./resources/js/Pages/about_us.vue",
+		"resources_js_Pages_about_us_vue"
+	],
 	"./auth/forget_password.vue": [
 		"./resources/js/Pages/auth/forget_password.vue",
 		"resources_js_Pages_auth_forget_password_vue"
@@ -57418,6 +57442,22 @@ var map = {
 	"./auth/sign_up.vue": [
 		"./resources/js/Pages/auth/sign_up.vue",
 		"resources_js_Pages_auth_sign_up_vue"
+	],
+	"./compounds.vue": [
+		"./resources/js/Pages/compounds.vue",
+		"resources_js_Pages_compounds_vue"
+	],
+	"./contactus.vue": [
+		"./resources/js/Pages/contactus.vue",
+		"resources_js_Pages_contactus_vue"
+	],
+	"./feedback.vue": [
+		"./resources/js/Pages/feedback.vue",
+		"resources_js_Pages_feedback_vue"
+	],
+	"./government_city.vue": [
+		"./resources/js/Pages/government_city.vue",
+		"resources_js_Pages_government_city_vue"
 	],
 	"./governments.vue": [
 		"./resources/js/Pages/governments.vue",
@@ -57443,9 +57483,17 @@ var map = {
 		"./resources/js/Pages/listingpost/initialize.vue",
 		"resources_js_Pages_listingpost_initialize_vue"
 	],
+	"./listingpost/payment_confirmation.vue": [
+		"./resources/js/Pages/listingpost/payment_confirmation.vue",
+		"resources_js_Pages_listingpost_payment_confirmation_vue"
+	],
 	"./listingpost/photos.vue": [
 		"./resources/js/Pages/listingpost/photos.vue",
 		"resources_js_Pages_listingpost_photos_vue"
+	],
+	"./merchant/balance.vue": [
+		"./resources/js/Pages/merchant/balance.vue",
+		"resources_js_Pages_merchant_balance_vue"
 	],
 	"./neighbours.vue": [
 		"./resources/js/Pages/neighbours.vue",
@@ -57455,6 +57503,42 @@ var map = {
 		"./resources/js/Pages/notifications.vue",
 		"resources_js_Pages_notifications_vue"
 	],
+	"./packages/charge.vue": [
+		"./resources/js/Pages/packages/charge.vue",
+		"resources_js_Pages_packages_charge_vue"
+	],
+	"./packages/packages_info.vue": [
+		"./resources/js/Pages/packages/packages_info.vue",
+		"resources_js_Pages_packages_packages_info_vue"
+	],
+	"./profile/favourites.vue": [
+		"./resources/js/Pages/profile/favourites.vue",
+		"resources_js_Pages_profile_favourites_vue"
+	],
+	"./profile/listings_dashboard.vue": [
+		"./resources/js/Pages/profile/listings_dashboard.vue",
+		"resources_js_Pages_profile_listings_dashboard_vue"
+	],
+	"./profile/main_info.vue": [
+		"./resources/js/Pages/profile/main_info.vue",
+		"resources_js_Pages_profile_main_info_vue"
+	],
+	"./profile/notes.vue": [
+		"./resources/js/Pages/profile/notes.vue",
+		"resources_js_Pages_profile_notes_vue"
+	],
+	"./profile/statistics.vue": [
+		"./resources/js/Pages/profile/statistics.vue",
+		"resources_js_Pages_profile_statistics_vue"
+	],
+	"./questions/answers.vue": [
+		"./resources/js/Pages/questions/answers.vue",
+		"resources_js_Pages_questions_answers_vue"
+	],
+	"./questions/ask_neighbors.vue": [
+		"./resources/js/Pages/questions/ask_neighbors.vue",
+		"resources_js_Pages_questions_ask_neighbors_vue"
+	],
 	"./sales.vue": [
 		"./resources/js/Pages/sales.vue",
 		"resources_js_Pages_sales_vue"
@@ -57462,6 +57546,10 @@ var map = {
 	"./search_page_filters.vue": [
 		"./resources/js/Pages/search_page_filters.vue",
 		"resources_js_Pages_search_page_filters_vue"
+	],
+	"./terms.vue": [
+		"./resources/js/Pages/terms.vue",
+		"resources_js_Pages_terms_vue"
 	]
 };
 function webpackAsyncContext(req) {
@@ -57600,7 +57688,7 @@ module.exports = webpackAsyncContext;
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames based on template
-/******/ 			return "js/" + chunkId + "." + {"resources_js_Pages_auth_forget_password_vue":"065730eda51d2f80b25c","resources_js_Pages_auth_new_password_vue":"b175b44a2a49308188c2","resources_js_Pages_auth_sign_in_vue":"c8a86ca89fe3a3554ed3","resources_js_Pages_auth_sign_up_vue":"7ab4cbf9cbcc24594484","resources_js_Pages_governments_vue":"3e00be9206dcf01c025f","resources_js_Pages_home_vue":"7b038936e6e8f722d95b","resources_js_Pages_listingpost_ContactOffice_vue":"594e6d731c793ec4cc70","resources_js_Pages_listingpost_details_vue":"acc1fa928afb3e64ac48","resources_js_Pages_listingpost_info_vue":"4c59b827fcf32c6d1d88","resources_js_Pages_listingpost_initialize_vue":"ba9549046251292dd1da","resources_js_Pages_listingpost_photos_vue":"26819596da52ce7b70bd","resources_js_Pages_neighbours_vue":"d995b84f18aeb8d810e7","resources_js_Pages_notifications_vue":"0fda684adf61dcfb6f6c","resources_js_Pages_sales_vue":"52af057825077c758ea2","resources_js_Pages_search_page_filters_vue":"887d948265ec8452661e"}[chunkId] + ".js";
+/******/ 			return "js/" + chunkId + "." + {"resources_js_Pages_Dashboard_index_vue":"389a75b65e6d338da1a8","resources_js_Pages_about_us_vue":"d193136f2c14a1f241a7","resources_js_Pages_auth_forget_password_vue":"9b40775b624d23805947","resources_js_Pages_auth_new_password_vue":"97dd493e706b757fcb2d","resources_js_Pages_auth_sign_in_vue":"714c3c0050bd25e638f6","resources_js_Pages_auth_sign_up_vue":"a578d72017ea6b37273e","resources_js_Pages_compounds_vue":"e1f02ae419f353f24fb3","resources_js_Pages_contactus_vue":"663733928a5a47a7a35d","resources_js_Pages_feedback_vue":"0b97be9c99b91fdaa28c","resources_js_Pages_government_city_vue":"6ff0f85a2a7737935e6f","resources_js_Pages_governments_vue":"29c01182f4c70eb50a50","resources_js_Pages_home_vue":"56f1e5e65221dfadd5e0","resources_js_Pages_listingpost_ContactOffice_vue":"c7424b30dd00361f61ba","resources_js_Pages_listingpost_details_vue":"78ccd0f82344650d3f02","resources_js_Pages_listingpost_info_vue":"682d36315a6b1367b939","resources_js_Pages_listingpost_initialize_vue":"515aece6ae1b304175ac","resources_js_Pages_listingpost_payment_confirmation_vue":"74b3fb0433899104a992","resources_js_Pages_listingpost_photos_vue":"12f06be82fe30c81a1be","resources_js_Pages_merchant_balance_vue":"c85e9494f42788c831fa","resources_js_Pages_neighbours_vue":"4d1e467d235d9e882297","resources_js_Pages_notifications_vue":"d1b49efd75f70d5aaeb6","resources_js_Pages_packages_charge_vue":"44b752ce49064bc7056d","resources_js_Pages_packages_packages_info_vue":"347559eefa4620cbadd8","resources_js_Pages_profile_favourites_vue":"ff47a3de1d26719a7274","resources_js_Pages_profile_listings_dashboard_vue":"a8bfbec2f322643aa18e","resources_js_Pages_profile_main_info_vue":"75b8c0569212baa55e74","resources_js_Pages_profile_notes_vue":"e6bd77fe284e4cd35e94","resources_js_Pages_profile_statistics_vue":"d645cc78fb6325695194","resources_js_Pages_questions_answers_vue":"163feeb80faa82aec087","resources_js_Pages_questions_ask_neighbors_vue":"1b2cd2d0acfc2acc982b","resources_js_Pages_sales_vue":"23b52278b66f5575cd33","resources_js_Pages_search_page_filters_vue":"5c8abd483b8ee82fd0d7","resources_js_Pages_terms_vue":"7ddd8e8e8ed791c752bb"}[chunkId] + ".js";
 /******/ 		};
 /******/ 	})();
 /******/ 	

@@ -41,6 +41,7 @@
                           info="لاول مره في العاصمه الاداريه شقه بمقدم 0% واقساط"
                           address="العاصمه الاداريه-الحي الثامن-كمبوند كارديا"
                           price="500"
+                          average="true"
                         ></ListingPostComponent>
                     </div>
                 </div>

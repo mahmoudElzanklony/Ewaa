@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Keywords\ListingPostConfirmPaymentKeywords;
 use App\Keywords\ListIngPostDetailsKeywords;
 use App\Keywords\ListingPostInfoKeywords;
 use App\Keywords\ListingPostKeywords;
@@ -32,8 +33,20 @@ class ListingPostController extends Controller
     }
 
     public function details(){
+        if(request()->has('type')){
+            $type= request('type');
+        }else{
+            $type = 'akar';
+        }
         return Inertia::render('listingpost/details',[
            'keywords'=>ListIngPostDetailsKeywords::get_keywords(),
+           'type'=>$type,
+        ]);
+    }
+
+    public function confirm_payment(){
+        return Inertia::render('listingpost/payment_confirmation',[
+            'keywords'=>ListingPostConfirmPaymentKeywords::get_keywords(),
         ]);
     }
 }

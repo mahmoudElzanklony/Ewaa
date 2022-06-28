@@ -65,10 +65,37 @@
                             <p class="mb-3">
                                 <strong>{{ keywords.listing_details }}</strong>
                             </p>
-                            <table class="table table-striped">
+                            <table class="table table-striped" v-if="type == 'akar'">
                                 <tr v-for="i in 6" :key="i">
                                     <td>الدور</td>
                                     <td>2</td>
+                                </tr>
+                            </table>
+                            <table class="table table-striped compound_table" v-else>
+                                <tr>
+                                    <td>{{ keywords.type }}</td>
+                                    <td>{{ keywords.price }}</td>
+                                    <td>{{ keywords.areas }}</td>
+                                    <td></td>
+                                </tr>
+                                <tr v-for="i in 6" :key="i">
+                                    <td>شقق</td>
+                                    <td>200</td>
+                                    <td>100 - 200</td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                {{ keywords.details }}
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <inertia-link class="dropdown-item"
+                                                              v-for="i in 10" :key="i"
+                                                              href="#">150 {{  keywords.meter}}
+                                                </inertia-link>
+
+                                            </div>
+                                        </div>
+                                    </td>
                                 </tr>
                             </table>
 
@@ -78,11 +105,54 @@
                             <p>لموقع: R8 قطعه L5
                                 مساحه المشروع : 18 فدان
                                 مبني علي نسبة 20% من إجمالي مساحة الأرض \</p>
+                            <div class="video">
+                                <p class="mt-4 mb-2">
+                                    <strong>{{ keywords.video }}</strong>
+                                </p>
+                                <iframe width="100%" height="315" src="https://www.youtube.com/embed/Sv-T-RAPadQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                <div class="developer_data">
+                                    <div class="user_info">
+                                        <div class="user_image d-flex align-items-center">
+                                            <img src="/images/users/one.jpg">
+                                            <div>
+                                                <p>ماونتن فيو</p>
+                                                <p>
+                                                    <span>{{ keywords.since }} </span>
+                                                    <span>2005 </span>
+                                                    <span>14 </span>
+                                                    <span>{{ keywords.projects }}</span>
+                                                </p>
+                                            </div>
+                                            <inertia-link href="#">
+                                                {{ keywords.show_properties }}
+                                            </inertia-link>
+                                        </div>
+                                        <div class="another_info d-flex align-items-center justify-content-between">
+                                            <div>
+                                                <p>3</p>
+                                                <p>{{ keywords.inhabited }}</p>
+                                            </div>
+                                            <div>
+                                                <p>5</p>
+                                                <p>{{ keywords.delivered }}</p>
+                                            </div>
+                                            <div>
+                                                <p>10</p>
+                                                <p>{{ keywords.in_progress }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="map mb-2" style="height: 400px">
+                                    <p>{{ keywords.map }}</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6 col-12">
                         <div class="user-data">
-                            <div class="d-flex align-items-center justify-content-between flex-wrap">
+                            <div class="d-flex align-items-center justify-content-between flex-wrap" v-if="type == 'akar'">
                                 <p class="text-center" @click="toggle_fav">
                                     <span><i class="ri-heart-line"></i></span>
                                     <span class="d-block">{{ keywords.favourite }}</span>
@@ -106,12 +176,12 @@
                                 </form>
                             </div>
                         </div>
-                        <div class="get_help" data-toggle="modal" data-target="#request_help">
+                        <div class="get_help" data-toggle="modal" data-target="#request_help" v-if="type =='akar'">
                             <p><strong>{{ keywords.want_help }}</strong></p>
                             <p>{{ keywords.get_help_from }}</p>
                             <button class="btn btn-outline-primary">{{ keywords.get_help }}</button>
                         </div>
-                        <div class="see_also_listings">
+                        <div class="see_also_listings" v-if="type == 'akar'">
                             <p class="d-flex align-items-center mt-4 mb-2 main-title">
                                 <span v-if="$page.props.lang == 'ar'"><i class="ri-arrow-left-s-fill"></i></span>
                                 <span v-else><i class="ri-arrow-right-s-fill"></i></span>
@@ -127,6 +197,12 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="questions">
+                <QuestionComponent v-for="i in 6" :key="i"
+                    question="ما هي العقارات المنتشرة بأفضل الاسعار في القاهره"
+                    answer="يوجد عقارات كثيره في الشيخ زايد و مدينتي و مدينه نصر"
+                ></QuestionComponent>
             </div>
         </div>
         <footer-component></footer-component>
@@ -260,6 +336,8 @@
                                         number_of_listing="4500"
                                         date="20/02/2011"
                         ></contact-office>
+                        <input type="button" class="btn btn-primary"
+                               :value="switchWord('request_contact')">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">
@@ -280,11 +358,12 @@ import FooterComponent from "../../components/FooterComponent";
 import ListingPostComponent from "../../components/ListingPostComponent"
 import SwitchLangWord from "../../mixin/SwitchLangWord";
 import ContactOffice from "./ContactOffice";
+import QuestionComponent from "../../components/QuestionComponent";
 export default {
     name: "details",
-    props:['keywords'],
+    props:['keywords','type'],
     mixins:[SwitchLangWord],
-    components: {ContactOffice, ListingPostComponent, FooterComponent, NavbarComponent},
+    components: {QuestionComponent, ContactOffice, ListingPostComponent, FooterComponent, NavbarComponent},
     methods:{
         toggle_post_details_fixed:function (){
             console.log(this.$refs.toggle_details.getBoundingClientRect().top);
@@ -368,6 +447,21 @@ export default {
         }
     }
 
+    .developer_data {
+        .user_info {
+            .user_image{
+                a{
+                    left: 0px;
+                }
+            }
+            img {
+                margin-left: 8px;
+            }
+        }
+
+    }
+
+
 }
 .en{
     .post-details-fixed{
@@ -401,6 +495,20 @@ export default {
         }
     }
 
+    .developer_data {
+        .user_info {
+            .user_image{
+                a{
+                    right: 0px;
+                }
+            }
+            img {
+                margin-right: 8px;
+            }
+        }
+
+    }
+
 }
 
 .post-details-fixed{
@@ -432,6 +540,8 @@ export default {
             position: relative;
             img{
                 width:100%;
+                height: 100%;
+                object-fit: cover;
             }
             .seller_info{
                 position: absolute;
@@ -617,8 +727,62 @@ table{
         box-shadow: none;
     }
     100%{
-        box-shadow: 0px 0px 2px 7px #26a69a47;
+        box-shadow: 0px 0px 2px 7px #ff6a1547;
     }
+}
+
+.developer_data {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    .user_info {
+        padding: 10px;
+        .user_image{
+            position: relative;
+            a{
+                position: absolute;
+                color:$main_color;
+            }
+        }
+        img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            margin-left: 8px;
+        }
+
+        div {
+            p:first-of-type {
+                font-weight: bold;
+            }
+        }
+    }
+
+    .another_info {
+        padding-right: 10px;
+        padding-left: 10px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+
+        div {
+            p {
+                font-size: $paragraph;
+                text-align: center;
+            }
+
+            p:first-of-type {
+                font-weight: bold;
+            }
+
+            p:last-of-type {
+                color: $dark_gray;
+            }
+        }
+    }
+}
+
+.questions {
+    border-radius: 8px;
+    overflow: hidden;
 }
 
 </style>

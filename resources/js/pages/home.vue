@@ -74,7 +74,7 @@
                             </inertia-link>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 col-12">
+                    <div class="col-lg-4 col-md-6 col-12" style="display:none">
                         <div class="sub">
                             <inertia-link href="#">
                                 <span>
@@ -93,7 +93,7 @@
                             </inertia-link>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 col-12">
+                    <div class="col-lg-4 col-md-6 col-12" style="display: none">
                         <div class="sub">
                             <inertia-link href="#">
                                 <span>
@@ -191,7 +191,7 @@
                             </inertia-link>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 col-12">
+                    <div class="col-lg-4 col-md-6 col-12" style="display: none">
                         <div class="sub">
                             <inertia-link href="#">
                                 <span>
