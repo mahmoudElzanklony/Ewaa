@@ -43,6 +43,7 @@ return [
    'username'=>'اسم المستخدم',
    'address'=>'العنوان',
    'phone'=>'رقم الهاتف',
+   'image'=>'الصورة',
    'private_owner'=>'مالك عقار',
    'freelancer'=>'مسوق عقاري',
    'coupounded_developer'=>'مطور كومبوند',
@@ -247,6 +248,8 @@ return [
     'notifications'=>'الأشعارات',
     'your_notifications'=>'اشعاراتك',
     // end of notifications  ----------------------------------------------------
+
+
 
 
 
@@ -483,10 +486,74 @@ return [
   // end of answers of question -------------------------------------------------------
     'follow'=>'تابع',
     'unfollow'=>'إلغاء المتابعة',
-    'share'=>'شارك',
     'reply'=>'شارك في الإجابة',
     'properties_you_may_be_interested_in'=>'عقارات قد تكون مهتمًا بها',
   // end of answers of question -------------------------------------------------------
+
+
+
+
+    // start of dashboard ----------------------------------------------------------
+    'ewaa_word'=>'إيواء بلس المنصة الاولي في مجال الإيجار والبيع',
+    'ewaa_listings'=>'يمكنك اداره العقارات والباقات والمبيعات ومعرفة اخر الاخبار والتقارير لاتخاذ افضل القرارات',
+    'show_details'=>'عرض التفاصيل',
+    'last_listings'=>'اخر العقارات',
+    'last_packages_sales'=>'أحدث عمليات بيع الباقات',
+    'allow_for_you_number_of_points'=>'تسمح لك بعدد من النقاط قدرة',
+    'ewaa_statistics_word'=>'رسوم بيانية واحصائية تبين لك حركة الموقع',
+    'ewaa_statistics_info'=>'من خلال الرسومات البيانية يمكن اتخاذ افضل القرارات لتوطير منصة ايواء لتصبح أفضل في المستقبل',
+    'explore_statistics'=>'تصفح كافة الاحصائيات',
+    'last_listings_statistics'=>'أحصائيات عن أنتشار العقارات هذا العام',
+    'pending_listings'=>'العقارات المعلقة',
+    'last_categories'=>'أحدث الأقسام',
+    'approve'=>'الموافقة',
+    'block'=>'الحظر',
+    'auto_publish'=>'النشر التلقائي',
+
+    'users'=>'المستخدمين',
+    'users_statics'=>'إحصائيات المستخدمين',
+
+
+    'update_user'=>'تعديل بيانات المستخدم',
+    'upload_image'=>'أرفع الصورة',
+    // end of dashboard ----------------------------------------------------------
+
+    // start of dashboard categories ----------------------------------------------------------
+    'categories_info'=>'معلومات عن الأقسام',
+    'ar_name'=>'الأسم  بالعربي',
+    'en_name'=>'الأسم  بالأنجليزي',
+    'tu_name'=>'الأسم  بالتركي',
+    'ar_description'=>'الوصف  بالعربي',
+    'en_description'=>'الوصف  بالأنجليزي',
+    'tu_description'=>'الوصف  بالتركي',
+    'sub_categories'=>'الأقسام الفرعية',
+    'see_more'=>'رؤية المزيد',
+    // end of dashboard categories ----------------------------------------------------------
+
+
+    // start of dashboard sub categories ----------------------------------------------------------
+    'inner_sub_categories_at'=>'الأقسام الفرعية بداخل',
+    'select_from_questions'=>'أختر من الاسئلة المضافة مسبقا',
+    'add_new_question'=>'أضف سؤال جديد',
+    'add_another_question'=>'أضف سؤال اخر',
+    'select_question'=>'أختر السؤال',
+    'questions'=>'الأسئلة',
+    'ar_question'=>'السؤال بالعربي',
+    'en_question'=>'السؤال بالأنجليزي',
+    'tu_question'=>'السؤال بالتركي',
+    'question_type'=>'نوع السؤال',
+    'question_required'=>'إجبارية السؤال',
+    'ar_question_values'=>'إجابات السؤال بالعربي',
+    'en_question_values'=>'إجابات السؤال بالأنجليزي',
+    'tu_question_values'=>'إجابات السؤال بالتركي',
+
+    // end of dashboard sub categories ----------------------------------------------------------
+
+
+
+
+
+
 
 
 

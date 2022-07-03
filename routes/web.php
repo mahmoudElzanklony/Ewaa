@@ -108,6 +108,10 @@ Route::group(['middleware'=>'changeLang'],function (){
 
     Route::group(['prefix'=>'/dashboard'],function(){
         Route::get('/',[DashboardController::class,'index']);
+        Route::get('/notifications',[DashboardController::class,'notifications']);
+        Route::get('/users',[DashboardController::class,'users']);
+        Route::get('/categories',[DashboardController::class,'categories']);
+        Route::get('/categories/{id}/sub',[DashboardController::class,'sub']);
     });
 
 });

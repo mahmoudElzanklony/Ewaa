@@ -360,6 +360,200 @@ export default {
                   en:'like on this answer has done successfully',
                   tu:'',
               },
+              // dashboard words
+              users:{
+                  ar:'المستخدمين',
+                  en:'Users',
+                  tu:'',
+              },
+              chart:{
+                  ar:'الإحصائيات',
+                  en:'Chart',
+                  tu:'',
+              },
+              packages:{
+                  ar:'الباقات',
+                  en:'Packages',
+                  tu:'',
+              },
+              categories:{
+                  ar:'الأقسام',
+                  en:'Categories',
+                  tu:'',
+              },
+              questions:{
+                  ar:'الأسئلة',
+                  en:'Questions',
+                  tu:'',
+              },
+              reports:{
+                  ar:'التقارير',
+                  en:'Reports',
+                  tu:'',
+              },
+              explore_listings:{
+                  ar:'تصفح العقارات',
+                  en:'Explore Listings',
+                  tu:'',
+              },
+              see_statics:{
+                  ar:'رؤيه الاحصائيات',
+                  en:'See Statics',
+                  tu:'',
+              },
+              are_you_sure_about_approve:{
+                  ar:'هل انت متأكد من عملية الموافقة',
+                  en:'Are you sure from approving this request',
+                  tu:'',
+              },
+              are_you_sure_about_delete:{
+                  ar:'هل انت متأكد من عملية المسح',
+                  en:'Are you sure from delete operation',
+                  tu:'',
+              },
+              in_case_you_approved_listing_will_be_at_public:{
+                  ar:'في حالة الموافقة علي الطلب سيصبح هذا الطلب متاح يستطيع اي شخص رؤيتة',
+                  en:'In case you approved this request , the request will be available to any one to see it',
+                  tu:'',
+              },
+              in_case_you_delete_you_cant_retrieve_it:{
+                  ar:'في حالة الموافقة علي طلب المسح لن تستطيع استرجاع البيانات مرة اخري',
+                  en:'In case you delete you cant retrieve data another time',
+                  tu:'',
+              },
+              yes_iam_sure:{
+                  ar:'نعم انا متأكد',
+                  en:'yes iam sure',
+                  tu:'',
+              },
+              cancel:{
+                  ar:'إلغاء',
+                  en:'Cancel',
+                  tu:'',
+              },
+              approved_done:{
+                  ar:'تمت الموافقة',
+                  en:'Approved !',
+                  tu:'',
+              },
+              deleted_done:{
+                  ar:'تم المسح',
+                  en:'Deleted !',
+                  tu:'',
+              },
+              approved_done_successfully:{
+                  ar:'تمت عملية الموافقة بنجاح',
+                  en:'Approved done successfully',
+                  tu:'',
+              },
+              deleted_done_successfully:{
+                  ar:'تمت عملية المسح بنجاح',
+                  en:'Deleted done successfully',
+                  tu:'',
+              },
+              add_new_item:{
+                  ar:'إضافة عنصر جديد',
+                  en:'Add new Item',
+                  tu:'',
+              },
+              upload_image:{
+                  ar:'أرفع صورة',
+                  en:'upload image',
+                  tu:'',
+              },
+              select_question:{
+                  ar:'اختر السؤال',
+                  en:'Select question',
+                  tu:'',
+              },
+              // question at dashboard
+              ar_question:{
+                  ar:'السؤال بالعربي',
+                  en:'arabic question',
+                  tu:'',
+              },
+              en_question:{
+                  ar:'السؤال بالانجليزي',
+                  en:'english question',
+                  tu:'',
+              },
+              tu_question:{
+                  ar:'السؤال بالتركي',
+                  en:'turkish question',
+                  tu:'',
+              },
+              question_type:{
+                  ar:'نوع السؤال',
+                  en:'question type',
+                  tu:'',
+              },
+              question_type_text:{
+                 ar:'نص',
+                 en:'text',
+                 tu:'',
+              },
+              question_type_select:{
+                  ar:'اختر من متعدد',
+                  en:'Select from options',
+                  tu:'',
+              },
+              question_type_checkbox:{
+                  ar:'نعم او لا ',
+                  en:'yes or no',
+                  tu:'',
+              },
+              question_required:{
+                ar:'اختر نوع حقل الادخال من حيث إجباري ام لا',
+                en:'required or not required',
+                tu:'',
+              },
+              required:{
+                  ar:'مطلوب',
+                  en:'required',
+                  tu:''
+              },
+              not_required:{
+                  ar:'غير مطلوب',
+                  en:'not required',
+                  tu:''
+              },
+              question_answers:{
+                  ar:'اجابات السؤال',
+                  en:'question answers',
+                  tu:'',
+              },
+              question_answer_ar:{
+                  ar:'اجابة السؤال بالعربي',
+                  en:'question answer in arabic',
+                  tu:'',
+              },
+              question_answer_en:{
+                  ar:'اجابة السؤال بالأنجليزي',
+                  en:'question answer in english',
+                  tu:'',
+              },
+              question_answer_tu:{
+                  ar:'اجابة السؤال بالتركي',
+                  en:'question answer in turkish',
+                  tu:'',
+              },
+
+              add_question_answer:{
+                  ar:'اضف اجابة جديدة',
+                  en:'add question answer',
+                  tu:'',
+              },
+
+
+
+
+
+
+
+
+
+
+
 
 
 

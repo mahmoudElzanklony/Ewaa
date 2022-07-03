@@ -40,6 +40,7 @@ return [
     'email'=>'Email',
     'password'=>'Password',
     'username'=>'Username',
+    'image'=>'Image',
     'address'=>'Address',
     'phone'=>'Phone',
     'private_owner'=>'Private owner',
@@ -490,6 +491,72 @@ return [
     'properties_you_may_be_interested_in'=>'Properties you may be interested in',
 
     // end of answers of question -------------------------------------------------------
+
+
+
+
+    // start of dashboard ----------------------------------------------------------
+    'ewaa_word'=>'Ewaa plus is the best ',
+    'ewaa_listings'=>'You can manage real estate, packages and sales and know the latest news and reports to make the best decisions',
+    'show_details'=>'Show Details',
+    'last_listings'=>'Last Listings',
+    'last_packages_sales'=>'Latest sales of packages',
+    'allow_for_you_number_of_points'=>'Allow you a number of ability points',
+    'ewaa_statistics_word'=>'Graphs and statistics that show you the movement of the site',
+    'ewaa_statistics_info'=>'Through the graphs, the best decisions can be made to develop the shelter platform to become better in the future',
+    'explore_statistics'=>'Explore Statistics',
+    'last_listings_statistics'=>'Statistics on the spread of real estate this year',
+    'pending_listings'=>'Pending Listings',
+   'last_categories'=>'Last Categories',
+   'approve'=>'Approve',
+    'block'=>'Block',
+    'auto_publish'=>'Auto Publish',
+
+    'users'=>'Users',
+    'users_statics'=>'Users Statistics',
+
+
+    'update_user'=>'Update user info',
+    'upload_image'=>'Upload Image',
+    // end of dashboard ----------------------------------------------------------
+
+
+
+    // start of dashboard categories ----------------------------------------------------------
+    'categories_info'=>'Categories Information',
+    'ar_name'=>'Name in arabic',
+    'en_name'=>'Name in english',
+    'tu_name'=>'Name in turkish',
+    'ar_description'=>'Description in arabic',
+    'en_description'=>'Description in english',
+    'tu_description'=>'Description in turkish',
+    'sub_categories'=>'Sub Categories',
+    'see_more'=>'See more',
+    // end of dashboard categories ----------------------------------------------------------
+
+
+
+
+    // start of dashboard sub categories ----------------------------------------------------------
+    'inner_sub_categories_at'=>'Inner sub categories at',
+    'select_from_questions'=>'Select from questions',
+    'add_new_question'=>'Add new question',
+    'add_another_question'=>'Add another question',
+    'select_question'=>'Select question',
+    'questions'=>'Questions',
+    'ar_question'=>'Question in arabic',
+    'en_question'=>'Question in english',
+    'tu_question'=>'Question in turkish',
+    'question_type'=>'Question Type',
+    'question_required'=>'Mandatory question',
+    'ar_question_values'=>'Question values in arabic',
+    'en_question_values'=>'Question values in english',
+    'tu_question_values'=>'Question values in turkish',
+
+    // end of dashboard sub categories ----------------------------------------------------------
+
+
+
 
 
 

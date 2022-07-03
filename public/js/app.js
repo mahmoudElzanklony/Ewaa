@@ -2021,6 +2021,72 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
     } else {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).find('input').toggleClass('active');
     }
+  }); // toggle next
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.content').on('click', '.toggle_next', function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).parent().parent().next().slideToggle();
+
+    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).hasClass('ri-arrow-down-s-line')) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).removeClass('ri-arrow-down-s-line').addClass('ri-arrow-up-s-line');
+    } else {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).removeClass('ri-arrow-up-s-line').addClass('ri-arrow-down-s-line');
+    }
+  }); // preview image at box
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.content').on('change', '.preview-image', function () {
+    var file_data = event.target.files[0];
+    var allowed_extensions = ['png', 'jpg', 'jpeg', 'gif'];
+
+    if (allowed_extensions.includes(file_data.type.split('/')[1])) {
+      console.log(document.querySelector(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('selector')));
+      document.querySelector(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('selector')).src = URL.createObjectURL(file_data);
+    } else {
+      // its not an image
+      if (window.vm.$inertia.page.props.lang == 'ar') {
+        var msg = 'لقد قمت بتحميل ملف ليس صورة من فضلك حاول مرة اخري';
+      } else {
+        var msg = 'You uploaded a file not an image please try again';
+      }
+
+      Toast.fire({
+        icon: 'error',
+        title: msg
+      });
+    }
+  }); // delete input
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.content').on('click', '.delete-icon-input', function () {
+    var target = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
+
+    if (window.vm.$inertia.page.props.lang == 'ar') {
+      var msg = 'هل أنت متأكد من عملية المسح';
+      var confirm = 'نعم أنا متأكد';
+      var cancel = 'إلغاء';
+      var done = 'تمت عمليه المسح بنجاح';
+    } else {
+      var msg = 'are you sure from delete operation';
+      var confirm = 'yes';
+      var cancel = 'cancel';
+      var done = 'delete done';
+    }
+
+    Swal.fire({
+      title: msg,
+      icon: 'info',
+      showCancelButton: true,
+      confirmButtonColor: '#ff6a15',
+      cancelButtonColor: '#aaa',
+      confirmButtonText: confirm,
+      cancelButtonText: cancel
+    }).then(function (result) {
+      if (result.isConfirmed) {
+        target.parent().parent().remove();
+        Toast.fire({
+          icon: 'success',
+          title: done
+        });
+      }
+    });
   });
   /*--------------------------end of public actions at all pages -------------------------------*/
 
@@ -57419,10 +57485,6 @@ Vue.compile = compileToFunctions;
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var map = {
-	"./Dashboard/index.vue": [
-		"./resources/js/Pages/Dashboard/index.vue",
-		"resources_js_Pages_Dashboard_index_vue"
-	],
 	"./about_us.vue": [
 		"./resources/js/Pages/about_us.vue",
 		"resources_js_Pages_about_us_vue"
@@ -57450,6 +57512,26 @@ var map = {
 	"./contactus.vue": [
 		"./resources/js/Pages/contactus.vue",
 		"resources_js_Pages_contactus_vue"
+	],
+	"./dashboard/categories.vue": [
+		"./resources/js/Pages/dashboard/categories.vue",
+		"resources_js_Pages_dashboard_categories_vue"
+	],
+	"./dashboard/index.vue": [
+		"./resources/js/Pages/dashboard/index.vue",
+		"resources_js_Pages_dashboard_index_vue"
+	],
+	"./dashboard/notifications.vue": [
+		"./resources/js/Pages/dashboard/notifications.vue",
+		"resources_js_Pages_dashboard_notifications_vue"
+	],
+	"./dashboard/sub_categories.vue": [
+		"./resources/js/Pages/dashboard/sub_categories.vue",
+		"resources_js_Pages_dashboard_sub_categories_vue"
+	],
+	"./dashboard/users.vue": [
+		"./resources/js/Pages/dashboard/users.vue",
+		"resources_js_Pages_dashboard_users_vue"
 	],
 	"./feedback.vue": [
 		"./resources/js/Pages/feedback.vue",
@@ -57688,7 +57770,7 @@ module.exports = webpackAsyncContext;
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames based on template
-/******/ 			return "js/" + chunkId + "." + {"resources_js_Pages_Dashboard_index_vue":"389a75b65e6d338da1a8","resources_js_Pages_about_us_vue":"d193136f2c14a1f241a7","resources_js_Pages_auth_forget_password_vue":"9b40775b624d23805947","resources_js_Pages_auth_new_password_vue":"97dd493e706b757fcb2d","resources_js_Pages_auth_sign_in_vue":"714c3c0050bd25e638f6","resources_js_Pages_auth_sign_up_vue":"a578d72017ea6b37273e","resources_js_Pages_compounds_vue":"e1f02ae419f353f24fb3","resources_js_Pages_contactus_vue":"663733928a5a47a7a35d","resources_js_Pages_feedback_vue":"0b97be9c99b91fdaa28c","resources_js_Pages_government_city_vue":"6ff0f85a2a7737935e6f","resources_js_Pages_governments_vue":"29c01182f4c70eb50a50","resources_js_Pages_home_vue":"56f1e5e65221dfadd5e0","resources_js_Pages_listingpost_ContactOffice_vue":"c7424b30dd00361f61ba","resources_js_Pages_listingpost_details_vue":"78ccd0f82344650d3f02","resources_js_Pages_listingpost_info_vue":"682d36315a6b1367b939","resources_js_Pages_listingpost_initialize_vue":"515aece6ae1b304175ac","resources_js_Pages_listingpost_payment_confirmation_vue":"74b3fb0433899104a992","resources_js_Pages_listingpost_photos_vue":"12f06be82fe30c81a1be","resources_js_Pages_merchant_balance_vue":"c85e9494f42788c831fa","resources_js_Pages_neighbours_vue":"4d1e467d235d9e882297","resources_js_Pages_notifications_vue":"d1b49efd75f70d5aaeb6","resources_js_Pages_packages_charge_vue":"44b752ce49064bc7056d","resources_js_Pages_packages_packages_info_vue":"347559eefa4620cbadd8","resources_js_Pages_profile_favourites_vue":"ff47a3de1d26719a7274","resources_js_Pages_profile_listings_dashboard_vue":"a8bfbec2f322643aa18e","resources_js_Pages_profile_main_info_vue":"75b8c0569212baa55e74","resources_js_Pages_profile_notes_vue":"e6bd77fe284e4cd35e94","resources_js_Pages_profile_statistics_vue":"d645cc78fb6325695194","resources_js_Pages_questions_answers_vue":"163feeb80faa82aec087","resources_js_Pages_questions_ask_neighbors_vue":"1b2cd2d0acfc2acc982b","resources_js_Pages_sales_vue":"23b52278b66f5575cd33","resources_js_Pages_search_page_filters_vue":"5c8abd483b8ee82fd0d7","resources_js_Pages_terms_vue":"7ddd8e8e8ed791c752bb"}[chunkId] + ".js";
+/******/ 			return "js/" + chunkId + "." + {"resources_js_Pages_about_us_vue":"76596470070416348e8f","resources_js_Pages_auth_forget_password_vue":"7a59d54550bd7db7b2d8","resources_js_Pages_auth_new_password_vue":"65e30984772102dae8d1","resources_js_Pages_auth_sign_in_vue":"75cdd8e3746d1dcf5331","resources_js_Pages_auth_sign_up_vue":"e7aceb53be23a9b2eb6e","resources_js_Pages_compounds_vue":"6c02d984d73ed6506dc9","resources_js_Pages_contactus_vue":"ec1ec903b1d1427337a7","resources_js_Pages_dashboard_categories_vue":"9046c49772eaceaf13d9","resources_js_Pages_dashboard_index_vue":"ea6d9e77b353224bfdbd","resources_js_Pages_dashboard_notifications_vue":"8874a2b29492914331a6","resources_js_Pages_dashboard_sub_categories_vue":"14b5b98c4727125c06e1","resources_js_Pages_dashboard_users_vue":"2583832192e441c472f3","resources_js_Pages_feedback_vue":"34e035cc1b8aa49a64c5","resources_js_Pages_government_city_vue":"75eecb35dd074fffcf4b","resources_js_Pages_governments_vue":"08c20db9d808869aa3b6","resources_js_Pages_home_vue":"22d355ad5556f360c552","resources_js_Pages_listingpost_ContactOffice_vue":"21a245b79bc809f6c209","resources_js_Pages_listingpost_details_vue":"9a68aa84232e33610084","resources_js_Pages_listingpost_info_vue":"fefcdeb715df15046705","resources_js_Pages_listingpost_initialize_vue":"70cda6e2a5e60e6df0b9","resources_js_Pages_listingpost_payment_confirmation_vue":"8307b4e634e62c242288","resources_js_Pages_listingpost_photos_vue":"d8b22422ce7d3e79d518","resources_js_Pages_merchant_balance_vue":"11c56c43d46968b3eedf","resources_js_Pages_neighbours_vue":"6c80df5840301fff4659","resources_js_Pages_notifications_vue":"151d72111e7394cb674f","resources_js_Pages_packages_charge_vue":"443a83a057f88f208394","resources_js_Pages_packages_packages_info_vue":"f371f08615b952b69090","resources_js_Pages_profile_favourites_vue":"afebf6ddaf51a543f66f","resources_js_Pages_profile_listings_dashboard_vue":"93d7e59b05dd8fefdbff","resources_js_Pages_profile_main_info_vue":"76f4e0301b758cbd9952","resources_js_Pages_profile_notes_vue":"a3c624aaecf219103e02","resources_js_Pages_profile_statistics_vue":"f3ea9a0f14f6e7ad4ea7","resources_js_Pages_questions_answers_vue":"0aab61a06163ff1c2661","resources_js_Pages_questions_ask_neighbors_vue":"3e1fc939215efc5a6c69","resources_js_Pages_sales_vue":"f9c5d12f1a0db145676d","resources_js_Pages_search_page_filters_vue":"1e0d348b7d0543d31408","resources_js_Pages_terms_vue":"fa8bcc93843a7d64a410"}[chunkId] + ".js";
 /******/ 		};
 /******/ 	})();
 /******/ 	

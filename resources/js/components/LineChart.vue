@@ -13,8 +13,8 @@ export default {
                         label: 'احصائياتي',
                         data: this.chart_data,
                         fill: false,
-                        borderColor: '#2554FF',
-                        backgroundColor: '#2554FF',
+                        borderColor: '#ff6a15',
+                        backgroundColor: '#ff6a15',
                         borderWidth: 1
                     }
                 ]

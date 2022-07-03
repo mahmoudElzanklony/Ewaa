@@ -54,6 +54,15 @@ nav .dropdown-menu a span:first-of-type {
   margin-left: 15px;
 }
 
+.radio-buttons p input {
+  margin-left: 5px;
+}
+
+.delete-icon-input {
+  left: 15px;
+}
+
+/*---------------------------------------------end of public classes-----------------------------------------*/
 /*---------------------------------------------start of home page-----------------------------------------*/
 .sub-data .sub a > span:first-of-type {
   margin-left: 20px;
@@ -81,3 +90,26 @@ nav .dropdown-menu a span:first-of-type {
 }
 
 /*---------------------------------------------end of neighbour page------------------------------------*/
+/*---------------------------------------------start of table ------------------------------------*/
+.table-item-span {
+  margin-left: 10px;
+}
+.table-item-span span {
+  left: -6px;
+}
+.table-item-span:hover {
+  background-color: #ff6a15;
+  color: white;
+}
+
+/*---------------------------------------------end of table ------------------------------------*/
+/*-------------------------------------------start of dashboard -------------------------------------*/
+.dashboard .content {
+  margin-right: auto;
+}
+
+.answers .inner .row {
+  padding-left: 35px;
+}
+
+/*-------------------------------------------end of dashboard -------------------------------------*/
