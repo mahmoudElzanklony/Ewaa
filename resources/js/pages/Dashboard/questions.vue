@@ -16,27 +16,29 @@
                             <td v-for="i in handling_data['table_head_keys']" :key="i">
                                 {{ i }}
                             </td>
+                            <td>{{ switchWord('actions') }}</td>
                         </tr>
                         </thead>
                         <tbody>
                         <tr v-for="i in 15" :key="i">
-                            <td><img src="/images/categories/one.png"></td>
-                            <td>العقارات</td>
-                            <td>Listings</td>
+                            <td>نوع التشطيب</td>
+                            <td>finishing type</td>
                             <td></td>
-                            <td>وصف القسم</td>
-                            <td>category info</td>
-                            <td></td>
+                            <td>{{ switchWord('question_type_select') }}</td>
                             <td>
-                                <span class="table-item-span" v-for="i in 6" :key="i">
-                                    مجمع مساكن
-                                    <span><i @click="deleteRecord(2)" class="ri-close-line"></i></span>
-                                </span>
+                                <input @click="updateStatus(1,'questions',[])" name="toggle" type="checkbox" class="toggle-checkbox-status">
                             </td>
+                            <td>
+                                <span class="table-item-span">سوبر لوكس</span>
+                                <span class="table-item-span"> لوكس</span>
+                            </td>
+                            <td>
+                                <span class="table-item-span">super lux</span>
+                                <span class="table-item-span">lux</span>
+                            </td>
+                            <td></td>
+
                             <td class="actions">
-                                <inertia-link href="/dashboard/categories/10/sub">
-                                    <span><i class="ri-eye-line"></i></span>
-                                </inertia-link>
                                 <span><i data-toggle="modal" data-target="#update_box" class="ri-edit-line"></i></span>
                                 <span><i @click="deleteRecord(10)" class="ri-close-line"></i></span>
                             </td>
@@ -57,27 +59,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form>
-                            <div class="form-group">
-                                <img class="box-image"
-                                     src="/images/users/default.png">
-                            </div>
-                            <div class="form-group"
-                                 v-for="input in modal_data" :key="input">
-                                <label>{{ handling_data['data_model'][input] }}</label>
-                                <input :name="input" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <div class="drag-drop-files">
-                                    <input type="file" class="preview-image" name="image" accept="image/*"
-                                           selector=".modal-dialog img.box-image">
-                                    <button type="button" class="btn btn-primary">
-                                        <span>{{ switchWord('upload_image') }}</span>
-                                        <span><i class="ri-add-line"></i></span>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
+                        <question-data-component></question-data-component>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">
@@ -96,9 +78,11 @@ import SideNavbarComponent from "../../components/dashboard/SideNavbarComponent"
 import tableData from "../../mixin/tableData";
 import SwitchLangWord from "../../mixin/SwitchLangWord";
 import DeleteItemComponent from "../../components/DeleteItemComponent";
+import UpdateStatus from "../../mixin/UpdateStatus";
+import QuestionDataComponent from "../../components/dashboard/QuestionDataComponent";
 export default {
-    name: "users",
-    mixins:[tableData,SwitchLangWord,DeleteItemComponent],
+    name: "questions",
+    mixins:[tableData,SwitchLangWord,DeleteItemComponent,UpdateStatus],
     props:['keywords','handling_data'],
     data:function(){
         return {
@@ -109,11 +93,15 @@ export default {
         this.modal_data = Object.keys(this.handling_data['data_model']);
         this.modal_data.pop();
     },
-    components: {SideNavbarComponent}
+    components: {QuestionDataComponent, SideNavbarComponent}
 }
 </script>
 
 <style lang="scss" scoped>
 @import "resources/sass/variables";
-
+@media (min-width: 576px) {
+    .modal-dialog{
+        max-width:75%;
+    }
+}
 </style>

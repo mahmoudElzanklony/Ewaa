@@ -386,9 +386,30 @@ export default {
                   en:'Questions',
                   tu:'',
               },
+              countries:{
+                  ar:'الدول',
+                  en:'Countries',
+              },
+              governments:{
+                  ar:'المحافظات',
+                  en:'Governments',
+              },
+              cities:{
+                  ar:'المدن',
+                  en:'Cities',
+              },
+              areas:{
+                  ar:'المناطق',
+                  en:'Areas',
+              },
               reports:{
                   ar:'التقارير',
                   en:'Reports',
+                  tu:'',
+              },
+              client_support:{
+                  ar:'الدعم الفني',
+                  en:'client support',
                   tu:'',
               },
               explore_listings:{
@@ -543,6 +564,94 @@ export default {
                   en:'add question answer',
                   tu:'',
               },
+              actions:{
+                  ar:'الأوامر',
+                  en:'actions',
+                  tu:'',
+              },
+              update_status_successfully:{
+                  ar:'تم تحديث الحالة بنجاح',
+                  en:'Status updated Successfully',
+                  tu:'',
+              },
+              select_year:{
+                  ar:'أختر السنة',
+                  en:'Select year',
+                  tu:'',
+              },
+              please_select_type_of_area_you_want_to_be_added:{
+                  ar:'من فضلك اختر نوع المنطقة التي تود اضافتها',
+                  en:'Please select type of area you want to be added',
+                  tu:'',
+              },
+              area:{
+                  ar:'منطقة',
+                  en:'Area',
+                  tu:'',
+              },
+              city:{
+                  ar:'مدينة',
+                  en:'City',
+                  tu:'',
+              },
+              government:{
+                  ar:'محافظة',
+                  en:'Government',
+                  tu:'',
+              },
+              country:{
+                  ar:'دولة',
+                  en:'Country',
+                  tu:'',
+              },
+              select_country:{
+                  ar:'اختر الدولة',
+                  en:'Select country',
+                  tu:'',
+              },
+              select_government:{
+                  ar:'اختر المحافظة',
+                  en:'Select government',
+                  tu:'',
+              },
+              select_city:{
+                  ar:'اختر المدينة',
+                  en:'Select city',
+                  tu:'',
+              },
+              select_area:{
+                  ar:'اختر المنطقة',
+                  en:'Select area',
+                  tu:'',
+              },
+              point_price:{
+                  ar:'سعر النقطة',
+                  en:'Point Price',
+                  tu:'',
+              },
+              save:{
+                  ar:'حفظ',
+                  en:'Save',
+                  tu:'',
+              },
+              name:{
+                  ar:'الأسم',
+                  en:'Name',
+                  tu:'',
+              },
+              add_new_question:{
+                  ar:'أضف سؤال جديد',
+                  en:'Add new question',
+                  tu:'',
+              },
+              filter:{
+                  ar:'فلترة',
+                  en:'Filter',
+                  tu:'',
+              }
+
+
+
 
 
 

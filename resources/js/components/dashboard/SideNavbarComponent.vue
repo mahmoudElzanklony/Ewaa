@@ -42,28 +42,58 @@
                     <span>{{ switchWord('questions') }}</span>
                 </inertia-link>
             </li>
-            <li>
-                <inertia-link href="#">
+            <li custom="statistics">
+                <inertia-link  href="/dashboard/statistics">
                     <span><i class="ri-line-chart-line"></i></span>
                     <span>{{ switchWord('chart') }}</span>
                 </inertia-link>
             </li>
-            <li>
-                <inertia-link href="#">
+            <li custom="packages">
+                <inertia-link  href="/dashboard/packages">
                     <span><i class="ri-inbox-fill"></i></span>
                     <span>{{ switchWord('packages') }}</span>
                 </inertia-link>
             </li>
-            <li>
-                <inertia-link href="#">
+            <li custom="buildings">
+                <inertia-link  href="/dashboard/buildings">
                     <span><i class="ri-building-line"></i></span>
                     <span>{{ switchWord('buildings') }}</span>
                 </inertia-link>
             </li>
-            <li>
-                <inertia-link href="#">
+            <li custom="countries">
+                <inertia-link  href="/dashboard/map/countries">
+                    <span><i class="ri-bank-line"></i></span>
+                    <span>{{ switchWord('countries') }}</span>
+                </inertia-link>
+            </li>
+            <li custom="governments">
+                <inertia-link  href="/dashboard/map/governments">
+                    <span><i class="ri-government-line"></i></span>
+                    <span>{{ switchWord('governments') }}</span>
+                </inertia-link>
+            </li>
+            <li custom="cities">
+                <inertia-link  href="/dashboard/map/cities">
+                    <span><i class="ri-community-line"></i></span>
+                    <span>{{ switchWord('cities') }}</span>
+                </inertia-link>
+            </li>
+            <li custom="areas">
+                <inertia-link  href="/dashboard/map/areas">
+                    <span><i class="ri-map-pin-line"></i></span>
+                    <span>{{ switchWord('areas') }}</span>
+                </inertia-link>
+            </li>
+            <li custom="reports">
+                <inertia-link href="/dashboard/reports">
                     <span><i class="ri-file-list-3-line"></i></span>
                     <span>{{ switchWord('reports') }}</span>
+                </inertia-link>
+            </li>
+            <li custom="support">
+                <inertia-link href="/dashboard/support">
+                    <span><i class="ri-headphone-line"></i></span>
+                    <span>{{ switchWord('client_support') }}</span>
                 </inertia-link>
             </li>
         </ul>
@@ -199,6 +229,8 @@ export default {
     }
     ul{
         padding-top: 50px;
+        height: calc(100% - 50px);
+        overflow: auto;
         li{
             transition: 0.5s all;
             position: relative;

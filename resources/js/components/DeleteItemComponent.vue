@@ -6,7 +6,7 @@
 export default {
     name: "DeleteItemComponent",
     methods:{
-        deleteRecord:function(id){
+        deleteRecord:function(id,table){
             Swal.fire({
                 title: this.switchWord('are_you_sure_about_delete'),
                 text: this.switchWord('in_case_you_delete_you_cant_retrieve_it'),

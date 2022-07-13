@@ -41,6 +41,7 @@ return [
     'password'=>'Password',
     'username'=>'Username',
     'image'=>'Image',
+    'user_image'=>'User image',
     'address'=>'Address',
     'phone'=>'Phone',
     'private_owner'=>'Private owner',
@@ -554,6 +555,75 @@ return [
     'tu_question_values'=>'Question values in turkish',
 
     // end of dashboard sub categories ----------------------------------------------------------
+    // start of dashboard statistics ----------------------------------------------------------
+
+    'ewaa_statistics'=>'Ewaa Statistics',
+    'packages_orders'=>'Packages Orders',
+    'listings_orders'=>'Listings Orders',
+    'listings'=>'Listings',
+
+    // end of dashboard statistics ----------------------------------------------------------
+
+    // start of dashboard packages ----------------------------------------------------------
+    'packages'=>'Packages',
+    'min_value'=>'Min value',
+    'max_value'=>'Max value',
+    'point_price'=>'Price of points',
+    'country'=>'Country',
+    'city'=>'City',
+    'area'=>'Area',
+    'specific_price_for_specific_areas'=>'Specific price for specific areas',
+    'add_specific_price_for_specific_areas'=>'Add specific price for specific areas',
+    // end of dashboard packages ----------------------------------------------------------
+
+
+    // start of dashboard listings ----------------------------------------------------------
+    'listing_name'=>'Listing name',
+    'approval_status'=>'Approval status',
+
+    // end of dashboard listings ----------------------------------------------------------
+
+
+    // start of dashboard map ----------------------------------------------------------
+    'countries'=>'Countries',
+    'governments'=>'Governments',
+    'cities'=>'Cities',
+    'areas'=>'Areas',
+    'name'=>'Name',
+    'reports'=>'Reports',
+    'listings_number'=>'Listings Number',
+    // end of dashboard map ----------------------------------------------------------
+
+
+    // start of dashboard support ----------------------------------------------------------
+    'support'=>'Support',
+    'message'=>'Message',
+    'reply'=>'Reply',
+    // end of dashboard support ----------------------------------------------------------
+
+    // start of days ----------------------------------------------------------
+    'saturday'=>'Saturday',
+    'sunday'=>'Sunday',
+    'monday'=>'Monday',
+    'tuesday'=>'Tuesday',
+    'wednesday'=>'Wednesday',
+    'thursday'=>'Thursday',
+    'friday'=>'Friday',
+    // end of days ----------------------------------------------------------
+
+    // start of months ----------------------------------------------------------
+    'january'=>'January',
+    'february'=>'February',
+    'march'=>'March',
+    'april'=>'April',
+    'may'=>'May',
+    'june'=>'June',
+    'august'=>'August',
+    'september'=>'September',
+    'october'=>'October',
+    'november'=>'November',
+    'december'=>'December',
+    // end of months ----------------------------------------------------------
 
 
 

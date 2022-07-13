@@ -146,6 +146,11 @@ nav {
     .content{
         margin-right: auto;
     }
+    .inserted_questions{
+        >div:not(:first-of-type){
+            padding-left: 35px;
+        }
+    }
 }
 .answers .inner .row{
     padding-left: 35px;

@@ -28,10 +28,10 @@
                             <td>category info</td>
                             <td></td>
                             <td>
-                                <inertia-link href="#" class="table-item-span" v-for="i in 6" :key="i">
+                                <span class="table-item-span" v-for="i in 6" :key="i">
                                     اسم العقار
                                     <span><i @click="deleteRecord(2)" class="ri-close-line"></i></span>
-                                </inertia-link>
+                                </span>
                             </td>
                             <td class="actions">
                                 <span><i data-toggle="modal" data-target="#update_box" class="ri-edit-line"></i></span>
@@ -89,9 +89,11 @@
                                     {{ keywords.add_another_question }}
                                 </button>
                             </div>
-                            <div  v-show="question_selection == 'new'">
+                            <div class="inserted_questions"  v-show="question_selection == 'new'">
                                 <question-data-component></question-data-component>
                             </div>
+                            <button v-if="question_selection == 'new'"  class="btn btn-outline-primary add_new_question_box mb-3" type="button"
+                                    >{{ switchWord('add_new_question') }}</button>
                             <div class="form-group">
                                 <div class="drag-drop-files">
                                     <input type="file" class="preview-image" name="image" accept="image/*"
@@ -134,6 +136,7 @@ export default {
         }
     },
     methods:{
+
         add_another_question:function (){
             var output = '';
             for(let option of $('.old_questions .inner >  div:first-of-type select option')){
@@ -155,8 +158,10 @@ export default {
 </script>
 
 <style scoped>
-.modal-dialog{
-    max-width: 650px;
+@media (min-width: 576px) {
+    .modal-dialog{
+        max-width:75%;
+    }
 }
 
 </style>

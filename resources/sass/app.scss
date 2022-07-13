@@ -533,6 +533,7 @@ h2.main-title{
     flex-wrap: wrap;
     justify-content: space-between;
     flex-direction: row-reverse;
+    overflow: auto;
     table{
         width: 100% !important;
         max-width: 100%;
@@ -628,6 +629,20 @@ h2.main-title{
         padding-top: 20px;
         transition: 0.5s all;
     }
+    .area-inputs{
+        position: relative;
+    }
+    .new_questions{
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #eeeeee;
+        position: relative;
+        >div{
+            width:100%;
+            margin-right: 15px;
+            margin-left: 15px;
+        }
+    }
 }
 
 
@@ -635,6 +650,8 @@ h2.main-title{
 .answers .inner .row{
     position: relative;
 }
+
+
 
 /*-------------------------------------------end of dashboard -------------------------------------*/
 
@@ -644,6 +661,9 @@ h2.main-title{
     width: fit-content;
 }
 // edit on bootstrap classes
+.modal{
+    padding: 0px;
+}
 .btn-primary{
     background-color: $main_color;
     border:none;

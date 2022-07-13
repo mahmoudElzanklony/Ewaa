@@ -53,9 +53,9 @@ import { Inertia } from '@inertiajs/inertia'
 
 
 //Inertia.visit(url, { preserveScroll: true })
-
-
+import {store} from './store';
 var vm = new Vue({
+    store,
     render: h => h(App, {
         props: {
             initialPage: JSON.parse(el.dataset.page),

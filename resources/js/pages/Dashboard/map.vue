@@ -4,7 +4,7 @@
         <div class="content users table-data-page">
             <div class="container mt-4 mb-4">
                 <p class="d-flex mb-3 align-items-center justify-content-between main-title-toggle">
-                    <span>{{ keywords.main_title }}</span>
+                    <span>{{ main_title }}</span>
                     <button class="btn black-btn btn-outline-primary" data-toggle="modal" data-target="#update_box" >
                         {{ switchWord('add_new_item') }}
                     </button>
@@ -20,22 +20,14 @@
                         </thead>
                         <tbody>
                         <tr v-for="i in 15" :key="i">
-                            <td><img src="/images/categories/one.png"></td>
-                            <td>العقارات</td>
-                            <td>Listings</td>
-                            <td></td>
-                            <td>وصف القسم</td>
-                            <td>category info</td>
-                            <td></td>
-                            <td>
-                                <span class="table-item-span" v-for="i in 6" :key="i">
-                                    مجمع مساكن
-                                    <span><i @click="deleteRecord(2)" class="ri-close-line"></i></span>
-                                </span>
-                            </td>
+                            <td>بيان معين</td>
                             <td class="actions">
-                                <inertia-link href="/dashboard/categories/10/sub">
-                                    <span><i class="ri-eye-line"></i></span>
+                                <inertia-link
+                                    v-if="handling_data['actions'].hasOwnProperty(type)"
+                                    :href="handling_data['actions'][type]+'10'">
+                                    <span>
+                                        <i class="ri-eye-line"></i>
+                                    </span>
                                 </inertia-link>
                                 <span><i data-toggle="modal" data-target="#update_box" class="ri-edit-line"></i></span>
                                 <span><i @click="deleteRecord(10)" class="ri-close-line"></i></span>
@@ -59,23 +51,11 @@
                     <div class="modal-body">
                         <form>
                             <div class="form-group">
-                                <img class="box-image"
-                                     src="/images/users/default.png">
-                            </div>
-                            <div class="form-group"
-                                 v-for="input in modal_data" :key="input">
-                                <label>{{ handling_data['data_model'][input] }}</label>
-                                <input :name="input" class="form-control" required>
+                                <label>{{ switchWord('name') }}</label>
+                                <input name="name" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <div class="drag-drop-files">
-                                    <input type="file" class="preview-image" name="image" accept="image/*"
-                                           selector=".modal-dialog img.box-image">
-                                    <button type="button" class="btn btn-primary">
-                                        <span>{{ switchWord('upload_image') }}</span>
-                                        <span><i class="ri-add-line"></i></span>
-                                    </button>
-                                </div>
+                                <input class="btn btn-primary" type="submit" name="send" :value="switchWord('save')">
                             </div>
                         </form>
                     </div>
@@ -97,17 +77,22 @@ import tableData from "../../mixin/tableData";
 import SwitchLangWord from "../../mixin/SwitchLangWord";
 import DeleteItemComponent from "../../components/DeleteItemComponent";
 export default {
-    name: "users",
+    name: "map",
     mixins:[tableData,SwitchLangWord,DeleteItemComponent],
-    props:['keywords','handling_data'],
+    props:['keywords','handling_data','main_title'],
     data:function(){
         return {
             modal_data:[],
+            type:'',
         }
     },
     created() {
         this.modal_data = Object.keys(this.handling_data['data_model']);
         this.modal_data.pop();
+        this.type = document.URL.split('/')[document.URL.split('/').length - 1];
+        if(this.type.indexOf('?') > 0){
+            this.type = this.type.split('?')[0];
+        }
     },
     components: {SideNavbarComponent}
 }
@@ -115,5 +100,11 @@ export default {
 
 <style lang="scss" scoped>
 @import "resources/sass/variables";
-
+.actions{
+    justify-content: center;
+    span:first-of-type{
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+}
 </style>

@@ -20,25 +20,14 @@
                         </thead>
                         <tbody>
                         <tr v-for="i in 15" :key="i">
-                            <td><img src="/images/categories/one.png"></td>
-                            <td>العقارات</td>
-                            <td>Listings</td>
+                            <td><img src="/images/users/one.jpg"></td>
+                            <td>10</td>
+                            <td>100</td>
+                            <td>4 $</td>
                             <td></td>
-                            <td>وصف القسم</td>
-                            <td>category info</td>
-                            <td></td>
-                            <td>
-                                <span class="table-item-span" v-for="i in 6" :key="i">
-                                    مجمع مساكن
-                                    <span><i @click="deleteRecord(2)" class="ri-close-line"></i></span>
-                                </span>
-                            </td>
                             <td class="actions">
-                                <inertia-link href="/dashboard/categories/10/sub">
-                                    <span><i class="ri-eye-line"></i></span>
-                                </inertia-link>
                                 <span><i data-toggle="modal" data-target="#update_box" class="ri-edit-line"></i></span>
-                                <span><i @click="deleteRecord(10)" class="ri-close-line"></i></span>
+                                <span><i @click="deleteRecord(10,'packages')" class="ri-close-line"></i></span>
                             </td>
                         </tr>
                         </tbody>
@@ -51,7 +40,9 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="update_box_data">{{ switchWord('add_new_item') }}</h5>
+                        <h5 class="modal-title" id="update_data_box">
+                            {{ switchWord('add_new_item') }}
+                        </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -67,12 +58,18 @@
                                 <label>{{ handling_data['data_model'][input] }}</label>
                                 <input :name="input" class="form-control" required>
                             </div>
+                            <div class="specific_areas">
+
+                            </div>
+                            <button type="button" class="btn btn-outline-primary mb-2" @click="add_area_inputs">
+                                {{ keywords['add_specific_price_for_specific_areas'] }}
+                            </button>
                             <div class="form-group">
                                 <div class="drag-drop-files">
                                     <input type="file" class="preview-image" name="image" accept="image/*"
                                            selector=".modal-dialog img.box-image">
                                     <button type="button" class="btn btn-primary">
-                                        <span>{{ switchWord('upload_image') }}</span>
+                                        <span>{{ keywords.upload_image }}</span>
                                         <span><i class="ri-add-line"></i></span>
                                     </button>
                                 </div>
@@ -97,12 +94,23 @@ import tableData from "../../mixin/tableData";
 import SwitchLangWord from "../../mixin/SwitchLangWord";
 import DeleteItemComponent from "../../components/DeleteItemComponent";
 export default {
-    name: "users",
+    name: "packages",
     mixins:[tableData,SwitchLangWord,DeleteItemComponent],
     props:['keywords','handling_data'],
     data:function(){
         return {
             modal_data:[],
+        }
+    },
+    methods:{
+        add_area_inputs:function (){
+            var output = '<div class="area-inputs"><div class="form-group"><select name="area_type" class="form-control w-75" required><option value="">'+this.switchWord('please_select_type_of_area_you_want_to_be_added')+'</option>';
+
+            for(let item of ['country','government','city','area']){
+                output += '<option value="'+item+'">'+this.switchWord(item)+'</option>';
+            }
+            output += '</select></div><div class="row"></div><div class="form-group"><label>'+this.switchWord('point_price')+'</label><input name="point_price" class="form-control" required></div><span><i class="ri-close-line delete-icon-input"></i></span></div>';
+            $(event.target).prev().append(output);
         }
     },
     created() {

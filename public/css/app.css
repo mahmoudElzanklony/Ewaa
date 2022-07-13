@@ -10544,6 +10544,7 @@ h2.main-title span:first-of-type {
   flex-wrap: wrap;
   justify-content: space-between;
   flex-direction: row-reverse;
+  overflow: auto;
 }
 .dataTables_wrapper table {
   width: 100% !important;
@@ -10641,6 +10642,20 @@ h2.main-title span:first-of-type {
   padding-top: 20px;
   transition: 0.5s all;
 }
+.dashboard .area-inputs {
+  position: relative;
+}
+.dashboard .new_questions {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eeeeee;
+  position: relative;
+}
+.dashboard .new_questions > div {
+  width: 100%;
+  margin-right: 15px;
+  margin-left: 15px;
+}
 
 .answers .inner .row {
   position: relative;
@@ -10651,6 +10666,10 @@ h2.main-title span:first-of-type {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
+}
+
+.modal {
+  padding: 0px;
 }
 
 .btn-primary {

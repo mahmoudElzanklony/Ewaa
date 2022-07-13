@@ -112,6 +112,13 @@ Route::group(['middleware'=>'changeLang'],function (){
         Route::get('/users',[DashboardController::class,'users']);
         Route::get('/categories',[DashboardController::class,'categories']);
         Route::get('/categories/{id}/sub',[DashboardController::class,'sub']);
+        Route::get('/questions',[DashboardController::class,'questions']);
+        Route::get('/statistics',[DashboardController::class,'statistics']);
+        Route::get('/packages',[DashboardController::class,'packages']);
+        Route::get('/buildings',[DashboardController::class,'buildings']);
+        Route::get('/map/{type}',[DashboardController::class,'map']);
+        Route::get('/reports',[DashboardController::class,'reports']);
+        Route::get('/support',[DashboardController::class,'support']);
     });
 
 });

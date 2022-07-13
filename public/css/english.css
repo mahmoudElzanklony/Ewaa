@@ -124,6 +124,9 @@ nav .dropdown-menu a span:first-of-type {
 .dashboard .content {
   margin-left: auto;
 }
+.dashboard .inserted_questions > div:not(:first-of-type) {
+  padding-right: 35px;
+}
 
 .answers .inner .row {
   padding-right: 35px;
