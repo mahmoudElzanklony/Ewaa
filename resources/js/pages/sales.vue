@@ -127,6 +127,8 @@
                                                 number_of_listing="4500"
                                                 date="20/02/2011"
                                 ></contact-office>
+                                <input type="button" class="btn btn-primary"
+                                       :value="switchWord('request_contact')">
                             </div>
                         </div>
                     </div>
@@ -165,8 +167,10 @@ import NavbarComponent from "../components/NavbarComponent";
 import FooterComponent from "../components/FooterComponent";
 import FilterComponent from "../components/FilterComponent";
 import ContactOffice from "./listingpost/ContactOffice";
+import SwitchLangWord from "../mixin/SwitchLangWord";
 export default {
     name: "sales",
+    mixins:[SwitchLangWord],
     components: {ContactOffice, FilterComponent, FooterComponent, NavbarComponent},
     props:['keywords','search_keywords'],
 }

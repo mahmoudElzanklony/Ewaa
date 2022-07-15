@@ -16,6 +16,7 @@ class ListingPostPhotosKeywords
             'listing_data'=>trans('keywords.listing_data'),
             'listing_info'=>trans('keywords.listing_info'),
             'listing_images'=>trans('keywords.listing_images'),
+            'previous'=>trans('keywords.previous'),
         ];
     }
 }

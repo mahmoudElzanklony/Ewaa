@@ -109,6 +109,9 @@
                                         <label>{{ keywords.company_logo }}</label>
                                         <input type="file" name="company_logo" class="form-control">
                                     </div>
+                                    <div class="form-group">
+                                        <input type="submit" name="save" class="btn btn-primary" :value="keywords.save">
+                                    </div>
                                 </form>
                             </div>
                         </div>

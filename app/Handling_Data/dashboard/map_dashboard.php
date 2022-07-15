@@ -9,7 +9,9 @@ class map_dashboard
     public static function handle_data(){
         return [
             'table_head_keys'=>[
-                'name'=>trans('keywords.name'),
+                'ar_name'=>trans('keywords.ar_name'),
+                'en_name'=>trans('keywords.en_name'),
+                'tu_name'=>trans('keywords.tu_name'),
                 'actions'=>trans('keywords.actions'),
             ],
             'actions'=>[
@@ -18,7 +20,9 @@ class map_dashboard
                'cities'=>'/dashboard/map/areas?city_id=',
             ],
             'data_model'=>[
-                'name'=>trans('keywords.name'),
+                'ar_name'=>trans('keywords.ar_name'),
+                'en_name'=>trans('keywords.en_name'),
+                'tu_name'=>trans('keywords.tu_name'),
             ]
         ];
     }

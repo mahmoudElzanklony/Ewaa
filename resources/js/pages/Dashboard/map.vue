@@ -21,6 +21,8 @@
                         <tbody>
                         <tr v-for="i in 15" :key="i">
                             <td>بيان معين</td>
+                            <td> specific info</td>
+                            <td></td>
                             <td class="actions">
                                 <inertia-link
                                     v-if="handling_data['actions'].hasOwnProperty(type)"
@@ -50,9 +52,10 @@
                     </div>
                     <div class="modal-body">
                         <form>
-                            <div class="form-group">
-                                <label>{{ switchWord('name') }}</label>
-                                <input name="name" class="form-control" required>
+                            <div class="form-group"
+                                 v-for="input in modal_data" :key="input">
+                                <label>{{ handling_data['data_model'][input] }}</label>
+                                <input :name="input" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <input class="btn btn-primary" type="submit" name="send" :value="switchWord('save')">
@@ -88,7 +91,7 @@ export default {
     },
     created() {
         this.modal_data = Object.keys(this.handling_data['data_model']);
-        this.modal_data.pop();
+
         this.type = document.URL.split('/')[document.URL.split('/').length - 1];
         if(this.type.indexOf('?') > 0){
             this.type = this.type.split('?')[0];

@@ -34,6 +34,10 @@
                 <div class="preview-uploaded-images">
 
                 </div>
+                <div class="text-center mt-3 mb-3">
+                    <input type="submit" class="btn btn-primary" :value="switchWord('save')">
+                    <input @click="previous_step" type="button" class="btn btn-outline-primary" :value="keywords.previous">
+                </div>
             </form>
         </div>
         <footer-component></footer-component>
@@ -56,6 +60,9 @@ export default {
     mixins:[SwitchLangWord],
     components: {FooterComponent, NavbarComponent},
     methods:{
+        previous_step:function(){
+            this.$inertia.visit('/listing/info');
+        },
         uploadFiles:function (){
             this.files = Array.from(event.target.files);
             $('.preview-uploaded-images').html('');
