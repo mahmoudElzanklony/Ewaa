@@ -9,7 +9,7 @@ class listing_questions_answers extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['listing_id','question_id','answer'];
+    protected $fillable = ['listing_id','question_id','answer','type'];
 
     public function listing(){
         return $this->belongsTo(listings_info::class,'listing_id');

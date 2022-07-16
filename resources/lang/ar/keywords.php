@@ -34,6 +34,8 @@ return [
    'reach_million_of_users'=>'اول لملايين من زوار الموقع شهريا',
    'list_company_properties'=>'أعلن عن عقار شركتك',
    'join_thousands_of_companies'=>'انضم لألاف الشركات التي تعتمد علينا',
+   'ewaa_plus_website'=>'منصة إيواء بلس',
+   'ewaa_plus_word'=>'أول منصة لخدمة أصحاب الأعمال لتوفير مساكن للموظفين والعمال طويلة الأجل حسب الإحتياجات',
 
    // Auth page
    'sign_up'=>'حساب جديد',

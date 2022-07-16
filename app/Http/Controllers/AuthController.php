@@ -2,18 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\classes\auth\AuthServicesClass;
+use App\Http\Requests\usersFormRequest;
 use App\Keywords\AuthKeywords;
+use App\Models\roles;
+use App\Services\auth\register_service;
+use App\Services\map\countries_service;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class AuthController extends Controller
+
+class AuthController extends AuthServicesClass
 {
-    //
+    // get
     public function register(){
         return Inertia::render('auth/sign_up',[
-           'keywords'=>AuthKeywords::get_keywords()
+           'keywords'=>AuthKeywords::get_keywords(),
+           'countries'=>countries_service::get_countries()
         ]);
     }
+
+
+
     public function login(){
         return Inertia::render('auth/sign_in',[
             'keywords'=>AuthKeywords::get_keywords()

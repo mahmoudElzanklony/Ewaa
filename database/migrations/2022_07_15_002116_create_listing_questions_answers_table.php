@@ -18,6 +18,7 @@ class CreateListingQuestionsAnswersTable extends Migration
             $table->foreignId('listing_id')->constrained('listings_infos')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('question_id')->constrained('questions')->onUpdate('cascade')->onDelete('cascade');
             $table->string('answer');
+            $table->string('type');
             $table->timestamps();
         });
     }

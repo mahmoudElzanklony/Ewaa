@@ -39,8 +39,8 @@ Route::group(['middleware'=>'changeLang'],function (){
     Route::get('/',[WelcomeController::class,'index']);
     Route::get('/lang/{lang}',[LangController::class,'index']);
     // auth pages
-    Route::get('/login',[AuthController::class,'login']);
-    Route::get('/register',[AuthController::class,'register']);
+    Route::get('/login',[AuthController::class,'login'])->middleware('guest');
+    Route::get('/register',[AuthController::class,'register'])->middleware('guest');;
     Route::get('/forget-password',[AuthController::class,'forget_password']);
     Route::get('/new-password',[AuthController::class,'new_password']);
     // search page filter

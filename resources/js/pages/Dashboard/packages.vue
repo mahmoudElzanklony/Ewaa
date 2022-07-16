@@ -61,7 +61,7 @@
                             <div class="specific_areas">
 
                             </div>
-                            <button type="button" class="btn btn-outline-primary mb-2" @click="add_area_inputs">
+                            <button type="button" class="btn btn-outline-primary mb-2 add_new_country">
                                 {{ keywords['add_specific_price_for_specific_areas'] }}
                             </button>
                             <div class="form-group">
@@ -103,7 +103,7 @@ export default {
         }
     },
     methods:{
-        add_area_inputs:function (){
+        /*add_area_inputs:function (){
             var output = '<div class="area-inputs"><div class="form-group"><select name="area_type" class="form-control w-75" required><option value="">'+this.switchWord('please_select_type_of_area_you_want_to_be_added')+'</option>';
 
             for(let item of ['country','government','city','area']){
@@ -111,7 +111,7 @@ export default {
             }
             output += '</select></div><div class="row"></div><div class="form-group"><label>'+this.switchWord('point_price')+'</label><input name="point_price" class="form-control" required></div><span><i class="ri-close-line delete-icon-input"></i></span></div>';
             $(event.target).prev().append(output);
-        }
+        }*/
     },
     created() {
         this.modal_data = Object.keys(this.handling_data['data_model']);

@@ -213,6 +213,21 @@ $(document).ready(function (){
         var output = '<div class="new_questions mb-2 row flex-wrap"><div>'+content.html()+'</div><div class="answers"></div><span><i class="ri-close-line delete-icon-input"></i></span></div>';
         $(event.target).prev().append(output);
     });
+    // add new country
+    $('.content').on('click','.add_new_country',function (){
+        var country_selected = '';
+        if(window.vm.$inertia.page.props.lang == 'ar'){
+            country_selected = 'أختر الدولة التي تود انشاء سعر خاص بها';
+        }else{
+            country_selected = 'Select country you want to add specific price for it';
+        }
+
+            var output = '<div class="area-inputs"><div class="form-group"><select name="country_id" class="form-control w-75" required><option value="">'+country_selected+'</option>';
+
+        output += '</select></div><span><i class="ri-close-line delete-icon-input"></i></span></div>';
+        $(event.target).prev().append(output);
+    });
+
 
     /*--------------------------end of dashboard-------------------------------*/
 

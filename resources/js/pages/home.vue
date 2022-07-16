@@ -4,7 +4,17 @@
         <header>
             <div class="layer">
                 <div class="container">
-                    <div class="row">
+                    <h2 class="text-center">{{ keywords.ewaa_plus_website }}</h2>
+                    <p class="text-center">{{ keywords.ewaa_plus_word }}</p>
+                    <div class="text-center">
+                        <inertia-link href="#" class="btn btn-main-color">
+                            {{ keywords.properties }}
+                        </inertia-link>
+                        <inertia-link href="#" class="btn btn-main-color-outline">
+                            {{ keywords.compounds }}
+                        </inertia-link>
+                    </div>
+                    <div style="display: none" class="row">
                         <div class="col-md-8">
                             <p>
                                 <span>10000</span>
@@ -20,12 +30,6 @@
                                     {{ keywords.rent }}
                                 </inertia-link>
                             </p>
-                            <inertia-link href="#" class="btn btn-main-color">
-                                {{ keywords.properties }}
-                            </inertia-link>
-                            <inertia-link href="#" class="btn btn-main-color-outline">
-                                {{ keywords.compounds }}
-                            </inertia-link>
                         </div>
                     </div>
                 </div>
@@ -319,19 +323,33 @@ export default {
 <style lang="scss" scoped>
 @import "resources/sass/variables";
 .layer{
-    background-color: #b2dfdb5e;
+    background-color: rgb(255 255 255 / 84%);
     width: 100%;
     height: 100%;
 }
 header{
     background-image: url("/images/home/header.jpg");
     background-size: cover;
-    height: 500px;
+    height: 650px;
     background-position: center;
     .container{
         display: flex;
         align-items: center;
+        justify-content: center;
+        align-content: center;
+        flex-wrap: wrap;
         height: 100%;
+        h2{
+            font-size: 65px;
+            margin-bottom: 25px;
+            text-shadow: 1px 1px 1px;
+        }
+        p{
+            font-size:$big;
+        }
+        >div,h2,p{
+            width: 100%;
+        }
         .row{
             width:100%;
         }

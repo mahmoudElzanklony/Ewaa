@@ -66,24 +66,13 @@
                             <!--                            <div class="dropdown-divider"></div>-->
                         </div>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#"  role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <li class="nav-item d-flex align-items-center">
+                        <inertia-link class="nav-link d-flex align-items-center" href="listing/initialize">
                             <span><i class="ri-home-smile-line"></i></span>
                             <span>{{ switchWord('List') }}</span>
-                            <span><i class="ri-arrow-drop-down-fill"></i></span>
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <inertia-link href="#">
-                                <span><i class="ri-add-line"></i></span>
-                                <span>{{ switchWord('List_your_property') }}</span>
-                            </inertia-link>
-                            <inertia-link href="#">
-                                <span><i class="ri-file-list-3-line"></i></span>
-                                <span>{{ switchWord('List_Companies_properties') }}</span>
-                            </inertia-link>
-                            <!--                            <div class="dropdown-divider"></div>-->
-                        </div>
+                        </inertia-link>
                     </li>
+
                     <li class="nav-item d-flex align-items-center">
                         <inertia-link class="nav-link" href="#">{{ switchWord('about_us') }}</inertia-link>
                     </li>
@@ -245,7 +234,11 @@ export default {
     .navbar-brand{
         margin-left: 5%;
     }
-
+    .nav-link{
+        >span:first-of-type{
+            margin-left: 7px;
+        }
+    }
     .auth-form{
         .user_image{
             img{
@@ -273,6 +266,11 @@ export default {
     .dropdown-menu{
         right: 0px;
         left: unset;
+    }
+    .nav-link{
+        >span:first-of-type{
+            margin-right: 7px;
+        }
     }
     .auth-form{
         .user_image{

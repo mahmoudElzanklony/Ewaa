@@ -43,6 +43,7 @@ class User extends Authenticatable implements JWTSubject
         'image',
         'block',
         'role_id',
+        'country_id',
 
     ];
 

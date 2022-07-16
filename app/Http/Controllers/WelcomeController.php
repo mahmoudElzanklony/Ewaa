@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Keywords\WelcomeKeyWords;
+use App\Models\categories;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 

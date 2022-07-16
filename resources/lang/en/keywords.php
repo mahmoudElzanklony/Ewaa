@@ -33,6 +33,9 @@ return [
     'reach_million_of_users'=>'Reach millions of users directly',
     'list_company_properties'=>'List company properties',
     'join_thousands_of_companies'=>'join thousands of companies now',
+    'ewaa_plus_website'=>'Ewaa Plus Platform',
+    'ewaa_plus_word'=>'First platform to serve business owners to provide their employees with a long term accommodation upon to their requirements',
+
 
     // Auth page
     'sign_up'=>'Sign up',

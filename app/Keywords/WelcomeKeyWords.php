@@ -41,6 +41,8 @@ class WelcomeKeyWords
           'reach_million_of_users'=>trans('keywords.reach_million_of_users'),
           'list_company_properties'=>trans('keywords.list_company_properties'),
           'join_thousands_of_companies'=>trans('keywords.join_thousands_of_companies'),
+          'ewaa_plus_website'=>trans('keywords.ewaa_plus_website'),
+          'ewaa_plus_word'=>trans('keywords.ewaa_plus_word'),
         ];
     }
 }

@@ -5,11 +5,11 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                        <form>
+                        <form method="post" @submit.prevent="register">
                             <h2 class="mb-4">{{ keywords.sign_up }}</h2>
                             <div class="form-group">
                                 <label>{{ keywords.username }}</label>
-                                <input name="email" type="email" class="form-control" required>
+                                <input name="username" type="text" class="form-control" required>
                                 <p class="alert alert-danger"></p>
                             </div>
                             <div class="form-group">
@@ -24,7 +24,16 @@
                             </div>
                             <div class="form-group">
                                 <label>{{ keywords.phone }}</label>
-                                <input name="phone" type="number" class="form-control" required>
+                                <input name="phone" type="number" min="0" pattern=".{7,}" class="form-control" required>
+                                <p class="alert alert-danger"></p>
+                            </div>
+                            <div class="form-group">
+                                <label>{{ keywords.country }}</label>
+                                <select name="country_id"  class="form-control" required>
+                                    <option value="">{{ switchWord('select_country') }}</option>
+                                    <option v-for="(c,index) in countries" :key="index"
+                                            :value="c['id']">{{ c['name'] }}</option>
+                                </select>
                                 <p class="alert alert-danger"></p>
                             </div>
                             <div class="form-group">
@@ -63,9 +72,17 @@
 <script>
 import NavbarComponent from "../../components/NavbarComponent";
 import FooterComponent from "../../components/FooterComponent";
+import SwitchLangWord from "../../mixin/SwitchLangWord";
+import {mapActions} from "vuex";
 export default {
     name: "sign_up",
-    props:['keywords'],
+    mixins:[SwitchLangWord],
+    props:['keywords','countries'],
+    methods:{
+      ...mapActions({
+          'register':'register/register',
+      })
+    },
     components: {FooterComponent, NavbarComponent}
 }
 </script>
