@@ -4,24 +4,23 @@
         <profile-nav-component></profile-nav-component>
         <div class="container">
             <div class="row pt-4">
-                <div class="col-lg-4" v-for="i in 5" :key="i">
+                <div class="col-lg-4" v-for="(note,index) in data" :key="index" :id="note['id']">
+                    <!---->
                     <ListingPostComponent @write_note="update_note"
                         note="true"
-                        compound="true"
-                        bed="2"
-                        baths="3"
-                        area="400"
-                        image="one.jpg"
-                        number_of_images="5"
-                        info="لاول مره في العاصمه الاداريه شقه بمقدم 0% واقساط"
-                        address="العاصمه الاداريه-الحي الثامن-كمبوند كارديا"
-                        price="500"
+                        :id="note.id"
+                        :image="note.listing.images[0].image"
+                        :number_of_images="note.listing.images.length"
+                        :info="note.listing.info"
+                        :address="note.listing.address"
+                        :price="note.listing.price"
+                        :note="note.note"
                     ></ListingPostComponent>
                 </div>
             </div>
         </div>
 
-        <div class="modal fade" id="show_notes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" v-if="item != null" id="show_notes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -31,17 +30,24 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form method="post" @submit.prevent="save_note">
                             <div class="form-group">
                                 <label>{{ keywords.note }}</label>
+                                <input v-if="item != null" type="hidden" name="id" :value="item!= null ? item['id']:0">
                                 <textarea name="note" class="form-control"
-                                          :value="note_obj['text']">{{ note_obj['text'] }}</textarea>
+                                          :value="item!= null ? item['note']:''">{{ item['note'] }}</textarea>
+                                <p class="alert alert-danger"></p>
                             </div>
                             <div class="form-group">
                                 <input class="btn btn-primary"
                                        type="submit"
                                        name="save"
                                        :value="keywords.save" required>
+
+                                <input type="button" class="btn btn-danger"
+                                       name="delete"
+                                       @click="delete_item('listings_notes',[item['id']],'.row > div#'+item['id'],true)"
+                                       :value="keywords.delete_note" required>
                             </div>
                         </form>
                     </div>
@@ -65,24 +71,30 @@ import NavbarComponent from "../../components/NavbarComponent";
 import FooterComponent from "../../components/FooterComponent";
 import ProfileNavComponent from "../../components/ProfileNavComponent";
 import ListingPostComponent from "../../components/ListingPostComponent";
+import delete_item from "../../mixin/delete_item";
+import {mapActions} from "vuex";
 export default {
     name: "notes",
-    props:['keywords'],
+    props:['keywords','data'],
+    mixins:[delete_item],
     data:function(){
         return {
-            note_obj:{
-                id:0,
-                text:'',
-            },
+            item:null,
         }
     },
     methods:{
+        ...mapActions({
+           'save_note':'notes/save_note',
+        }),
         update_note:function(e){
             // update
-            this.note_obj['id'] = e[0];
-            this.note_obj['text'] = e[1];
+            this.item = {};
+            this.item['id'] = e[0];
+            this.item['note'] = e[1];
             // show box
-            $('#show_notes').modal('show');
+            setTimeout(()=>{
+                $('#show_notes').modal('show');
+            },100);
         }
     },
     components: {ListingPostComponent, ProfileNavComponent, FooterComponent, NavbarComponent}
@@ -92,5 +104,8 @@ export default {
 <style lang="scss" scoped>
 #show_notes{
     z-index: 99999999999;
+}
+.alert-danger{
+    display: none;
 }
 </style>

@@ -18,7 +18,7 @@ class CreateUserInfosTable extends Migration
             $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->string('full_name');
             $table->tinyInteger('whatapp_status')->default(0);
-            $table->integer('age');
+            $table->string('age');
             $table->string('gender');
             $table->string('marital_status');
             $table->string('education');

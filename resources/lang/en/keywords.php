@@ -42,7 +42,9 @@ return [
     'sign_in'=>'Sign in',
     'email'=>'Email',
     'password'=>'Password',
+    'current_password'=>'Current Password is not correct',
     'username'=>'Username',
+    'full_name'=>'Full name',
     'image'=>'Image',
     'user_image'=>'User image',
     'address'=>'Address',
@@ -203,6 +205,7 @@ return [
     'enter_your_info_to_contact_with_seller'=>'Enter your info to contact with seller',
     'note_you_write_it'=>'This note is private and will not be posted on the listing or sent to its owner, You can check this note again from "My activities" page',
     'note'=>'Note',
+    'delete_note'=>'Delete Note',
     'share'=>'Share',
     'favourite'=>'Favourite',
     'save'=>'Save',
@@ -344,7 +347,7 @@ return [
     'total_search_impressions'=>'Total Search Impressions',
     'total_page_views'=>'Total Page Views',
     'total_leads'=>'Total Leads',
-    'average_click_rate'=>'Average Click Rate',
+    'average_seen_rate'=>'Average Seen Rate',
     'average_contact_rate'=>'Average Contact Rate',
     'note_you_write_it_in_profile'=>'This note is private and will not be posted on the listing or sent to its owner',
     // end of profile listings statics ----------------------------------------------------
@@ -448,6 +451,7 @@ return [
     'property_answer_questions'=>'To inquire about a property that you found on Aqarmap, please contact the advertiser directly on the same property page. Click on the orange "Phone Number" button or send an email to the advertiser. Aqarmap does not own the properties on the website.',
     'contact_us_data'=>'For all other inquiries, please contact us at:',
     'phone_whatapp'=>'Phone / WhatsApp : ',
+    'whatapp_status'=>'Whatapp status',
     'address_title'=>'21 Dr. Naguib Mahfouz St., Nasr City, Cairo',
     // end of contact us -------------------------------------------------------
 
@@ -535,6 +539,7 @@ return [
     'en_description'=>'Description in english',
     'tu_description'=>'Description in turkish',
     'sub_categories'=>'Sub Categories',
+    'category_parent_id'=>'Parent Category',
     'see_more'=>'See more',
     // end of dashboard categories ----------------------------------------------------------
 

@@ -22,6 +22,7 @@ class CreateCategoriesTable extends Migration
             $table->string('en_info');
             $table->string('tu_info')->nullable();
             $table->integer('parent_id')->nullable();
+            $table->string('image');
             $table->timestamps();
         });
     }

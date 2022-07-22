@@ -18,8 +18,8 @@
                         </select>
                     </h2>
                     <div class="box_details_numbers mt-4 mb-4">
-                        <div v-for="(i,index) in Object.keys(data_numbers)" :key="index">
-                            <h2>{{ data_numbers[i] }}</h2>
+                        <div v-for="(i,index) in Object.keys(data_numbers['statistics'])" :key="index">
+                            <h2>{{ data_numbers['statistics'][i] }}</h2>
                             <p>{{ keywords[i] }}</p>
                         </div>
                     </div>
@@ -46,7 +46,7 @@ export default {
     props:['keywords','data_numbers'],
     data:function(){
         return {
-            chart_data:[1,2,3,4,56,7,9,10,11,2,12,5],
+            chart_data:this.data_numbers['total_count_data'],
             labels:[
                 "يناير",
                 "يناير",

@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Http\quick_helpers\messages_output;
+use App\Http\traits\messages;
 use Closure;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\Http\Middleware\BaseMiddleware;
@@ -23,7 +23,7 @@ class CheckApiAuth extends BaseMiddleware
         try {
             $user = $this->auth->parseToken()->authenticate($request);
         }catch (\Exception $e){
-            return messages_output::error_message($e->getMessage());
+            return messages::error_output([$e->getMessage()]);
         }
          $user['token'] = $token;
         // return  response(['data'=>$user]);

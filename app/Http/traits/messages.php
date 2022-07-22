@@ -11,13 +11,13 @@ trait messages {
     }
 
 
-    static function error_output($errors){
-        return response()->json(['errors'=>$errors]);
+    static function error_output($errors , $status = 442 , $code = 0){
+        return response()->json(['errors'=>$errors,'status'=>$status,'code'=>$code]);
     }
 
 
-    static function success_output($msg){
-        return response()->json(['success'=>$msg]);
+    static function success_output($msg,$data = null,$related = null){
+        return response()->json(['message'=>$msg,'status'=>200,'data'=>$data,'related'=>$related]);
     }
 
 }

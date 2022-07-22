@@ -19,6 +19,8 @@ class CreatePackagesTable extends Migration
             $table->integer('max_value');
             $table->float('price');
             $table->string('image');
+            $table->tinyInteger('is_visible')->default(1);
+            $table->date('expiration_date');
             $table->timestamps();
         });
     }

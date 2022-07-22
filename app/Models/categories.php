@@ -9,9 +9,12 @@ class categories extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['ar_name','en_name','tu_name','ar_info','en_info','tu_info','parent_id'];
+    protected $fillable = ['ar_name','en_name','tu_name','ar_info','en_info','tu_info','parent_id','image'];
 
 
+    public static function selection(){
+        return self::query()->select(app()->getLocale().'_name as name',app()->getLocale().'_info as info','parent_id');
+    }
 
     public function questions(){
         return $this->belongsToMany(questions::class,categories_questions::class,

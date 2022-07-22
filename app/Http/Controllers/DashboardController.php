@@ -11,6 +11,7 @@ use App\Handling_Data\dashboard\statistics_dashboard;
 use App\Handling_Data\dashboard\statistics_public_dashboard;
 use App\Handling_Data\dashboard\sub_categories_dashboard;
 use App\Handling_Data\dashboard\support_dashboard;
+use App\Http\Controllers\classes\DashboardServiceClass;
 use App\Keywords\dashboard\CategoriesKeywords;
 use App\Keywords\dashboard\IndexKeywords;
 use App\Keywords\dashboard\ListingsKeywords;
@@ -22,7 +23,7 @@ use App\Keywords\PackagesKeywords;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class DashboardController extends Controller
+class DashboardController extends DashboardServiceClass
 {
     //
     public function index(){

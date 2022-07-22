@@ -8,6 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class packages extends Model
 {
     use HasFactory;
-
     protected $fillable = ['image','min_value','max_value','price'];
 }

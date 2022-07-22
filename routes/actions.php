@@ -2,24 +2,10 @@
 
 
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
-use App\Http\Controllers\LangController;
-use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\SearchFilterController;
-use App\Http\Controllers\SaleController;
-use App\Http\Controllers\NeighbourhoodController;
-use App\Http\Controllers\ListingPostController;
-use App\Http\Controllers\NotificationsController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\CompoundsController;
-use App\Http\Controllers\PackagesController;
-use App\Http\Controllers\FeedbackController;
-use App\Http\Controllers\ContactUsController;
-use App\Http\Controllers\AboutUsController;
-use App\Http\Controllers\AskNeighborsController;
-use App\Http\Controllers\MerchantController;
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\classes\general\GeneralServiceController;
 
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\URL;
@@ -37,7 +23,22 @@ use Illuminate\Support\Facades\DB;
 
 Route::group(['middleware'=>'changeLang'],function (){
     Route::post('/register',[AuthController::class,'register_post']);
-
+    Route::post('/login',[AuthController::class,'login_post']);
+    // profile
+    Route::group(['prefix'=>'/profile','middleware'=>['auth']],function(){
+        Route::post('/update-email-image',[ProfileController::class,'update_email_image']);
+        Route::post('/update-password',[ProfileController::class,'update_password']);
+        Route::post('/update-personal-data',[ProfileController::class,'update_personal_data']);
+        Route::post('/update-company-data',[ProfileController::class,'update_company_data']);
+        Route::post('/update-secondary-data',[ProfileController::class,'update_secondary_data']);
+        Route::post('/save-note',[ProfileController::class,'save_note']);
+    });
+    // user
+    Route::group(['prefix'=>'/user','middleware'=>['auth']],function(){
+        Route::post('/toggle-fav',[UsersController::class,'toggle_fav']);
+    });
+    // general
+    Route::post('/deleteitem',[GeneralServiceController::class,'delete_item']);
 
 
 });

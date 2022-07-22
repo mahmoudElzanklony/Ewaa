@@ -6,7 +6,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                        <form>
+                        <form method="post" @submit.prevent="login">
                             <h2 class="mb-4">{{ keywords.sign_in }}</h2>
                             <div class="form-group">
                                 <label>{{ keywords.email }}</label>
@@ -48,10 +48,16 @@
 <script>
 import NavbarComponent from "../../components/NavbarComponent";
 import FooterComponent from "../../components/FooterComponent";
+import {mapActions,mapGetters} from "vuex";
 export default {
     name: "sign_in",
     props:['keywords'],
-    components: {FooterComponent, NavbarComponent}
+    components: {FooterComponent, NavbarComponent},
+    methods:{
+        ...mapActions({
+          'login':'login/login'
+        })
+    }
 }
 </script>
 

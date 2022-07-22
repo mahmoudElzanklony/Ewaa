@@ -105,7 +105,7 @@
                                 <span>{{ switchWord('Blue') }}</span>
                             </div>
                             <div class="dropdown-menu p-0 user-info-auth" aria-labelledby="navbarDropdown">
-                                <div class="sign-form" v-if="auth == false">
+                                <div class="sign-form" v-if="user == null">
                                     <div class="p-4">
                                         <h2>{{ switchWord('sign_in') }}</h2>
                                         <p>{{ switchWord('add_ad') }}</p>
@@ -123,15 +123,21 @@
                                 </div>
                                 <div class="auth-form" v-else>
                                     <div class="user_image">
-                                        <img src="/images/users/one.jpg">
+                                        <img :src="'/images/users/'+user.image">
                                         <div>
                                             <p>example@gmail.com</p>
-                                            <p>{{ switchWord('registered_from_date') }} 22/05/2022</p>
+                                            <p>{{ switchWord('registered_from_date') }}
+                                                {{ new Date(user.created_at).toLocaleDateString() }}
+                                            </p>
                                         </div>
                                     </div>
                                     <hr>
                                     <div class="list">
-                                        <p>{{ switchWord('activities') }}</p>
+                                        <p>
+                                            <inertia-link href="/profile/edit">
+                                                {{ switchWord('activities') }}
+                                            </inertia-link>
+                                        </p>
                                         <ul>
                                             <li class="d-flex align-items-center justify-content-between">
                                                 <p>
@@ -201,17 +207,13 @@ import SwitchLangWord from '../mixin/SwitchLangWord';
 export default {
     name: "NavbarComponent",
     mixins:[SwitchLangWord],
-    data:function (){
-      return {
-         auth:false,
-      }
+    computed:{
+        user:function(){
+            return this.$inertia.page.props.user;
+        }
     },
     created() {
-         if(document.URL.split('status=auth')[1] != undefined){
-              this.auth = true;
-         }else{
-             this.auth = false;
-         }
+
     },
     methods:{
         showList:function (){
@@ -385,6 +387,7 @@ nav {
                     width: 50px;
                     height: 50px;
                     border-radius: 50%;
+                    object-fit: cover;
                 }
                 div{
                     p:last-of-type{

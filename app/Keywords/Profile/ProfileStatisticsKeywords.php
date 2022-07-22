@@ -22,7 +22,7 @@ class ProfileStatisticsKeywords
            'total_search_impressions'=>trans('keywords.total_search_impressions'),
            'total_page_views'=>trans('keywords.total_page_views'),
            'total_leads'=>trans('keywords.total_leads'),
-           'average_click_rate'=>trans('keywords.average_click_rate'),
+           'average_seen_rate'=>trans('keywords.average_seen_rate'),
            'average_contact_rate'=>trans('keywords.average_contact_rate'),
         ];
     }

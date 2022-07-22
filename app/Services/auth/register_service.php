@@ -7,6 +7,8 @@ namespace App\Services\auth;
 use App\Models\roles;
 use App\Models\User;
 use App\Http\traits\messages;
+use App\Models\user_company_info;
+use App\Models\user_info;
 
 class register_service
 {
@@ -21,7 +23,18 @@ class register_service
                 $user_info['address'] = '';
                 $user_info['serial_number'] = time();
                 $user_info['role_id'] = $role->id;
-                User::query()->create($user_info);
+                $user_info['password'] = bcrypt($user_info['password']);
+                // create new user
+                $user = User::query()->create($user_info);
+
+                user_info::query()->create([
+                   'user_id'=>$user->id,
+                ]);
+                if($req['type'] == 'brokerage_company') {
+                    user_company_info::query()->create([
+                        'user_id' => $user->id,
+                    ]);
+                }
                 return self::success_output(['message'=>trans('messages.registered_user')]);
             } else {
                 // role isn't correct

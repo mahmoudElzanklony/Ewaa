@@ -37,9 +37,10 @@ use Illuminate\Support\Facades\DB;
 
 Route::group(['middleware'=>'changeLang'],function (){
     Route::get('/',[WelcomeController::class,'index']);
+    Route::get('/home',[WelcomeController::class,'index']);
     Route::get('/lang/{lang}',[LangController::class,'index']);
     // auth pages
-    Route::get('/login',[AuthController::class,'login'])->middleware('guest');
+    Route::get('/login',[AuthController::class,'login'])->name('login')->middleware('guest');
     Route::get('/register',[AuthController::class,'register'])->middleware('guest');;
     Route::get('/forget-password',[AuthController::class,'forget_password']);
     Route::get('/new-password',[AuthController::class,'new_password']);
@@ -72,7 +73,7 @@ Route::group(['middleware'=>'changeLang'],function (){
     });
 
     // profile
-    Route::group(['prefix'=>'/profile'],function(){
+    Route::group(['prefix'=>'/profile','middleware'=>'auth'],function(){
         // edit
         Route::get('/edit',[ProfileController::class,'edit']);
         Route::get('/dashboard',[ProfileController::class,'dashboard_listings']);

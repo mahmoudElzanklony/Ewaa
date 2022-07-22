@@ -8,7 +8,7 @@
 
         <!--------------if its added to note--------------- -->
         <span class="edit" v-if="note">
-            <i  @click="$emit('write_note',[10,'abc note'])" class="ri-edit-fill"></i>
+            <i @click="$emit('write_note',[id,note])" class="ri-edit-fill"></i>
         </span>
         <!--------------if its added to note--------------- -->
 
@@ -56,21 +56,30 @@ import SwitchLangWord from "../mixin/SwitchLangWord";
 export default {
     name: "ListingPostComponent",
     mixins:[SwitchLangWord],
-    props:['image','number_of_images','info','address','price','average','compound','beds','baths','area','fav','note'],
+    props:['id','image','number_of_images','info','address','price','average',
+        'compound','beds','baths','area','fav','note'],
     methods:{
         toggle_fav:function (){
             let title = '';
             if($(event.target).hasClass('ri-heart-fill')){
                 $(event.target).removeClass('ri-heart-fill').addClass('ri-heart-line');
                 title = this.switchWord('removed_from_fav_successfully');
+                var status = 0;
             }else{
                 $(event.target).removeClass('ri-heart-line').addClass('ri-heart-fill');
                 title = this.switchWord('added_to_fav_successfully');
+                var status = 1;
             }
-            Toast.fire({
-                icon:'success',
-                title:title
+            axios.post('/user/toggle-fav',{
+                status:status,
+                id:this.id,
+            }).then((e)=>{
+                Toast.fire({
+                    icon:'success',
+                    title:title
+                })
             })
+
         }
     }
 }

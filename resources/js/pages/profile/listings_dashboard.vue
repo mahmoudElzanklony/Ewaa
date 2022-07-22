@@ -9,8 +9,9 @@
                         <li class="w-100 text-center" v-for="(i,index) in ['live_listings','rejected_listings','expired_listings','pending_listings','deleted_listings','draft_listings']" :key="index">
                             <inertia-link :href="'?tab='+i">
                                 <span>{{ keywords[i] }}</span>
-                                <span v-if="index <= 9">{{ index + 1 }}</span>
-                                <span v-else>+9</span>
+                                <span v-if="data['count'][index] > 0 && data['count'][index] <= 9">{{ data['count'][index] }}</span>
+                                <span v-else-if="data['count'][index] > 9">+9</span>
+                                <span style="opacity: 0" v-else></span>
                             </inertia-link>
                         </li>
                     </ul>
@@ -20,10 +21,10 @@
            <div class="outer_content_data">
                <div class="container">
                    <div class="content">
-                       <div v-for="i in Object.keys(data)" :key="i" :class="i">
-                           <p class="mb-2">{{ data[i]['text'] }}</p>
-                           <ul v-if="Object.keys(data[i]).includes('more_text_info')">
-                               <li v-for="(more_txt,index) in data[i]['more_text_info']" :key="index">
+                       <div :class="tab +' active'">
+                           <p class="mb-2">{{ data['text'] }}</p>
+                           <ul v-if="data.hasOwnProperty('more_text_info')">
+                               <li v-for="(more_txt,index) in data['more_text_info']" :key="index">
                                    {{ more_txt }}
                                </li>
                            </ul>
@@ -32,18 +33,18 @@
                                    <thead>
                                    <tr>
                                        <td
-                                           v-for="name in Object.keys(data[i]['table_keywords'])"                                                              :key="name">
+                                           v-for="name in Object.keys(data['table_keywords'])"                                                              :key="name">
                                            {{ keywords[name] }}
                                        </td>
                                    </tr>
                                    </thead>
 
                                    <tbody>
-                                   <tr v-for="(row_val,index) in data[i]['data']"                                                      :key="index">
-                                       <td v-for="(td_val,index) in Object.values(row_val)"
+                                   <tr v-for="(row_val,index) in data['data']" :class="'tr_'+row_val['id']" :key="index">
+                                       <td  v-for="(td_val,index) in Object.values(row_val)"
                                            :key="index">{{ td_val }}</td>
                                        <td class="actions_control" v-if="Object.keys(
-                                                    data[i]['table_keywords']
+                                                    data['table_keywords']
                                                 ).includes('actions')">
                                            <div class="dropdown">
                                                <button class="btn btn-primary dropdown-toggle"
@@ -58,19 +59,19 @@
                                                     aria-labelledby="dropdownMenuButton">
                                                    <inertia-link
                                                        class="dropdown-item"
-                                                       href="#">
+                                                       :href="'listing/initialize?id='+row_val['id']">
                                                        {{ keywords.update_info }}
                                                    </inertia-link>
                                                    <inertia-link
                                                        class="dropdown-item"
-                                                       href="#">
+                                                       :href="'listing/photos?id='+row_val['id']">
                                                        {{ keywords.update_photos }}
                                                    </inertia-link>
                                                </div>
                                            </div>
                                            <button class="btn btn-danger">
-                                                    <span>
-                                                        <i class="ri-close-line"></i>
+                                                    <span  >
+                                                        <i @click="delete_item('listings_infos',row_val['id'],'.tr_'+row_val['id'])" class="ri-close-line"></i>
                                                     </span>
                                            </button>
                                        </td>
@@ -94,10 +95,23 @@ import NavbarComponent from "../../components/NavbarComponent";
 import FooterComponent from "../../components/FooterComponent";
 import ProfileNavComponent from "../../components/ProfileNavComponent";
 import tableData from "../../mixin/tableData";
+import delete_item from "../../mixin/delete_item";
 export default {
     name: "listings_dashboard",
     props:['keywords','data'],
-    mixins:[tableData],
+    mixins:[tableData,delete_item],
+    data:function (){
+        return {
+           tab:null,
+        };
+    },
+    created(){
+        if(document.URL.split('tab=')[1] == undefined){
+            this.tab = 'live_listings';
+        }else{
+            this.tab = document.URL.split('tab=')[1];
+        }
+    },
     components: {ProfileNavComponent, FooterComponent, NavbarComponent},
     mounted() {
         if(document.URL.split('?tab=')[1] == undefined){

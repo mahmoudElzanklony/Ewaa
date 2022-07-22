@@ -6,10 +6,13 @@ return [
     'exists' => ':attribute غير موجود',
     'distinct' => ':attribute تم اخذ منها قيمتان متكررتان',
     'file' => ' :attribute لابد ان يكون ملف',
+    'image' => ':attribute لابد ان يكون صورة',
     'mimes' => ':attribute لابد ان يكون امتداد الملف :values.',
     'date' => ' :attribute لابد ان يكون تاريخ',
     'integer' => ' :attribute لابد ان يكون عدد',
     'digits' => ' :attribute لابد ان يكون :digits ارقام.',
+    'email' => ' :attribute لابد ان يكون بريد الكتروني صحيح',
+    'not_current_password'=>'هذه ليس كلمة المرور الخاصة بك',
 
     'min' => [
         'numeric' => ' :attribute لابد ان يكون علي الاقل :min.',

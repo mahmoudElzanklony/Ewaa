@@ -14,4 +14,5 @@ class listing_statistics extends Model
     public function listing(){
         return $this->belongsTo(listings_info::class,'listing_id');
     }
+
 }

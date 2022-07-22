@@ -16,8 +16,7 @@ class CreatePackagesPricesPlacesTable extends Migration
         Schema::create('packages_prices_places', function (Blueprint $table) {
             $table->id();
             $table->foreignId('package_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
-            $table->string('type');
-            $table->integer('place_id');
+            $table->foreignId('country_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->float('price');
             $table->timestamps();
         });

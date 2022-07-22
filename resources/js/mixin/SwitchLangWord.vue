@@ -477,6 +477,11 @@ export default {
                   en:'Add new Item',
                   tu:'',
               },
+              update_new_item:{
+                  ar:'تعديل بيانات ',
+                  en:'update info of',
+                  tu:'',
+              },
               upload_image:{
                   ar:'أرفع صورة',
                   en:'upload image',
