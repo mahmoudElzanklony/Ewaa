@@ -572,6 +572,9 @@ return [
     // start of dashboard packages ----------------------------------------------------------
     'min_value'=>'اقل قيمة',
     'max_value'=>'اقصي قيمة',
+    'currency'=>'العملة',
+    'is_visible'=>'هل متاحة',
+    'expiration_date'=>'تاريخ انتهاء الباقة',
     'point_price'=>'سعر النقطة',
     'country'=>'الدولة',
     'city'=>'المدينة',
@@ -579,6 +582,13 @@ return [
     'specific_price_for_specific_areas'=>'سعر مخصص لمناطق معينة',
     'add_specific_price_for_specific_areas'=>'أضف سعر مخصص لمناطق معينة',
     // end of dashboard packages ----------------------------------------------------------
+
+
+    // start of dashboard currencies ----------------------------------------------------------
+    'currencies'=>'العملات',
+    'currency_code'=>'كود العملة',
+    'country_code'=>'كود الدولة',
+    // end of dashboard currencies ----------------------------------------------------------
 
 
     // start of dashboard listings ----------------------------------------------------------

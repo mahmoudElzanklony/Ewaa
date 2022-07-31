@@ -20,4 +20,10 @@ use Illuminate\Support\Facades\DB;
 
 Route::group(['middleware'=>'changeLang','prefix'=>'/dashboard'],function (){
     Route::post('/save-category',[DashboardServiceClass::class,'save_category']);
+    Route::post('/save-question',[DashboardServiceClass::class,'save_question']);
+    Route::post('/save-sub-category',[DashboardServiceClass::class,'save_sub_category']);
+    Route::post('/save-location',[DashboardServiceClass::class,'save_location']);
+    Route::post('/save-package',[DashboardServiceClass::class,'save_package']);
+    Route::post('/save-currency',[DashboardServiceClass::class,'save_currency']);
+    Route::post('/update-listing',[DashboardServiceClass::class,'update_listing']);
 });

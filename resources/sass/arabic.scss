@@ -83,6 +83,12 @@ nav {
     left:15px;
 }
 
+.input-has-delete{
+    position: relative;
+    span{
+        @extend .delete-icon-input;
+    }
+}
 /*---------------------------------------------end of public classes-----------------------------------------*/
 
 

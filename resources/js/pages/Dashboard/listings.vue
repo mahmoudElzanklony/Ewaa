@@ -19,14 +19,14 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="i in 15" :key="i">
-                            <td><img src="/images/users/one.jpg"></td>
-                            <td>أحمد علي</td>
-                            <td>0100312321</td>
-                            <td>فيلة</td>
-                            <td>فلل</td>
-                            <td>كاش</td>
-                            <td>200000</td>
+                        <tr v-for="(i,index) in vuex_data" :key="index">
+                            <td><img :src="'/images/users/'+i['user']['image']"></td>
+                            <td>{{ i['user']['username'] }}</td>
+                            <td>{{ i['user']['phone'] }}</td>
+                            <td>{{ i['name'] }}</td>
+                            <td>{{ i['category'][$page.props.lang+'_name'] }}</td>
+                            <td>{{ i['area'][$page.props.lang+'_name'] }}</td>
+                            <td>{{ i['price'] }}</td>
 
                             <td>
                                 <input name="toggle" type="checkbox" class="toggle-checkbox-status">
@@ -53,19 +53,29 @@ import SideNavbarComponent from "../../components/dashboard/SideNavbarComponent"
 import tableData from "../../mixin/tableData";
 import SwitchLangWord from "../../mixin/SwitchLangWord";
 import DeleteItemComponent from "../../components/DeleteItemComponent";
+import {mapGetters,mapMutations,mapActions} from "vuex";
+
 export default {
     name: "listings",
     mixins:[tableData,SwitchLangWord,DeleteItemComponent],
-    props:['keywords'],
+    props:['keywords','main_title','data'],
     data:function (){
         return {
             table_data:this.keywords,
-            main_title:this.keywords['main_title'],
         }
     },
+    computed:{
+       ...mapGetters({
+          'vuex_data':'listings_dash/get_data',
+       }),
+    },
+    methods:{
+        ...mapMutations({
+           'inilalize':'listings_dash/inialize_data',
+        }),
+    },
     created() {
-        delete this.table_data['main_title'];
-        this.table_data = Object.values(this.table_data);
+        this.inilalize(this.data);
     },
     components: {SideNavbarComponent}
 }

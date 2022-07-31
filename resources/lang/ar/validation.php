@@ -13,6 +13,8 @@ return [
     'digits' => ' :attribute لابد ان يكون :digits ارقام.',
     'email' => ' :attribute لابد ان يكون بريد الكتروني صحيح',
     'not_current_password'=>'هذه ليس كلمة المرور الخاصة بك',
+    'in' => ':attribute غير موجود من ضمن الاختيارات المتاحة',
+
 
     'min' => [
         'numeric' => ' :attribute لابد ان يكون علي الاقل :min.',

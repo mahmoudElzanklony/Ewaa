@@ -11,8 +11,13 @@ class governments extends Model
 
     protected $fillable = ['country_id','ar_name','en_name','tu_name'];
 
+    public static function selection(){
+        return self::query()->select('id',app()->getLocale().'_name as name');
+    }
+
     public function country(){
         return $this->belongsTo(countries::class);
     }
+
 
 }

@@ -617,6 +617,12 @@ h2.main-title{
     color: $red;
     z-index: 99;
 }
+.input-has-delete{
+    position: relative;
+    span{
+        @extend .delete-icon-input;
+    }
+}
 
 /*--------------end of data table----------------*/
 

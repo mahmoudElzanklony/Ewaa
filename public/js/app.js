@@ -2545,56 +2545,54 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
     return output;
   } // add new answer
 
+  /*$('.content').on('click','.answers > button',function (){
+      var row = document.createElement('div');
+      row.className = 'row';
+     //$(event.target).prev().find('.row:first-of-type').find('input').val('');
+      row.innerHTML = $(event.target).prev().find('.row:first-of-type')[0].innerHTML+'<span><i class="ri-close-line delete-icon-input"></i></span>';
+      console.log(row);
+      /!*for(let input of row){
+          input.value = '';
+      }*!/
+      $('.answers .inner').append(row);
+  });*/
+  // change question type
 
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.content').on('click', '.answers > button', function () {
-    var row = document.createElement('div');
-    row.className = 'row';
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(event.target).prev().find('.row:first-of-type').find('input').val('');
-    row.innerHTML = jquery__WEBPACK_IMPORTED_MODULE_0___default()(event.target).prev().find('.row:first-of-type')[0].innerHTML + '<span><i class="ri-close-line delete-icon-input"></i></span>';
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.answers .inner').append(row);
-  }); // change question type
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.content').on('change', '.new_questions select[name="question_type"]', function () {
-    var output = '';
-    console.log(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val());
-    var words = {
-      question_answer_ar: {
-        ar: 'اجابة السؤال بالعربي',
-        en: 'question answer in arabic',
-        tu: ''
-      },
-      question_answer_en: {
-        ar: 'اجابة السؤال بالأنجليزي',
-        en: 'question answer in english',
-        tu: ''
-      },
-      question_answer_tu: {
-        ar: 'اجابة السؤال بالتركي',
-        en: 'question answer in turkish',
-        tu: ''
-      },
-      add_question_answer: {
-        ar: 'اضف اجابة جديدة',
-        en: 'add question answer',
-        tu: ''
+  /*$('.content').on('change','.new_questions select[name="type"]',function (){
+      console.log(this);
+      var output = ''
+      var words = {
+          question_answer_ar:{
+              ar:'اجابة السؤال بالعربي',
+              en:'question answer in arabic',
+              tu:'',
+          },
+          question_answer_en:{
+              ar:'اجابة السؤال بالأنجليزي',
+              en:'question answer in english',
+              tu:'',
+          },
+          question_answer_tu:{
+              ar:'اجابة السؤال بالتركي',
+              en:'question answer in turkish',
+              tu:'',
+          },
       }
-    };
+     if(this.value == 'select'){
+          for(let question of ['question_answer_ar',
+              'question_answer_en','question_answer_tu']){
+              var required_status = question.split('question_answer_')[1] != 'tu' ? 'required':'';
+              output += '<div class="col-4"><input class="form-control mb-2" name="'+question.split('question_answer_')[1]+'_answers[]" '+required_status+'  placeholder="'+words[question][window.vm.$inertia.page.props.lang]+'"></div>';
+          }
+         $(this).parent().parent().next().fadeIn();
+         $(this).parent().parent().next().find('.inner .row').append(output);
+     }else{
+         $(this).parent().parent().next().find('.inner').html('<div class="row"></div>');
+         $(this).parent().parent().next().hide();
+     }
+   });*/
+  // add new question box
 
-    if (this.value == 'select') {
-      output += '<div class="inner"><div class="row">';
-
-      for (var _i = 0, _arr = ['question_answer_ar', 'question_answer_en', 'question_answer_tu']; _i < _arr.length; _i++) {
-        var question = _arr[_i];
-        output += '<div class="col-4"><input class="form-control mb-2" name="' + question.split('question_answer')[1] + 'answers[]" placeholder="' + words[question][window.vm.$inertia.page.props.lang] + '"></div>';
-      }
-
-      output += '</div></div><button class="btn btn-outline-primary" type="button" >' + words['add_question_answer'][window.vm.$inertia.page.props.lang] + '</button>';
-    } else {
-      output = '';
-    }
-
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).parent().parent().next().html(output);
-  }); // add new question box
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('.content').on('click', '.add_new_question_box', function () {
     var content = jquery__WEBPACK_IMPORTED_MODULE_0___default()(event.target).prev().find('>div:first-of-type > div');
@@ -2602,19 +2600,18 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(event.target).prev().append(output);
   }); // add new country
 
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.content').on('click', '.add_new_country', function () {
-    var country_selected = '';
+  /*$('.content').on('click','.add_new_country',function (){
+      var country_selected = '';
+      if(window.vm.$inertia.page.props.lang == 'ar'){
+          country_selected = 'أختر الدولة التي تود انشاء سعر خاص بها';
+      }else{
+          country_selected = 'Select country you want to add specific price for it';
+      }
+           var output = '<div class="area-inputs"><div class="form-group"><select name="country_id" class="form-control w-75" required><option value="">'+country_selected+'</option>';
+       output += '</select></div><span><i class="ri-close-line delete-icon-input"></i></span></div>';
+      $(event.target).prev().append(output);
+  });*/
 
-    if (window.vm.$inertia.page.props.lang == 'ar') {
-      country_selected = 'أختر الدولة التي تود انشاء سعر خاص بها';
-    } else {
-      country_selected = 'Select country you want to add specific price for it';
-    }
-
-    var output = '<div class="area-inputs"><div class="form-group"><select name="country_id" class="form-control w-75" required><option value="">' + country_selected + '</option>';
-    output += '</select></div><span><i class="ri-close-line delete-icon-input"></i></span></div>';
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(event.target).prev().append(output);
-  });
   /*--------------------------end of dashboard-------------------------------*/
 });
 
@@ -2633,36 +2630,48 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
-/* harmony import */ var _modules_counter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/counter */ "./resources/js/store/modules/counter.js");
-/* harmony import */ var _modules_counter2__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/counter2 */ "./resources/js/store/modules/counter2.js");
-/* harmony import */ var _modules_auth_register__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/auth/register */ "./resources/js/store/modules/auth/register.js");
-/* harmony import */ var _modules_auth_login__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/auth/login */ "./resources/js/store/modules/auth/login.js");
-/* harmony import */ var _modules_profile_personal_info__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/profile/personal_info */ "./resources/js/store/modules/profile/personal_info.js");
-/* harmony import */ var _modules_profile_notes__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/profile/notes */ "./resources/js/store/modules/profile/notes.js");
-/* harmony import */ var _modules_dashboard_categories_categories__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/dashboard/categories/categories */ "./resources/js/store/modules/dashboard/categories/categories.js");
+/* harmony import */ var _modules_auth_register__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/auth/register */ "./resources/js/store/modules/auth/register.js");
+/* harmony import */ var _modules_auth_login__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/auth/login */ "./resources/js/store/modules/auth/login.js");
+/* harmony import */ var _modules_profile_personal_info__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/profile/personal_info */ "./resources/js/store/modules/profile/personal_info.js");
+/* harmony import */ var _modules_profile_notes__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/profile/notes */ "./resources/js/store/modules/profile/notes.js");
+/* harmony import */ var _modules_dashboard_categories__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/dashboard/categories */ "./resources/js/store/modules/dashboard/categories.js");
+/* harmony import */ var _modules_dashboard_sub_categories__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/dashboard/sub_categories */ "./resources/js/store/modules/dashboard/sub_categories.js");
+/* harmony import */ var _modules_dashboard_questions__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/dashboard/questions */ "./resources/js/store/modules/dashboard/questions.js");
+/* harmony import */ var _modules_dashboard_map_locations__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./modules/dashboard/map_locations */ "./resources/js/store/modules/dashboard/map_locations.js");
+/* harmony import */ var _modules_dashboard_packages__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./modules/dashboard/packages */ "./resources/js/store/modules/dashboard/packages.js");
+/* harmony import */ var _modules_dashboard_currencies__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./modules/dashboard/currencies */ "./resources/js/store/modules/dashboard/currencies.js");
+/* harmony import */ var _modules_dashboard_listings__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./modules/dashboard/listings */ "./resources/js/store/modules/dashboard/listings.js");
 
 
 vue__WEBPACK_IMPORTED_MODULE_0__.default.use(vuex__WEBPACK_IMPORTED_MODULE_1__.default);
 
 
 
-
-
  //------------------- start of  dashboard---------------------------
+
+
+
+
+
+
 
  //------------------- end of  dashboard---------------------------
 // Create a new store instance.
 
-console.log(_modules_counter__WEBPACK_IMPORTED_MODULE_2__.default);
 var store = new vuex__WEBPACK_IMPORTED_MODULE_1__.default.Store({
   modules: {
-    counter: _modules_counter__WEBPACK_IMPORTED_MODULE_2__.default,
-    counter2: _modules_counter2__WEBPACK_IMPORTED_MODULE_3__.default,
-    register: _modules_auth_register__WEBPACK_IMPORTED_MODULE_4__.default,
-    login: _modules_auth_login__WEBPACK_IMPORTED_MODULE_5__.default,
-    personal_info: _modules_profile_personal_info__WEBPACK_IMPORTED_MODULE_6__.default,
-    notes: _modules_profile_notes__WEBPACK_IMPORTED_MODULE_7__.default,
-    categories_dash: _modules_dashboard_categories_categories__WEBPACK_IMPORTED_MODULE_8__.default
+    register: _modules_auth_register__WEBPACK_IMPORTED_MODULE_2__.default,
+    login: _modules_auth_login__WEBPACK_IMPORTED_MODULE_3__.default,
+    personal_info: _modules_profile_personal_info__WEBPACK_IMPORTED_MODULE_4__.default,
+    notes: _modules_profile_notes__WEBPACK_IMPORTED_MODULE_5__.default,
+    // dashboard modules
+    categories_dash: _modules_dashboard_categories__WEBPACK_IMPORTED_MODULE_6__.default,
+    sub_categories_dash: _modules_dashboard_sub_categories__WEBPACK_IMPORTED_MODULE_7__.default,
+    questions_dash: _modules_dashboard_questions__WEBPACK_IMPORTED_MODULE_8__.default,
+    map_locations_dash: _modules_dashboard_map_locations__WEBPACK_IMPORTED_MODULE_9__.default,
+    packages_dash: _modules_dashboard_packages__WEBPACK_IMPORTED_MODULE_10__.default,
+    currencies_dash: _modules_dashboard_currencies__WEBPACK_IMPORTED_MODULE_11__.default,
+    listings_dash: _modules_dashboard_listings__WEBPACK_IMPORTED_MODULE_12__.default
   }
 });
 
@@ -2753,10 +2762,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/store/modules/counter.js":
-/*!***********************************************!*\
-  !*** ./resources/js/store/modules/counter.js ***!
-  \***********************************************/
+/***/ "./resources/js/store/modules/dashboard/categories.js":
+/*!************************************************************!*\
+  !*** ./resources/js/store/modules/dashboard/categories.js ***!
+  \************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -2764,121 +2773,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  namespaced: true,
-  state: function state() {
-    return {
-      count: 2,
-      abc: 10,
-      data: [{
-        id: 10,
-        status: true,
-        age: 50
-      }, {
-        id: 15,
-        status: false,
-        age: 35
-      }]
-    };
-  },
-  getters: {
-    filter_data: function filter_data(state) {
-      return function (id) {
-        return state.data.filter(function (item) {
-          return item.id == id;
-        });
-      };
-    }
-  },
-  mutations: {
-    increment: function increment(state, payload) {
-      state.count += payload.amount;
-    }
-  },
-  actions: {
-    incrementAsyc: function incrementAsyc(_ref, payload) {
-      var state = _ref.state,
-          getters = _ref.getters,
-          commit = _ref.commit,
-          dispatch = _ref.dispatch;
-      commit('increment', payload);
-      dispatch('counter2/incrementAsyc', 89, {
-        root: true
-      });
-      commit('increment', payload);
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./resources/js/store/modules/counter2.js":
-/*!************************************************!*\
-  !*** ./resources/js/store/modules/counter2.js ***!
-  \************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  namespaced: true,
-  state: function state() {
-    return {
-      count: 2,
-      abc: 10,
-      data: [{
-        id: 10,
-        status: true,
-        age: 50
-      }, {
-        id: 15,
-        status: false,
-        age: 35
-      }]
-    };
-  },
-  getters: {
-    filter_data: function filter_data(state) {
-      return function (id) {
-        return state.data.filter(function (item) {
-          return item.id == id;
-        });
-      };
-    }
-  },
-  mutations: {
-    increment: function increment(state, payload) {
-      state.count += payload;
-    }
-  },
-  actions: {
-    incrementAsyc: function incrementAsyc(_ref, payload) {
-      var state = _ref.state,
-          getters = _ref.getters,
-          commit = _ref.commit;
-      console.log(payload);
-      commit('increment', payload);
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./resources/js/store/modules/dashboard/categories/categories.js":
-/*!***********************************************************************!*\
-  !*** ./resources/js/store/modules/dashboard/categories/categories.js ***!
-  \***********************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _formValidation_validation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../formValidation/validation */ "./resources/js/formValidation/validation.js");
+/* harmony import */ var _formValidation_validation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../formValidation/validation */ "./resources/js/formValidation/validation.js");
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   namespaced: true,
@@ -2905,7 +2800,7 @@ __webpack_require__.r(__webpack_exports__);
         return item.id == payload.id;
       });
 
-      if (id > 0) {
+      if (id >= 0) {
         Vue.set(state.data, id, payload);
       }
     }
@@ -2918,6 +2813,409 @@ __webpack_require__.r(__webpack_exports__);
       var target = event.target;
       var data = new FormData(target);
       axios.post('/dashboard/save-category', data).then(function (e) {
+        (0,_formValidation_validation__WEBPACK_IMPORTED_MODULE_0__.default)(e.data, target, '', true); // check if there is no error
+
+        if (e.data.status == 200 && e.data.related == 'insert') {
+          commit('update_data', e.data.data);
+        } else if (e.data.status == 200 && e.data.related == 'update') {
+          commit('update_index_data', e.data.data);
+        }
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/dashboard/currencies.js":
+/*!************************************************************!*\
+  !*** ./resources/js/store/modules/dashboard/currencies.js ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _formValidation_validation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../formValidation/validation */ "./resources/js/formValidation/validation.js");
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  namespaced: true,
+  state: function state() {
+    return {
+      data: null
+    };
+  },
+  getters: {
+    get_data: function get_data(state) {
+      return state.data;
+    }
+  },
+  mutations: {
+    inialize_data: function inialize_data(state, item) {
+      state.data = item;
+    },
+    update_data: function update_data(state, item) {
+      if (state.data == null) {
+        return state.data = item;
+      }
+
+      return state.data.push(item);
+    },
+    update_index_data: function update_index_data(state, payload) {
+      var id = state.data.findIndex(function (item) {
+        return item.id == payload.id;
+      });
+
+      if (id >= 0) {
+        Vue.set(state.data, id, payload);
+      }
+    }
+  },
+  actions: {
+    save_package: function save_package(_ref) {
+      var commit = _ref.commit,
+          getters = _ref.getters,
+          state = _ref.state;
+      var target = event.target;
+      var data = new FormData(target);
+      axios.post('/dashboard/save-currency', data).then(function (e) {
+        (0,_formValidation_validation__WEBPACK_IMPORTED_MODULE_0__.default)(e.data, target, '', true); // check if there is no error
+
+        if (e.data.status == 200 && e.data.related == 'insert') {
+          commit('update_data', e.data.data);
+        } else if (e.data.status == 200 && e.data.related == 'update') {
+          commit('update_index_data', e.data.data);
+        }
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/dashboard/listings.js":
+/*!**********************************************************!*\
+  !*** ./resources/js/store/modules/dashboard/listings.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _formValidation_validation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../formValidation/validation */ "./resources/js/formValidation/validation.js");
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  namespaced: true,
+  state: function state() {
+    return {
+      data: null
+    };
+  },
+  getters: {
+    get_data: function get_data(state) {
+      return state.data;
+    }
+  },
+  mutations: {
+    inialize_data: function inialize_data(state, item) {
+      state.data = item;
+    },
+    update_data: function update_data(state, item) {
+      if (state.data == null) {
+        return state.data = item;
+      }
+
+      return state.data.push(item);
+    },
+    update_index_data: function update_index_data(state, payload) {
+      var id = state.data.findIndex(function (item) {
+        return item.id == payload.id;
+      });
+
+      if (id >= 0) {
+        Vue.set(state.data, id, payload);
+      }
+    }
+  },
+  actions: {
+    save_package: function save_package(_ref) {
+      var commit = _ref.commit,
+          getters = _ref.getters,
+          state = _ref.state;
+      var data = event.target.value;
+      axios.post('/dashboard/update-listing', {
+        status: data
+      }).then(function (e) {
+        // check if there is no error
+        Toast.fire({
+          icon: e.data.message.icon,
+          title: e.data.message.title
+        });
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/dashboard/map_locations.js":
+/*!***************************************************************!*\
+  !*** ./resources/js/store/modules/dashboard/map_locations.js ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _formValidation_validation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../formValidation/validation */ "./resources/js/formValidation/validation.js");
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  namespaced: true,
+  state: function state() {
+    return {
+      data: null
+    };
+  },
+  getters: {
+    get_data: function get_data(state) {
+      return state.data;
+    }
+  },
+  mutations: {
+    inialize_data: function inialize_data(state, item) {
+      state.data = item;
+    },
+    update_data: function update_data(state, item) {
+      if (state.data == null) {
+        return state.data = item;
+      }
+
+      return state.data.push(item);
+    },
+    update_index_data: function update_index_data(state, payload) {
+      var id = state.data.findIndex(function (item) {
+        return item.id == payload.id;
+      });
+
+      if (id >= 0) {
+        Vue.set(state.data, id, payload);
+      }
+    }
+  },
+  actions: {
+    save_category: function save_category(_ref) {
+      var commit = _ref.commit,
+          getters = _ref.getters,
+          state = _ref.state;
+      var target = event.target;
+      var data = new FormData(target);
+      axios.post('/dashboard/save-location', data).then(function (e) {
+        (0,_formValidation_validation__WEBPACK_IMPORTED_MODULE_0__.default)(e.data, target, '', true); // check if there is no error
+
+        if (e.data.status == 200 && e.data.related == 'insert') {
+          commit('update_data', e.data.data);
+        } else if (e.data.status == 200 && e.data.related == 'update') {
+          commit('update_index_data', e.data.data);
+        }
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/dashboard/packages.js":
+/*!**********************************************************!*\
+  !*** ./resources/js/store/modules/dashboard/packages.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _formValidation_validation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../formValidation/validation */ "./resources/js/formValidation/validation.js");
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  namespaced: true,
+  state: function state() {
+    return {
+      data: null
+    };
+  },
+  getters: {
+    get_data: function get_data(state) {
+      return state.data;
+    }
+  },
+  mutations: {
+    inialize_data: function inialize_data(state, item) {
+      state.data = item;
+    },
+    update_data: function update_data(state, item) {
+      if (state.data == null) {
+        return state.data = item;
+      }
+
+      return state.data.push(item);
+    },
+    update_index_data: function update_index_data(state, payload) {
+      var id = state.data.findIndex(function (item) {
+        return item.id == payload.id;
+      });
+
+      if (id >= 0) {
+        Vue.set(state.data, id, payload);
+      }
+    }
+  },
+  actions: {
+    save_package: function save_package(_ref) {
+      var commit = _ref.commit,
+          getters = _ref.getters,
+          state = _ref.state;
+      var target = event.target;
+      var data = new FormData(target);
+      axios.post('/dashboard/save-package', data).then(function (e) {
+        (0,_formValidation_validation__WEBPACK_IMPORTED_MODULE_0__.default)(e.data, target, '', true); // check if there is no error
+
+        if (e.data.status == 200 && e.data.related == 'insert') {
+          commit('update_data', e.data.data);
+        } else if (e.data.status == 200 && e.data.related == 'update') {
+          commit('update_index_data', e.data.data);
+        }
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/dashboard/questions.js":
+/*!***********************************************************!*\
+  !*** ./resources/js/store/modules/dashboard/questions.js ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _formValidation_validation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../formValidation/validation */ "./resources/js/formValidation/validation.js");
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  namespaced: true,
+  state: function state() {
+    return {
+      data: null
+    };
+  },
+  getters: {
+    get_data: function get_data(state) {
+      return state.data;
+    }
+  },
+  mutations: {
+    update_data: function update_data(state, item) {
+      if (state.data == null) {
+        return state.data = item;
+      }
+
+      return state.data.push(item);
+    },
+    update_index_data: function update_index_data(state, payload) {
+      var id = state.data.findIndex(function (item) {
+        return item.id == payload.id;
+      });
+
+      if (id >= 0) {
+        Vue.set(state.data, id, payload);
+      }
+    }
+  },
+  actions: {
+    save_question: function save_question(_ref) {
+      var commit = _ref.commit,
+          getters = _ref.getters,
+          state = _ref.state;
+      var target = event.target;
+      var data = new FormData(target);
+      axios.post('/dashboard/save-question', data).then(function (e) {
+        (0,_formValidation_validation__WEBPACK_IMPORTED_MODULE_0__.default)(e.data, target, '', true); // check if there is no error
+
+        if (e.data.status == 200 && e.data.related == 'insert') {
+          commit('update_data', e.data.data);
+        } else if (e.data.status == 200 && e.data.related == 'update') {
+          commit('update_index_data', e.data.data);
+        }
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/dashboard/sub_categories.js":
+/*!****************************************************************!*\
+  !*** ./resources/js/store/modules/dashboard/sub_categories.js ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _formValidation_validation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../formValidation/validation */ "./resources/js/formValidation/validation.js");
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  namespaced: true,
+  state: function state() {
+    return {
+      data: null
+    };
+  },
+  getters: {
+    get_data: function get_data(state) {
+      return state.data;
+    }
+  },
+  mutations: {
+    update_data: function update_data(state, item) {
+      if (state.data == null) {
+        return state.data = item;
+      }
+
+      return state.data.push(item);
+    },
+    update_index_data: function update_index_data(state, payload) {
+      var id = state.data.findIndex(function (item) {
+        return item.id == payload.id;
+      });
+
+      if (id >= 0) {
+        Vue.set(state.data, id, payload);
+      }
+    }
+  },
+  actions: {
+    save_category: function save_category(_ref) {
+      var commit = _ref.commit,
+          getters = _ref.getters,
+          state = _ref.state;
+      var target = event.target;
+      var parent_id = document.URL.split('/')[document.URL.split('/').length - 2];
+      var data = new FormData(target);
+      data.append('parent_id', parent_id);
+      axios.post('/dashboard/save-sub-category', data).then(function (e) {
         (0,_formValidation_validation__WEBPACK_IMPORTED_MODULE_0__.default)(e.data, target, '', true); // check if there is no error
 
         if (e.data.status == 200 && e.data.related == 'insert') {
@@ -60330,6 +60628,10 @@ var map = {
 		"./resources/js/Pages/dashboard/categories.vue",
 		"resources_js_Pages_dashboard_categories_vue"
 	],
+	"./dashboard/currencies.vue": [
+		"./resources/js/Pages/dashboard/currencies.vue",
+		"resources_js_Pages_dashboard_currencies_vue"
+	],
 	"./dashboard/index.vue": [
 		"./resources/js/Pages/dashboard/index.vue",
 		"resources_js_Pages_dashboard_index_vue"
@@ -60615,7 +60917,7 @@ module.exports = webpackAsyncContext;
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames based on template
-/******/ 			return "js/" + chunkId + "." + {"resources_js_Pages_about_us_vue":"3a8cb5091c23fcec7ccd","resources_js_Pages_auth_forget_password_vue":"038da92bb98f2fc07db2","resources_js_Pages_auth_new_password_vue":"322209b0675c4f2169f1","resources_js_Pages_auth_sign_in_vue":"11af3ea85a40a9b00af8","resources_js_Pages_auth_sign_up_vue":"7376a6f9e7ef054235a7","resources_js_Pages_compounds_vue":"ae28011fe7c01e8d85fd","resources_js_Pages_contactus_vue":"c3c863925082d0b28b3d","resources_js_Pages_dashboard_categories_vue":"ef372da1ce145e6597fc","resources_js_Pages_dashboard_index_vue":"b3bd4b430fe837b255df","resources_js_Pages_dashboard_listings_vue":"3f6f6cb3ed5f80bfebf4","resources_js_Pages_dashboard_map_vue":"96d06d4b620ef20bd802","resources_js_Pages_dashboard_notifications_vue":"15c1f77888af2b66697f","resources_js_Pages_dashboard_packages_vue":"4520183b3a2e535fc765","resources_js_Pages_dashboard_questions_vue":"72031e3c50fd7a8cfb58","resources_js_Pages_dashboard_reports_vue":"e8a7cf893fe0d11cfd9c","resources_js_Pages_dashboard_specific_statistics_vue":"efa38050b5695290f951","resources_js_Pages_dashboard_statistics_vue":"74bdcec204f61fddfc01","resources_js_Pages_dashboard_sub_categories_vue":"b821e948e1747fa1d698","resources_js_Pages_dashboard_support_vue":"bd6dd2e4effa39199077","resources_js_Pages_dashboard_users_vue":"be5c95e05c712c83dfcd","resources_js_Pages_feedback_vue":"b3da0e68723d4a8af9ea","resources_js_Pages_government_city_vue":"715c488d51e3abe05c09","resources_js_Pages_governments_vue":"9eeddcf55fdce08fb54f","resources_js_Pages_home_vue":"038917531054e0ceab13","resources_js_Pages_listingpost_ContactOffice_vue":"7034d650eb99025752c6","resources_js_Pages_listingpost_details_vue":"22c4772e0e5cb5a82269","resources_js_Pages_listingpost_info_vue":"220355f7b42f9e08f784","resources_js_Pages_listingpost_initialize_vue":"d0108e37adbc9b299c7e","resources_js_Pages_listingpost_payment_confirmation_vue":"3f942c42897522cc5fc1","resources_js_Pages_listingpost_photos_vue":"1826120e892cf5aa4c16","resources_js_Pages_merchant_balance_vue":"ee31b9d6ad2abffda900","resources_js_Pages_neighbours_vue":"798d8ce6efc9f48edfa2","resources_js_Pages_notifications_vue":"9e14d425c563a2c43081","resources_js_Pages_packages_charge_vue":"02509569803af8774762","resources_js_Pages_packages_packages_info_vue":"85c68b697edd482f8e02","resources_js_Pages_profile_favourites_vue":"6ef961f520a807941a8e","resources_js_Pages_profile_listings_dashboard_vue":"409511e25e0a200d3746","resources_js_Pages_profile_main_info_vue":"2084c750f85c4b5e71d0","resources_js_Pages_profile_notes_vue":"2425c13e0f67f71222bb","resources_js_Pages_profile_statistics_vue":"6c24af793dd57beb9403","resources_js_Pages_questions_answers_vue":"c21704633e064d10c66e","resources_js_Pages_questions_ask_neighbors_vue":"4df31a72245fc34b2f91","resources_js_Pages_sales_vue":"0cbe422ae1ebc7852340","resources_js_Pages_search_page_filters_vue":"d631474763df931a71ca","resources_js_Pages_terms_vue":"0735951288cbde093604"}[chunkId] + ".js";
+/******/ 			return "js/" + chunkId + "." + {"resources_js_Pages_about_us_vue":"fa7e9144061389a16d3d","resources_js_Pages_auth_forget_password_vue":"db663bcc499c8e55560e","resources_js_Pages_auth_new_password_vue":"72496ff91a39d98ccfd4","resources_js_Pages_auth_sign_in_vue":"417d6abe71e74fadee72","resources_js_Pages_auth_sign_up_vue":"03b9cb7f178360b7af09","resources_js_Pages_compounds_vue":"32ced5b6c390c7003f11","resources_js_Pages_contactus_vue":"f0e30a96f974e377ebac","resources_js_Pages_dashboard_categories_vue":"dd7fd9b3f82dd87cce1e","resources_js_Pages_dashboard_currencies_vue":"f05d699ed7914c11678a","resources_js_Pages_dashboard_index_vue":"62e9aa76b9a58337f13f","resources_js_Pages_dashboard_listings_vue":"ea65768bb0fca77fe74c","resources_js_Pages_dashboard_map_vue":"0e2b9de0011b51b042c8","resources_js_Pages_dashboard_notifications_vue":"d4336f09e4b12d81a878","resources_js_Pages_dashboard_packages_vue":"0b4c8f50e562d718700f","resources_js_Pages_dashboard_questions_vue":"88bfcf06fef980851c0a","resources_js_Pages_dashboard_reports_vue":"baed50549d845222d1fa","resources_js_Pages_dashboard_specific_statistics_vue":"7125a8e96b616f5de0b6","resources_js_Pages_dashboard_statistics_vue":"c1ceb5909c1c7a62d61c","resources_js_Pages_dashboard_sub_categories_vue":"e45b5f4c55bd01d0ab64","resources_js_Pages_dashboard_support_vue":"2893919e80c11d04c9d2","resources_js_Pages_dashboard_users_vue":"02be70169a1b6459d108","resources_js_Pages_feedback_vue":"d35381febfbedf026948","resources_js_Pages_government_city_vue":"772df272441112f5d0b2","resources_js_Pages_governments_vue":"010abd17b3c412c91a87","resources_js_Pages_home_vue":"4177553a912cb4b10377","resources_js_Pages_listingpost_ContactOffice_vue":"8819fda7a76ab08e8dc2","resources_js_Pages_listingpost_details_vue":"41d64a2b65427468d338","resources_js_Pages_listingpost_info_vue":"71476ec2fcccf3262966","resources_js_Pages_listingpost_initialize_vue":"90a37f8d5376bdf3afdc","resources_js_Pages_listingpost_payment_confirmation_vue":"90480134382e43188c6f","resources_js_Pages_listingpost_photos_vue":"4b56763bfad5b0c98a24","resources_js_Pages_merchant_balance_vue":"0fa741fb146b9236ccb7","resources_js_Pages_neighbours_vue":"b0be3c2e7fd7b412ce15","resources_js_Pages_notifications_vue":"aacc5c6f8cc5b019f991","resources_js_Pages_packages_charge_vue":"7b9156a911e5bfc84a31","resources_js_Pages_packages_packages_info_vue":"758a073f7e881528f22e","resources_js_Pages_profile_favourites_vue":"6885a9d7a394d3cd1a2b","resources_js_Pages_profile_listings_dashboard_vue":"7bc0803a238f93a5902b","resources_js_Pages_profile_main_info_vue":"eb60a3856c01f3ef02af","resources_js_Pages_profile_notes_vue":"2005cf24feabeb02b319","resources_js_Pages_profile_statistics_vue":"96787d8867b9e07a60e8","resources_js_Pages_questions_answers_vue":"7f8e97f75fe3f04b42a0","resources_js_Pages_questions_ask_neighbors_vue":"b37f3b474fe096254094","resources_js_Pages_sales_vue":"c653f9fd7b7d49cdae53","resources_js_Pages_search_page_filters_vue":"193e86dd7f6757733a37","resources_js_Pages_terms_vue":"b74921527d6cacf2afcd"}[chunkId] + ".js";
 /******/ 		};
 /******/ 	})();
 /******/ 	

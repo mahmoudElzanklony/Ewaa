@@ -11,7 +11,7 @@
                     </button>
                 </p>
                 <div class="overflow-auto">
-                    <table class=" table text-center table-bordered table-striped table-hover">
+                    <table class="myTable table text-center table-bordered table-striped table-hover">
                         <thead>
                         <tr>
                             <td v-for="i in handling_data['table_head_keys']" :key="i">
@@ -25,10 +25,10 @@
                             <td><img :src="'/images/categories/'+i['image']"></td>
                             <td>{{ i['ar_name'] }}</td>
                             <td>{{ i['en_name'] }}</td>
-                            <td>{{ i['tu_name'] }}</td>
+                            <td style="display: none">{{ i['tu_name'] }}</td>
                             <td>{{ i['ar_info'] }}</td>
                             <td>{{ i['en_info'] }}</td>
-                            <td>{{ i['tu_info'] }}</td>
+                            <td style="display: none">{{ i['tu_info'] }}</td>
                             <td>
                                 <span class="table-item-span" v-for="(branch,index) in i['branches']" :key="i">
                                     {{ branch['ar_name'] }}

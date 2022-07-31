@@ -116,6 +116,7 @@ Route::group(['middleware'=>'changeLang'],function (){
         Route::get('/questions',[DashboardController::class,'questions']);
         Route::get('/statistics',[DashboardController::class,'statistics']);
         Route::get('/packages',[DashboardController::class,'packages']);
+        Route::get('/currencies',[DashboardController::class,'currencies']);
         Route::get('/buildings',[DashboardController::class,'buildings']);
         Route::get('/map/{type}',[DashboardController::class,'map']);
         Route::get('/reports',[DashboardController::class,'reports']);

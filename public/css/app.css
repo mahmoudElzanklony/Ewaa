@@ -10626,7 +10626,7 @@ h2.main-title span:first-of-type {
   position: relative;
 }
 
-.delete-icon-input {
+.delete-icon-input, .input-has-delete span {
   cursor: pointer;
   position: absolute;
   top: 2px;
@@ -10634,6 +10634,9 @@ h2.main-title span:first-of-type {
   z-index: 99;
 }
 
+.input-has-delete {
+  position: relative;
+}
 /*--------------end of data table----------------*/
 /*-------------------------------------------end of public classes-------------------------------------*/
 /*-------------------------------------------start of dashboard -------------------------------------*/

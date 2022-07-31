@@ -11,6 +11,10 @@ class cities extends Model
 
     protected $fillable = ['government_id','ar_name','en_name','tu_name'];
 
+    public static function selection(){
+        return self::query()->select('id',app()->getLocale().'_name as name');
+    }
+
     public function government(){
         return $this->belongsTo(governments::class);
     }

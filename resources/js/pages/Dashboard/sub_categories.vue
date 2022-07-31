@@ -5,7 +5,9 @@
             <div class="container mt-4 mb-4">
                 <p class="d-flex mb-3 align-items-center justify-content-between main-title-toggle">
                     <span>{{ keywords.main_title }}</span>
-                    <button class="btn black-btn btn-outline-primary" data-toggle="modal" data-target="#update_box" >
+                    <button class="btn black-btn btn-outline-primary" data-toggle="modal"
+                            @click="update_item(null)"
+                            data-target="#update_box" >
                         {{ switchWord('add_new_item') }}
                     </button>
                 </p>
@@ -19,23 +21,23 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="i in 15" :key="i">
-                            <td><img src="/images/categories/one.png"></td>
-                            <td>العقارات</td>
-                            <td>Listings</td>
-                            <td></td>
-                            <td>وصف القسم</td>
-                            <td>category info</td>
-                            <td></td>
+                        <tr v-for="(i,index) in vuex_data" :key="index" :class="'tr_'+i['id']">
+                            <td><img :src="'/images/categories/'+i['image']"></td>
+                            <td>{{ i['ar_name_cat'] }}</td>
+                            <td>{{ i['en_name_cat'] }}</td>
+                            <td style="display: none">{{ i['tu_name_cat'] }}</td>
+                            <td>{{ i['ar_info'] }}</td>
+                            <td>{{ i['en_info'] }}</td>
+                            <td style="display: none">{{ i['tu_info'] }}</td>
                             <td>
-                                <span class="table-item-span" v-for="i in 6" :key="i">
-                                    اسم العقار
+                                <span class="table-item-span" v-for="(question,index) in i['questions']" :key="index">
+                                    {{ question['ar_name'] }}
                                     <span><i @click="deleteRecord(2)" class="ri-close-line"></i></span>
                                 </span>
                             </td>
                             <td class="actions">
-                                <span><i data-toggle="modal" data-target="#update_box" class="ri-edit-line"></i></span>
-                                <span><i @click="deleteRecord(10)" class="ri-close-line"></i></span>
+                                <span><i data-toggle="modal" @click="update_item(i)" data-target="#update_box" class="ri-edit-line"></i></span>
+                                <span><i @click="delete_item('categories',i['id'],'.tr_'+i['id'])" class="ri-close-line"></i></span>
                             </td>
                         </tr>
                         </tbody>
@@ -48,39 +50,68 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="update_box_data">{{ switchWord('add_new_item') }}</h5>
+                        <h5 class="modal-title" id="update_box_data">{{ item == null ? switchWord('add_new_item'):switchWord('update_new_item')+item.ar_name }}</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form method="post" @submit.prevent="save_category">
+                            <input v-if="item != null" type="hidden" name="id" :value="item != null ? item['id']:''">
                             <div class="form-group">
-                                <img class="box-image"
-                                     src="/images/users/default.png">
+                                <img class="box-image" v-if="item == null"
+                                     src="/images/categories/default.png">
+                                <img v-else class="box-image" :src="'/images/categories/'+item['image']">
                             </div>
                             <div class="form-group"
                                  v-for="input in modal_data" :key="input">
                                 <label>{{ handling_data['data_model'][input] }}</label>
-                                <input :name="input" class="form-control" required>
+                                <input :name="input" class="form-control"
+                                       :value="item != null ? item[input]:''" :required="input.indexOf('tu') == -1">
                             </div>
                             <div class="form-group d-flex align-items-center justify-content-between radio-buttons">
                                 <p class="d-flex align-items-center justify-content-between">
-                                    <input type="radio" name="question_selection" value="old" v-model="question_selection">
+                                    <input type="radio" name="question_selection" value="old"
+                                           :checked="item != null"
+                                           @change="update_question_selection" >
                                     <span>{{ keywords.select_from_questions }}</span>
                                 </p>
                                 <p class="d-flex align-items-center justify-content-between">
-                                    <input type="radio" name="question_selection" value="new" v-model="question_selection">
+                                    <input type="radio" name="question_selection" value="new" @change="update_question_selection" >
                                     <span>{{ keywords.add_new_question }}</span>
                                 </p>
                             </div>
-                            <div class="old_questions mb-2" v-show="question_selection == 'old'">
-                                <div class="inner">
-                                    <div class="form-group">
-                                        <select name="questions[]" class="form-control" required>
+                            <div class="old_questions mb-2" :style="{'display':(item != null) ? 'block':'none'}">
+                                <div class="inner" v-if="item != null">
+                                    <div :class="'input-has-delete form-group input_'+item['cat_questions'][
+                                                   item['cat_questions'].findIndex((e)=>{return e.question_id == question['id']})
+                                                   ]['id']" v-for="(question,index) in item['questions']" :key="index">
+                                        <input type="hidden" name="old_questions_ids[]"
+                                               :value="item['cat_questions'][
+                                                   item['cat_questions'].findIndex((e)=>{return e.question_id == question['id']})
+                                                   ]['id']">
+                                        <select name="questions[]" class="form-control" >
                                             <option value="">{{ keywords.select_question }}</option>
-                                            <option v-for="(i,index) in 6" :key="index" :value="i">
-                                                {{ i }}
+                                            <option v-for="(i,index) in handling_data['questions']" :key="index"
+                                                    :value="i['id']" :selected="i['id'] == question['id']">
+                                                {{ i['name'] }}
+                                            </option>
+                                        </select>
+                                        <span >
+                                            <i @click="delete_item('categories_questions',item['cat_questions'][
+                                                   item['cat_questions'].findIndex((e)=>{return e.question_id == question['id']})
+                                                   ]['id'],'.input_'+item['cat_questions'][
+                                                   item['cat_questions'].findIndex((e)=>{return e.question_id == question['id']})
+                                                   ]['id'])"                                                                           class="ri-close-line"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="inner" v-else>
+                                    <div class="form-group">
+                                        <select name="questions[]" class="form-control" >
+                                            <option value="">{{ keywords.select_question }}</option>
+                                            <option v-for="(i,index) in handling_data['questions']" :key="index" :value="i['id']">
+                                                {{ i['name'] }}
                                             </option>
                                         </select>
                                     </div>
@@ -89,10 +120,11 @@
                                     {{ keywords.add_another_question }}
                                 </button>
                             </div>
-                            <div class="inserted_questions"  v-show="question_selection == 'new'">
-                                <question-data-component></question-data-component>
+                            <div class="inserted_questions">
+                                <question-data-component :required_false="true"></question-data-component>
                             </div>
-                            <button v-if="question_selection == 'new'"  class="btn btn-outline-primary add_new_question_box mb-3" type="button"
+                            <button class="btn btn-outline-primary add_new_question_box mb-3"
+                                    type="button"
                                     >{{ switchWord('add_new_question') }}</button>
                             <div class="form-group">
                                 <div class="drag-drop-files">
@@ -103,6 +135,10 @@
                                         <span><i class="ri-add-line"></i></span>
                                     </button>
                                 </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" name="save" class="btn btn-primary"
+                                       :value="switchWord('save')">
                             </div>
                         </form>
                     </div>
@@ -123,41 +159,69 @@ import SideNavbarComponent from "../../components/dashboard/SideNavbarComponent"
 import DeleteItemComponent from "../../components/DeleteItemComponent";
 import SwitchLangWord from "../../mixin/SwitchLangWord";
 import QuestionDataComponent from "../../components/dashboard/QuestionDataComponent";
+import delete_item from "../../mixin/delete_item";
+import update_item from "../../mixin/update_item";
+import {mapMutations,mapGetters,mapActions} from "vuex";
 export default {
     name: "sub_categories",
     props:['keywords','handling_data'],
-    mixins:[DeleteItemComponent,SwitchLangWord],
+    mixins:[DeleteItemComponent,SwitchLangWord,delete_item,update_item],
     data:function(){
         return {
             modal_data:[],
             question_selection:null,
-
-
         }
     },
+    computed:{
+       ...mapGetters({
+           'vuex_data':'sub_categories_dash/get_data',
+       })
+    },
     methods:{
-
+        ...mapActions({
+           'save_category':'sub_categories_dash/save_category'
+        }),
+        ...mapMutations({
+           'update_data':'sub_categories_dash/update_data',
+        }),
+        update_question_selection:function(){
+            var value  = event.target.value;
+            var parent_div = $(event.target).parent().parent();
+            if(value == 'old'){
+                parent_div.next().show();
+                parent_div.next().next().hide();
+                parent_div.next().next().next().hide();
+            }else{
+                parent_div.next().hide();
+                parent_div.next().next().show();
+                parent_div.next().next().next().hide();
+            }
+        },
         add_another_question:function (){
             var output = '';
-            for(let option of $('.old_questions .inner >  div:first-of-type select option')){
-                 output += '<option value="'+option.value+'">'+option.textContent+'</option>'
+            for(let option of this.handling_data['questions']){
+                 output += '<option value="'+option.id+'">'+option['name']+'</option>'
             }
-            var select = '<div class="form-group"><select name="questions[]" class="form-control" required>'+output+'</select><span ><i class="ri-close-line delete-icon-input"></i></span></div>'
+            var select = '<div class="form-group"><select name="questions[]" class="form-control">'+output+'</select><span ><i class="ri-close-line delete-icon-input"></i></span></div>'
 
             $(event.target).prev().append(select);
-
         },
 
     },
     created() {
         this.modal_data = Object.keys(this.handling_data['data_model']);
         this.modal_data.pop();
+        this.update_data(this.handling_data['data']);
+
     },
     components: {QuestionDataComponent, SideNavbarComponent}
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+.old_questions , .inserted_questions , .add_new_question_box{
+    display: none;
+}
 @media (min-width: 576px) {
     .modal-dialog{
         max-width:75%;

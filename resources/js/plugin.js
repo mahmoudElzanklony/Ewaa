@@ -129,9 +129,7 @@ $(document).ready(function (){
 
 
         if(this.value == 'country'){
-
             output = option_selection('col-12','country_id',select_country,[]);
-
         }else if(this.value == 'government'){
             output = option_selection('col-6','country_id',select_country,[]) + option_selection('col-6','government_id',select_government,[]);
 
@@ -158,19 +156,23 @@ $(document).ready(function (){
 
 
     // add new answer
-    $('.content').on('click','.answers > button',function (){
+    /*$('.content').on('click','.answers > button',function (){
         var row = document.createElement('div');
         row.className = 'row';
-        $(event.target).prev().find('.row:first-of-type').find('input').val('');
+       //$(event.target).prev().find('.row:first-of-type').find('input').val('');
         row.innerHTML = $(event.target).prev().find('.row:first-of-type')[0].innerHTML+'<span><i class="ri-close-line delete-icon-input"></i></span>';
+        console.log(row);
+        /!*for(let input of row){
+            input.value = '';
+        }*!/
         $('.answers .inner').append(row);
-    });
+    });*/
 
 
     // change question type
-    $('.content').on('change','.new_questions select[name="question_type"]',function (){
+    /*$('.content').on('change','.new_questions select[name="type"]',function (){
+        console.log(this);
         var output = ''
-        console.log($(this).val());
         var words = {
             question_answer_ar:{
                 ar:'اجابة السؤال بالعربي',
@@ -187,24 +189,21 @@ $(document).ready(function (){
                 en:'question answer in turkish',
                 tu:'',
             },
-            add_question_answer:{
-                ar:'اضف اجابة جديدة',
-                en:'add question answer',
-                tu:'',
-            },
         }
        if(this.value == 'select'){
-           output += '<div class="inner"><div class="row">';
             for(let question of ['question_answer_ar',
                 'question_answer_en','question_answer_tu']){
-                output += '<div class="col-4"><input class="form-control mb-2" name="'+question.split('question_answer')[1]+'answers[]" placeholder="'+words[question][window.vm.$inertia.page.props.lang]+'"></div>';
+                var required_status = question.split('question_answer_')[1] != 'tu' ? 'required':'';
+                output += '<div class="col-4"><input class="form-control mb-2" name="'+question.split('question_answer_')[1]+'_answers[]" '+required_status+'  placeholder="'+words[question][window.vm.$inertia.page.props.lang]+'"></div>';
             }
-           output += '</div></div><button class="btn btn-outline-primary" type="button" >'+words['add_question_answer'][window.vm.$inertia.page.props.lang]+'</button>';
+           $(this).parent().parent().next().fadeIn();
+           $(this).parent().parent().next().find('.inner .row').append(output);
        }else{
-           output = '';
+           $(this).parent().parent().next().find('.inner').html('<div class="row"></div>');
+           $(this).parent().parent().next().hide();
        }
-       $(this).parent().parent().next().html(output);
-    });
+
+    });*/
 
 
     // add new question box
@@ -214,7 +213,7 @@ $(document).ready(function (){
         $(event.target).prev().append(output);
     });
     // add new country
-    $('.content').on('click','.add_new_country',function (){
+    /*$('.content').on('click','.add_new_country',function (){
         var country_selected = '';
         if(window.vm.$inertia.page.props.lang == 'ar'){
             country_selected = 'أختر الدولة التي تود انشاء سعر خاص بها';
@@ -226,7 +225,7 @@ $(document).ready(function (){
 
         output += '</select></div><span><i class="ri-close-line delete-icon-input"></i></span></div>';
         $(event.target).prev().append(output);
-    });
+    });*/
 
 
     /*--------------------------end of dashboard-------------------------------*/

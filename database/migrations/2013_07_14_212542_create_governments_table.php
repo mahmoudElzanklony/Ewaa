@@ -18,7 +18,7 @@ class CreateGovernmentsTable extends Migration
             $table->foreignId('country_id')->constrained('countries')->onUpdate('cascade')->onDelete('cascade');
             $table->string('ar_name');
             $table->string('en_name');
-            $table->string('tu_name');
+            $table->string('tu_name')->nullable();
             $table->timestamps();
         });
     }

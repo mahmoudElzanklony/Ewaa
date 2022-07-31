@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 22, 2022 at 04:47 AM
+-- Generation Time: Jul 28, 2022 at 09:12 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -52,6 +52,19 @@ CREATE TABLE `answers` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `answers`
+--
+
+INSERT INTO `answers` (`id`, `question_id`, `ar_name`, `en_name`, `tu_name`, `created_at`, `updated_at`) VALUES
+(1, 1, 'اجابه اول', 'first answer', NULL, '2022-07-23 01:04:01', '2022-07-28 16:30:26'),
+(4, 13, 'تيست', 'test', NULL, '2022-07-23 01:18:10', '2022-07-23 01:50:35'),
+(13, 13, 'سؤال', 'qqq', NULL, '2022-07-23 01:45:44', '2022-07-23 01:50:35'),
+(15, 2, 'dsa', 'dsassxxxx', NULL, '2022-07-23 01:51:26', '2022-07-23 01:52:41'),
+(16, 2, 'zzzz', '[[[[[[[[[x', NULL, '2022-07-23 01:52:41', '2022-07-23 01:52:41'),
+(17, 16, 'a', 'b', 'c', '2022-07-24 01:04:19', '2022-07-24 01:04:19'),
+(18, 13, 'last question', 'last question', NULL, '2022-07-24 01:38:54', '2022-07-24 01:38:54');
+
 -- --------------------------------------------------------
 
 --
@@ -73,7 +86,8 @@ CREATE TABLE `areas` (
 --
 
 INSERT INTO `areas` (`id`, `city_id`, `ar_name`, `en_name`, `tu_name`, `created_at`, `updated_at`) VALUES
-(1, 1, 'قصر القبة', 'dsad', NULL, NULL, NULL);
+(1, 1, 'قصر القبة', 'dsad', NULL, NULL, NULL),
+(2, 2, 'يشسي', 'يسشي', NULL, '2022-07-24 11:09:03', '2022-07-24 11:09:03');
 
 -- --------------------------------------------------------
 
@@ -95,6 +109,16 @@ CREATE TABLE `categories` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`id`, `ar_name`, `en_name`, `tu_name`, `ar_info`, `en_info`, `tu_info`, `parent_id`, `image`, `created_at`, `updated_at`) VALUES
+(9, 'عقارات', 'listings', NULL, 'قسم العقارات', 'listings category', NULL, NULL, 'default.png', '2022-07-22 20:49:45', '2022-07-22 20:49:45'),
+(10, 'بيوت', 'homes', NULL, 'قسم المنازل', 'homes category', NULL, 9, 'default.png', '2022-07-22 20:49:45', '2022-07-22 20:49:45'),
+(14, 'يشسي aa', 'يشسي', NULL, 'يشسي', 'يشسشي', 'يشسي', 9, '1658626321_user.png', '2022-07-23 23:32:01', '2022-07-28 16:40:17'),
+(15, 'ملاجئ', 'ewaas', NULL, 'تيست', 'test info', NULL, NULL, '1659033687_user.png', '2022-07-28 16:41:27', '2022-07-28 16:41:27');
+
 -- --------------------------------------------------------
 
 --
@@ -108,6 +132,19 @@ CREATE TABLE `categories_questions` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `categories_questions`
+--
+
+INSERT INTO `categories_questions` (`id`, `category_id`, `question_id`, `created_at`, `updated_at`) VALUES
+(4, 14, 1, '2022-07-23 23:32:01', '2022-07-24 00:17:45'),
+(9, 14, 2, '2022-07-24 00:17:45', '2022-07-24 00:17:45'),
+(10, 14, 16, '2022-07-24 01:04:19', '2022-07-24 01:04:19'),
+(11, 10, 2, '2022-07-28 16:33:50', '2022-07-28 16:33:50'),
+(12, 10, 13, '2022-07-28 16:33:50', '2022-07-28 16:33:50'),
+(13, 10, 18, '2022-07-28 16:33:50', '2022-07-28 16:33:50'),
+(14, 14, 13, '2022-07-28 16:40:17', '2022-07-28 16:40:17');
 
 -- --------------------------------------------------------
 
@@ -130,7 +167,9 @@ CREATE TABLE `cities` (
 --
 
 INSERT INTO `cities` (`id`, `government_id`, `ar_name`, `en_name`, `tu_name`, `created_at`, `updated_at`) VALUES
-(1, 1, 'التجمع الخامس', 'five meeting', NULL, NULL, NULL);
+(1, 1, 'التجمع الخامس', 'five meeting', NULL, NULL, NULL),
+(2, 6, 'الحي السابع', 'dsad', NULL, '2022-07-24 11:03:50', '2022-07-24 11:03:50'),
+(3, 4, 'dasd', 'aaaaaaa', NULL, '2022-07-28 15:34:15', '2022-07-28 15:34:25');
 
 -- --------------------------------------------------------
 
@@ -142,7 +181,7 @@ CREATE TABLE `countries` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `ar_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `en_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tu_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tu_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -152,8 +191,26 @@ CREATE TABLE `countries` (
 --
 
 INSERT INTO `countries` (`id`, `ar_name`, `en_name`, `tu_name`, `created_at`, `updated_at`) VALUES
-(1, 'مصر', 'Egypt', '', '2022-07-15 23:23:47', NULL),
-(2, 'السعودية', 'KSA', '', '2022-07-15 23:23:47', NULL);
+(1, 'مصر', 'Egypt', '', '2022-07-15 23:23:47', '2022-07-28 16:42:10'),
+(2, 'السعودية', 'KSA', '', '2022-07-15 23:23:47', NULL),
+(3, 'امريكا', 'usa', NULL, '2022-07-24 10:30:32', '2022-07-24 10:30:32'),
+(4, 'ق', 'ر', NULL, '2022-07-24 10:34:50', '2022-07-24 10:34:50');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `currencies`
+--
+
+CREATE TABLE `currencies` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `ar_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `en_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `currency_code` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `country_code` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -196,7 +253,7 @@ CREATE TABLE `governments` (
   `country_id` bigint(20) UNSIGNED NOT NULL,
   `ar_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `en_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tu_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tu_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -206,7 +263,9 @@ CREATE TABLE `governments` (
 --
 
 INSERT INTO `governments` (`id`, `country_id`, `ar_name`, `en_name`, `tu_name`, `created_at`, `updated_at`) VALUES
-(1, 1, 'القاهرة', 'cairo', '', '2022-07-20 12:18:57', NULL);
+(1, 1, 'القاهرة', 'cairo', '', '2022-07-20 12:18:57', NULL),
+(4, 2, 'الرياض', 'ryad', NULL, '2022-07-24 10:59:32', '2022-07-24 10:59:32'),
+(6, 2, 'مكه', 'maka', NULL, '2022-07-24 11:03:20', '2022-07-24 11:03:20');
 
 -- --------------------------------------------------------
 
@@ -340,7 +399,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (68, '2022_07_16_155307_create_notifications_table', 2),
 (69, '2022_07_16_155724_create_favourites_table', 3),
 (70, '2022_07_21_164902_create_listings_notes_table', 4),
-(71, '2022_07_21_215240_create_advertisng_points_prices_table', 5);
+(71, '2022_07_21_215240_create_advertisng_points_prices_table', 5),
+(72, '2022_07_28_185319_create_currencies_table', 6);
 
 -- --------------------------------------------------------
 
@@ -373,6 +433,7 @@ CREATE TABLE `packages` (
   `price` double(8,2) NOT NULL,
   `image` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `is_visible` tinyint(4) NOT NULL DEFAULT 1,
+  `currency_Id` bigint(20) UNSIGNED NOT NULL,
   `expiration_date` date DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -387,7 +448,6 @@ CREATE TABLE `packages` (
 CREATE TABLE `packages_prices_places` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `package_id` bigint(20) UNSIGNED NOT NULL,
-  `type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `country_id` bigint(20) UNSIGNED NOT NULL,
   `price` double(8,2) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -428,8 +488,12 @@ CREATE TABLE `questions` (
 --
 
 INSERT INTO `questions` (`id`, `ar_name`, `en_name`, `tu_name`, `required_status`, `type`, `created_at`, `updated_at`) VALUES
-(1, 'السؤال الاول', 'question one', NULL, 0, 'text', '2022-07-20 00:56:58', NULL),
-(2, 'السؤال الثاني', 'question two', NULL, 0, 'text', '2022-07-20 00:56:58', NULL);
+(1, 'السؤال  das', 'question one', NULL, 1, 'select', '2022-07-20 00:56:58', '2022-07-23 02:02:00'),
+(2, 'السؤال الثاني', 'question two', NULL, 0, 'select', '2022-07-20 00:56:58', '2022-07-23 01:51:26'),
+(13, 'يs', 'das', NULL, 1, 'select', '2022-07-23 01:18:10', '2022-07-23 01:25:07'),
+(16, 'ييشسي', 'test ss', 'dsa', 1, 'select', '2022-07-24 01:04:19', '2022-07-24 01:04:19'),
+(17, 'das', 'dsad', NULL, 1, 'text', '2022-07-28 15:33:28', '2022-07-28 15:33:28'),
+(18, 'a', 'bsws', NULL, 0, 'text', '2022-07-28 16:26:36', '2022-07-28 16:26:36');
 
 -- --------------------------------------------------------
 
@@ -618,6 +682,12 @@ ALTER TABLE `countries`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `currencies`
+--
+ALTER TABLE `currencies`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -696,7 +766,8 @@ ALTER TABLE `notifications`
 -- Indexes for table `packages`
 --
 ALTER TABLE `packages`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `currency_Id` (`currency_Id`);
 
 --
 -- Indexes for table `packages_prices_places`
@@ -767,37 +838,43 @@ ALTER TABLE `advertising_points_prices`
 -- AUTO_INCREMENT for table `answers`
 --
 ALTER TABLE `answers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `areas`
 --
 ALTER TABLE `areas`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `categories_questions`
 --
 ALTER TABLE `categories_questions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `cities`
 --
 ALTER TABLE `cities`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `countries`
 --
 ALTER TABLE `countries`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `currencies`
+--
+ALTER TABLE `currencies`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -815,7 +892,7 @@ ALTER TABLE `favourites`
 -- AUTO_INCREMENT for table `governments`
 --
 ALTER TABLE `governments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `listings_infos`
@@ -851,7 +928,7 @@ ALTER TABLE `listing_statistics`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- AUTO_INCREMENT for table `notifications`
@@ -875,7 +952,7 @@ ALTER TABLE `packages_prices_places`
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -989,6 +1066,12 @@ ALTER TABLE `listing_statistics`
 ALTER TABLE `notifications`
   ADD CONSTRAINT `notifications_receiver_id_foreign` FOREIGN KEY (`receiver_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `notifications_sender_id_foreign` FOREIGN KEY (`sender_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `packages`
+--
+ALTER TABLE `packages`
+  ADD CONSTRAINT `packages_ibfk_1` FOREIGN KEY (`currency_Id`) REFERENCES `currencies` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `packages_prices_places`

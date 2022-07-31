@@ -54,6 +54,12 @@
                     <span>{{ switchWord('packages') }}</span>
                 </inertia-link>
             </li>
+            <li custom="currencies">
+                <inertia-link  href="/dashboard/currencies">
+                    <span><i class="ri-currency-line"></i></span>
+                    <span>{{ switchWord('currencies') }}</span>
+                </inertia-link>
+            </li>
             <li custom="buildings">
                 <inertia-link  href="/dashboard/buildings">
                     <span><i class="ri-building-line"></i></span>

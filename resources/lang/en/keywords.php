@@ -576,6 +576,9 @@ return [
     'packages'=>'Packages',
     'min_value'=>'Min value',
     'max_value'=>'Max value',
+    'currency'=>'Currency',
+    'is_visible'=>'Is Visible',
+    'expiration_date'=>'Expiration Date',
     'point_price'=>'Price of points',
     'country'=>'Country',
     'city'=>'City',
@@ -583,6 +586,14 @@ return [
     'specific_price_for_specific_areas'=>'Specific price for specific areas',
     'add_specific_price_for_specific_areas'=>'Add specific price for specific areas',
     // end of dashboard packages ----------------------------------------------------------
+
+
+
+    // start of dashboard currencies ----------------------------------------------------------
+    'currencies'=>'Currencies',
+    'currency_code'=>'Currency Code',
+    'country_code'=>'Country Code',
+    // end of dashboard currencies ----------------------------------------------------------
 
 
     // start of dashboard listings ----------------------------------------------------------

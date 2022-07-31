@@ -58,10 +58,13 @@ nav .dropdown-menu a span:first-of-type {
   margin-left: 5px;
 }
 
-.delete-icon-input {
+.delete-icon-input, .input-has-delete span {
   left: 15px;
 }
 
+.input-has-delete {
+  position: relative;
+}
 /*---------------------------------------------end of public classes-----------------------------------------*/
 /*---------------------------------------------start of home page-----------------------------------------*/
 .sub-data .sub a > span:first-of-type {

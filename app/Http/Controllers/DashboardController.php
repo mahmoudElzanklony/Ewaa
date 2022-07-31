@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Handling_Data\dashboard\categories_dashboard;
+use App\Handling_Data\dashboard\currencies_dashboard;
 use App\Handling_Data\dashboard\map_dashboard;
 use App\Handling_Data\dashboard\packages_dashboard;
 use App\Handling_Data\dashboard\questions_dashboard;
@@ -20,6 +21,8 @@ use App\Keywords\dashboard\SubCategoriesKeywords;
 use App\Keywords\DaysKeywords;
 use App\Keywords\MonthsKeywords;
 use App\Keywords\PackagesKeywords;
+use App\Models\categories;
+use App\Models\listings_info;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -61,10 +64,10 @@ class DashboardController extends DashboardServiceClass
     }
 
 
-    public function sub(){
+    public function sub(categories $id){
         return Inertia::render('dashboard/sub_categories',[
             'keywords'=>SubCategoriesKeywords::get_keywords(),
-            'handling_data'=>sub_categories_dashboard::handle_data(),
+            'handling_data'=>sub_categories_dashboard::handle_data($id->id),
         ]);
     }
 
@@ -106,16 +109,44 @@ class DashboardController extends DashboardServiceClass
         ]);
     }
 
+    public function currencies(){
+        return Inertia::render('dashboard/currencies', [
+            'keywords' => [
+                'main_title'=>trans('keywords.currencies'),
+            ],
+            'handling_data' => currencies_dashboard::handle_data(),
+        ]);
+    }
+
     public function buildings(){
         return Inertia::render('dashboard/listings', [
+            'main_title'=>trans('keywords.listings'),
             'keywords' => ListingsKeywords::get_keywords(),
+            'data'=>listings_info::selection()->with(['user','category','area'])->get(),
         ]);
     }
 
     public function map($type){
+            $param = [];
+            $map_type = explode('/',strtok($_SERVER["REQUEST_URI"], '?'))
+            [sizeof(explode('/',strtok($_SERVER["REQUEST_URI"], '?')))-1];
+
+            if(request()->has('country_id')){
+                 $param['name'] = 'country_id';
+                 $param['value'] = request('country_id');
+            }else if(request()->has('government_id')){
+                $param['name'] = 'government_id';
+                $param['value'] = request('government_id');
+            }else if(request()->has('city_id')){
+                $param['name'] = 'city_id';
+                $param['value'] = request('city_id');
+            }else{
+                $param['name'] = '';
+                $param['value'] = '';
+            }
             return Inertia::render('dashboard/map', [
                 'main_title'=>trans('keywords.'.$type),
-                'handling_data' => map_dashboard::handle_data(),
+                'handling_data' => map_dashboard::handle_data($param,$map_type),
             ]);
     }
 

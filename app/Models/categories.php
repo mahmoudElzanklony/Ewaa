@@ -24,4 +24,8 @@ class categories extends Model
     public function branches(){
         return $this->hasMany(categories::class,'parent_id');
     }
+
+    public function cat_questions(){
+        return $this->hasMany(categories_questions::class,'category_id');
+    }
 }

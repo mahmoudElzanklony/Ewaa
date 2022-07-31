@@ -376,6 +376,11 @@ export default {
                   en:'Packages',
                   tu:'',
               },
+              currencies:{
+                  ar:'العملات',
+                  en:'Currencies',
+                  tu:'',
+              },
               categories:{
                   ar:'الأقسام',
                   en:'Categories',
@@ -523,7 +528,7 @@ export default {
                   en:'Select from options',
                   tu:'',
               },
-              question_type_checkbox:{
+              question_type_radio:{
                   ar:'نعم او لا ',
                   en:'yes or no',
                   tu:'',
@@ -629,9 +634,34 @@ export default {
                   en:'Select area',
                   tu:'',
               },
+              select_currency:{
+                ar:'اختر العملة',
+                en:'Select Currency',
+                tu:'',
+              },
+              is_visible:{
+                  ar:'هل متاحة',
+                  en:'Is Visible',
+                  tu:'',
+              },
+              visible:{
+                  ar:'متاح',
+                  en:'visible',
+                  tu:'',
+              },
+              not_visible:{
+                  ar:'غير متاح',
+                  en:'not visible',
+                  tu:'',
+              },
               point_price:{
                   ar:'سعر النقطة',
                   en:'Point Price',
+                  tu:'',
+              },
+              coutry_selected:{
+                  ar:'أختر الدولة التي تود انشاء سعر خاص بها',
+                  en:'Select country that you want to make special price',
                   tu:'',
               },
               save:{
@@ -652,6 +682,11 @@ export default {
               filter:{
                   ar:'فلترة',
                   en:'Filter',
+                  tu:'',
+              },
+              related_to:{
+                  ar:'تابعة ل',
+                  en:'Related to',
                   tu:'',
               }
 
