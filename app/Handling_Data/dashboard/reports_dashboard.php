@@ -4,6 +4,8 @@
 namespace App\Handling_Data\dashboard;
 
 
+use App\Models\countries;
+
 class reports_dashboard
 {
     public static function handle_data(){
@@ -17,6 +19,10 @@ class reports_dashboard
             'table_head_keys'=>[
                 'name'=>trans('keywords.name'),
                 'listings_number'=>trans('keywords.listings_number'),
+                'average_price_meter'=>trans('keywords.average_price_meter'),
+            ],
+            'data'=>[
+              'countries'=>countries::selection()->get(),
             ],
         ];
     }

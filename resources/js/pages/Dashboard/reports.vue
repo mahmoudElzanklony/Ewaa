@@ -11,18 +11,24 @@
                 </p>
                 <form>
                     <div class="container">
-                        <div class="row">
-                            <div class="col-md-3 col-6"
-                                 v-for="(input,index) in Object.keys(handling_data['search_form'])"
-                                 :key="index">
-                                <select class="form-control" :name="input">
-                                    <option value="">{{ handling_data['search_form'][input] }}</option>
-                                </select>
+                        <form method="post" @submit.prevent="filter_to_find_areas">
+                            <div class="row">
+                                    <div class="col-md-3 col-6"
+                                         v-for="(input,index) in Object.keys(handling_data['search_form'])"
+                                         :key="index">
+                                        <select class="form-control" :name="input" @change="update_location" required>
+                                            <option value="">{{ handling_data['search_form'][input] }}</option>
+                                            <option v-for="c in get_items_data(input)" :value="c['id']">
+                                                {{ c['name'] }}
+                                            </option>
+                                        </select>
+
+                                    </div>
+                                    <div class="col-md-3 col-6">
+                                        <input type="submit" class="btn btn-primary d-block w-100" :value="switchWord('filter')">
+                                    </div>
                             </div>
-                            <div class="col-md-3 col-6">
-                                <input type="submit" class="btn btn-primary d-block w-100" :value="switchWord('filter')">
-                            </div>
-                        </div>
+                        </form>
                     </div>
                 </form>
                 <div class="overflow-auto">
@@ -35,10 +41,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="i in 15" :key="i">
-                            <td>منطقة حي مبارك</td>
-                            <td>20</td>
-                        </tr>
+
                         </tbody>
                     </table>
                 </div>
@@ -53,11 +56,30 @@
 import SideNavbarComponent from "../../components/dashboard/SideNavbarComponent";
 import tableData from "../../mixin/tableData";
 import SwitchLangWord from "../../mixin/SwitchLangWord";
+import {mapMutations , mapGetters , mapActions} from "vuex";
 export default {
     name: "reports",
     mixins:[tableData,SwitchLangWord],
     props:['main_title','handling_data'],
-    components: {SideNavbarComponent}
+    computed:{
+       ...mapGetters({
+           'get_items_data':'countries_govenrn_cities_areas/get_items_data',
+           'price_data':'countries_govenrn_cities_areas/get_price_data',
+       }),
+    },
+    methods:{
+        ...mapMutations({
+           'inilaize_items':'countries_govenrn_cities_areas/inialize_items',
+        }),
+        ...mapActions({
+            'update_location':'countries_govenrn_cities_areas/update_location',
+            'filter_to_find_areas':'countries_govenrn_cities_areas/filter_to_find_areas',
+        })
+    },
+    components: {SideNavbarComponent},
+    created() {
+        this.inilaize_items({name:'countries',value:this.handling_data['data']['countries']})
+    }
 }
 </script>
 

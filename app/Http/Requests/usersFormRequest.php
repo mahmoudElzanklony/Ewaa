@@ -42,6 +42,20 @@ class usersFormRequest extends FormRequest
             'image'=>'nullable|image|mimes:jpg,jpeg,png,gif',
         ];
     }
+    public function update_admin(){
+        return [
+            //
+            'country_id'=>'required|integer|exists:countries,id',
+            'username'=>'required|max:191',
+            'email'=>'required|email|max:191|unique:users,email,'.request('id'),
+            'password'=>'nullable|min:7|max:191',
+            'phone'=>'required|min:7',
+            'address'=>'nullable|max:191',
+            'block'=>'required',
+            'auto_publish'=>'required',
+            'image'=>'nullable|image|mimes:jpg,jpeg,png,gif',
+        ];
+    }
 
     public function update_email_image(){
         return [
@@ -100,6 +114,8 @@ class usersFormRequest extends FormRequest
             return $this->update_company_data();
         }else if(str_contains($this->getRequestUri() , '/profile/update-secondary-data')){
             return $this->update_scondary_data();
+        }else if(str_contains($this->getRequestUri() , '/dashboard')){
+            return $this->update_admin();
         }
     }
 
@@ -123,6 +139,8 @@ class usersFormRequest extends FormRequest
             'education'=>trans('keywords.education'),
             'industry'=>trans('keywords.industry'),
             'position'=>trans('keywords.position'),
+            'block'=>trans('keywords.block'),
+            'auto_publish'=>trans('keywords.auto_publish'),
         ];
     }
 

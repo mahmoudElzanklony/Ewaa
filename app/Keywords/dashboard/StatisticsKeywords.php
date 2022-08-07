@@ -11,9 +11,9 @@ class StatisticsKeywords
             'main_title'=>trans('keywords.ewaa_statistics'),
             'users'=>trans('keywords.users'),
             'packages'=>trans('keywords.company_packages'),
-            'packages_orders'=>trans('keywords.packages_orders'),
+            'subscriptions'=>trans('keywords.packages_orders'),
             'listings'=>trans('keywords.listings'),
-            'listings_orders'=>trans('keywords.listings_orders'),
+            'listings_pending'=>trans('keywords.listings_orders'),
             'see_more'=>trans('keywords.see_more'),
         ];
     }

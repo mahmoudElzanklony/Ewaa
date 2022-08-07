@@ -14,6 +14,12 @@ import map_locations_dash from "./modules/dashboard/map_locations";
 import packages_dash from "./modules/dashboard/packages";
 import currencies_dash from "./modules/dashboard/currencies";
 import listings_dash from "./modules/dashboard/listings";
+import users_dash from "./modules/dashboard/users";
+import support_dash from "./modules/dashboard/support"
+import pointad_dash from "./modules/dashboard/poindad"
+
+import countries_govenrn_cities_areas from "./modules/map_data";
+import notifications from "./modules/notifications";
 //------------------- end of  dashboard---------------------------
 // Create a new store instance.
 const store = new Vuex.Store({
@@ -29,7 +35,13 @@ const store = new Vuex.Store({
         map_locations_dash,
         packages_dash,
         currencies_dash,
-        listings_dash
+        listings_dash,
+        users_dash,
+        support_dash,
+        pointad_dash,
+        // end dashboard modules
+        countries_govenrn_cities_areas,
+        notifications
     }
 })
 

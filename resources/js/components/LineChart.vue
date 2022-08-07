@@ -1,4 +1,5 @@
 <script>
+/*
 import { Line } from 'vue-chartjs';
 
 export default {
@@ -48,20 +49,20 @@ export default {
         this.renderChart(this.chartData, this.options)
     },
     methods:{
+       update_data:function(){
+           setTimeout(()=>{
+               this.renderChart(this.chartData, this.options)
+           });
+       }
     },
     watch:{
-        chart_data:function (to,from){
-            console.log(to);
-            console.log(from);
-            console.log(this.$data._chart);
-
-            this.$nextTick(() => {
-                this.renderChart(this.data, this.options);
-            })
-            // this.renderLineChart();
-
+        'chart_data':function(to){
+          this.$nextTick(() => {
+            this.update_data(to)
+          })
         }
     }
 }
+*/
 </script>
 

@@ -42,6 +42,7 @@ class User extends Authenticatable implements JWTSubject
         'address',
         'image',
         'block',
+        'auto_publish',
         'role_id',
         'country_id',
 
@@ -64,6 +65,10 @@ class User extends Authenticatable implements JWTSubject
 
     public function role(){
         return $this->belongsTo(roles::class,'role_id');
+    }
+
+    public function country(){
+        return $this->belongsTo(countries::class,'country_id');
     }
 
 

@@ -64,6 +64,11 @@ export default {
                   en:'Buildings',
                   tu:'',
               },
+              ad_points:{
+                  ar:'نقاط الاعلان',
+                  en:'Ad Points',
+                  tu:'',
+              },
               Componds:{
                   ar:'كومبودات',
                   en:'Componds',
@@ -250,6 +255,41 @@ export default {
                   en:'My Listings',
                   tu:'',
               },
+              select_status:{
+                  ar:'اختر الحالة',
+                  en:'Select Status',
+                  tu:'',
+              },
+              live_listings:{
+                  ar:'نشطة',
+                  en:'Live',
+                  tu:'',
+              },
+              rejected_listings:{
+                  ar:'مرفوضة',
+                  en:'Rejected',
+                  tu:'',
+              },
+              expired_listings:{
+                  ar:'منتهية',
+                  en:'Expired',
+                  tu:'',
+              },
+              pending_listings:{
+                  ar:'معلقة',
+                  en:'Pending',
+                  tu:'',
+              },
+              payment_done:{
+                 ar:'تم الدفع',
+                 en:'payment done',
+                 tu:'',
+              },
+              pending:{
+                  ar:'معلقة',
+                  en:'pending',
+                  tu:'',
+              },
               my_balance:{
                   ar:'رصيدي',
                   en:'Credit',
@@ -380,6 +420,11 @@ export default {
                   ar:'العملات',
                   en:'Currencies',
                   tu:'',
+              },
+              subscriptions:{
+                 ar:'الاشتراكات',
+                 en:'Subscriptions',
+                 tu:'',
               },
               categories:{
                   ar:'الأقسام',
@@ -687,6 +732,36 @@ export default {
               related_to:{
                   ar:'تابعة ل',
                   en:'Related to',
+                  tu:'',
+              },
+              block:{
+                  ar:'محظور',
+                  en:'Block',
+                  tu:'',
+              },
+              auto_publish:{
+                  ar:'النشر التلقائي',
+                  en:'Auto Publish',
+                  tu:'',
+              },
+              yes:{
+                  ar:'نعم',
+                  en:'Yes',
+                  tu:'',
+              },
+              no:{
+                  ar:'لا',
+                  en:'No',
+                  tu:'',
+              },
+              leave_password:{
+                  ar:'أترك كلمة المرور فارغة في حالة عدم رغبتك في التعديل عليها',
+                  en:'',
+                  tu:'',
+              },
+              press_here:{
+                  ar:'أضغط هنا',
+                  en:'Press Here',
                   tu:'',
               }
 

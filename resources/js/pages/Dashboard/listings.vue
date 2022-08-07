@@ -19,7 +19,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="(i,index) in vuex_data" :key="index">
+                        <tr v-for="(i,index) in vuex_data" :key="index" :class="'tr_'+i['id']">
                             <td><img :src="'/images/users/'+i['user']['image']"></td>
                             <td>{{ i['user']['username'] }}</td>
                             <td>{{ i['user']['phone'] }}</td>
@@ -27,15 +27,25 @@
                             <td>{{ i['category'][$page.props.lang+'_name'] }}</td>
                             <td>{{ i['area'][$page.props.lang+'_name'] }}</td>
                             <td>{{ i['price'] }}</td>
-
+                            <td>{{ i['meters_number'] }}</td>
+                            <td>{{ i['payment_status'] == 1 ? switchWord('payment_done'):switchWord('pending') }}</td>
+                            <td>{{ switchWord(i['type']+'_listings') }}</td>
                             <td>
-                                <input name="toggle" type="checkbox" class="toggle-checkbox-status">
+                                    <select class="form-control" :id="i['id']" @change="save_status">
+                                        <option value="">{{ switchWord('select_status') }}</option>
+                                        <option v-for="(op,index) in ['pending','live','expired','rejected']"
+                                                :key="index" :value="op" :selected="i['type'] == op">
+                                           {{ switchWord(op+'_listings') }}
+                                        </option>
+                                    </select>
+<!--                                <input name="toggle" type="checkbox" class="toggle-checkbox-status">-->
                             </td>
                             <td class="actions">
-                                <inertia-link href="/listing/initialize">
+                                <inertia-link :href="'/listing/initialize?id='+i['id']">
                                     <i class="ri-edit-line"></i>
                                 </inertia-link>
-                                <span><i @click="deleteRecord(10,'listings')" class="ri-close-line"></i></span>
+                                <span><i @click="delete_item('listings_infos',i['id'],
+                                '.tr_'+i['id'])" class="ri-close-line"></i></span>
                             </td>
                         </tr>
                         </tbody>
@@ -52,12 +62,12 @@
 import SideNavbarComponent from "../../components/dashboard/SideNavbarComponent";
 import tableData from "../../mixin/tableData";
 import SwitchLangWord from "../../mixin/SwitchLangWord";
-import DeleteItemComponent from "../../components/DeleteItemComponent";
+import delete_item from "../../mixin/delete_item";
 import {mapGetters,mapMutations,mapActions} from "vuex";
 
 export default {
     name: "listings",
-    mixins:[tableData,SwitchLangWord,DeleteItemComponent],
+    mixins:[tableData,SwitchLangWord,delete_item],
     props:['keywords','main_title','data'],
     data:function (){
         return {
@@ -72,6 +82,9 @@ export default {
     methods:{
         ...mapMutations({
            'inilalize':'listings_dash/inialize_data',
+        }),
+        ...mapActions({
+           'save_status':'listings_dash/save_listing',
         }),
     },
     created() {

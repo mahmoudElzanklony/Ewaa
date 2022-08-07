@@ -526,6 +526,7 @@ return [
 
     'update_user'=>'Update user info',
     'upload_image'=>'Upload Image',
+    'user_listings'=>'User Listings',
     // end of dashboard ----------------------------------------------------------
 
 
@@ -587,6 +588,21 @@ return [
     'add_specific_price_for_specific_areas'=>'Add specific price for specific areas',
     // end of dashboard packages ----------------------------------------------------------
 
+    // start of dashboard subscription ----------------------------------------------------------
+    'subscriptions'=>'Subscriptions',
+    'package'=>'Package',
+    'points_ordered'=>'Points ordered',
+    'package_min_points'=>'Package min points',
+    'package_max_points'=>'Package max points',
+    // end of dashboard subscription ----------------------------------------------------------
+
+
+    // start of dashboard pointad ----------------------------------------------------------
+    'pointad'=>'Ad price to points',
+    'no_points'=>'Number of points',
+    // end of dashboard pointad ----------------------------------------------------------
+
+
 
 
     // start of dashboard currencies ----------------------------------------------------------
@@ -599,6 +615,10 @@ return [
     // start of dashboard listings ----------------------------------------------------------
     'listing_name'=>'Listing name',
     'approval_status'=>'Approval status',
+    'change_approval_status'=>'Change Approval status',
+    'payment_status'=>'Payment Status',
+    'meters_number'=>'Area in meters',
+    'average_price_meter'=>'Average price for one meter',
 
     // end of dashboard listings ----------------------------------------------------------
 
@@ -606,11 +626,13 @@ return [
     // start of dashboard map ----------------------------------------------------------
     'countries'=>'Countries',
     'governments'=>'Governments',
+    'government'=>'Government',
     'cities'=>'Cities',
     'areas'=>'Areas',
     'name'=>'Name',
     'reports'=>'Reports',
     'listings_number'=>'Listings Number',
+    'select_type'=>'Select Type',
     // end of dashboard map ----------------------------------------------------------
 
 

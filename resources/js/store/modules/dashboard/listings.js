@@ -32,16 +32,20 @@ export default {
         }
     },
     actions:{
-        save_package:function({commit,getters,state}){
+        save_listing:function({commit,getters,state}){
+            var target = event.target;
             var data = event.target.value;
+            var id = event.target.id;
             axios.post('/dashboard/update-listing',{
-                status:data
+                status:data,
+                id,
             }).then((e)=>{
                 // check if there is no error
                 Toast.fire({
                    icon:e.data.message.icon,
                    title:e.data.message.title,
                 });
+                $(target).parent().prev().html($(target).find('option:selected').text());
             });
         }
     }

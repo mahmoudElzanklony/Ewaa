@@ -6,11 +6,13 @@ use App\Handling_Data\dashboard\categories_dashboard;
 use App\Handling_Data\dashboard\currencies_dashboard;
 use App\Handling_Data\dashboard\map_dashboard;
 use App\Handling_Data\dashboard\packages_dashboard;
+use App\Handling_Data\dashboard\pointad_dashboard;
 use App\Handling_Data\dashboard\questions_dashboard;
 use App\Handling_Data\dashboard\reports_dashboard;
 use App\Handling_Data\dashboard\statistics_dashboard;
 use App\Handling_Data\dashboard\statistics_public_dashboard;
 use App\Handling_Data\dashboard\sub_categories_dashboard;
+use App\Handling_Data\dashboard\subscriptions_dashboard;
 use App\Handling_Data\dashboard\support_dashboard;
 use App\Http\Controllers\classes\DashboardServiceClass;
 use App\Keywords\dashboard\CategoriesKeywords;
@@ -23,7 +25,12 @@ use App\Keywords\MonthsKeywords;
 use App\Keywords\PackagesKeywords;
 use App\Models\categories;
 use App\Models\listings_info;
+use App\Models\notifications;
+use App\Models\User;
+use App\Services\notifications\pagiante_notifications;
+use App\Services\statistics\filter_statistics_admin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 class DashboardController extends DashboardServiceClass
@@ -36,10 +43,17 @@ class DashboardController extends DashboardServiceClass
     }
 
     public function notifications(){
+        if(auth()->check()){
+            $type = User::query()->with('role')->find(auth()->id())['role']['name'];
+        }else{
+            $type = '';
+        }
         return Inertia::render('dashboard/notifications',[
             'keywords'=>[
                 'notifications'=>trans('keywords.notifications'),
-            ]
+            ],
+            'data'=>pagiante_notifications::get_notifications(),
+            'type'=>$type
         ]);
     }
 
@@ -82,13 +96,14 @@ class DashboardController extends DashboardServiceClass
 
     public function statistics(){
         if(request()->has('type')) {
+            $data = filter_statistics_admin::filter_data(request('type'));
+
             return Inertia::render('dashboard/specific_statistics', [
                 'keywords' => [
                     'main_title'=>trans('keywords.statistics').' '.trans('keywords.'.request('type')),
                     'months'=>MonthsKeywords::get_keywords(),
                 ],
-                'days'=>DaysKeywords::get_keywords(),
-                'handling_data' => statistics_public_dashboard::handle_data(),
+                'handling_data' => $data,
             ]);
         }else{
             return Inertia::render('dashboard/statistics', [
@@ -119,10 +134,17 @@ class DashboardController extends DashboardServiceClass
     }
 
     public function buildings(){
+        if(request()->has('id')){
+            $id = request('id');
+        }else{
+            $id = 0;
+        }
         return Inertia::render('dashboard/listings', [
             'main_title'=>trans('keywords.listings'),
             'keywords' => ListingsKeywords::get_keywords(),
-            'data'=>listings_info::selection()->with(['user','category','area'])->get(),
+            'data'=>listings_info::selection()->when($id > 0 ,function($e) use ($id){
+                $e->where('user_id','=',$id);
+            })->with(['user','category','area'])->get(),
         ]);
     }
 
@@ -161,6 +183,20 @@ class DashboardController extends DashboardServiceClass
         return Inertia::render('dashboard/support',[
             'main_title'=>trans('keywords.support'),
             'handling_data' => support_dashboard::handle_data(),
+        ]);
+    }
+
+    public function subscriptions(){
+        return Inertia::render('dashboard/subscriptions',[
+            'main_title'=>trans('keywords.subscriptions'),
+            'handling_data' => subscriptions_dashboard::handle_data(),
+        ]);
+    }
+
+    public function pointad(){
+        return Inertia::render('dashboard/pointad',[
+            'main_title'=>trans('keywords.pointad'),
+            'handling_data' => pointad_dashboard::handle_data(),
         ]);
     }
 }

@@ -35,7 +35,7 @@ class register_service
                         'user_id' => $user->id,
                     ]);
                 }
-                return self::success_output(['message'=>trans('messages.registered_user')]);
+                return self::success_output(trans('messages.registered_user'));
             } else {
                 // role isn't correct
                 return self::error_output(self::errors(['type' => trans('messages.err_invalid_type')]));

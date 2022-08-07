@@ -21,8 +21,10 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="(i,index) in vuex_data" :key="index">
+                        <tr v-for="(i,index) in vuex_data" :key="index" :class="'tr_'+i['id']">
                             <td><img :src="'/images/packages/'+i['image']"></td>
+                            <td>{{ i['ar_name'] }}</td>
+                            <td>{{ i['en_name'] }}</td>
                             <td>{{ i['currency'][$page.props.lang+'_name'] }}</td>
                             <td>{{ i['min_value'] }}</td>
                             <td>{{ i['max_value'] }}</td>
@@ -39,7 +41,7 @@
                             <td v-else></td>
                             <td class="actions">
                                 <span><i data-toggle="modal" @click="update_item(i)" data-target="#update_box" class="ri-edit-line"></i></span>
-                                <span><i @click="deleteRecord(10,'packages')" class="ri-close-line"></i></span>
+                                <span><i @click="delete_item('packages',i['id'],'.tr_'+i['id'])" class="ri-close-line"></i></span>
                             </td>
                         </tr>
                         </tbody>
@@ -98,13 +100,13 @@
                                        required>
                             </div>
                             <div class="specific_areas" v-if="item != null && item['countries'].length > 0">
-                                <div :class="'area-inputs input-has-delete d-flex justify-content-around el_'+cou['id']"
+                                <div :class="'area-inputs input-has-delete d-flex  el_'+cou['id']"
                                      v-for="(cou,index) in item['countries']"
                                      :key="index">
-                                    <div class="form-group w-50">
+                                    <div class="form-group w-50 ml-3">
                                         <input type="hidden" name="country_package_ids[]" :value="cou['id']">
                                         <select class="form-control" name="country_id[]">
-                                            <option value="">{{ switchWord('select_currency') }}</option>
+                                            <option value="">{{ switchWord('select_country') }}</option>
                                             <option v-for="(c,i) in handling_data['data']['countries']"
                                                     :selected="c['id'] == cou['country_id']"
                                                     :key="i" :value="c['id']">
@@ -112,7 +114,7 @@
                                             </option>
                                         </select>
                                     </div>
-                                    <div class="form-group w-25">
+                                    <div class="form-group w-25 ml-3">
                                         <input type="number" class="form-control" name="prices[]" :value="cou['price']">
                                     </div>
                                     <span class="q_delete"
@@ -201,7 +203,7 @@ export default {
                 country_selected = 'Select country you want to add specific price for it';
             }
 
-            var output = '<div class="area-inputs d-flex justify-content-around"><div class="form-group w-50"><select name="country_id[]" class="form-control" required><option value="">'+country_selected+'</option>';
+            var output = '<div class="area-inputs d-flex "><div class="form-group w-50 ml-3"><select name="country_id[]" class="form-control" required><option value="">'+country_selected+'</option>';
 
             for(let country of this.handling_data['data']['countries']){
                 output +='<option value="'+country['id']+'">'+country['name']+'</option>';
@@ -210,7 +212,7 @@ export default {
             var price = this.switchWord('point_price');
 
 
-            output += '</select></div><div class="form-group w-25"><input name="prices[]" class="form-control" placeholder="'+price+'" required></div><span><i class="ri-close-line delete-icon-input"></i></span></div>';
+            output += '</select></div><div class="form-group w-25 ml-3"><input name="prices[]" class="form-control" placeholder="'+price+'" required></div><span><i class="ri-close-line delete-icon-input"></i></span></div>';
             $(event.target).prev().append(output);
         }
     },

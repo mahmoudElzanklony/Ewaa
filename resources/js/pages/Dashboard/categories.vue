@@ -77,6 +77,7 @@
                                 <label>{{ handling_data['data_model'][input] }}</label>
                                 <input :name="input" class="form-control"
                                        :value="item != null ? item[input]:''" :required="input.indexOf('tu') == -1">
+                                <p class="alert alert-danger"></p>
                             </div>
                             <div class="form-group">
                                 <div class="drag-drop-files">
@@ -149,5 +150,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "resources/sass/variables";
-
+.alert-danger{
+    display: none;
+}
 </style>

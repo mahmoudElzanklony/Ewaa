@@ -45,9 +45,9 @@ export default {
             statistics_data:{
                 users:'ri-group-line',
                 packages:'ri-shield-check-line',
-                packages_orders:'ri-currency-line',
+                subscriptions:'ri-currency-line',
                 listings:'ri-community-line',
-                listings_orders:'ri-shopping-bag-2-line',
+                listings_pending:'ri-shopping-bag-2-line',
             }
         }
     },

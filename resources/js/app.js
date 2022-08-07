@@ -36,6 +36,40 @@ Vue.use(VueLazyload);
 Vue.use(VueRouter);
 Vue.use(plugin);
 
+import VueChartJs from "vue-chartjs";
+
+Vue.use(VueChartJs);
+
+
+Vue.component('line-chart', {
+    extends: VueChartJs.Line,
+    props: ['chart_data','labels_data'],
+    mounted () {
+        this.render()
+    },
+    watch: {
+        'chart_data' (to, from) {
+            this.render()
+        }
+    },
+    methods: {
+        render () {
+            this.renderChart({
+                labels:this.labels_data,
+                datasets: [
+                    {
+                        label: 'احصائيات العام',
+                        fill: false,
+                        borderColor: '#ff6a15',
+                        backgroundColor: '#ff6a15',
+                        borderWidth: 1,
+                        data: this.chart_data //[40, 39, 10, 40, 39, 80, 40]
+                    }
+                ]
+            }, {responsive: true, maintainAspectRatio: false})
+        }
+    }
+})
 
 
 window.VueRouter = VueRouter;

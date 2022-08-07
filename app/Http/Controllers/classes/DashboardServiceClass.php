@@ -9,7 +9,10 @@ use App\Http\Requests\mapFormRequest;
 use App\Http\Requests\packagesFormRequest;
 use App\Http\Requests\questionsFormRequest;
 use App\Http\Requests\subCategoriesFormRequest;
+use App\Http\Requests\supportFormRequest;
+use App\Http\Requests\usersFormRequest;
 use App\Http\traits\messages;
+use App\Models\advertising_points_price;
 use App\Models\answers;
 use App\Models\areas;
 use App\Models\categories;
@@ -22,6 +25,11 @@ use App\Models\listings_info;
 use App\Models\packages;
 use App\Models\packages_prices_places;
 use App\Models\questions;
+use App\Models\support;
+use App\Models\User;
+use App\Services\listings\average_price_at_area;
+use App\Services\map\get_location_where;
+use App\Services\statistics\filter_statistics_admin;
 use Illuminate\Http\Request;
 use App\Http\traits\upload_image;
 
@@ -222,13 +230,79 @@ class DashboardServiceClass extends Controller
     }
 
     public function update_listing(){
-        listings_info::query()->updateOrCreate([
+        $data = listings_info::query()->updateOrCreate([
            'id'=>request('id')
         ],[
-            'status'=>request('status'),
+            'type'=>request('status'),
         ]);
         return messages::success_output(['title'=>trans('messages.saved_successfully'),'icon'=>'success']);
 
+    }
+
+    public function save_user(usersFormRequest $request){
+        $validated = $request->validated();
+        // check if image has been uploaded
+        if(request()->hasFile('image')){
+            $image = $this->upload(request('image'),'users');
+            $validated['image'] = $image;
+        }else if(!(request()->has('id'))){
+            $validated['image'] = 'default.png';
+        }
+        // check if password is updated
+        if(request()->has('password')){
+            $validated['password'] = bcrypt(request('password'));
+        }
+        $item = User::query()->updateOrCreate([
+            'id'=>request()->has('id') ? request('id'):null
+        ],$validated);
+        $item = User::query()->with('country')->find(request('id'));
+        return messages::success_output(trans('messages.saved_successfully'),$item,request()->has('id') ? 'update':'insert');
 
     }
+
+    public function filter_statistics(){
+        return response()->json(filter_statistics_admin::filter_data(request('type'),request('year')));
+    }
+
+    public function change_map(){
+        $type = request('search_at');
+        $val = request('value');
+        $column = request('type');
+        return get_location_where::get_where($val,$type,$column);
+
+    }
+
+    public function average_area_price(){
+        $data = average_price_at_area::average_price_meter(request('city_id'));
+        return response()->json($data);
+    }
+
+    public function save_support(supportFormRequest $request){
+        $data = $request->validated();
+        $item = support::query()->updateOrCreate([
+            'id'=>request()->has('id') ? request('id'):null
+        ],$data);
+        return messages::success_output(trans('messages.saved_successfully'),$item,request()->has('id') ? 'update':'insert');
+
+    }
+
+    public function save_pointad(){
+        switch(request('type')){
+            case 'countries':{$place_id = request('country_id');} break;
+            case 'governments':{$place_id = request('government_id');} break;
+            case 'cities':{$place_id = request('city_id');} break;
+            case 'areas':{$place_id = request('area_id');} break;
+        }
+        $data = [
+            'type'=>request('type'),
+            'place_id'=>$place_id,
+            'no_points'=>request('no_points'),
+        ];
+        $item = advertising_points_price::query()->updateOrCreate([
+            'id'=>request()->has('id') ? request('id'):null
+        ],$data);
+        return messages::success_output(trans('messages.saved_successfully'),$item,request()->has('id') ? 'update':'insert');
+
+    }
+
 }

@@ -60,10 +60,22 @@
                     <span>{{ switchWord('currencies') }}</span>
                 </inertia-link>
             </li>
+            <li custom="subscriptions">
+                <inertia-link  href="/dashboard/subscriptions">
+                    <span><i class="ri-stack-line"></i></span>
+                    <span>{{ switchWord('subscriptions') }}</span>
+                </inertia-link>
+            </li>
             <li custom="buildings">
                 <inertia-link  href="/dashboard/buildings">
                     <span><i class="ri-building-line"></i></span>
                     <span>{{ switchWord('buildings') }}</span>
+                </inertia-link>
+            </li>
+            <li custom="pointad">
+                <inertia-link  href="/dashboard/pointad">
+                    <span><i class="ri-shield-flash-line"></i></span>
+                    <span>{{ switchWord('ad_points') }}</span>
                 </inertia-link>
             </li>
             <li custom="countries">

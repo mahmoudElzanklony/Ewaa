@@ -28,9 +28,11 @@ class CreateListingsInfosTable extends Migration
             $table->string('en_address');
             $table->string('tu_address')->nullable();
             $table->float('price');
+            $table->float('meters_number');
             $table->string('youtube_link');
             $table->tinyInteger('whatapp_status')->default(0);
             $table->tinyInteger('contact_email_status')->default(0);
+            $table->tinyInteger('payment_status')->default(0);
             $table->string('type');
             $table->softDeletes();
             $table->timestamps();

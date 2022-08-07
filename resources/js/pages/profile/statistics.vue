@@ -28,7 +28,8 @@
                         <span v-else><i class="ri-arrow-right-s-fill"></i></span>
                         <span>{{ keywords.rating }}</span>
                     </h2>
-                    <line-chart :chart_data="chart_data" :labels_data="labels"></line-chart>
+                    <line-chart   :chart_data="chart_data" :labels_data="labels"></line-chart>
+
                 </div>
             </div>
         </div>
@@ -40,7 +41,6 @@
 import NavbarComponent from "../../components/NavbarComponent";
 import FooterComponent from "../../components/FooterComponent";
 import ProfileNavComponent from "../../components/ProfileNavComponent";
-import LineChart from "../../components/LineChart";
 export default {
     name: "statistics",
     props:['keywords','data_numbers'],
@@ -63,7 +63,7 @@ export default {
             ],
         }
     },
-    components: {LineChart, ProfileNavComponent, FooterComponent, NavbarComponent}
+    components: { ProfileNavComponent, FooterComponent, NavbarComponent}
 }
 </script>
 

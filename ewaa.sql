@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 28, 2022 at 09:12 PM
+-- Generation Time: Aug 06, 2022 at 05:34 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -63,7 +63,7 @@ INSERT INTO `answers` (`id`, `question_id`, `ar_name`, `en_name`, `tu_name`, `cr
 (15, 2, 'dsa', 'dsassxxxx', NULL, '2022-07-23 01:51:26', '2022-07-23 01:52:41'),
 (16, 2, 'zzzz', '[[[[[[[[[x', NULL, '2022-07-23 01:52:41', '2022-07-23 01:52:41'),
 (17, 16, 'a', 'b', 'c', '2022-07-24 01:04:19', '2022-07-24 01:04:19'),
-(18, 13, 'last question', 'last question', NULL, '2022-07-24 01:38:54', '2022-07-24 01:38:54');
+(19, 17, 'aaaa', 'ssssss', NULL, '2022-07-30 21:46:40', '2022-07-30 21:46:40');
 
 -- --------------------------------------------------------
 
@@ -87,7 +87,7 @@ CREATE TABLE `areas` (
 
 INSERT INTO `areas` (`id`, `city_id`, `ar_name`, `en_name`, `tu_name`, `created_at`, `updated_at`) VALUES
 (1, 1, 'قصر القبة', 'dsad', NULL, NULL, NULL),
-(2, 2, 'يشسي', 'يسشي', NULL, '2022-07-24 11:09:03', '2022-07-24 11:09:03');
+(2, 1, 'يشسي', 'يسشي', NULL, '2022-07-24 11:09:03', '2022-07-24 11:09:03');
 
 -- --------------------------------------------------------
 
@@ -142,9 +142,7 @@ INSERT INTO `categories_questions` (`id`, `category_id`, `question_id`, `created
 (9, 14, 2, '2022-07-24 00:17:45', '2022-07-24 00:17:45'),
 (10, 14, 16, '2022-07-24 01:04:19', '2022-07-24 01:04:19'),
 (11, 10, 2, '2022-07-28 16:33:50', '2022-07-28 16:33:50'),
-(12, 10, 13, '2022-07-28 16:33:50', '2022-07-28 16:33:50'),
-(13, 10, 18, '2022-07-28 16:33:50', '2022-07-28 16:33:50'),
-(14, 14, 13, '2022-07-28 16:40:17', '2022-07-28 16:40:17');
+(12, 10, 13, '2022-07-28 16:33:50', '2022-07-28 16:33:50');
 
 -- --------------------------------------------------------
 
@@ -206,11 +204,20 @@ CREATE TABLE `currencies` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `ar_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `en_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tu_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `currency_code` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `country_code` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `currencies`
+--
+
+INSERT INTO `currencies` (`id`, `ar_name`, `en_name`, `tu_name`, `currency_code`, `country_code`, `created_at`, `updated_at`) VALUES
+(1, 'ريال سعودي', 'Ryal', '', 'SR', 'KSA', '2022-07-30 17:10:45', NULL),
+(2, 'جنيه مصري', 'Egypt Poun', '', 'L.E', 'EGP', '2022-07-30 17:10:45', '2022-07-30 22:59:50');
 
 -- --------------------------------------------------------
 
@@ -288,14 +295,25 @@ CREATE TABLE `listings_infos` (
   `en_address` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tu_address` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `price` float NOT NULL,
+  `meters_number` float NOT NULL,
   `youtube_link` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `whatapp_status` tinyint(4) NOT NULL DEFAULT 0,
   `contact_email_status` tinyint(4) NOT NULL DEFAULT 0,
+  `payment_status` tinyint(4) NOT NULL DEFAULT 0,
   `type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `listings_infos`
+--
+
+INSERT INTO `listings_infos` (`id`, `user_id`, `category_id`, `area_id`, `ar_name`, `en_name`, `tu_name`, `ar_info`, `en_info`, `tu_info`, `ar_address`, `en_address`, `tu_address`, `price`, `meters_number`, `youtube_link`, `whatapp_status`, `contact_email_status`, `payment_status`, `type`, `deleted_at`, `created_at`, `updated_at`) VALUES
+(6, 10, 9, 1, 'بيش كبير', 'big home', NULL, 'معلومات عن البيت', 'info about home', NULL, 'القاهره', 'cairo', NULL, 5000, 600, '', 0, 0, 0, 'expired', NULL, '2022-07-22 01:07:47', '2022-08-01 20:45:25'),
+(7, 5, 9, 2, 'بيت كبير 2', '2big home', NULL, 'معلومات عن البيت', 'info about home', NULL, 'القاهره', 'cairo', NULL, 5000, 120, '', 0, 0, 1, 'live', NULL, '2022-07-22 01:07:47', '2022-08-01 20:05:15'),
+(8, 5, 9, 1, 'بيت كبير 2', '2big home', NULL, 'معلومات عن البيت', 'info about home', NULL, 'القاهره', 'cairo', NULL, 5000, 500, '', 0, 0, 0, 'deleted_at', NULL, '2022-07-22 01:07:47', '2022-08-01 19:28:23');
 
 -- --------------------------------------------------------
 
@@ -400,7 +418,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (69, '2022_07_16_155724_create_favourites_table', 3),
 (70, '2022_07_21_164902_create_listings_notes_table', 4),
 (71, '2022_07_21_215240_create_advertisng_points_prices_table', 5),
-(72, '2022_07_28_185319_create_currencies_table', 6);
+(72, '2022_07_14_185319_create_currencies_table', 6),
+(73, '2022_08_06_004720_create_subscriptions_table', 7);
 
 -- --------------------------------------------------------
 
@@ -428,16 +447,26 @@ CREATE TABLE `notifications` (
 
 CREATE TABLE `packages` (
   `id` bigint(20) UNSIGNED NOT NULL,
+  `ar_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `en_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `min_value` int(11) NOT NULL,
   `max_value` int(11) NOT NULL,
   `price` double(8,2) NOT NULL,
   `image` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `is_visible` tinyint(4) NOT NULL DEFAULT 1,
-  `currency_Id` bigint(20) UNSIGNED NOT NULL,
+  `currency_id` bigint(20) UNSIGNED NOT NULL,
   `expiration_date` date DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `packages`
+--
+
+INSERT INTO `packages` (`id`, `ar_name`, `en_name`, `min_value`, `max_value`, `price`, `image`, `is_visible`, `currency_id`, `expiration_date`, `created_at`, `updated_at`) VALUES
+(1, 'dasd', 'dsa', 1, 10, 2.00, 'default.png', 1, 1, '2024-01-01', '2022-07-30 17:21:10', '2022-08-06 11:50:37'),
+(41, 'الذهبية', 'gold', 1, 100, 14.00, '1659222438_user.png', 1, 2, NULL, '2022-07-30 21:05:55', '2022-08-06 12:00:40');
 
 -- --------------------------------------------------------
 
@@ -453,6 +482,16 @@ CREATE TABLE `packages_prices_places` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `packages_prices_places`
+--
+
+INSERT INTO `packages_prices_places` (`id`, `package_id`, `country_id`, `price`, `created_at`, `updated_at`) VALUES
+(5, 1, 3, 3.00, '2022-07-30 21:03:20', '2022-07-30 21:05:25'),
+(6, 1, 4, 10.00, '2022-07-30 21:03:20', '2022-08-06 12:00:17'),
+(7, 41, 2, 123.00, '2022-07-30 21:07:18', '2022-07-30 21:07:18'),
+(8, 41, 3, 140.00, '2022-07-30 21:07:18', '2022-07-30 21:07:18');
 
 -- --------------------------------------------------------
 
@@ -492,8 +531,7 @@ INSERT INTO `questions` (`id`, `ar_name`, `en_name`, `tu_name`, `required_status
 (2, 'السؤال الثاني', 'question two', NULL, 0, 'select', '2022-07-20 00:56:58', '2022-07-23 01:51:26'),
 (13, 'يs', 'das', NULL, 1, 'select', '2022-07-23 01:18:10', '2022-07-23 01:25:07'),
 (16, 'ييشسي', 'test ss', 'dsa', 1, 'select', '2022-07-24 01:04:19', '2022-07-24 01:04:19'),
-(17, 'das', 'dsad', NULL, 1, 'text', '2022-07-28 15:33:28', '2022-07-28 15:33:28'),
-(18, 'a', 'bsws', NULL, 0, 'text', '2022-07-28 16:26:36', '2022-07-28 16:26:36');
+(17, 'das', 'dsad', NULL, 1, 'select', '2022-07-28 15:33:28', '2022-07-30 21:46:40');
 
 -- --------------------------------------------------------
 
@@ -518,6 +556,31 @@ INSERT INTO `roles` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (3, 'coupounded_developer', '2022-07-15 23:08:03', NULL),
 (4, 'brokerage_company', '2022-07-15 23:08:03', NULL),
 (5, 'admin', '2022-07-15 23:08:03', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subscriptions`
+--
+
+CREATE TABLE `subscriptions` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `package_id` bigint(20) UNSIGNED NOT NULL,
+  `points_ordered` int(11) NOT NULL,
+  `min_points` int(11) NOT NULL,
+  `max_points` int(11) NOT NULL,
+  `point_price` double(8,2) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `subscriptions`
+--
+
+INSERT INTO `subscriptions` (`id`, `user_id`, `package_id`, `points_ordered`, `min_points`, `max_points`, `point_price`, `created_at`, `updated_at`) VALUES
+(1, 5, 41, 5, 2, 10, 3.00, '2022-08-06 13:39:30', NULL);
 
 -- --------------------------------------------------------
 
@@ -554,6 +617,7 @@ CREATE TABLE `users` (
   `address` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `image` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'default.png',
   `block` tinyint(4) NOT NULL DEFAULT 0,
+  `auto_publish` tinyint(4) NOT NULL DEFAULT 0,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -563,16 +627,19 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `role_id`, `country_id`, `username`, `email`, `email_verified_at`, `serial_number`, `password`, `phone`, `address`, `image`, `block`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 2, 1, 'dasdsa', 'mahmoud_elzanklony1234@yahoo.com', NULL, '1657932959', '1234567', '1090576399', '', 'default.png', 0, NULL, '2022-07-15 22:55:59', '2022-07-15 22:55:59'),
-(3, 3, 1, 'adsa', 'alyaa@yahoo.com', NULL, '1657933400', '1234567', '1090576399', '', 'default.png', 0, NULL, '2022-07-15 23:03:20', '2022-07-15 23:03:20'),
-(4, 1, 1, 'dasaaaaaaaa', 'aaaaaaaaa@yahoo.com', NULL, '1657934348', '1234567', '0', '', 'default.png', 0, NULL, '2022-07-15 23:19:08', '2022-07-15 23:19:08'),
-(5, 2, 1, 'ahmed', 'ahmed@yahoo.com', NULL, '1657934962', '12345789', '123', '', 'default.png', 0, NULL, '2022-07-15 23:29:22', '2022-07-15 23:29:22'),
-(6, 2, 1, 'api user', 'ahmed_ali@yahoo.com', NULL, '1657986689', '$2y$10$l.8YJGqT9MGT9ENZ3fl9xeYVLQChQV.1FHlcUag3CENqPZXhWphOW', '0115229222', '', '1658163675_user.png', 0, NULL, '2022-07-16 13:51:29', '2022-07-20 14:15:41'),
-(7, 2, 1, 'ali', 'ali@yahoo.com', NULL, '1657996316', '$2y$10$/3F2fUEZYfFJ8SNi3laARuYkO7O9OxPs59aEGkXhb2wMJqDOkYthW', '01005663932', '', 'default.png', 0, NULL, '2022-07-16 16:31:56', '2022-07-16 16:31:56'),
-(8, 2, 1, 'ahmed', 'api_user@yahoo.com', NULL, '1658163459', '$2y$10$dT5BrViw6MarWWpZs7pzle0Ys2eTUDCtcm/eRd0ZJSfU1mGF9hZQq', '123567890', '', 'default.png', 0, NULL, '2022-07-18 14:57:40', '2022-07-18 14:57:40'),
-(9, 2, 1, 'das', 'dasd', NULL, '1658257519', '$2y$10$iW24n0WlziaRJMWKpoZFNufJvqizaaRRnrz/Jl325b0kXTu7wL5.y', '2131233213123', '', 'default.png', 0, NULL, '2022-07-19 17:05:19', '2022-07-19 17:05:19'),
-(10, 4, 1, 'احمد سعد', 'ahmed_saad@yahoo.com', NULL, '1658257862', '$2y$10$XpVouGnfeVi/570i4wiWLOBcD6GELJg/E5Jp7ydCdPMXeA4HwGKI6', '011522966411', '', '1658257973_user.png', 0, NULL, '2022-07-19 17:11:02', '2022-07-20 09:17:47');
+INSERT INTO `users` (`id`, `role_id`, `country_id`, `username`, `email`, `email_verified_at`, `serial_number`, `password`, `phone`, `address`, `image`, `block`, `auto_publish`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 2, 1, 'dasdsa', 'mahmoud_elzanklony1234@yahoo.com', NULL, '1657932959', '1234567', '1090576399', 'قاهؤه', 'default.png', 0, 0, NULL, '2022-07-15 22:55:59', '2022-07-15 22:55:59'),
+(3, 3, 1, 'adsa', 'alyaa@yahoo.com', NULL, '1657933400', '1234567', '1090576399', '', 'default.png', 0, 0, NULL, '2022-07-15 23:03:20', '2022-07-15 23:03:20'),
+(4, 1, 1, 'dasaaaaaaaa', 'aaaaaaaaa@yahoo.com', NULL, '1657934348', '1234567', '0', '', 'default.png', 0, 0, NULL, '2022-07-15 23:19:08', '2022-07-15 23:19:08'),
+(5, 2, 1, 'ahmed', 'ahmed@yahoo.com', NULL, '1657934962', '12345789', '123', '', 'default.png', 0, 0, NULL, '2022-07-15 23:29:22', '2022-07-15 23:29:22'),
+(6, 2, 1, 'api user', 'ahmed_ali@yahoo.com', NULL, '1657986689', '$2y$10$l.8YJGqT9MGT9ENZ3fl9xeYVLQChQV.1FHlcUag3CENqPZXhWphOW', '0115229222', '', '1658163675_user.png', 0, 0, NULL, '2022-07-16 13:51:29', '2022-07-20 14:15:41'),
+(7, 2, 1, 'ali', 'ali@yahoo.com', NULL, '1657996316', '$2y$10$/3F2fUEZYfFJ8SNi3laARuYkO7O9OxPs59aEGkXhb2wMJqDOkYthW', '01005663932', '', 'default.png', 0, 0, NULL, '2022-07-16 16:31:56', '2022-07-16 16:31:56'),
+(8, 2, 1, 'ahmed', 'api_user@yahoo.com', NULL, '1658163459', '$2y$10$dT5BrViw6MarWWpZs7pzle0Ys2eTUDCtcm/eRd0ZJSfU1mGF9hZQq', '123567890', '', 'default.png', 0, 0, NULL, '2022-07-18 14:57:40', '2022-07-18 14:57:40'),
+(9, 2, 1, 'das', 'dasd', NULL, '1658257519', '$2y$10$iW24n0WlziaRJMWKpoZFNufJvqizaaRRnrz/Jl325b0kXTu7wL5.y', '2131233213123', '', 'default.png', 0, 0, NULL, '2022-07-19 17:05:19', '2022-07-19 17:05:19'),
+(10, 4, 1, 'احمد سعد', 'ahmed_saad@yahoo.com', NULL, '1658257862', '$2y$10$XpVouGnfeVi/570i4wiWLOBcD6GELJg/E5Jp7ydCdPMXeA4HwGKI6', '011522966411', '', '1658257973_user.png', 0, 1, NULL, '2022-07-19 17:11:02', '2022-07-20 09:17:47'),
+(11, 2, 1, 'test', 'test@yahoo.com', NULL, '1659400700', '$2y$10$lWBGPQEncih3jHa6toVxle9fGx10rmx.Vbiu9MSCzuQebIwjdl0PW', '01041413123', '', 'default.png', 0, 0, NULL, '2022-08-01 22:38:20', '2022-08-01 22:38:20'),
+(12, 2, 1, 'dsad', 'dsa@yahoo.com', NULL, '1659400744', '$2y$10$HduagOzUckkj1kY.Zy678e.cBo2j4kdfsPQoRwyV5U0me3JzfGPoO', '3123123', '', 'default.png', 0, 0, NULL, '2022-08-01 22:39:04', '2022-08-01 22:39:04'),
+(13, 2, 4, 'ads', 'dasdasd@yahoo.com', NULL, '1659400995', '$2y$10$lyHKwY2b4nPxwxO8xRZsOecpSSksJyDOqBDj7z0pF3qiCRDSV9vEG', '3123123111', 'dasd', '1659402361_user.jpg', 0, 1, NULL, '2022-08-01 22:43:15', '2022-08-01 23:09:20');
 
 -- --------------------------------------------------------
 
@@ -628,7 +695,10 @@ INSERT INTO `user_infos` (`id`, `user_id`, `full_name`, `whatapp_status`, `age`,
 (1, 6, 'ahmed sameh api full', 0, 'abc', 'male', 'single', 'phd', 'abc', 'xyz', '2022-07-16 16:31:56', '2022-07-20 14:27:19'),
 (2, 8, '', 0, '', '', '', '', '', '', '2022-07-18 14:57:40', '2022-07-18 14:57:40'),
 (3, 9, '', 0, '', '', '', '', '', '', '2022-07-19 17:05:19', '2022-07-19 17:05:19'),
-(4, 10, 'احمد كامل سعد', 1, '26:30', 'male', 'single', 'bachelors', 'هندسة', 'مهندس معماري', '2022-07-19 17:11:02', '2022-07-20 10:14:16');
+(4, 10, 'احمد كامل سعد', 1, '26:30', 'male', 'single', 'bachelors', 'هندسة', 'مهندس معماري', '2022-07-19 17:11:02', '2022-07-20 10:14:16'),
+(5, 11, '', 0, '', '', '', '', '', '', '2022-08-01 22:38:20', '2022-08-01 22:38:20'),
+(6, 12, '', 0, '', '', '', '', '', '', '2022-08-01 22:39:04', '2022-08-01 22:39:04'),
+(7, 13, '', 0, '', '', '', '', '', '', '2022-08-01 22:43:15', '2022-08-01 22:43:15');
 
 --
 -- Indexes for dumped tables
@@ -767,7 +837,7 @@ ALTER TABLE `notifications`
 --
 ALTER TABLE `packages`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `currency_Id` (`currency_Id`);
+  ADD KEY `currency_Id` (`currency_id`);
 
 --
 -- Indexes for table `packages_prices_places`
@@ -794,6 +864,14 @@ ALTER TABLE `questions`
 --
 ALTER TABLE `roles`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `subscriptions`
+--
+ALTER TABLE `subscriptions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `subscriptions_user_id_foreign` (`user_id`),
+  ADD KEY `subscriptions_package_id_foreign` (`package_id`);
 
 --
 -- Indexes for table `supports`
@@ -838,7 +916,7 @@ ALTER TABLE `advertising_points_prices`
 -- AUTO_INCREMENT for table `answers`
 --
 ALTER TABLE `answers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `areas`
@@ -850,7 +928,7 @@ ALTER TABLE `areas`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `categories_questions`
@@ -874,7 +952,7 @@ ALTER TABLE `countries`
 -- AUTO_INCREMENT for table `currencies`
 --
 ALTER TABLE `currencies`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -898,7 +976,7 @@ ALTER TABLE `governments`
 -- AUTO_INCREMENT for table `listings_infos`
 --
 ALTER TABLE `listings_infos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `listings_notes`
@@ -928,7 +1006,7 @@ ALTER TABLE `listing_statistics`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 
 --
 -- AUTO_INCREMENT for table `notifications`
@@ -940,13 +1018,13 @@ ALTER TABLE `notifications`
 -- AUTO_INCREMENT for table `packages`
 --
 ALTER TABLE `packages`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `packages_prices_places`
 --
 ALTER TABLE `packages_prices_places`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `questions`
@@ -961,6 +1039,12 @@ ALTER TABLE `roles`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `subscriptions`
+--
+ALTER TABLE `subscriptions`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `supports`
 --
 ALTER TABLE `supports`
@@ -970,7 +1054,7 @@ ALTER TABLE `supports`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `user_company_infos`
@@ -982,7 +1066,7 @@ ALTER TABLE `user_company_infos`
 -- AUTO_INCREMENT for table `user_infos`
 --
 ALTER TABLE `user_infos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables
@@ -1079,6 +1163,13 @@ ALTER TABLE `packages`
 ALTER TABLE `packages_prices_places`
   ADD CONSTRAINT `packages_prices_places_ibfk_1` FOREIGN KEY (`country_id`) REFERENCES `countries` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `packages_prices_places_package_id_foreign` FOREIGN KEY (`package_id`) REFERENCES `packages` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `subscriptions`
+--
+ALTER TABLE `subscriptions`
+  ADD CONSTRAINT `subscriptions_package_id_foreign` FOREIGN KEY (`package_id`) REFERENCES `packages` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `subscriptions_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `users`

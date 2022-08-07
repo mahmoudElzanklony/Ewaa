@@ -26,6 +26,8 @@ class packagesFormRequest extends FormRequest
     {
         return [
             'image'=>'nullable|image|mimes:jpg,jpeg,png,gif',
+            'ar_name'=>'required|max:191',
+            'en_name'=>'required|max:191',
             'currency_id'=>'required|exists:currencies,id',
             'min_value'=>'required',
             'max_value'=>'required',
@@ -39,6 +41,8 @@ class packagesFormRequest extends FormRequest
     {
         return [
             'image'=>trans('keywords.image'),
+            'ar_name'=>trans('keywords.ar_name'),
+            'en_name'=>trans('keywords.en_name'),
             'currency_id'=>trans('keywords.currency'),
             'min_value'=>trans('keywords.min_value'),
             'max_value'=>trans('keywords.max_value'),

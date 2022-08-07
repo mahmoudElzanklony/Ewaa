@@ -10,14 +10,17 @@ class listings_info extends Model
 {
     use HasFactory , SoftDeletes;
     protected $fillable = ['user_id','category_id','area_id','ar_name','en_name','tu_name','ar_info','en_info','tu_info',
-        'ar_address','en_address','tu_address','price','youtube_link','whatapp_status','contact_email_status','type'];
+        'ar_address','en_address','tu_address','price','meters_number',
+        'youtube_link','whatapp_status','contact_email_status',
+        'payment_status','type'];
 
     protected $dates = ['deleted_at'];
 
     public static function selection(){
         return self::query()->select('id','user_id','category_id','area_id'
-            ,app()->getLocale().'_name as name',app()->getLocale().'_info as info',app()->getLocale().'_address as address',
-            'price','youtube_link','whatapp_status','contact_email_status','type');
+            ,app()->getLocale().'_name as name',app()->getLocale().'_info as info',
+            app()->getLocale().'_address as address',
+            'price','meters_number','youtube_link','whatapp_status','contact_email_status','payment_status','type');
     }
 
 

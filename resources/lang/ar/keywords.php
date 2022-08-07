@@ -523,6 +523,7 @@ return [
 
     'update_user'=>'تعديل بيانات المستخدم',
     'upload_image'=>'أرفع الصورة',
+    'user_listings'=>'عقارات المستخدم',
     // end of dashboard ----------------------------------------------------------
 
     // start of dashboard categories ----------------------------------------------------------
@@ -583,6 +584,14 @@ return [
     'add_specific_price_for_specific_areas'=>'أضف سعر مخصص لمناطق معينة',
     // end of dashboard packages ----------------------------------------------------------
 
+    // start of dashboard subscription ----------------------------------------------------------
+    'subscriptions'=>'الاشتراكات',
+    'package'=>'الباقة',
+    'points_ordered'=>'عدد النقاط التي تم شرائها',
+    'package_min_points'=>'اقل عدد للنقاط',
+    'package_max_points'=>'اقصي عدد للنقاط',
+    // end of dashboard subscription ----------------------------------------------------------
+
 
     // start of dashboard currencies ----------------------------------------------------------
     'currencies'=>'العملات',
@@ -594,15 +603,21 @@ return [
     // start of dashboard listings ----------------------------------------------------------
     'listing_name'=>'اسم العقار',
     'approval_status'=>'حالة الموافقة',
+    'change_approval_status'=>'تغيير الموافقة',
+    'payment_status'=>'حالة الدفع',
+    'meters_number'=>'المساحة بالمتر',
+    'average_price_meter'=>'متوسط سعر المتر',
     // end of dashboard listings ----------------------------------------------------------
 
 
     // start of dashboard map ----------------------------------------------------------
     'countries'=>'الدول',
     'governments'=>'المحافظات',
+    'government'=>'محافظة',
     'cities'=>'المدن',
     'areas'=>'المناطق',
     'name'=>'الأسم',
+    'select_type'=>'اختر النوع',
 
     // end of dashboard map ----------------------------------------------------------
     // start of dashboard report ----------------------------------------------------------
@@ -615,6 +630,12 @@ return [
     'message'=>'الرسالة',
     'reply'=>'الرد',
     // end of dashboard support ----------------------------------------------------------
+
+
+    // start of dashboard pointad ----------------------------------------------------------
+    'pointad'=>'سعر الاعلان بالنسبة للنقاط',
+    'no_points'=>'عدد النقاط',
+    // end of dashboard pointad ----------------------------------------------------------
 
 
     // start of days ----------------------------------------------------------

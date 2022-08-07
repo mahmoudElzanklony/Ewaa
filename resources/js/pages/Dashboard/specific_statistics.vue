@@ -13,7 +13,8 @@
                     <div class="row">
                         <div class="col-3"></div>
                         <div class="col-6">
-                            <form>
+                            <form method="post" @submit.prevent="filter">
+                                <input type="hidden" name="type" :value="type">
                                 <div class="row">
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
@@ -35,7 +36,7 @@
                         </div>
                     </div>
                     <div>
-                        <line-chart :chart_data="chart_data" :labels_data="labels"></line-chart>
+                        <line-chart   :chart_data="chart_data" :labels_data="labels"></line-chart>
                     </div>
                 </div>
             </div>
@@ -46,17 +47,56 @@
 <script>
 import SwitchLangWord from "../../mixin/SwitchLangWord";
 import SideNavbarComponent from "../../components/dashboard/SideNavbarComponent";
-import LineChart from "../../components/LineChart";
 
 export default {
-    name: "index",
-    components: {LineChart, SideNavbarComponent},
-    props:['keywords'],
+    name: "specific_statics",
+    components: {SideNavbarComponent},
+    props:['keywords','handling_data'],
     data:function (){
         return {
-            chart_data:[1,2,3,4,56,7,9,10,11,2,12,5],
+            chart_data:Object.values(this.handling_data),
             labels:Object.values(this.keywords['months']),
+            type:document.URL.split('?type=')[1],
         }
+    },
+    created() {
+        this.updateChart(this.chart_data);
+    },
+    methods:{
+        updateChart:function(data){
+            setTimeout(() => {
+                this.chart_data =data;
+            }, 1000)
+        },
+        filter:function(){
+            /*var target = event.target;
+            var data = new FormData(target);
+            var com = this;
+            axios.post('/dashboard/filter-statistics',data).then((e)=>{
+                com.chart_data = e.data.data;
+            });*/
+
+            var target = $(event.target);
+            var form_data = new FormData(event.target);
+            var output = [];
+            $.ajax({
+                headers:{
+                  'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content'),
+                },
+                url:'/dashboard/filter-statistics',
+                type:'POST',
+                data:form_data,
+                processData: false,
+                async:false,
+                contentType: false,
+                dataType:'JSON',
+                success:function (data){
+                    output = data;
+                }.bind(this)
+            });
+            this.updateChart(output);
+
+        },
     },
     mixins:[SwitchLangWord],
 }

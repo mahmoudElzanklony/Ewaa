@@ -15,6 +15,8 @@ class packages_dashboard
         return [
             'table_head_keys'=>[
                 'image'=>trans('keywords.image'),
+                'ar_name'=>trans('keywords.ar_name'),
+                'en_name'=>trans('keywords.en_name'),
                 'currency_id'=>trans('keywords.currency'),
                 'min_value'=>trans('keywords.min_value'),
                 'max_value'=>trans('keywords.max_value'),
@@ -26,6 +28,8 @@ class packages_dashboard
             ],
             'data_model'=>[
                 'currency_id'=>trans('keywords.currency'),
+                'ar_name'=>trans('keywords.ar_name'),
+                'en_name'=>trans('keywords.en_name'),
                 'min_value'=>trans('keywords.min_value'),
                 'max_value'=>trans('keywords.max_value'),
                 'price'=>trans('keywords.point_price'),

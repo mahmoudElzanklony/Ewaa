@@ -1,43 +1,82 @@
 <template>
-    <div class="dashboard">
+    <section class="notifications">
         <side-navbar-component></side-navbar-component>
-        <div class="content notifications">
-            <div class="container mt-4 mb-4">
-                <div class="outer-notification">
-                    <p>
-                        <span>{{  keywords.notifications }}</span>
-                        <span>4</span>
-                    </p>
-                    <div class="inner">
-                        <div class="notification d-flex align-items-center justify-content-between"
-                             v-for="i in 7" :key="i"
-                        >
-                            <div class="data d-flex align-items-center">
-                                <img src="/images/users/one.jpg">
-                                <div class="text">
-                                    <p>
-                                        <strong>الأدارة</strong>
-                                    </p>
-                                    <p>لقد تمت الموافقة علي طلب اعلانك</p>
-                                </div>
+        <div class="loading align-items-center justify-content-center">
+            <img  src="/images/loading.gif">
+        </div>
+        <div class="container mt-4 mb-4">
+            <div class="outer-notification">
+                <p>
+                    <span>{{  keywords.notifications }}</span>
+                    <span>4</span>
+                </p>
+                <div class="inner">
+                    <div class="notification d-flex align-items-center justify-content-between"
+                         v-for="(i,index) in vuex_data" :key="index"
+                    >
+                        <div class="data d-flex align-items-center">
+                            <img :src="'/images/users/'+i['receiver']['image']">
+                            <div class="text">
+                                <p>
+                                    <strong>{{ i['receiver']['username'] }}</strong>
+                                </p>
+                                <p>
+                                    {{ i['info'] }}
+                                </p>
                             </div>
-                            <p class="d-flex align-items-center">
-                                <span>12/05/2020</span>
-                                <span><i class="ri-calendar-2-line"></i></span>
-                            </p>
                         </div>
+                        <p class="d-flex align-items-center">
+                            <span>{{ new Date(i['created_at']).toLocaleDateString() }}</span>
+                            <span><i class="ri-calendar-2-line"></i></span>
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 </template>
 
 <script>
 import SideNavbarComponent from "../../components/dashboard/SideNavbarComponent";
+import {mapActions , mapGetters , mapMutations} from  "vuex";
+import SwitchLangWord from "../../mixin/SwitchLangWord";
 export default {
     name: "notifications",
-    props:['keywords'],
+    props:['keywords','data','type'],
+    mixins:[SwitchLangWord],
+    computed:{
+        ...mapGetters({
+            'vuex_data':'notifications/get_data'
+        })
+    },
+    methods:{
+        ...mapMutations({
+            'inilalize_data':'notifications/inialize_data',
+            'inilalize_type':'notifications/inialize_type',
+        }),
+        ...mapActions({
+            'get_data_when_scroll':'notifications/infinite_scroll',
+        })
+    },
+    created() {
+        var com = this;
+        window.addEventListener("scroll", async function(e){
+            let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight
+            if(bottomOfWindow % 1 != 0){
+                bottomOfWindow = Math.ceil(bottomOfWindow);
+            }
+            console.log(bottomOfWindow);
+            console.log(document.documentElement.offsetHeight);
+            let page_height = document.documentElement.offsetHeight;
+           if(bottomOfWindow === page_height || bottomOfWindow-page_height == 1 || bottomOfWindow-page_height == -1 ){
+               console.log(com);
+               await com.get_data_when_scroll();
+           }
+        });
+        this.inilalize_data(this.data);
+        this.inilalize_type(this.type);
+
+    },
     components: {SideNavbarComponent}
 }
 </script>
@@ -103,5 +142,8 @@ export default {
             }
         }
     }
+}
+.loading{
+    display:none;
 }
 </style>

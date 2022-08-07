@@ -19,14 +19,14 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="i in 15" :key="i">
-                            <td>أحمد علي</td>
-                            <td>Ahmed@yahoo.com</td>
-                            <td>عندي مشكلة في شراء نقاط</td>
-                            <td></td>
+                        <tr v-for="(i,index) in vuex_data" :key="index" :class="'tr_'+i['id']">
+                            <td>{{ i['username'] }}</td>
+                            <td>{{ i['email'] }}</td>
+                            <td>{{ i['message'] }}</td>
+                            <td>{{ i['reply'] }}</td>
                             <td class="actions">
-                                <span><i data-toggle="modal" data-target="#update_box" class="ri-edit-line"></i></span>
-                                <span><i @click="deleteRecord(10)" class="ri-close-line"></i></span>
+                                <span><i data-toggle="modal" data-target="#update_box" @click="update_item(i)" class="ri-edit-line"></i></span>
+                                <span><i @click="delete_item('supports',i['id'],'.tr_'+i['id'])" class="ri-close-line"></i></span>
                             </td>
                         </tr>
                         </tbody>
@@ -39,18 +39,29 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="update_users_box">{{ switchWord('add_new_item') }}</h5>
+                        <h5 class="modal-title" id="update_users_box">{{ switchWord('update_new_item') }}</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form>
-                            <div class="form-group">
-                               <textarea class="form-control" name="reply" :placeholder="handling_data['table_head_keys']['reply']" required></textarea>
+                        <form method="post" @submit.prevent="save_support">
+                            <input type="hidden" name="id" :value="item != null ? item['id']:null">
+                            <div class="form-group"
+                                 v-for="input in Object.keys(handling_data['data_model'])" :key="input">
+                                <label>{{ handling_data['data_model'][input] }}</label>
+                                <textarea class="form-control" :name="input"
+                                          v-if="input == 'message' || input == 'reply'"
+                                          :value="item != null ? item[input]:''" required>
+                                    {{ item != null ? item[input]:'' }}
+                                </textarea>
+                                <input :name="input" class="form-control" v-else
+                                       :value="item != null ? item[input]:''"
+                                       :required="input.indexOf('tu') == -1">
+                                <p class="alert-danger"></p>
                             </div>
                             <div class="form-group">
-                                <input type="submit" class="btn btn-primary" :value="switchWord('send')">
+                                <input type="submit" class="btn btn-primary" :value="switchWord('save')">
                             </div>
 
                         </form>
@@ -71,26 +82,29 @@
 import SideNavbarComponent from "../../components/dashboard/SideNavbarComponent";
 import tableData from "../../mixin/tableData";
 import SwitchLangWord from "../../mixin/SwitchLangWord";
-import DeleteItemComponent from "../../components/DeleteItemComponent";
-import {mapMutations , mapActions} from 'vuex';
+import delete_item from "../../mixin/delete_item";
+import update_item from "../../mixin/update_item"
+import {mapMutations ,mapGetters, mapActions} from 'vuex';
 export default {
     name: "support",
-    mixins:[tableData,SwitchLangWord,DeleteItemComponent],
+    mixins:[tableData,SwitchLangWord,delete_item,update_item],
     props:['main_title','handling_data'],
     components: {SideNavbarComponent},
     methods:{
         ...mapActions({
-            incrementAction:`counter/incrementAsyc`
+            'save_support':'support_dash/save_support'
+        }),
+        ...mapMutations({
+           'inilalize_data':'support_dash/inilaize_data'
         }),
     },
+    computed:{
+      ...mapGetters({
+         'vuex_data':'support_dash/get_data',
+      }),
+    },
     created() {
-        this.incrementAction({amount:200});
-       // this.$store.commit({type:'increment',amount:42});
-      /*  this.increment(this.$store);
-        console.log(this.$store.state);*/
-       /* console.log(this.$store.getters.filter_data(15));
-        console.log('---------------');
-      //  console.log(this.$store.dispatch({type:'incrementAsyc',amount:123456}));*/
+        this.inilalize_data(this.handling_data['data']);
     }
 }
 </script>

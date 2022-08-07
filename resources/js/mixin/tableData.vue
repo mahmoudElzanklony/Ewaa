@@ -12,7 +12,8 @@ export default {
             var url = 'https://cdn.datatables.net/plug-ins/1.11.4/i18n/en-gb.json';
         }
         jQuery( document ).ready(function( $ ) {
-            $('.myTable').DataTable( {
+            var data_table = null;
+            data_table = $('.myTable').DataTable( {
                 language: {
                     url: url,
                 },
@@ -21,6 +22,7 @@ export default {
                     'copy', 'csv', 'excel', 'print'
                 ]
             } );
+            window.table_data = data_table;
         });
     }
 }
