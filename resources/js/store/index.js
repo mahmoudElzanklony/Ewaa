@@ -17,6 +17,7 @@ import listings_dash from "./modules/dashboard/listings";
 import users_dash from "./modules/dashboard/users";
 import support_dash from "./modules/dashboard/support"
 import pointad_dash from "./modules/dashboard/poindad"
+import settings_dash from "./modules/dashboard/settings";
 
 import countries_govenrn_cities_areas from "./modules/map_data";
 import notifications from "./modules/notifications";
@@ -39,6 +40,7 @@ const store = new Vuex.Store({
         users_dash,
         support_dash,
         pointad_dash,
+        settings_dash,
         // end dashboard modules
         countries_govenrn_cities_areas,
         notifications

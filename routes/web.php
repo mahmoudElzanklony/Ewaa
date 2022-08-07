@@ -123,6 +123,7 @@ Route::group(['middleware'=>'changeLang'],function (){
         Route::get('/reports',[DashboardController::class,'reports']);
         Route::get('/support',[DashboardController::class,'support']);
         Route::get('/pointad',[DashboardController::class,'pointad']);
+        Route::get('/settings',[DashboardController::class,'settings']);
     });
 
 });

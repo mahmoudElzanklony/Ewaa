@@ -7,10 +7,12 @@
                     <div class="layer d-flex flex-wrap">
                         <h2>{{ keywords.ewaa_word }}</h2>
                         <p>{{ keywords.ewaa_listings }}</p>
-                        <inertia-link href="#"
+                        <inertia-link href="/dashboard/listings"
                                       class="btn btn-primary">{{ switchWord('explore_listings') }}
                         </inertia-link>
-                        <button class="btn btn-outline-primary">{{ switchWord('see_statics') }}</button>
+                        <inertia-link href="/dashboard/statistics"
+                                      class="btn btn-outline-primary">{{ switchWord('see_statics') }}
+                        </inertia-link>
                     </div>
                 </div>
                 <!-------------start of last listing && last signed up users -->
@@ -26,22 +28,24 @@
                         <div class="last_data_container">
                             <div>
                                 <div class="mb-2 box-data d-flex align-items-center
-                             justify-content-between flex-wrap" v-for="i in 5" :key="i">
+                             justify-content-between flex-wrap" v-for="(i,index) in data['last_listings']" :key="index">
                                 <div class="image">
-                                    <p class="text-center">احمد علي</p>
-                                    <img src="/images/users/one.jpg">
+                                    <p class="text-center">
+                                        {{ i['user']['username'] }}
+                                    </p>
+                                    <img :src="'/images/users/'+i['user']['image']">
                                 </div>
                                 <div class="details">
-                                    <p>فيلة في مدينتي</p>
-                                    <p>تحتوي علي بيانات مهمه لوصف المحتوي</p>
+                                    <p>{{ i['name'] }}</p>
+                                    <p>{{ i['info'] }}</p>
                                 </div>
                                 <div class="w-25"></div>
                                 <div class="box-footer w-100 d-flex align-items-center justify-content-between">
-                                    <inertia-link href="" class="btn btn-outline-primary">
+                                    <inertia-link :href="'/listing/details?id='+i['id']" class="btn btn-outline-primary">
                                         {{ keywords.show_details }}
                                     </inertia-link>
                                     <p>
-                                        <span>12/20/2020</span>
+                                        <span>{{ new Date(i['created_at']).toLocaleDateString() }}</span>
                                         <span><i class="ri-calendar-line"></i></span>
 
                                     </p>
@@ -61,27 +65,30 @@
                         <div class="last_data_container">
                             <div>
                                 <div class="mb-2 box-data d-flex align-items-center
-                             justify-content-between flex-wrap" v-for="i in 5" :key="i">
+                             justify-content-between flex-wrap"
+                                     v-for="(i,index) in data['pending_listings']" :key="index">
                                     <div class="image">
-                                        <p class="text-center">احمد علي</p>
-                                        <img src="/images/users/one.jpg">
+                                        <p class="text-center">
+                                            {{ i['user']['username'] }}
+                                        </p>
+                                        <img :src="'/images/users/'+i['user']['image']">
                                     </div>
                                     <div class="details">
-                                        <p>فيلة في مدينتي</p>
-                                        <p>تحتوي علي بيانات مهمه لوصف المحتوي</p>
+                                        <p>{{ i['name'] }}</p>
+                                        <p>{{ i['info'] }}</p>
                                     </div>
                                     <div class="w-25"></div>
                                     <div class="box-footer w-100 d-flex align-items-center justify-content-between">
                                         <p>
-                                            <inertia-link href="" class="btn btn-outline-primary">
+                                            <inertia-link :href="'/listing/details?id='+i['id']" class="btn btn-outline-primary">
                                                 {{ keywords.show_details }}
                                             </inertia-link>
-                                            <button @click="approve_listing" class="btn btn-outline-success">
+                                            <button @click="approve_listing(i['id'])" class="btn btn-outline-success">
                                                 {{ keywords.approve }}
                                             </button>
                                         </p>
                                         <p>
-                                            <span>12/20/2020</span>
+                                            <span>{{ new Date(i['created_at']).toLocaleDateString() }}</span>
                                             <span><i class="ri-calendar-line"></i></span>
 
                                         </p>
@@ -102,20 +109,23 @@
                             </span>
                         </p>
                         <div class="sales_packages">
-                            <div class="package p-2" v-for="i in  6" :key="i">
-                                <inertia-link href="#" class="d-flex flex-wrap justify-content-between align-items-center">
+                            <div class="package p-2" v-for="(i,index) in  data['subscriptions']" :key="index">
+                                <inertia-link href="/dashboard/subscriptions" class="d-flex flex-wrap justify-content-between align-items-center">
                                     <div>
                                         <p class="d-flex align-items-center">
                                             <span><i class="ri-vip-crown-line"></i></span>
-                                            <span>الباقة الفضية</span>
+                                            <span>{{ i['name'] }}</span>
                                         </p>
                                         <p>
-                                            <span>وصف مختصر للباقة الفضية</span>
+                                            <span>
+                                                {{ switchWord('used_currency') }}
+                                                {{ i['currency_name'] }}
+                                            </span>
                                         </p>
                                     </div>
                                     <div>
                                         <div class="circle">
-                                            120
+                                            {{ i['total_purchases'] }}
                                         </div>
                                     </div>
                                 </inertia-link>
@@ -133,13 +143,13 @@
                         <div class="last_data_container">
                             <div>
                                 <div class="mb-2 box-data category d-flex align-items-center
-                             justify-content-between flex-wrap" v-for="i in 5" :key="i">
+                             justify-content-between flex-wrap" v-for="(i,index) in data['categories']" :key="index">
                                     <div class="image">
-                                        <img src="/images/categories/one.png">
+                                        <img :src="'/images/categories/'+i['image']">
                                     </div>
                                     <div class="details">
-                                        <p>عقارات</p>
-                                        <p>تحتوي علي بيانات مهمه لوصف قسم العقار</p>
+                                        <p>{{ i['name'] }}</p>
+                                        <p>{{ i['info'] }}</p>
                                     </div>
                                     <div class="w-25"></div>
                                     <div class="box-footer w-100 d-flex align-items-center justify-content-between">
@@ -147,13 +157,13 @@
                                             <span>
                                                 <i class="ri-question-line"></i>
                                             </span>
-                                            <span>10</span>
+                                            <span>{{i['questions'].length}}</span>
                                         </p>
                                         <p>
                                             <span>
                                                 <i class="ri-building-line"></i>
                                             </span>
-                                            <span>140</span>
+                                            <span>{{ i['listings'].length }}</span>
                                         </p>
 
                                     </div>
@@ -181,7 +191,8 @@
                                 </span>
                     </p>
                     <div>
-                        <line-chart :chart_data="chart_data" :labels_data="labels"></line-chart>
+                        <line-chart :chart_data="data['statistics']"
+                                    :labels_data="Object.values(data['months'])"></line-chart>
                     </div>
                 </div>
             </div>
@@ -192,33 +203,20 @@
 <script>
 import SwitchLangWord from "../../mixin/SwitchLangWord";
 import SideNavbarComponent from "../../components/dashboard/SideNavbarComponent";
-import LineChart from "../../components/LineChart";
 
 export default {
     name: "index",
-    components: {LineChart, SideNavbarComponent},
-    props:['keywords'],
+    components: {SideNavbarComponent},
+    props:['keywords','data'],
     data:function (){
       return {
-          chart_data:[1,2,3,4,56,7,9,10,11,2,12,5],
-          labels:[
-              "يناير",
-              "يناير",
-              "مارس",
-              "ابريل",
-              "مايو",
-              "يونيو",
-              "يوليو",
-              "اغسطس",
-              "سبتمر",
-              "اكتوبر",
-              "نوفمبر",
-              "ديسمبر"
-          ],
+
       }
     },
     methods:{
-        approve_listing:function(){
+        approve_listing:function(id){
+            var target = event.target;
+
             Swal.fire({
                 title: this.switchWord('are_you_sure_about_approve'),
                 text: this.switchWord('in_case_you_approved_listing_will_be_at_public'),
@@ -230,11 +228,16 @@ export default {
                 cancelButtonText: this.switchWord('cancel'),
             }).then((result) => {
                 if (result.isConfirmed) {
-                    Swal.fire(
-                        this.switchWord('approved_done'),
-                        this.switchWord('approved_done_successfully'),
-                        'success'
-                    )
+                    axios.post('/dashboard/accept-listing',{
+                        id
+                    }).then((e)=>{
+                        target.parentElement.parentElement.parentElement.parentElement.remove();
+                        Swal.fire(
+                            this.switchWord('approved_done'),
+                            this.switchWord('approved_done_successfully'),
+                            'success'
+                        )
+                    })
                 }
             })
         }

@@ -15,6 +15,7 @@ use App\Handling_Data\dashboard\sub_categories_dashboard;
 use App\Handling_Data\dashboard\subscriptions_dashboard;
 use App\Handling_Data\dashboard\support_dashboard;
 use App\Http\Controllers\classes\DashboardServiceClass;
+use App\Http\Requests\usersFormRequest;
 use App\Keywords\dashboard\CategoriesKeywords;
 use App\Keywords\dashboard\IndexKeywords;
 use App\Keywords\dashboard\ListingsKeywords;
@@ -24,12 +25,16 @@ use App\Keywords\DaysKeywords;
 use App\Keywords\MonthsKeywords;
 use App\Keywords\PackagesKeywords;
 use App\Models\categories;
+use App\Models\countries;
 use App\Models\listings_info;
 use App\Models\notifications;
+use App\Models\subscriptions;
 use App\Models\User;
 use App\Services\notifications\pagiante_notifications;
 use App\Services\statistics\filter_statistics_admin;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
@@ -39,6 +44,29 @@ class DashboardController extends DashboardServiceClass
     public function index(){
         return Inertia::render('dashboard/index',[
             'keywords'=>IndexKeywords::get_keywords(),
+            'data'=>[
+               'last_listings'=>listings_info::selection()->with('user')
+                   ->where('type','=','live')
+                   ->orderByDesc('id')->limit(5)->get(),
+               'pending_listings'=>listings_info::selection()->with('user')
+                   ->where('type','=','pending')
+                   ->where('payment_status','=','0')
+                   ->orderByDesc('id')->limit(5)->get(),
+               'subscriptions'=>subscriptions::query()
+                   ->join('packages','subscriptions.package_id','=','packages.id')
+                   ->join('users','subscriptions.user_id','=','users.id')
+                   ->join('currencies','packages.currency_id','=','currencies.id')
+                   ->groupBy('subscriptions.package_id')
+                   ->selectRaw('subscriptions.*,count(subscriptions.id) as total_purchases,packages.'.app()->getLocale().'_name as name,users.username,currencies.'.app()->getLocale().'_name as currency_name')
+                   ->limit(5)->get(),
+               'categories'=>categories::query()
+                   ->with(['listings','questions'])
+                   ->where('parent_id','!=',null)
+                   ->orderByDesc('id')
+                   ->limit(5)->get(),
+                'statistics'=>filter_statistics_admin::filter_data('listings_infos',intval(date("Y"))),
+                'months'=>MonthsKeywords::get_keywords(),
+            ],
         ]);
     }
 
@@ -197,6 +225,21 @@ class DashboardController extends DashboardServiceClass
         return Inertia::render('dashboard/pointad',[
             'main_title'=>trans('keywords.pointad'),
             'handling_data' => pointad_dashboard::handle_data(),
+        ]);
+    }
+
+    public function settings(){
+        return Inertia::render('dashboard/settings',[
+            'countries'=>countries::selection()->get(),
+            'main_title'=>trans('keywords.update_main_info'),
+            'keywords'=>[
+                'country_id'=>trans('keywords.select_country'),
+                'username'=>trans('keywords.username'),
+                'email'=>trans('keywords.email'),
+                'password'=>trans('keywords.password'),
+                'address'=>trans('keywords.address'),
+                'phone'=>trans('keywords.phone'),
+            ]
         ]);
     }
 }

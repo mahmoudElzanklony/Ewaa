@@ -40,6 +40,7 @@ Route::group(['middleware'=>'changeLang'],function (){
     // general
     Route::post('/deleteitem',[GeneralServiceController::class,'delete_item']);
     Route::post('/paginate-notifications',[GeneralServiceController::class,'paginate_notification_data']);
-
+    // map
+    Route::post('/map/get-map-type-data',[GeneralServiceController::class,'get_map_data_type']);
 
 });

@@ -321,6 +321,11 @@ export default {
                  en:'notifications',
                  tu:'',
               },
+              settings:{
+                 ar:'الاعدادت',
+                 en:'settings',
+                 tu:'',
+              },
               meter:{
                   ar:'متر',
                   en:'Meter',
@@ -419,6 +424,11 @@ export default {
               currencies:{
                   ar:'العملات',
                   en:'Currencies',
+                  tu:'',
+              },
+              used_currency:{
+                 ar:'العملة المستخدمة',
+                 en:'Used Currency',
                   tu:'',
               },
               subscriptions:{

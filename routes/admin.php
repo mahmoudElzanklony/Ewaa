@@ -32,4 +32,6 @@ Route::group(['middleware'=>'changeLang','prefix'=>'/dashboard'],function (){
     Route::post('/average-area-price',[DashboardServiceClass::class,'average_area_price']);
     Route::post('/save-support',[DashboardServiceClass::class,'save_support']);
     Route::post('/save-point-ad',[DashboardServiceClass::class,'save_pointad']);
+    Route::post('/save-settings',[DashboardServiceClass::class,'save_settings']);
+    Route::post('/accept-listing',[DashboardServiceClass::class,'accept_listing']);
 });

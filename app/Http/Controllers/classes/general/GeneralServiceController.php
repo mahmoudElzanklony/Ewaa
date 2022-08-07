@@ -32,4 +32,12 @@ class GeneralServiceController extends Controller
         $type = request('type') ?? '';
         return pagiante_notifications::get_notifications($id,$type);
     }
+
+    public function get_map_data_type(){
+        $model =  '\\App\\Models\\'.request('type');
+        $model = new $model();
+        $data = $model->select('id',app()->getLocale().'_name as name')->get();
+        return response()->json($data);
+
+    }
 }

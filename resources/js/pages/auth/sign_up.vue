@@ -7,7 +7,7 @@
                     <div class="col-md-6">
                         <form method="post" @submit.prevent="register">
                             <h2 class="mb-4">{{ keywords.sign_up }}</h2>
-                            <div class="form-group">
+                            <div class="form-group" >
                                 <label>{{ keywords.username }}</label>
                                 <input name="username" type="text" class="form-control" required>
                                 <p class="alert alert-danger"></p>

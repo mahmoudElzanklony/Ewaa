@@ -259,6 +259,7 @@ return [
 
     // start of profile  ----------------------------------------------------
     'my_profile'=>'My profile',
+    'update_main_info'=>'Update main info',
     'my_notes'=>'My Notes',
     'my_favourite'=>'Favourite',
     'statistics'=>'Statics',
@@ -609,6 +610,7 @@ return [
     'currencies'=>'Currencies',
     'currency_code'=>'Currency Code',
     'country_code'=>'Country Code',
+    'select_country'=>'Select Country',
     // end of dashboard currencies ----------------------------------------------------------
 
 

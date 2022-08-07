@@ -13,7 +13,8 @@ class categories extends Model
 
 
     public static function selection(){
-        return self::query()->select(app()->getLocale().'_name as name',app()->getLocale().'_info as info','parent_id');
+        return self::query()->select(app()->getLocale().'_name as name',
+            app()->getLocale().'_info as info','parent_id','image');
     }
 
     public function questions(){
@@ -27,5 +28,9 @@ class categories extends Model
 
     public function cat_questions(){
         return $this->hasMany(categories_questions::class,'category_id');
+    }
+
+    public function listings(){
+        return $this->hasMany(listings_info::class,'category_id');
     }
 }

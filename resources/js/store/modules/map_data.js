@@ -54,6 +54,16 @@ export default {
                 $(target).parent().next().find('select option:first-of-type').prop('selected','selected')
             });
         },
+        request_map_type:function({commit},payload){
+            var type = payload
+
+            axios.post('/map/get-map-type-data',{
+                type
+            }).then((e)=>{
+
+                commit('inialize_items',{name:type,value:e.data});
+            });
+        },
         filter_to_find_areas:function({commit}){
             var target = event.target;
             var data = new FormData(target);

@@ -17,6 +17,13 @@
                     <span></span>
                 </inertia-link>
             </li>
+            <li custom="settings">
+                <inertia-link href="/dashboard/settings">
+                    <span><i class="ri-settings-line"></i></span>
+                    <span>{{ switchWord('settings') }}</span>
+                    <span></span>
+                </inertia-link>
+            </li>
             <li custom="notifications">
                 <inertia-link href="/dashboard/notifications">
                     <span><i class="ri-notification-2-line"></i></span>

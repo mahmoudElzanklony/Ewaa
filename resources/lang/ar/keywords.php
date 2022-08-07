@@ -265,6 +265,7 @@ return [
 
     // start of profile  ----------------------------------------------------
     'my_profile'=>'حسابي الشخصي',
+    'update_main_info'=>'تعديل بياناتي الشخصية',
     'my_notes'=>'ملاحظاتي',
     'my_listings'=>'عقاراتي',
     'my_favourite'=>'المفضلة',
@@ -597,6 +598,7 @@ return [
     'currencies'=>'العملات',
     'currency_code'=>'كود العملة',
     'country_code'=>'كود الدولة',
+    'select_country'=>'اختر الدولة',
     // end of dashboard currencies ----------------------------------------------------------
 
 

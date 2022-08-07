@@ -298,11 +298,40 @@ class DashboardServiceClass extends Controller
             'place_id'=>$place_id,
             'no_points'=>request('no_points'),
         ];
-        $item = advertising_points_price::query()->updateOrCreate([
+        $d = advertising_points_price::query()->updateOrCreate([
             'id'=>request()->has('id') ? request('id'):null
         ],$data);
-        return messages::success_output(trans('messages.saved_successfully'),$item,request()->has('id') ? 'update':'insert');
 
+
+        if($d->type == 'countries'){
+            $d['place'] = countries::query()->find($d['place_id']);
+        }else if ($d->type == 'governments'){
+            $d['place'] = governments::query()->find($d['place_id']);
+        }else if ($d->type == 'cities'){
+            $d['place'] = cities::query()->find($d['place_id']);
+        }else if ($d->type == 'areas'){
+            $d['place'] = areas::query()->find($d['place_id']);
+        }
+
+
+        return messages::success_output(trans('messages.saved_successfully'),$d,request()->has('id') ? 'update':'insert');
+
+    }
+
+    public function save_settings(usersFormRequest $request){
+        $validated = $request->validated();
+        if(request()->has('password') && request()->filled('password')){
+            $validated['password'] = bcrypt(request('password'));
+        }
+        $user = User::query()->where('id','=',auth()->id())->update($validated);
+        return messages::success_output(trans('messages.saved_successfully'));
+    }
+
+    public function accept_listing(){
+        $id = request('id');
+        $listing = listings_info::query()->findOrFail($id);
+        $listing->type = 'live';
+        $listing->save();
     }
 
 }

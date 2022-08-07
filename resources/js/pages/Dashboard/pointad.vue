@@ -22,11 +22,11 @@
                         <tbody>
                         <tr v-for="(i,index) in vuex_data"
                             :key="index" :class="'tr_'+i['id']">
-                            <td>{{ i['ar_name'] }}</td>
-                            <td>{{ i['en_name'] }}</td>
+                            <td>{{ i['place']['ar_name'] }}</td>
+                            <td>{{ i['place']['en_name'] }}</td>
                             <!--                            <td style="display: none">{{ i['tu_name'] }}</td>-->
-                            <td>{{ i['currency_code'] }}</td>
-                            <td>{{ i['country_code'] }}</td>
+                            <td>{{ switchWord(i['type']) }}</td>
+                            <td>{{ i['no_points'] }}</td>
                             <td class="actions">
                                 <span><i data-toggle="modal" data-target="#update_box"
                                          @click="update_item(i)"
@@ -40,7 +40,7 @@
             </div>
         </div>
 
-        <div class="modal fade" id="update_box" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade point_ad" id="update_box" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -60,12 +60,12 @@
                                         @change="detectType"
                                         class="form-control" required>
                                     <option v-for="(type,index) in Object.keys(handling_data['type_data'])"
-                                            :key="index" :value="type">
+                                            :key="index" :value="type" :selected="item != null && item['type'] == type">
                                         {{ handling_data['type_data'][type] }}
                                     </option>
                                 </select>
                                 <input :name="input" class="form-control" v-else
-                                       :value="item != null ? item[input]:''" :required="input.indexOf('tu') == -1">
+                                       v-model="point_ad" :required="input.indexOf('tu') == -1">
                             </div>
 
                             <div class="row">
@@ -76,7 +76,9 @@
                                                 @change="update_location"
                                                 required :name="i">
                                             <option>{{ switchWord(handling_data['place_data'][i]) }}</option>
-                                            <option v-for="(val,index) in map_data(i)" :key="index" :value="val['id']">{{ val['name'] }}</option>
+                                            <option v-for="(val,index) in map_data(i)" :key="index"
+                                                    :value="val['id']"
+                                                    :selected="item != null && item['place_id'] == val['id']">{{ val['name'] }}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -105,15 +107,16 @@ import SideNavbarComponent from "../../components/dashboard/SideNavbarComponent"
 import tableData from "../../mixin/tableData";
 import SwitchLangWord from "../../mixin/SwitchLangWord";
 import delete_item from "../../mixin/delete_item";
-import update_item from "../../mixin/update_item";
 import {mapState,mapActions , mapGetters , mapMutations} from "vuex";
 export default {
     name: "pointad",
-    mixins:[tableData,SwitchLangWord,update_item,delete_item],
+    mixins:[tableData,SwitchLangWord,delete_item],
     props:['main_title','handling_data'],
     data:function(){
         return {
             modal_data:[],
+            item:null,
+            point_ad:0,
         }
     },
     computed:{
@@ -129,8 +132,35 @@ export default {
         }),
         ...mapActions({
            'save_point_ad':'pointad_dash/save_point_ad',
-           'update_location':'countries_govenrn_cities_areas/update_location'
+           'update_location':'countries_govenrn_cities_areas/update_location',
+            'request_map_type':'countries_govenrn_cities_areas/request_map_type',
         }),
+        update_item:function (e){
+            this.item = e;
+            if(e != null){
+                $('.save_ad_point .row > div').hide();
+                this.point_ad = e['no_points'];
+                let index = $('.point_ad form select').eq(0).find('option[value="'+e['type']+'"]').index();
+                let counter = 0;
+                while(counter < index){
+                    $('select[name="type"]').parent().next().find('>div').eq(counter).show()
+                    if(index - counter == 1){
+                        this.request_map_type(e['type']);
+
+                    }
+                    counter++;
+                }
+            }else{
+                this.point_ad = 0;
+                $('#update_box form')[0].reset();
+                $('.save_ad_point .row > div').hide();
+                this.inilaize_data_map({name:'governments',value:[]});
+                this.inilaize_data_map({name:'cities',value:[]});
+                this.inilaize_data_map({name:'areas',value:[]});
+
+
+            }
+        },
         detectType:function(){
             var target = event.target;
 

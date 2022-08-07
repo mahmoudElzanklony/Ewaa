@@ -35,6 +35,7 @@ export default {
         save_support:function({commit,getters,state}){
             var target = event.target;
             var data = new FormData(target);
+            // data = {name:'ali',username:'saad',send:send}
             axios.post('/dashboard/save-support',data).then((e)=>{
                 validation(e.data,target,'',true);
                 // check if there is no error

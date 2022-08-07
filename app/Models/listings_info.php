@@ -20,7 +20,8 @@ class listings_info extends Model
         return self::query()->select('id','user_id','category_id','area_id'
             ,app()->getLocale().'_name as name',app()->getLocale().'_info as info',
             app()->getLocale().'_address as address',
-            'price','meters_number','youtube_link','whatapp_status','contact_email_status','payment_status','type');
+            'price','meters_number','youtube_link','whatapp_status',
+            'contact_email_status','payment_status','type','created_at');
     }
 
 
