@@ -2681,6 +2681,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_dashboard_settings__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./modules/dashboard/settings */ "./resources/js/store/modules/dashboard/settings.js");
 /* harmony import */ var _modules_map_data__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./modules/map_data */ "./resources/js/store/modules/map_data.js");
 /* harmony import */ var _modules_notifications__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./modules/notifications */ "./resources/js/store/modules/notifications.js");
+/* harmony import */ var _modules_categories__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./modules/categories */ "./resources/js/store/modules/categories.js");
+/* harmony import */ var _modules_listings_save_listings__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./modules/listings/save_listings */ "./resources/js/store/modules/listings/save_listings.js");
+/* harmony import */ var _modules_questions_get_questions__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./modules/questions/get_questions */ "./resources/js/store/modules/questions/get_questions.js");
 
 
 vue__WEBPACK_IMPORTED_MODULE_0__.default.use(vuex__WEBPACK_IMPORTED_MODULE_1__.default);
@@ -2688,6 +2691,9 @@ vue__WEBPACK_IMPORTED_MODULE_0__.default.use(vuex__WEBPACK_IMPORTED_MODULE_1__.d
 
 
  //------------------- start of  dashboard---------------------------
+
+
+
 
 
 
@@ -2724,7 +2730,10 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__.default.Store({
     settings_dash: _modules_dashboard_settings__WEBPACK_IMPORTED_MODULE_16__.default,
     // end dashboard modules
     countries_govenrn_cities_areas: _modules_map_data__WEBPACK_IMPORTED_MODULE_17__.default,
-    notifications: _modules_notifications__WEBPACK_IMPORTED_MODULE_18__.default
+    notifications: _modules_notifications__WEBPACK_IMPORTED_MODULE_18__.default,
+    categories: _modules_categories__WEBPACK_IMPORTED_MODULE_19__.default,
+    listings: _modules_listings_save_listings__WEBPACK_IMPORTED_MODULE_20__.default,
+    questions: _modules_questions_get_questions__WEBPACK_IMPORTED_MODULE_21__.default
   }
 });
 
@@ -2772,6 +2781,8 @@ __webpack_require__.r(__webpack_exports__);
         }
 
         (0,_formValidation_validation__WEBPACK_IMPORTED_MODULE_0__.default)(e.data, target, '/');
+      })["catch"](function (e) {
+        window.location = document.URL;
       });
     }
   }
@@ -2808,6 +2819,57 @@ __webpack_require__.r(__webpack_exports__);
       var data = new FormData(target);
       axios.post('/register', data).then(function (e) {
         (0,_formValidation_validation__WEBPACK_IMPORTED_MODULE_0__.default)(e.data, target, '/login');
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/categories.js":
+/*!**************************************************!*\
+  !*** ./resources/js/store/modules/categories.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  namespaced: true,
+  state: function state() {
+    return {
+      sub_categories: []
+    };
+  },
+  getters: {
+    get_sub_categories_data: function get_sub_categories_data(state) {
+      return state.sub_categories;
+    }
+  },
+  mutations: {
+    inialize_sub_categories_items: function inialize_sub_categories_items(state, item) {
+      state.sub_categories = item;
+    }
+  },
+  actions: {
+    get_sub_where_parent_is: function get_sub_where_parent_is(_ref, payload) {
+      var commit = _ref.commit,
+          getters = _ref.getters,
+          state = _ref.state;
+
+      if (typeof payload == 'number') {
+        var value = payload;
+      } else {
+        var value = event.target.value;
+      }
+
+      axios.post('/categories/get-subcategories-where', {
+        value: value
+      }).then(function (e) {
+        commit('inialize_sub_categories_items', e.data.data);
       });
     }
   }
@@ -3002,6 +3064,11 @@ __webpack_require__.r(__webpack_exports__);
       var target = event.target;
       var data = event.target.value;
       var id = event.target.id;
+
+      if (data == '') {
+        return false;
+      }
+
       axios.post('/dashboard/update-listing', {
         status: data,
         id: id
@@ -3525,6 +3592,71 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/store/modules/listings/save_listings.js":
+/*!**************************************************************!*\
+  !*** ./resources/js/store/modules/listings/save_listings.js ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _formValidation_validation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../formValidation/validation */ "./resources/js/formValidation/validation.js");
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  namespaced: true,
+  state: function state() {
+    return {
+      data: null
+    };
+  },
+  getters: {
+    get_data: function get_data(state) {
+      return state.data;
+    }
+  },
+  mutations: {
+    inilize_data: function inilize_data(state, item) {
+      return state.data = item;
+    },
+    update_data: function update_data(state, item) {
+      if (state.data == null) {
+        return state.data = item;
+      }
+
+      return state.data.push(item);
+    }
+  },
+  actions: {
+    save_inilaize_listing: function save_inilaize_listing(_ref) {
+      var commit = _ref.commit,
+          getters = _ref.getters,
+          state = _ref.state;
+      var target = event.target;
+      var id = $(target).find('input[name="id"]').val();
+      var data = new FormData(target);
+      axios.post('/listings/save-inilaize', data).then(function (e) {
+        window.vm.$inertia.visit('/listing/info');
+      });
+    },
+    save_info_listing: function save_info_listing(_ref2) {
+      var commit = _ref2.commit,
+          getters = _ref2.getters,
+          state = _ref2.state;
+      var target = event.target;
+      var id = $(target).find('input[name="id"]').val();
+      var data = new FormData(target);
+      axios.post('/listings/save-listing-info', data).then(function (e) {
+        window.vm.$inertia.visit('/listing/photos');
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./resources/js/store/modules/map_data.js":
 /*!************************************************!*\
   !*** ./resources/js/store/modules/map_data.js ***!
@@ -3592,10 +3724,28 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     }
   },
   actions: {
-    update_location: function update_location(_ref) {
+    get_next_map_type_from_previous_value: function get_next_map_type_from_previous_value(_ref, payload) {
       var commit = _ref.commit,
           getters = _ref.getters,
           state = _ref.state;
+      var type = payload['name'];
+      var id = payload['value'];
+      var whereColumn = payload['where'];
+      axios.post('/map/get_next_map_type_from_previous_value', {
+        id: id,
+        type: type,
+        whereColumn: whereColumn
+      }).then(function (e) {
+        commit('inialize_items', {
+          name: type,
+          value: e.data
+        });
+      });
+    },
+    update_location: function update_location(_ref2) {
+      var commit = _ref2.commit,
+          getters = _ref2.getters,
+          state = _ref2.state;
       var target = event.target;
       var type = event.target.getAttribute('name');
       var value = target.value;
@@ -3653,8 +3803,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         $(target).parent().next().find('select option:first-of-type').prop('selected', 'selected');
       });
     },
-    request_map_type: function request_map_type(_ref2, payload) {
-      var commit = _ref2.commit;
+    request_map_type: function request_map_type(_ref3, payload) {
+      var commit = _ref3.commit;
       var type = payload;
       axios.post('/map/get-map-type-data', {
         type: type
@@ -3665,8 +3815,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         });
       });
     },
-    filter_to_find_areas: function filter_to_find_areas(_ref3) {
-      var commit = _ref3.commit;
+    filter_to_find_areas: function filter_to_find_areas(_ref4) {
+      var commit = _ref4.commit;
       var target = event.target;
       var data = new FormData(target);
       axios.post('/dashboard/average-area-price', data).then(function (e) {
@@ -3886,6 +4036,58 @@ __webpack_require__.r(__webpack_exports__);
       var data = new FormData(target);
       axios.post('/profile/update-secondary-data', data).then(function (e) {
         (0,_formValidation_validation__WEBPACK_IMPORTED_MODULE_0__.default)(e.data, target);
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/questions/get_questions.js":
+/*!***************************************************************!*\
+  !*** ./resources/js/store/modules/questions/get_questions.js ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  namespaced: true,
+  state: function state() {
+    return {
+      data: null
+    };
+  },
+  getters: {
+    get_questions_data: function get_questions_data(state) {
+      return state.data;
+    }
+  },
+  mutations: {
+    inilize_data: function inilize_data(state, item) {
+      return state.data = item;
+    },
+    update_data: function update_data(state, item) {
+      if (state.data == null) {
+        return state.data = item;
+      }
+
+      return state.data.push(item);
+    }
+  },
+  actions: {
+    get_questions_where: function get_questions_where(_ref, payload) {
+      var commit = _ref.commit,
+          getters = _ref.getters,
+          state = _ref.state;
+      var id = payload;
+      axios.post('/questions/get-questions', {
+        category_id: id
+      }).then(function (e) {
+        commit('inilize_data', e.data.data);
       });
     }
   }
@@ -99545,7 +99747,7 @@ module.exports = webpackAsyncContext;
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames based on template
-/******/ 			return "js/" + chunkId + "." + {"resources_js_Pages_about_us_vue":"d665c68c29b5a460d482","resources_js_Pages_auth_forget_password_vue":"debe31dbf13e768ffed5","resources_js_Pages_auth_new_password_vue":"6c5565888d05686bdc61","resources_js_Pages_auth_sign_in_vue":"00626d97b9ca622a8c73","resources_js_Pages_auth_sign_up_vue":"90201d98740d8a75b8dd","resources_js_Pages_compounds_vue":"68cad24dac9d59752bc4","resources_js_Pages_contactus_vue":"1363c3cb7cf094250d0f","resources_js_Pages_dashboard_categories_vue":"db34dc106b0dd9e1a6a2","resources_js_Pages_dashboard_currencies_vue":"dd8d3d910d9ea356ca42","resources_js_Pages_dashboard_index_vue":"25eae146172cb2cefaee","resources_js_Pages_dashboard_listings_vue":"4722e12bba5112e9deb6","resources_js_Pages_dashboard_map_vue":"3f61304b1908f94dcb43","resources_js_Pages_dashboard_notifications_vue":"05bcf3e30c2e02a59c97","resources_js_Pages_dashboard_packages_vue":"73b29933c12c5f1e1e8d","resources_js_Pages_dashboard_pointad_vue":"67e8443ca70c74d85369","resources_js_Pages_dashboard_questions_vue":"5e26efa315aa7d388678","resources_js_Pages_dashboard_reports_vue":"61d40bf09df45d271789","resources_js_Pages_dashboard_settings_vue":"902b271c81351cbd849f","resources_js_Pages_dashboard_specific_statistics_vue":"37d102a87b6b9976b582","resources_js_Pages_dashboard_statistics_vue":"4c5b79b84e0e3eb9c147","resources_js_Pages_dashboard_sub_categories_vue":"b38c5fb01b651623f4c7","resources_js_Pages_dashboard_subscriptions_vue":"b377a2f4f718cceeed08","resources_js_Pages_dashboard_support_vue":"206af84dee29cdd54337","resources_js_Pages_dashboard_users_vue":"9c55f02bdc376bfe5194","resources_js_Pages_feedback_vue":"c0fb8041dd9e50066fc4","resources_js_Pages_government_city_vue":"38532014789b3635d8e3","resources_js_Pages_governments_vue":"0ecc567044c6f28a43fa","resources_js_Pages_home_vue":"0c5e037be52317899710","resources_js_Pages_listingpost_ContactOffice_vue":"bb7043e752ea64e3a449","resources_js_Pages_listingpost_details_vue":"2e92c5fd02fecb89df34","resources_js_Pages_listingpost_info_vue":"7cc2c5a333b8c2781e6d","resources_js_Pages_listingpost_initialize_vue":"7ccb2f3cfabde3e1e98a","resources_js_Pages_listingpost_payment_confirmation_vue":"35a486601d863cb36eec","resources_js_Pages_listingpost_photos_vue":"ad079adbd6db8f524ce6","resources_js_Pages_merchant_balance_vue":"5b15c248d46364cca66e","resources_js_Pages_neighbours_vue":"2294ff86c97e6ca8d64c","resources_js_Pages_notifications_vue":"444fca2ce67f6138bde6","resources_js_Pages_packages_charge_vue":"4a9354a939a8444bd78e","resources_js_Pages_packages_packages_info_vue":"602805cdd6cce83e2dfd","resources_js_Pages_profile_favourites_vue":"f11490dfe7a188d7fb84","resources_js_Pages_profile_listings_dashboard_vue":"3ce77b3c2575f5434e85","resources_js_Pages_profile_main_info_vue":"1165e0569b3369667b14","resources_js_Pages_profile_notes_vue":"4514a36d9cec2aee5d1b","resources_js_Pages_profile_statistics_vue":"5d1fe201a57d1945a492","resources_js_Pages_questions_answers_vue":"b66ef82bea2e5c44629a","resources_js_Pages_questions_ask_neighbors_vue":"52338a8989a4c4aada41","resources_js_Pages_sales_vue":"a3c588beeb3fd3da8f05","resources_js_Pages_search_page_filters_vue":"c2f8dd686b73636b3df2","resources_js_Pages_terms_vue":"ec954293440eeb02a1b7"}[chunkId] + ".js";
+/******/ 			return "js/" + chunkId + "." + {"resources_js_Pages_about_us_vue":"864a711d145e1ba4b2d4","resources_js_Pages_auth_forget_password_vue":"6feb2c51e805b1c57749","resources_js_Pages_auth_new_password_vue":"ff8586b902d5d5cb3a41","resources_js_Pages_auth_sign_in_vue":"d450f2ded4e896d1e639","resources_js_Pages_auth_sign_up_vue":"fe9743e737976be5f47d","resources_js_Pages_compounds_vue":"3ea2111f9602c3c948e7","resources_js_Pages_contactus_vue":"0e4b827654d186bf32f3","resources_js_Pages_dashboard_categories_vue":"55df5a1c13407c8019c6","resources_js_Pages_dashboard_currencies_vue":"82218441fe76ed475516","resources_js_Pages_dashboard_index_vue":"7bc4a92efb209e3a2382","resources_js_Pages_dashboard_listings_vue":"aa98d120dc4ed029cf72","resources_js_Pages_dashboard_map_vue":"f9c459a5c0642a71d936","resources_js_Pages_dashboard_notifications_vue":"4a4491d0275d362b4291","resources_js_Pages_dashboard_packages_vue":"9b59cef948f48d054a89","resources_js_Pages_dashboard_pointad_vue":"6dec97240852c1da5a1a","resources_js_Pages_dashboard_questions_vue":"360c5927305cdd230c71","resources_js_Pages_dashboard_reports_vue":"6bb8b630b5ef93614019","resources_js_Pages_dashboard_settings_vue":"63c50d809a75c93ff7dd","resources_js_Pages_dashboard_specific_statistics_vue":"7efc10d47512d3246f93","resources_js_Pages_dashboard_statistics_vue":"37e4c971ba2d7202d97f","resources_js_Pages_dashboard_sub_categories_vue":"d4a0cd69fef198305742","resources_js_Pages_dashboard_subscriptions_vue":"6a924345473882fffa23","resources_js_Pages_dashboard_support_vue":"783d7bdc63fb21e98aa9","resources_js_Pages_dashboard_users_vue":"86d6e6b55efc289b6828","resources_js_Pages_feedback_vue":"fa34311e7ccd7d7aa943","resources_js_Pages_government_city_vue":"6a0ee7080134e922cf9e","resources_js_Pages_governments_vue":"ea69ccfdccc3151f9de4","resources_js_Pages_home_vue":"a716c18c05e5e4713fd5","resources_js_Pages_listingpost_ContactOffice_vue":"fbfac39d2386e198b6a6","resources_js_Pages_listingpost_details_vue":"0918837d13922c00c7e2","resources_js_Pages_listingpost_info_vue":"bea7395678d992d64faa","resources_js_Pages_listingpost_initialize_vue":"a3ea3a15781723a67320","resources_js_Pages_listingpost_payment_confirmation_vue":"f4f52e5433cfd043719c","resources_js_Pages_listingpost_photos_vue":"c3cf92b30384ff3a1c7b","resources_js_Pages_merchant_balance_vue":"529d446e52c60c15ad89","resources_js_Pages_neighbours_vue":"d3ad7640754483c07eda","resources_js_Pages_notifications_vue":"e15138d9c65ccfd99c08","resources_js_Pages_packages_charge_vue":"8b9cfb57533eeea750b8","resources_js_Pages_packages_packages_info_vue":"5edd8b2063a89a6d0c5a","resources_js_Pages_profile_favourites_vue":"a7b84d40388ce27dde5e","resources_js_Pages_profile_listings_dashboard_vue":"f9e284fdac929fbfff56","resources_js_Pages_profile_main_info_vue":"6a7943eca48b70639cc4","resources_js_Pages_profile_notes_vue":"82acd0c345f84a6bfd69","resources_js_Pages_profile_statistics_vue":"82c4683c458bcba26950","resources_js_Pages_questions_answers_vue":"3f81dd1f3b378f3921dc","resources_js_Pages_questions_ask_neighbors_vue":"8692c7014d051249c57a","resources_js_Pages_sales_vue":"ca104ca81f9b323374a2","resources_js_Pages_search_page_filters_vue":"f7396ec44079ca443c0a","resources_js_Pages_terms_vue":"375f88087ac51e39005c"}[chunkId] + ".js";
 /******/ 		};
 /******/ 	})();
 /******/ 	

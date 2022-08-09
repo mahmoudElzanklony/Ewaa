@@ -36,6 +36,9 @@ export default {
             var target = event.target;
             var data = event.target.value;
             var id = event.target.id;
+            if(data == ''){
+                return false;
+            }
             axios.post('/dashboard/update-listing',{
                 status:data,
                 id,

@@ -200,6 +200,11 @@ export default {
                   en:'size of photo uploaded is more than 2 mega',
                   tu:'',
               },
+              upload_good_image:{
+                ar:'ارفع صورة صحيحة',
+                en:'Upload good image',
+                tu:'',
+              },
               big_photo_upload_error_preview:{
                   ar:'لن نستطع من عرض الصور التي مساحتها اكبر من 2 ميجا',
                   en:'we cant preview photo uploaded that size is more than 2 mega',

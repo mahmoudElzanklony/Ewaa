@@ -13,7 +13,7 @@ class categories extends Model
 
 
     public static function selection(){
-        return self::query()->select(app()->getLocale().'_name as name',
+        return self::query()->select('id',app()->getLocale().'_name as name',
             app()->getLocale().'_info as info','parent_id','image');
     }
 

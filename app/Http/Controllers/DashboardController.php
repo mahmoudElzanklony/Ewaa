@@ -41,6 +41,14 @@ use Inertia\Inertia;
 class DashboardController extends DashboardServiceClass
 {
     //
+
+    public function __construct()
+    {
+        if(session()->get('type') != 'admin'){
+           // return redirect('/')->send();
+        }
+    }
+
     public function index(){
         return Inertia::render('dashboard/index',[
             'keywords'=>IndexKeywords::get_keywords(),

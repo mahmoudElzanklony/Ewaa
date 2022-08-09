@@ -68,6 +68,7 @@ export default {
             $('.preview-uploaded-images').html('');
             if(this.files.length > 0 && this.files.length < (10 - this.number_of_photos)){
                 for(let i = 0 ; i < this.files.length ; i++){
+                    console.log(this.files[i]);
                     if(parseFloat((Number(this.files[i].size) / 1024 / 1024).toFixed(2)) > 1){
                         Toast.fire({
                             icon:'error',
@@ -75,6 +76,11 @@ export default {
                         });
                         this.files.splice(i,1);
 
+                    }else if(this.files[i].type.indexOf('image') == -1){
+                        Toast.fire({
+                            icon:'error',
+                            title:this.switchWord('upload_good_image'),
+                        });
                     }else {
                         var output = '<div class="image"><p><span>' + (Number(this.files[i].size) / 1024 / 1024).toFixed(2) + 'Mb</span><span><i class="ri-close-line"></i></span></p>';
                         output = output + '<img src="' + URL.createObjectURL(this.files[i]) + '">';

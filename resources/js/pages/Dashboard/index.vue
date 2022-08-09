@@ -148,8 +148,8 @@
                                         <img :src="'/images/categories/'+i['image']">
                                     </div>
                                     <div class="details">
-                                        <p>{{ i['name'] }}</p>
-                                        <p>{{ i['info'] }}</p>
+                                        <p>{{ i[$inertia.page.props.lang+'_name'] }}</p>
+                                        <p>{{ i[$inertia.page.props.lang+'_info'] }}</p>
                                     </div>
                                     <div class="w-25"></div>
                                     <div class="box-footer w-100 d-flex align-items-center justify-content-between">

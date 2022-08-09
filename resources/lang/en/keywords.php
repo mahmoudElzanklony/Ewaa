@@ -67,6 +67,8 @@ return [
     // search filter page
     'area'=>'Area',
     'category'=>'Category',
+    'sub_category'=>'Sub category',
+    'choose_sub_category'=>'Choose sub category',
     'type'=>'Property_type',
     'price_range'=>'Price range',
     'min_price'=>'Min price',

@@ -58,9 +58,9 @@ Route::group(['middleware'=>'changeLang'],function (){
     // post ad
     Route::group(['prefix'=>'/listing'],function(){
         // initialize post
-        Route::get('/initialize',[ListingPostController::class,'initialize']);
-        Route::get('/info',[ListingPostController::class,'info']);
-        Route::get('/photos',[ListingPostController::class,'photos']);
+        Route::get('/initialize',[ListingPostController::class,'initialize'])->middleware('auth');
+        Route::get('/info',[ListingPostController::class,'info'])->middleware('auth');
+        Route::get('/photos',[ListingPostController::class,'photos'])->middleware('auth');
         // details of post
         Route::get('/details',[ListingPostController::class,'details']);
         // confirm payment
@@ -107,7 +107,7 @@ Route::group(['middleware'=>'changeLang'],function (){
         Route::get('/balance',[MerchantController::class,'balance']);
     });
 
-    Route::group(['prefix'=>'/dashboard'],function(){
+    Route::group(['prefix'=>'/dashboard','middleware'=>'auth'],function(){
         Route::get('/',[DashboardController::class,'index']);
         Route::get('/notifications',[DashboardController::class,'notifications']);
         Route::get('/users',[DashboardController::class,'users']);

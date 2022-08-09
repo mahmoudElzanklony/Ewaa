@@ -11,6 +11,7 @@ class WelcomeController extends Controller
 {
     //
     public function index(){
+        //return request()->cookie('inilalize');
         return Inertia::render('home',[
             'keywords'=> WelcomeKeyWords::get_key_words()
         ]);

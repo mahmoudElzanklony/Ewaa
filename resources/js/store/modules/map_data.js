@@ -34,6 +34,16 @@ export default {
         }
     },
     actions:{
+        get_next_map_type_from_previous_value:function({commit,getters,state},payload){
+            var type = payload['name'];
+            var id = payload['value'];
+            var whereColumn = payload['where'];
+            axios.post('/map/get_next_map_type_from_previous_value',{
+                id,type,whereColumn
+            }).then((e)=>{
+                commit('inialize_items',{name:type,value:e.data});
+            })
+        },
         update_location:function({commit,getters,state}){
             var target = event.target;
             var type = event.target.getAttribute('name');

@@ -40,4 +40,12 @@ class GeneralServiceController extends Controller
         return response()->json($data);
 
     }
+
+    public function get_next_map_type(){
+        $model =  '\\App\\Models\\'.request('type');
+        $model = new $model();
+        $data = $model->select('id',app()->getLocale().'_name as name')
+            ->where(request('whereColumn'),'=',request('id'))->get();
+        return response()->json($data);
+    }
 }

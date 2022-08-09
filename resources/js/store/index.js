@@ -21,6 +21,9 @@ import settings_dash from "./modules/dashboard/settings";
 
 import countries_govenrn_cities_areas from "./modules/map_data";
 import notifications from "./modules/notifications";
+import categories from "./modules/categories";
+import listings from "./modules/listings/save_listings";
+import questions from "./modules/questions/get_questions";
 //------------------- end of  dashboard---------------------------
 // Create a new store instance.
 const store = new Vuex.Store({
@@ -43,7 +46,10 @@ const store = new Vuex.Store({
         settings_dash,
         // end dashboard modules
         countries_govenrn_cities_areas,
-        notifications
+        notifications,
+        categories,
+        listings,
+        questions
     }
 })
 

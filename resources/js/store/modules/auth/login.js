@@ -27,6 +27,8 @@ export default {
                 }
                 validation(e.data,target,'/');
 
+            }).catch((e)=>{
+                window.location = document.URL;
             });
         }
     }

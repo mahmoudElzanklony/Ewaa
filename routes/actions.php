@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\ListingPostController;
+use App\Http\Controllers\QuestionsController;
 use App\Http\Controllers\classes\general\GeneralServiceController;
 
 use Illuminate\Support\Facades\App;
@@ -42,5 +45,19 @@ Route::group(['middleware'=>'changeLang'],function (){
     Route::post('/paginate-notifications',[GeneralServiceController::class,'paginate_notification_data']);
     // map
     Route::post('/map/get-map-type-data',[GeneralServiceController::class,'get_map_data_type']);
+    Route::post('/map/get_next_map_type_from_previous_value',[GeneralServiceController::class,'get_next_map_type']);
+    // categories
+    Route::group(['prefix'=>'/categories'],function(){
+       Route::post('/get-subcategories-where',[CategoriesController::class,'get_sub_where']);
+    });
+    // listings
+    Route::group(['prefix'=>'/listings'],function(){
+       Route::post('/save-inilaize',[ListingPostController::class,'save_inilaize']);
+       Route::post('/save-listing-info',[ListingPostController::class,'save_listing_info']);
+    });
+    // questions
+    Route::group(['prefix'=>'/questions'],function(){
+       Route::post('/get-questions',[QuestionsController::class,'get_questions']);
+    });
 
 });

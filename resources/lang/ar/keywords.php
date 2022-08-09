@@ -64,6 +64,8 @@ return [
    // search filter page
    'area'=>'منطقه',
    'category'=>'القسم',
+   'sub_category'=>'القسم الفرعي',
+   'choose_sub_category'=>'اختر القسم الفرعي',
    'type'=>'النوع',
    'price_range'=>'السعر',
    'min_price'=>'اقل سعر',

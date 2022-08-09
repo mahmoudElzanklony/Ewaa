@@ -27,6 +27,7 @@ class CreateListingsInfosTable extends Migration
             $table->string('ar_address');
             $table->string('en_address');
             $table->string('tu_address')->nullable();
+            $table->string('rent_or_sale');
             $table->float('price');
             $table->float('meters_number');
             $table->string('youtube_link');

@@ -21,37 +21,54 @@
                 <p>{{ keywords.listing_images }}</p>
                 <span><i class="ri-check-line"></i></span>
             </div>
-            <form>
+            <form method="post" @submit.prevent="save_listing_info">
                 <div class="row">
                     <div class="col-12">
                         <div class="form-group">
-                            <label>{{ keywords.title_in_english }}</label>
-                            <input name="title_in_english" class="form-control" required>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label>{{ keywords.description_in_english }}</label>
-                            <textarea name="description_in_english" class="form-control" required></textarea>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="form-group">
                             <label>{{ keywords.title_in_arabic }}</label>
-                            <input name="title_in_arabic" class="form-control" required>
+                            <input name="title_in_arabic" class="form-control"
+                                   :value="listing_obj != null ? listing_obj['title_in_arabic']:''"
+                                   required>
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="form-group">
                             <label>{{ keywords.description_in_arabic }}</label>
-                            <textarea name="description_in_arabic" class="form-control" required></textarea>
+                            <textarea name="description_in_arabic" class="form-control"
+                                      :value="listing_obj != null ? listing_obj['description_in_arabic']:''"
+                                      required></textarea>
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="form-group">
-                            <label>{{ keywords.youtube_video_url }}</label>
-                            <input name="youtube_video_url" class="form-control" required>
+                            <label>{{ keywords.title_in_english }}</label>
+                            <input name="title_in_english" class="form-control"
+                                   :value="listing_obj != null ? listing_obj['title_in_english']:''"
+                                   required>
                         </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label>{{ keywords.description_in_english }}</label>
+                            <textarea name="description_in_english" class="form-control"
+                                      :value="listing_obj != null ? listing_obj['description_in_english']:''"
+                                      required></textarea>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label>{{ keywords.youtube_video_url }}</label>
+                            <input name="youtube_video_url" class="form-control"
+                                   :value="listing_obj != null ? listing_obj['youtube_video_url']:''"
+                            >
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <label>{{ keywords.size_in_meters }}</label>
+                        <input class="form-control" type="number"
+                               :value="listing_obj != null ? listing_obj['size_in_meters']:''"
+                               name="size_in_meters" required>
                     </div>
                     <div class="col-12">
                         <p class="alert alert-primary">
@@ -63,7 +80,7 @@
                             <label>{{ keywords.phone_number }}</label>
                             <p>
                                 <span>{{ keywords.if_you_want_to_update_the_current_phone_number_please_go_to }}</span>
-                                <inertia-link href="#">{{ keywords.my_account }}</inertia-link>
+                                <inertia-link href="/profile/edit">{{ keywords.my_account }}</inertia-link>
                             </p>
                             <input name="phone_number" class="form-control fit-content-input"
                                    value="01003123123123"
@@ -71,10 +88,14 @@
                             <div class="what_app_status">
                                 <span><i class="ri-whatsapp-line"></i></span>
                                 <span>{{ keywords.this_number_has_whatsapp }}</span>
-                                <input type="checkbox" class="toggle-checkbox-status">
+                                <input type="checkbox" name="whatapp_status"
+                                       :checked="listing_obj != null && listing_obj.hasOwnProperty('whatapp_status') && listing_obj['whatapp_status'] != null"
+                                       class="toggle-checkbox-status">
                             </div>
                             <div class="mt-3 d-flex align-items-center">
-                                <input type="checkbox" name="contact_me_by_email_status">
+                                <input type="checkbox"
+                                       :checked="listing_obj != null && listing_obj.hasOwnProperty('contact_me_by_email_status') && listing_obj['contact_me_by_email_status'] != null"
+                                       name="contact_me_by_email_status">
                                 <span>{{ keywords.contact_me_by_email }}</span>
                             </div>
                         </div>
@@ -86,53 +107,29 @@
                     </div>
                     <div class="col-12">
                         <div class="row">
-                            <div class="col-lg-2 col-md-4 col-sm-6">
-                                <label>{{ keywords.size_in_meters }}</label>
-                                <input class="form-control" type="number" name="size_in_meters" required>
-                            </div>
-                            <div class="col-lg-2 col-md-4 col-sm-6">
-                                <label>{{ keywords.view }}</label>
-                                <select class="form-control" name="view" required>
-                                    <option value="">{{  keywords.select_view }}</option>
-                                </select>
-                            </div>
-                            <div class="col-lg-2 col-md-4 col-sm-6">
-                                <label>{{ keywords.price_egp }}</label>
-                                <input type="number" class="form-control" name="price_egp" required>
-                            </div>
-                            <div class="col-lg-2 col-md-4 col-sm-6">
-                                <label>{{ keywords.payment_method }}</label>
-                                <select class="form-control" name="payment_method" required>
-                                    <option value="">{{  keywords.payment_method }}</option>
-                                    <option value="cash">{{  keywords.cash }}</option>
-                                    <option value="installments">{{  keywords.installments }}</option>
-                                    <option value="cash_or_installments">{{  keywords.cash_or_installments }}</option>
-                                </select>
-                            </div>
-                            <div class="col-lg-2 col-md-4 col-sm-6">
-                                <label>{{ keywords.rooms }}</label>
-                                <input type="number" class="form-control" name="rooms" required>
-                            </div>
-                            <div class="col-lg-2 col-md-4 col-sm-6">
-                                <label>{{ keywords.floor }}</label>
-                                <input type="number" class="form-control" name="floor" required>
-                            </div>
-                            <div class="col-lg-2 col-md-4 col-sm-6">
-                                <label>{{ keywords.bathrooms }}</label>
-                                <input type="number" class="form-control" name="bathrooms" required>
-                            </div>
-                            <div class="col-lg-2 col-md-4 col-sm-6">
-                                <label>{{ keywords.building_year }}</label>
-                                <input type="number" class="form-control" name="building_year" required>
-                            </div>
-                            <div class="col-lg-2 col-md-4 col-sm-6">
-                                <label>{{ keywords.finishing_type }}</label>
-                                <select class="form-control" name="finishing_type" required>
-                                    <option value="super_lux">{{  keywords.super_lux }}</option>
-                                    <option value="extra_super_lux">{{  keywords.extra_super_lux }}</option>
-                                    <option value="lux">{{  keywords.lux }}</option>
-                                    <option value="semi_finished">{{  keywords.semi_finished }}</option>
-                                    <option value="without_finish">{{  keywords.without_finish }}</option>
+                            <div class="col-lg-2 col-md-4 col-sm-6"
+                                 v-for="(q,index) in get_questions" :key="index">
+                                <label>{{ q.question[$page.props.lang+'_name'] }}</label>
+                                <input v-if="q.question['answers'].length == 0 && q.question.type == 'text'"
+                                       class="form-control" :name="'questions['+q['question_id']+']'"
+                                       :value="listing_obj != null && listing_obj['questions'].hasOwnProperty(q['question_id']) && listing_obj['questions'][q['question_id']] != null ? listing_obj['questions'][q['question_id']]:''"
+                                       :required="q.question['required_status'] == 1 ? true:false">
+
+
+                                <input v-else-if="q.question['answers'].length == 0 && q.question.type == 'radio'"
+                                       type="checkbox"
+                                       class="form-control toggle-checkbox-status" :name="'questions['+q['question_id']+']'"
+                                       :checked="listing_obj != null && listing_obj['questions'].hasOwnProperty(q['question_id']) && listing_obj['questions'][q['question_id']] != null"
+                                       :required="q.question['required_status'] == 1 ? true:false">
+
+
+                                <select v-else  class="form-control" :name="'questions['+q['question_id']+']'"
+                                        :required="q.question['required_status'] == 1 ? true:false">
+                                    <option v-for="(answer,index) in q.question['answers']"
+                                            :selected="listing_obj != null && listing_obj['questions'].hasOwnProperty(q['question_id']) && listing_obj['questions'][q['question_id']] != null && listing_obj['questions'][q['question_id']] == answer['id']"
+                                            :key="index" :value="answer['id']">
+                                        {{ answer[$page.props.lang+'_name'] }}
+                                    </option>
                                 </select>
                             </div>
 
@@ -145,13 +142,15 @@
                     </div>
                     <div class="col-12">
                         <label>{{ keywords.property_address }}</label>
-                        <input  class="form-control" name="property_address" required>
+                        <input  class="form-control" name="property_address"
+                                :value="listing_obj != null && listing_obj.hasOwnProperty('property_address') ? listing_obj['property_address']:''"
+                                required>
                     </div>
 
                 </div>
                 <div id="map"></div>
                 <div class="text-center mt-3 mb-3">
-                    <input @click="next_step" type="button" class="btn btn-primary" :value="keywords.next">
+                    <input type="submit" class="btn btn-primary" :value="keywords.next">
                     <input @click="previous_step" type="button" class="btn btn-outline-primary" :value="keywords.previous">
                 </div>
 
@@ -164,15 +163,33 @@
 <script>
 import NavbarComponent from "../../components/NavbarComponent";
 import FooterComponent from "../../components/FooterComponent";
-
+import {mapGetters , mapMutations , mapActions} from "vuex";
 export default {
     name: "info",
-    props: ['keywords'],
+    props: ['keywords','handeling_data'],
     components: {FooterComponent, NavbarComponent},
+    data:function(){
+        return {
+            listing_obj: this.handeling_data['listing_info'],
+        }
+    },
+    created(){
+        // get questions of this category
+        this.get_questions_where(this.listing_obj['category_id']);
+    },
     mounted:function (){
 
     },
+    computed:{
+        ...mapGetters({
+             'get_questions':'questions/get_questions_data',
+        })
+    },
     methods: {
+        ...mapActions({
+           'get_questions_where':'questions/get_questions_where',
+           'save_listing_info':'listings/save_info_listing',
+        }),
         next_step: function () {
             this.$inertia.visit('/listing/photos');
         },
@@ -236,5 +253,8 @@ form{
             margin-right: 10px;
         }
     }
+}
+.form-control.toggle-checkbox-status:focus{
+    background-color: #ccc;
 }
 </style>
