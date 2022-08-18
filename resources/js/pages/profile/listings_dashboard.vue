@@ -42,7 +42,12 @@
                                    <tbody>
                                    <tr v-for="(row_val,index) in data['data']" :class="'tr_'+row_val['id']" :key="index">
                                        <td  v-for="(td_val,index) in Object.values(row_val)"
-                                           :key="index">{{ td_val }}</td>
+                                           :key="index">
+                                           <span v-if="td_val == 0 || td_val == 1">
+                                               {{ switchWord(td_val == 0 ? 'no':'yes') }}
+                                           </span>
+                                           <span v-else>{{ td_val }}</span>
+                                       </td>
                                        <td class="actions_control" v-if="Object.keys(
                                                     data['table_keywords']
                                                 ).includes('actions')">
@@ -59,12 +64,12 @@
                                                     aria-labelledby="dropdownMenuButton">
                                                    <inertia-link
                                                        class="dropdown-item"
-                                                       :href="'listing/initialize?id='+row_val['id']">
+                                                       :href="'/listing/initialize?id='+row_val['id']">
                                                        {{ keywords.update_info }}
                                                    </inertia-link>
                                                    <inertia-link
                                                        class="dropdown-item"
-                                                       :href="'listing/photos?id='+row_val['id']">
+                                                       :href="'/listing/photos?id='+row_val['id']">
                                                        {{ keywords.update_photos }}
                                                    </inertia-link>
                                                </div>
@@ -74,6 +79,14 @@
                                                         <i @click="delete_item('listings_infos',row_val['id'],'.tr_'+row_val['id'])" class="ri-close-line"></i>
                                                     </span>
                                            </button>
+                                           <inertia-link class="complete_payment btn btn-secondary"
+                                                         v-if="row_val['payment_status'] == 0"
+                                               :title="keywords.complete_payment"
+                                               :href="'/listing/confirm-payment?id='+row_val['id']">
+                                               <span>
+                                                   <i class="ri-secure-payment-line"></i>
+                                               </span>
+                                           </inertia-link>
                                        </td>
                                    </tr>
                                    </tbody>
@@ -96,10 +109,11 @@ import FooterComponent from "../../components/FooterComponent";
 import ProfileNavComponent from "../../components/ProfileNavComponent";
 import tableData from "../../mixin/tableData";
 import delete_item from "../../mixin/delete_item";
+import SwitchLangWord from "../../mixin/SwitchLangWord";
 export default {
     name: "listings_dashboard",
     props:['keywords','data'],
-    mixins:[tableData,delete_item],
+    mixins:[tableData,delete_item,SwitchLangWord],
     data:function (){
         return {
            tab:null,
@@ -230,6 +244,16 @@ table{
     }
 }
 
+.complete_payment{
+    padding: 0;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-right: 5px;
+    margin-left: 5px;
+    span{
+        color:white;
+    }
+}
 
 @media (max-width: 567px) {
     .listings_dashboard{

@@ -11,6 +11,7 @@ class NeighboursGovermentCityKeywords
             'egypt_properties'=>trans('keywords.egypt_properties'),
             'neighborhood_prices'=>trans('keywords.neighborhood_prices'),
             'meter_size_price'=>trans('keywords.meter_size_price'),
+            'area'=>trans('keywords.area'),
             'neighborhood'=>trans('keywords.meter_size_price'),
             'apartments_average_price_per_meter'=>trans('keywords.apartments_average_price_per_meter'),
             'villas_average_price_per_meter'=>trans('keywords.villas_average_price_per_meter'),

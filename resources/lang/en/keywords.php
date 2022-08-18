@@ -114,7 +114,7 @@ return [
     'to_get_best_results'=>'To get faster and more results, we recommend that you contact the largest real estate offices - to help you find what you are looking for.',
     'registered_at_date'=>'Registered at date',
     'close'=>'close',
-    'pound'=>'pound',
+    'pound'=>'dollar',
     'meter'=>'meter',
     'verified'=>'verified',
     'sponsored'=>'sponsored',
@@ -165,7 +165,11 @@ return [
     'select_view'=>'Select view',
     'price_egp'=>'Price in EGY',
     'price'=>'Price',
+    'payment_types'=>'Payment types',
+    'select_payment_type'=>'select payment type',
+    'coordinates'=>'Coordinates',
     'payment_method'=>'Payment Method',
+    'complete_payment'=>'Complete payment process',
     'rooms'=>'Rooms',
     'floor'=>'Floor',
     'bathrooms'=>'Bathrooms',
@@ -177,6 +181,8 @@ return [
     'semi_finished'=>'Semi Finished',
     'without_finish'=>'Without Finish',
     'property_address'=>'Property Address',
+    'property_address_arabic'=>'Property in arabic',
+    'property_address_english'=>'Property in english',
     'mark_your_listing_location'=>'Mark your listing location',
     'kindly_read_terms_and_instructions_of_adding_listings_on_ewaa'=>'Kindly read terms and instructions of adding listings on ewaa',
     'here'=>'here',
@@ -390,8 +396,12 @@ return [
 
     // start of confirm payment-------------------------------------------------------------
     'for_rent'=>'For Rent',
+    'for_sale'=>'For Sale',
+    'take_from_my_points'=>'Take from my points',
+    'press_here_to_complete_process'=>'Press here to complete process',
     'publish_listing'=>'Publish Listing',
-    'You_added_listing_in_one_of_our_paid'=>'You added your listing in one of our paid area you need to pay 0.5 to publish your listing.',
+    'You_added_listing_in_one_of_our_paid'=>'You added your listing in one of our paid area you need to pay',
+    'from_points'=>' from points',
     'you_dont_have_enough_balance'=>'You dont have enough balance to publish this listing',
     'click_here_to_buy_one_of_our_packages'=>'Click here to buy one of our packages',
     // end of confirm payment-------------------------------------------------------------
@@ -487,6 +497,7 @@ return [
     'all_questions'=>'All questions',
     'answers'=>'Answers',
     'add_question'=>'Add question',
+    'question'=>'question',
     'city'=>'City',
     'neighbour'=>'Neighbour',
     'select'=>'Select',
@@ -562,6 +573,8 @@ return [
     'tu_question'=>'Question in turkish',
     'question_type'=>'Question Type',
     'question_required'=>'Mandatory question',
+    'icon'=>'Icon',
+    'cover_appearance'=>'Status of  cover appearance',
     'ar_question_values'=>'Question values in arabic',
     'en_question_values'=>'Question values in english',
     'tu_question_values'=>'Question values in turkish',
@@ -670,6 +683,12 @@ return [
     'december'=>'December',
     // end of months ----------------------------------------------------------
 
+
+
+
+
+    // some success messages
+    'payment_success'=>'Payment has been success',
 
 
 

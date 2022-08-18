@@ -11,31 +11,52 @@
             </h2>
             <p class="alert alert-info">
                {{ keywords.You_added_listing_in_one_of_our_paid }}
+               {{ data['point_number'] }}
+               {{ keywords.from_points }}
             </p>
             <div class="content d-flex">
-                <img src="/images/sales/one.jpg">
+                <img :src="'/images/listings/'+data['listing_obj_image']['image']">
                 <div class="mt-2">
                     <div class="links">
-                        <span>قاهره</span>
+                        <span>
+                            {{ data['area'][$page.props.lang+'_name'] }}
+                        </span>
                         <span>/</span>
-                        <span>قاهره</span>
+                        <span>
+                            {{ data['area']['city'][$page.props.lang+'_name'] }}
+                        </span>
                         <span>/</span>
-                        <span>قاهره</span>
+                        <span>
+                            {{ data['government'][$page.props.lang+'_name'] }}
+                        </span>
                         <span>/</span>
-                        <span>قاهره</span>
+                        <span>
+                            {{ data['government']['country'][$page.props.lang+'_name'] }}
+                        </span>
                     </div>
-                    <p>Testing content</p>
                     <p>
-                        <span>{{ keywords.for_rent }}</span>
-                        <span>10000</span>
+                        {{ data['listing_data']['info'] }}
+                    </p>
+                    <p>
+                        <span>{{ data['listing_data']['rent_or_sale'] == 'rent' ?
+                            keywords.for_rent : keywords.for_sale }}
+                        </span>
+                        <span>{{ data['listing_data']['price'] }}</span>
                         <span>{{ keywords.pound }}</span>
                     </p>
                 </div>
             </div>
-            <div class="alert alert-danger text-center">
+            <div class="alert alert-danger text-center" v-if="$page.props.user.total_points < data['point_number'] ">
                 <p class="text-center mt-2 mb-2">{{ keywords.you_dont_have_enough_balance }}</p>
                 <button class="btn btn-danger mb-2">
                     {{ keywords.click_here_to_buy_one_of_our_packages }}
+                </button>
+            </div>
+            <div class="alert alert-warning text-center" v-else>
+                <p class="text-center mt-2 mb-2">{{ keywords.take_from_my_points }}</p>
+                <button class="btn btn-primary mb-2"
+                        @click="listing_payment([data['listing_data']['id'],data['point_number'],'/profile/dashboard?tab=pending_listings'])">
+                    {{ keywords.press_here_to_complete_process }}
                 </button>
             </div>
         </div>
@@ -46,10 +67,16 @@
 <script>
 import NavbarComponent from "../../components/NavbarComponent";
 import FooterComponent from "../../components/FooterComponent";
+import {mapActions} from "vuex";
 export default {
     name: "payment_confirmation",
     components: {FooterComponent, NavbarComponent},
-    props:['keywords'],
+    props:['keywords','data'],
+    methods:{
+        ...mapActions({
+            'listing_payment':'listing_payment/payment_listing_points'
+        })
+    }
 }
 </script>
 
@@ -78,6 +105,7 @@ export default {
         img{
             width: 300px;
             border-radius: 10px;
+            border:1px solid #eee;
         }
         img+div{
             div,p{

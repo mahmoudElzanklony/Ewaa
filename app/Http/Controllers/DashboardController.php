@@ -47,6 +47,8 @@ class DashboardController extends DashboardServiceClass
         if(session()->get('type') != 'admin'){
            // return redirect('/')->send();
         }
+        // note
+        // change-map make this route public for any one not only admin
     }
 
     public function index(){

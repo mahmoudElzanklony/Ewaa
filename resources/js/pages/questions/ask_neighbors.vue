@@ -9,68 +9,85 @@
                         <span v-else><i class="ri-arrow-right-s-fill"></i></span>
                         <span>{{ keywords.the_most_discussed_questions }}</span>
                     </h2>
-                    <form>
+                    <form class="mb-2">
                         <div class="row">
-                            <div class="col-4">
+                            <div class="col-lg-4 col-sm-6">
                                 <div class="form-group">
-                                    <select class="form-control" name="city">
+                                    <select class="form-control" name="city_id" @change="update_area">
                                         <option value="">{{ keywords.city }}</option>
+                                        <option v-for="(c,index) in map_data('city_id')" :key="index"
+                                                :value="c['id']" :selected="requested_data != null && requested_data.hasOwnProperty('city_id') && requested_data['city_id'] == c['id']">
+                                            {{ c[$page.props.lang+'_name'] }}
+                                        </option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-lg-4 col-sm-6">
                                 <div class="form-group">
-                                    <select class="form-control" name="neighbour">
+                                    <select class="form-control" name="area_id">
                                         <option value="">{{ keywords.neighbour }}</option>
+                                        <option v-for="(c,index) in map_data('area_id')" :key="index"
+                                                :value="c['id']" :selected="requested_data != null && requested_data.hasOwnProperty('area_id') && requested_data['area_id'] == c['id']">
+                                            {{ c['name'] }}
+                                        </option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-lg-4 col-sm-6">
                                 <div class="form-group">
-                                    <select class="form-control" name="categories">
+                                    <select class="form-control" name="category_id">
                                         <option value="all">{{ keywords.all_categories }}</option>
+                                        <option v-for="(c,index) in categories" :key="index"
+                                                :value="c['id']" :selected="requested_data != null && requested_data.hasOwnProperty('category_id') && requested_data['category_id'] == c['id']">
+                                            {{ c['name'] }}
+                                        </option>
                                     </select>
                                 </div>
+                            </div>
+
+                            <div class="col-lg-4 col-sm-6">
+                                <input type="submit" class="btn btn-primary w-100"
+                                        :value="switchWord('filter')">
                             </div>
                         </div>
                     </form>
                     <ul class="questions_types d-flex align-items-center justify-content-between">
                         <li class="active">
-                            <inertia-link href="#">{{ keywords.the_most_discussed }}</inertia-link>
+                            <inertia-link href=""  @click.prevent="change_question_type"
+                                          value_type="has_answers">{{ keywords.the_most_discussed }}</inertia-link>
                         </li>
                         <li>
-                            <inertia-link href="#">{{ keywords.unanswered }}</inertia-link>
+                            <inertia-link href=""  @click.prevent="change_question_type"
+                                          value_type="has_not_answers" >{{ keywords.unanswered }}</inertia-link>
                         </li>
                         <li>
-                            <inertia-link href="#">{{ keywords.all_questions }}</inertia-link>
+                            <inertia-link  href=""  @click.prevent="change_question_type"
+                                           value_type="all" >{{ keywords.all_questions }}</inertia-link>
                         </li>
                     </ul>
                     <div class="questions">
-                        <div class="question p-2" v-for="i in 6" :key="i">
-                            <p>يا جماعة أنا عايز نصحيتكم، اشتري في القاهرة الجديدة (التجمع الخامس) ولا في العاصمة الإدارية</p>
+                        <div class="question p-2" v-for="(i,index) in questions_info_data.data" :key="index">
+                            <p>{{ i['question'] }}</p>
                             <div class="d-flex align-items-center justify-content-between">
                                 <p>
                                     <inertia-link href="?location=1">
-                                        <span>{{ keywords.location }}</span>
+                                        <span>{{ i['area'][$page.props.lang+'_name'] }}</span>
                                     </inertia-link>
                                     <span>{{ keywords.in }}</span>
                                     <inertia-link href="/ask-neighbours/10/answers">
-                                        <span>القاهرة</span>
+                                        <span>{{ i['area']['city'][$page.props.lang+'_name'] }}</span>
                                     </inertia-link>
                                 </p>
                                 <p>
                                     <inertia-link href="/ask-neighbours/10/answers">
-                                        <span>51 {{ keywords.answers }}</span>
+                                        <span>{{ i['answers_count'] }} {{ keywords.answers }}</span>
                                     </inertia-link>
                                 </p>
                             </div>
                         </div>
                         <div class="pages text-center mt-4 mb-2">
-                            <inertia-link class="active" href="#">
-                                {{ 1 }}
-                            </inertia-link>
-                            <inertia-link href="#" v-for="i in 4" :key="i">
-                                {{ i+1 }}
+                            <inertia-link :href="current_url+'&page='+(index+1)" v-for="(i,index) in links" :key="index" :class="index + 1 == questions_info_data.current_page ? 'active':''">
+                                {{ index + 1 }}
                             </inertia-link>
                         </div>
                     </div>
@@ -82,29 +99,39 @@
                         <span>{{ keywords.ask_your_neighbors }}</span>
                     </h2>
                     <p class="mb-2">{{ keywords.write_your_question_and_get_answers_from_the_community }}</p>
-                    <form>
+                    <form method="post" @submit.prevent="add_question">
                         <div class="row">
-                            <div class="col-4">
+                            <div class="col-lg-4 col-sm-6">
                                 <div class="form-group">
-                                    <select class="form-control" name="city" required>
+                                    <select class="form-control" name="city_id" @change="update_area">
                                         <option value="">{{ keywords.city }}</option>
+                                        <option v-for="(c,index) in map_data('city_id')" :key="index" :value="c['id']">
+                                            {{ c[$page.props.lang+'_name'] }}
+                                        </option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-lg-4 col-sm-6">
                                 <div class="form-group">
-                                    <select class="form-control" name="neighbour" required>
+                                    <select class="form-control" name="area_id">
                                         <option value="">{{ keywords.neighbour }}</option>
+                                        <option v-for="(c,index) in map_data('area_id')" :key="index" :value="c['id']">
+                                            {{ c['name'] }}
+                                        </option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-lg-4 col-sm-6">
                                 <div class="form-group">
-                                    <select class="form-control" name="categories" required>
+                                    <select class="form-control" name="category_id">
                                         <option value="all">{{ keywords.all_categories }}</option>
+                                        <option v-for="(c,index) in categories" :key="index" :value="c['id']">
+                                            {{ c['name'] }}
+                                        </option>
                                     </select>
                                 </div>
                             </div>
+
                             <div class="col-12 mt-2">
                                 <textarea class="form-control mb-2"
                                           name="question"
@@ -115,7 +142,7 @@
                     </form>
                 </div>
             </div>
-            <sale-rent-component></sale-rent-component>
+            <sale-rent-component :data="cities_listings" :country="country"></sale-rent-component>
         </div>
         <footer-component></footer-component>
     </section>
@@ -125,10 +152,109 @@
 import NavbarComponent from "../../components/NavbarComponent";
 import FooterComponent from "../../components/FooterComponent";
 import SaleRentComponent from "../../components/SaleRentComponent";
+import SwitchLangWord from "../../mixin/SwitchLangWord";
+import {mapActions , mapMutations , mapGetters} from  "vuex";
 export default {
     name: "ask_neighbors",
-    props:['keywords'],
-    components: {SaleRentComponent, FooterComponent, NavbarComponent}
+    props:['keywords','cities','categories','questions','requested_data','cities_listings','country'],
+    mixins:[SwitchLangWord],
+    components: {SaleRentComponent, FooterComponent, NavbarComponent},
+    data:function(){
+        return {
+            question_type:'',
+            current_url:document.URL,
+            links : [],
+            has_parameter:document.URL.indexOf('?') > 0 ? true:false
+        }
+    },
+    computed:{
+        ...mapGetters({
+            'map_data':'countries_govenrn_cities_areas/get_items_data',
+            'questions_info_data':'discussions_questions/get_data',
+        })
+    },
+    methods:{
+        ...mapMutations({
+            'inilaize_cities':'countries_govenrn_cities_areas/inialize_items',
+            'inilaize_questions':'discussions_questions/inialize_items',
+        }),
+        ...mapActions({
+            'get_next_map_type':'countries_govenrn_cities_areas/get_next_map_type_from_previous_value',
+            'add_question':'discussions_questions/save_question',
+        }),
+        update_area:function(){
+            var data = {
+                name:'areas',
+                where:'city_id',
+                value:event.target.value,
+            };
+            this.get_next_map_type(data);
+        },
+        get_active_question_type:function(){
+            // get question type
+            if(document.URL.indexOf('has_answers') > 0){
+                this.question_type = 0;
+            }else if(document.URL.indexOf('has_not_answers') > 0){
+                this.question_type = 1;
+            }else{
+                this.question_type = 2;
+            }
+            $('.questions_types li').removeClass('active');
+            $('.questions_types li').eq(this.question_type).addClass('active');
+        },
+        change_question_type:function(){
+            var type = event.target.getAttribute('value_type');
+            if(this.current_url.indexOf('?') > 0){
+                // check if question_type is at url
+                if(this.current_url.indexOf('question_type') > 0){
+                    var split_url = document.URL.split('question_type=');
+                    var split_second_url = split_url[1].split('&');
+                    var output =  split_url[0] + 'question_type='+type;
+                    if(split_second_url[1] != undefined){
+                        output+= '&'+split_second_url[1];
+                    }
+                    this.$inertia.visit(output);
+                }else{
+                    // not found
+                    this.$inertia.visit(this.current_url+'&question_type='+type);
+                }
+            }else{
+                // this is first parameter request
+                this.$inertia.visit(this.current_url+'?question_type='+type);
+            }
+        }
+    },
+    created() {
+        // inilaize questions
+        this.inilaize_questions(this.questions);
+        // inilzie cities
+        this.inilaize_cities({name:'cities',value:this.cities});
+        // check if i has city_id from url ==> go and get areas
+        if(this.requested_data != null && this.requested_data.hasOwnProperty('city_id')){
+            console.log('areas......');
+            var data = {
+                name:'areas',
+                where:'city_id',
+                value:this.requested_data['city_id'],
+            };
+            this.get_next_map_type(data);
+        }
+        // check links
+        this.links = this.questions_info_data.links;
+        if(this.links.length >= 3){
+            this.links.pop();
+            this.links.shift();
+        }
+        // remove page from url
+        if(document.URL.indexOf('&page') > 0) {
+            this.current_url = document.URL.substring(0, document.URL.indexOf('&page'))
+        }else{
+            this.current_url = document.URL;
+        }
+    },
+    mounted() {
+        this.get_active_question_type();
+    }
 }
 </script>
 

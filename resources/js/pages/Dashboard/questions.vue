@@ -22,14 +22,21 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="(question,index) in get_data" :key="index" :class="'tr_'+question['id']">
+                            <tr v-for="(question,index) in get_data" :key="index" :class="'tr_'+question['id']">
+                            <td>
+                                <img v-if="question['icon'] != ''" :src="'/images/icons/'+question['icon']">
+                                <img v-else src="/images/icons/question.png">
+                            </td>
                             <td>{{ question['ar_name'] }}</td>
                             <td>{{ question['en_name'] }}</td>
-                            <td style="display: none">{{ question['tu_name'] }}</td>
+<!--                            <td style="display: none">{{ question['tu_name'] }}</td>-->
                             <td>{{ switchWord('question_type_'+question['type']) }}</td>
                             <td>
 <!--                                <input @click="updateStatus(question.id,'questions')" name="toggle" type="checkbox" class="toggle-checkbox-status" :checked="question['required_status'] == 1">-->
                                 {{ switchWord(question['required_status'] == 1 ? 'required':'not_required') }}
+                            </td>
+                            <td>
+                                {{ switchWord(question['cover_appearance'] == 1 ? 'yes':'no') }}
                             </td>
                             <td v-if="question['type'] == 'select'">
                                 <span v-for="(selection,index) in question['answers']" :key="index" class="table-item-span">
@@ -48,7 +55,7 @@
                                     {{ selection['tu_name'] }}
                                 </span>
                             </td>
-                            <td style="display: none" v-else></td>
+<!--                            <td style="display: none" v-else></td>-->
 
                             <td class="actions">
                                 <span><i data-toggle="modal" data-target="#update_box"
@@ -121,6 +128,7 @@ export default {
     methods:{
         ...mapMutations({
             'update_data':'questions_dash/update_data',
+            'inilaize_data':'questions_dash/inilalize_data',
         }),
         ...mapActions({
            'save_data':'questions_dash/save_question'
@@ -129,7 +137,7 @@ export default {
     created() {
         this.modal_data = Object.keys(this.handling_data['data_model']);
         this.modal_data.pop();
-        this.update_data(this.handling_data['data']);
+        this.inilaize_data(this.handling_data['data']);
     },
     components: {QuestionDataComponent, SideNavbarComponent}
 }

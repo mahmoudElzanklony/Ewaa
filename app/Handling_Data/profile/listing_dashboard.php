@@ -17,6 +17,7 @@ class listing_dashboard
                     'table_keywords'=>[
                         'id_or_keyword'=>trans('keywords.id_or_keyword'),
                         'listing_details_info'=>trans('keywords.listing_details_info'),
+                        'payment_status'=>trans('keywords.payment_status'),
                         'actions'=>trans('keywords.actions'),
                     ]
                 ],
@@ -25,6 +26,7 @@ class listing_dashboard
                     'table_keywords'=>[
                         'id_or_keyword'=>trans('keywords.id_or_keyword'),
                         'listing_rejected_reasons'=>trans('keywords.listing_rejected_reasons'),
+                        'payment_status'=>trans('keywords.payment_status'),
                         'actions'=>trans('keywords.actions'),
                     ]
                 ],
@@ -33,6 +35,7 @@ class listing_dashboard
                     'table_keywords'=>[
                         'id_or_keyword'=>trans('keywords.id_or_keyword'),
                         'listing_details_info'=>trans('keywords.listing_details_info'),
+                        'payment_status'=>trans('keywords.payment_status'),
                     ]
                 ],
                 'pending_listings'=>[
@@ -44,7 +47,8 @@ class listing_dashboard
                     ],
                     'table_keywords'=>[
                         'id_or_keyword'=>trans('keywords.id_or_keyword'),
-                        'listing_rejected_reasons'=>trans('keywords.listing_rejected_reasons'),
+                        'listing_details_info'=>trans('keywords.listing_details_info'),
+                        'payment_status'=>trans('keywords.payment_status'),
                         'actions'=>trans('keywords.actions'),
                     ]
                 ],
@@ -52,6 +56,7 @@ class listing_dashboard
                     'text'=>trans('keywords.deleted_listings_txt_info'),
                     'table_keywords'=>[
                         'id_or_keyword'=>trans('keywords.id_or_keyword'),
+                        'payment_status'=>trans('keywords.payment_status'),
                         'listing_details_info'=>trans('keywords.listing_details_info'),
                     ]
                 ],
@@ -91,7 +96,7 @@ class listing_dashboard
             $data[$type]['data'] = listings_info::query()
                 ->where('user_id', '=', auth()->id())
                 ->where('type', '=', $listing_type)
-                ->select('id', app()->getLocale() . '_name as name')
+                ->select('id', app()->getLocale() . '_info as info','payment_status')
                 ->get();
         }
 

@@ -4,64 +4,32 @@
 
         <div class="pages">
             <div class="container">
-                <span>{{ keywords.egypt_properties }}</span>
-                <span v-if="$page.props.lang == 'ar'">
-                    <i class="ri-arrow-left-s-line"></i>
-                </span>
-                <span v-else>
-                    <i class="ri-arrow-right-s-line"></i>
-                </span>
-                <span class="active">{{ keywords.neighborhood_prices }}</span>
+                <inertia-link href="" class="active">
+                    <span>{{ switchWord('buildings') }}</span>
+                    <span v-if="country != ''">{{ switchWord('in') }}</span>
+                    <span v-if="country != ''">{{ country['name'] }}</span>
+                </inertia-link>
+
             </div>
         </div>
 
         <div class="prices">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-4 col-md-6 col-12" v-for="i in 5" :key="i">
-                        <inertia-link href="#">
+                    <div class="col-lg-4 col-md-6 col-12" v-for="(i,index) in governments" :key="index">
+                        <inertia-link :href="current_url+'/'+i['id']">
                             <div class="city">
-                                <p>القاهره</p>
-                                <img src="/images/sales/one.jpg">
+                                <p>{{ i['name'] }}</p>
+                                <img v-if="i['image'] != null" :src="'/images/maps/'+i['image']">
+                                <img v-else src="/images/maps/default.png">
                             </div>
                         </inertia-link>
                     </div>
                 </div>
             </div>
         </div>
+        <sale-rent-component :data="cities_data" :country="country"></sale-rent-component>
 
-        <div class="sale_rent">
-            <div class="container">
-                <p>
-                    <span v-if="$page.props.lang == 'ar'"><i class="ri-arrow-left-s-fill"></i></span>
-                    <span v-else><i class="ri-arrow-left-s-fill"></i></span>
-                    <span>{{ keywords.search_inside_the_cities_of_egypt }}</span>
-                    <span class="d-block w-100 mb-2"></span>
-                    <span class="active" @click="switch_city">{{ keywords.rent }}</span>
-                    <span @click="switch_city">{{ keywords.sale }}</span>
-                </p>
-                <div>
-                    <div class="row">
-                        <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-2" v-for="i in 30" :key="i">
-                            <inertia-link href="">
-                                <span>القاهره الكبري</span>
-                                <span>(130)</span>
-                            </inertia-link>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="row">
-                        <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-2" v-for="i in 30" :key="i">
-                            <inertia-link href="">
-                                <span>أسكندريه</span>
-                                <span>(130)</span>
-                            </inertia-link>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <footer-component></footer-component>
     </section>
@@ -70,17 +38,20 @@
 <script>
 import NavbarComponent from "../components/NavbarComponent";
 import FooterComponent from "../components/FooterComponent";
+import SwitchLangWord from "../mixin/SwitchLangWord";
+import SaleRentComponent from "../components/SaleRentComponent";
 export default {
     name: "neighbours",
-    props:['keywords'],
-    components: {FooterComponent, NavbarComponent},
-    methods:{
-        switch_city:function (){
-            $(event.target).parent().find('.active').removeClass('active');
-            $(event.target).addClass('active');
-            $(event.target).parent().parent().find('>div').hide();
-            $(event.target).parent().parent().find('>div').eq($(event.target).index() - 3).fadeIn();
+    props:['keywords','governments','cities_data','country'],
+    mixins:[SwitchLangWord],
+    data:function(){
+        return {
+            current_url:'',
         }
+    },
+    components: {SaleRentComponent, FooterComponent, NavbarComponent},
+    created() {
+        this.current_url = document.URL;
     }
 }
 </script>

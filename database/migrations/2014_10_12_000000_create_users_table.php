@@ -27,6 +27,7 @@ class CreateUsersTable extends Migration
             $table->string('image')->default('default.png');
             $table->tinyInteger('block')->default(0);
             $table->tinyInteger('auto_publish')->default(0);
+            $table->integer('total_points')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

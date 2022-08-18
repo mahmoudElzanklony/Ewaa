@@ -17,7 +17,7 @@
                 <span><i class="ri-check-line"></i></span>
             </div>
             <form method="post" @submit.prevent="save_inilaize_listing">
-                <input v-if="data['listing_info'] != null"
+                <input v-if="data['listing_info'] != null && data['listing_info'].hasOwnProperty('id')"
                        type="hidden" name="id" :value="data['listing_info']['id']">
                 <div class="row">
                     <div class="col-sm-4">

@@ -16,4 +16,9 @@ class CategoriesController extends Controller
             return messages::success_output('',$sub_categories);
         }
     }
+
+    public function get_parent(){
+        $data = categories_data::get_categories_type(null);
+        return messages::success_output('',$data);
+    }
 }

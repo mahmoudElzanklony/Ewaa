@@ -6,6 +6,8 @@ return [
     'unauthenticated_serial'=>'phone number of serial code is not correct',
     'error_upload_image'=>'Uploaded error file must be an image',
     'unauthorized'=>'you are unauthorized to do this action',
-
+    'payment_before'=>'This Ad has been paid before',
+    'payment_unauthorized_user'=>'you are not the owner of this ad',
+    'not_enough_points'=>'Not enough points',
 
 ];

@@ -16,16 +16,25 @@
                     <table class="myTable table text-center table-bordered table-striped table-hover">
                         <thead>
                         <tr>
-                            <td v-for="i in handling_data['table_head_keys']" :key="i">
+                            <td v-for="(i,index) in handling_data['table_head_keys']" :key="index">
                                 {{ i }}
                             </td>
                         </tr>
                         </thead>
                         <tbody>
                         <tr v-for="(i,index) in handling_data['data']" :key="index" :class="'tr_'+i['id']">
+                            <td v-if="i['map_images'].length > 0">
+                                <img :src="'/images/maps/'+i['map_images'][0]['image']">
+                            </td>
+                            <td v-else>
+                                <img src="/images/maps/default.png">
+                            </td>
                             <td>{{ i['ar_name'] }}</td>
                             <td>{{ i['en_name'] }}</td>
-                            <td style="display: none">{{ i['tu_name'] }}</td>
+<!--                            <td style="display: none">{{ i['tu_name'] }}</td>-->
+                            <td>{{ i['ar_info'] }}</td>
+                            <td>{{ i['en_info'] }}</td>
+<!--                            <td>{{ i['tu_info'] }}</td>-->
                             <td class="actions">
                                 <inertia-link
                                     v-if="handling_data['actions'].hasOwnProperty(type)"
@@ -37,7 +46,7 @@
                                 <span><i data-toggle="modal" data-target="#update_box"
                                          @click="update_item(i)"
                                          class="ri-edit-line"></i></span>
-                                <span><i @click="delete_item(type,10,'.tr_'+i['id'])" class="ri-close-line"></i></span>
+                                <span><i @click="delete_item(type,i['id'],'.tr_'+i['id'])" class="ri-close-line"></i></span>
                             </td>
                         </tr>
                         </tbody>
@@ -63,7 +72,11 @@
                             <div class="form-group"
                                  v-for="input in modal_data" :key="input">
                                 <label>{{ handling_data['data_model'][input] }}</label>
-                                <input :name="input" class="form-control"
+                                <textarea v-if="input.indexOf('info') > 0" :name="input"
+                                          class="form-control" :value="item != null ? item[input]:''"
+                                          :required="input.indexOf('tu') == -1">{{ item != null ? item[input] : '' }}</textarea>
+
+                                <input v-else :name="input" class="form-control"
                                        :value="item != null ? item[input]:''"
                                        :required="input.indexOf('tu') == -1">
                                 <p class="alert-danger"></p>
@@ -78,6 +91,24 @@
                                             :key="index" :value="parent_el['id']">{{ parent_el['name'] }}</option>
                                 </select>
                                 <p class="alert-danger"></p>
+                            </div>
+                            <div class="form-group">
+                                <div class="drag-drop-files">
+                                    <input type="file" class="preview-image" name="images[]" multiple accept="image/*"
+                                           selector=".modal-dialog img.box-image">
+                                    <button type="button" class="btn btn-primary">
+                                        <span>{{ switchWord('upload_images') }}</span>
+                                        <span><i class="ri-add-line"></i></span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="images d-flex justify-content-around" v-if="item != null">
+                                <div :class="'position-relative mb-2 input-has-delete img_'+img['id']"
+                                     v-for="(img,index) in item['map_images']" :key="index">
+                                    <span><i class="ri-close-line"
+                                             @click="delete_item('map_images',img['id'],'.img_'+img['id'])"></i></span>
+                                    <img :src="'/images/maps/'+img['image']">
+                                </div>
                             </div>
                             <div class="form-group">
                                 <input class="btn btn-primary" type="submit" name="send" :value="switchWord('save')">
@@ -126,7 +157,7 @@ export default {
           'inilaize':'map_locations_dash/inialize_data',
       }),
       ...mapActions({
-         'save_data':'map_locations_dash/save_category'
+         'save_data':'map_locations_dash/save_location'
       }),
     },
     created() {
@@ -156,6 +187,29 @@ export default {
     span:first-of-type{
         margin-left: 5px;
         margin-right: 5px;
+    }
+}
+.position-relative.input-has-delete{
+    img{
+        height: 100px;
+        width: 100px;
+        object-fit: cover;
+        border: 1px solid #dddddd;
+        border-radius: 4px;
+    }
+    span{
+        left: 5px;
+        top: 4px;
+        background-color: white;
+        width: 25px;
+        height: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        i{
+            font-size:$button;
+        }
     }
 }
 </style>

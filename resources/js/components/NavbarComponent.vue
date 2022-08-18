@@ -17,18 +17,13 @@
                             <span><i class="ri-arrow-drop-down-fill"></i></span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <inertia-link href="/search-page-filter">
-                                <span><i class="ri-building-line"></i></span>
-                                <span>{{ switchWord('buildings') }}</span>
+                            <inertia-link :href="'/search-page-filter?cat_id='+cat['id']"
+                                          :title="cat['info']"
+                                          v-for="(cat,index) in get_parent_categories_data" :key="index">
+                                <img :src="'/images/categories/'+cat['image']">
+                                <span>{{ cat['name'] }}</span>
                             </inertia-link>
-                            <inertia-link href="#">
-                                <span><i class="ri-community-line"></i></span>
-                                <span>{{ switchWord('Componds') }}</span>
-                            </inertia-link>
-                            <inertia-link href="#">
-                                <span><i class="ri-hotel-bed-line"></i></span>
-                                <span>{{ switchWord('Beds') }}</span>
-                            </inertia-link>
+
                             <!--                            <div class="dropdown-divider"></div>-->
                         </div>
                     </li>
@@ -204,16 +199,20 @@
 
 <script>
 import SwitchLangWord from '../mixin/SwitchLangWord';
+import {mapActions , mapGetters} from "vuex";
 export default {
     name: "NavbarComponent",
     mixins:[SwitchLangWord],
     computed:{
         user:function(){
             return this.$inertia.page.props.user;
-        }
+        },
+        ...mapGetters({
+           'get_parent_categories_data':'categories/get_parent_categories_data',
+        }),
     },
     created() {
-
+        this.get_parent_cats();
     },
     methods:{
         showList:function (){
@@ -224,7 +223,10 @@ export default {
                 arrow.removeClass('ri-arrow-drop-up-fill').addClass('ri-arrow-drop-down-fill')
             }
             $(event.target).parent().next().fadeToggle();
-        }
+        },
+        ...mapActions({
+            'get_parent_cats':'categories/get_parent_categories',
+        })
     }
 }
 </script>
@@ -236,6 +238,12 @@ export default {
     .navbar-brand{
         margin-left: 5%;
     }
+    .dropdown-menu{
+        img{
+            margin-left: 5px;
+        }
+    }
+
     .nav-link{
         >span:first-of-type{
             margin-left: 7px;
@@ -269,6 +277,12 @@ export default {
         right: 0px;
         left: unset;
     }
+    .dropdown-menu{
+        img{
+            margin-right: 5px;
+        }
+    }
+
     .nav-link{
         >span:first-of-type{
             margin-right: 7px;
@@ -328,9 +342,14 @@ nav {
         a{
             display: flex;
             align-items: center;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            img{
+                height:30px;
+            }
             span:first-of-type{
-                color:$main_color;
+                i{
+                    color:$main_color;
+                }
             }
         }
 

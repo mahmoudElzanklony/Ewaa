@@ -5,27 +5,30 @@
             <p>
                 <span v-if="$page.props.lang == 'ar'"><i class="ri-arrow-left-s-fill"></i></span>
                 <span v-else><i class="ri-arrow-left-s-fill"></i></span>
-                <span>{{ switchWord('search_inside_the_cities_of_egypt') }}</span>
+                <span>
+                    {{ switchWord('search_inside_the_cities') }}
+                    <strong v-if="country != ''"> {{ switchWord('in') }} {{ country['name'] }}</strong>
+                </span>
                 <span class="d-block w-100 mb-2"></span>
                 <span class="active" @click="switch_city">{{ switchWord('rent') }}</span>
                 <span @click="switch_city">{{ switchWord('sale') }}</span>
             </p>
             <div>
                 <div class="row">
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-2" v-for="i in 30" :key="i">
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-2" v-for="(i,index) in rent_data" :key="index">
                         <inertia-link href="">
-                            <span>القاهره الكبري</span>
-                            <span>(130)</span>
+                            <span>{{ i['city_name'] }}</span>
+                            <span>({{ i['total_listings'] }})</span>
                         </inertia-link>
                     </div>
                 </div>
             </div>
             <div>
                 <div class="row">
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-2" v-for="i in 30" :key="i">
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-2" v-for="(i,index) in sale_data" :key="index">
                         <inertia-link href="">
-                            <span>أسكندريه</span>
-                            <span>(130)</span>
+                            <span>{{ i['city_name'] }}</span>
+                            <span>({{ i['total_listings'] }})</span>
                         </inertia-link>
                     </div>
                 </div>
@@ -40,7 +43,20 @@
 import SwitchLangWord from "../mixin/SwitchLangWord";
 export default {
     name: "SaleRentComponent",
+    props:['data','country'],
     mixins:[SwitchLangWord],
+    computed:{
+        rent_data:function(){
+            return this.data.filter((e)=>{
+                return e['rent_or_sale'] == 'rent'
+            })
+        },
+        sale_data:function(){
+            return this.data.filter((e)=>{
+                return e['rent_or_sale'] == 'sale'
+            })
+        },
+    },
     methods:{
         switch_city:function (){
             $(event.target).parent().find('.active').removeClass('active');

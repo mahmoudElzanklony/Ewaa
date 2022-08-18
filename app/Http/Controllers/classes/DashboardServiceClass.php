@@ -21,13 +21,16 @@ use App\Models\cities;
 use App\Models\countries;
 use App\Models\currencies;
 use App\Models\governments;
+use App\Models\listing_photos;
 use App\Models\listings_info;
+use App\Models\map_images;
 use App\Models\packages;
 use App\Models\packages_prices_places;
 use App\Models\questions;
 use App\Models\support;
 use App\Models\User;
 use App\Services\listings\average_price_at_area;
+use App\Services\listings\get_pointsprice_of_place;
 use App\Services\map\get_location_where;
 use App\Services\statistics\filter_statistics_admin;
 use Illuminate\Http\Request;
@@ -56,6 +59,11 @@ class DashboardServiceClass extends Controller
     public function save_question(questionsFormRequest $request){
 
         $question_data = request()->except(['ar_answers','en_answers','tu_answers']);
+        // check if i had image icon
+        if(request()->hasFile('icon')){
+            $icon = $this->upload(request('icon'),'icons');
+            $question_data['icon'] = $icon;
+        }
         // make question
         $question = questions::query()->updateOrCreate([
             'id'=>request()->has('id') ? request('id') : null
@@ -179,9 +187,21 @@ class DashboardServiceClass extends Controller
             case 'cities': $item = cities::query(); break;
             case 'areas': $item = areas::query(); break;
         }
+
         $result = $item->updateOrCreate([
             'id'=>request()->has('id') ? request('id') : null
         ],$validated);
+        // check if there images for this location
+        if(request()->hasFile('images')){
+            foreach (request()->file('images') as $file) {
+                $image = $this->upload($file, 'maps');
+                map_images::query()->create([
+                    'map_id' => $result->id,
+                    'image' => $image,
+                    'type'=>request('type')
+                ]);
+            }
+        }
 
         return messages::success_output(trans('messages.saved_successfully'), $result,request()->has('id') ? 'update':'insert');
 
@@ -235,6 +255,14 @@ class DashboardServiceClass extends Controller
         ],[
             'type'=>request('status'),
         ]);
+        // check if its rejected
+        if(request('status') == ''){
+            // return points to user
+            $no_points = get_pointsprice_of_place::get_price_point_ad($data->area_id);
+            $user = User::query()->find($data->user_id);
+            $user->total_points = $user->total_points + $no_points;
+            $user->save();
+        }
         return messages::success_output(['title'=>trans('messages.saved_successfully'),'icon'=>'success']);
 
     }

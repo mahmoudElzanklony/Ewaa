@@ -31,9 +31,13 @@ class map_dashboard
 
         return [
             'table_head_keys'=>[
+                'image'=>trans('keywords.image'),
                 'ar_name'=>trans('keywords.ar_name'),
                 'en_name'=>trans('keywords.en_name'),
              //   'tu_name'=>trans('keywords.tu_name'),
+                'ar_info'=>trans('keywords.ar_description'),
+                'en_info'=>trans('keywords.en_description'),
+                //   'tu_name'=>trans('keywords.tu_description'),
                 'actions'=>trans('keywords.actions'),
             ],
             'actions'=>[
@@ -41,12 +45,18 @@ class map_dashboard
                'governments'=>'/dashboard/map/cities?government_id=',
                'cities'=>'/dashboard/map/areas?city_id=',
             ],
-            'data'=>$data->get(),
+            'data'=>$data->with('map_images',function($e) use ($map_type){
+                $e->where('type','=',$map_type);
+            })->get(),
             'data_parent'=>$data_parent ?? [],
             'data_model'=>[
                 'ar_name'=>trans('keywords.ar_name'),
                 'en_name'=>trans('keywords.en_name'),
             //    'tu_name'=>trans('keywords.tu_name'),
+                'ar_info'=>trans('keywords.ar_description'),
+                'en_info'=>trans('keywords.en_description'),
+                //   'tu_name'=>trans('keywords.tu_description'),
+
             ]
         ];
     }

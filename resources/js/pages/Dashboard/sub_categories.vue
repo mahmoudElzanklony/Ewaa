@@ -183,6 +183,7 @@ export default {
         }),
         ...mapMutations({
            'update_data':'sub_categories_dash/update_data',
+           'inilaize_data':'sub_categories_dash/inilalize_data',
         }),
         update_question_selection:function(){
             var value  = event.target.value;
@@ -211,7 +212,7 @@ export default {
     created() {
         this.modal_data = Object.keys(this.handling_data['data_model']);
         this.modal_data.pop();
-        this.update_data(this.handling_data['data']);
+        this.inilaize_data(this.handling_data['data']);
 
     },
     components: {QuestionDataComponent, SideNavbarComponent}

@@ -10,21 +10,27 @@
                             <span>
                                 <i class="ri-search-2-line"></i>
                             </span>
-                            <span class="word"> {{ keywords.city_or_neighbour_streetname }}</span>
+                            <span class="word" v-if="requested_data['area'] == null"> {{ keywords.city_or_neighbour_streetname }}</span>
+                            <span class="word" v-else>
+                                {{ requested_data['area'] }}
+                            </span>
                         </div>
                     </div>
                     <div class="col-lg-2 col-sm-none">
                         <div class="position-relative" data-toggle="modal" data-target="#show_filter">
                             <span><i class="ri-arrow-drop-down-line"></i></span>
 
-                            <span class="word">{{ keywords.rent }}</span>
+                            <span class="word">{{ keywords[requested_data['type']] }}</span>
                         </div>
                     </div>
                     <div class="col-lg-2 col-sm-none">
                         <div class="position-relative" data-toggle="modal" data-target="#show_filter">
                             <span><i class="ri-arrow-drop-down-line"></i></span>
 
-                            <span class="word">{{  keywords.price_range }}</span>
+                            <span class="word" v-if="requested_data['min_price'] == null">{{  keywords.price_range }}</span>
+                            <span class="word" v-else>
+                                {{ requested_data['min_price'] }}
+                            </span>
                         </div>
                     </div>
                     <div class="col-lg-2 col-sm-none">
@@ -40,94 +46,103 @@
         <hr>
         <div class="show_results">
             <div class="container">
-                <h2 class="mb-3 mt-3">
+                <h2 class="mb-3 mt-3" v-if="main_cat_info!= null && main_cat_info.hasOwnProperty('name')">
                     <span v-if="$page.props.lang == 'ar'"><i class="ri-arrow-left-line"></i></span>
                     <span v-else><i class="ri-arrow-right-line"></i></span>
-                    <span>{{ keywords.properties_for_rent }}</span>
+                    <span>{{ main_cat_info['name'] }}</span>
                 </h2>
-                <div class="tags">
-                    <inertia-link href="#" v-for="i in 10" :key="i">
-                        <span>شقق</span>
-                        <span>(100)</span>
+                <div class="tags" v-if="sub_cats.length > 0">
+                    <inertia-link href=""
+                                  @click.prevent="go_to_sub_cat(i['id'])" v-for="(i,index) in sub_cats" :key="index">
+                        <span>{{ i['name'] }}</span>
+                        <span>({{ i['count'] }})</span>
                     </inertia-link>
                 </div>
                 <div class="properties">
                     <div class="row">
                         <div class="col-lg-8">
-                            <div class="box-property mb-2" v-for="i in 5" :key="i">
-                                <p class="mt-1">
+                            <div class="box-property mb-2" v-for="(i,index) in data.data" :key="index">
+                                <p class="mt-1" style="display: none">
                                     <span>{{ keywords.verified }}</span>
                                     <span>{{ keywords.sponsored }}</span>
                                 </p>
-                                <inertia-link href="#" class="d-flex justify-content-between flex-wrap">
+                                <inertia-link :href="'/listing/details?id'+i['id']"
+                                              class="d-flex justify-content-between flex-wrap">
                                     <div class="image">
-                                        <img src="/images/sales/one.jpg">
+                                        <img :src="'/images/listings/'+i['first_image']['image']">
                                     </div>
                                     <div class="info">
                                         <h2>
-                                            <span>14,000 </span>
+                                            <span>
+                                                {{ i['price'] }}
+                                            </span>
                                             <span>{{ keywords.pound }}</span>
                                         </h2>
-                                        <p>ستديو بروف مفروش للايجار</p>
+                                        <p>
+                                            {{ i['name'] }}
+                                        </p>
                                         <p>
                                             <span>
                                                 <i class="ri-map-pin-line"></i>
                                             </span>
                                             <span>
-                                                كوبوماند ايستاون
+                                                {{ i['address'] }}
                                             </span>
                                         </p>
-                                        <div class="d-flex  info_icons">
+                                        <div class="d-flex flex-wrap info_icons">
                                             <p class="d-flex align-items-center">
                                                 <span><i class="ri-fullscreen-line"></i></span>
-                                                <span>90 {{ keywords.meter }}</span>
+                                                <span style="color:#c9cacf">
+                                                    {{ i['meters_number'] }} {{ keywords.meter }}
+                                                </span>
                                             </p>
-                                            <p class="d-flex align-items-center">
-                                                <span><i class="ri-hotel-bed-line"></i></span>
-                                                <span>1</span>
-                                            </p>
-                                            <p class="d-flex align-items-center">
-                                                <span><i class="ri-hotel-bed-line"></i></span>
-                                                <span>1</span>
+                                            <p class="d-flex align-items-center mb-2"
+                                               v-for="(answer,index) in i['answers']" :key="index">
+                                                <img v-if="answer['question']['icon'] == '' "
+                                                     src="/images/icons/question.png">
+                                                <img v-else :src="'/images/icons/'+answer['question']['icon']">
+                                                <span>{{ answer['answer'] }}</span>
                                             </p>
                                         </div>
                                         <div class="contact d-flex justify-content-between">
-                                            <img src="/images/users/one.jpg">
+                                            <img :src="'/images/users/'+i['user']['image']">
                                             <div class="d-flex align-items-center">
-                                                <inertia-link href="#">
+                                                <a :href="'tel:'+i['user']['phone']" >
                                                     <span>
                                                         <i class="ri-phone-line"></i>
                                                     </span>
-                                                </inertia-link>
-                                                <inertia-link href="#">
+                                                </a>
+                                                <a target="_blank"
+                                                   :href="'https://api.whatsapp.com/send?phone='+i['user']['phone']" v-if="i['whatapp_status'] == 1" >
                                                     <span>
                                                         <i class="ri-whatsapp-line"></i>
                                                     </span>
-                                                </inertia-link>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
                                 </inertia-link>
                             </div>
                             <div class="pages text-center mt-4 mb-2">
-                                <inertia-link class="active" href="#">
-                                    {{ 1 }}
+                                <inertia-link :class="index + 1 == data.current_page ? 'active':''"
+                                              :href="current_url+'&page='+(index+1)" v-for="(page,index) in links" :key="index">
+                                    {{ index + 1 }}
                                 </inertia-link>
-                                <inertia-link href="#" v-for="i in 4" :key="i">
-                                    {{ i+1 }}
-                                </inertia-link>
+
                             </div>
                         </div>
                         <div class="col-lg-4">
                             <div class="offices">
                                 <p>{{ keywords.do_you_need_help }} </p>
                                 <p>{{ keywords.to_get_best_results }} </p>
-                                <contact-office v-for="i in  5" :key="i"
-                                                name="Aqar Guide Real Estate"
-                                                number_of_listing="4500"
-                                                date="20/02/2011"
+                                <contact-office v-for="(i,index) in  best_users" :key="index"
+                                                :name="i['username']"
+                                                :phone="i['phone']"
+                                                :image="i['image']"
+                                                :number_of_listing="i['total_listings']"
+                                                :date="new Date(i['created_at']).toLocaleDateString()"
                                 ></contact-office>
-                                <input type="button" class="btn btn-primary"
+                                <input style="display: none" type="button" class="btn btn-primary"
                                        :value="switchWord('request_contact')">
                             </div>
                         </div>
@@ -146,7 +161,10 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                       <filter-component :keywords="search_keywords"></filter-component>
+                       <filter-component :keywords="search_keywords"
+                                         :sub_cats="sub_cats"
+                                         :parent_cat_id="main_cat_info!= null ? main_cat_info['id']:undefined"
+                                         :searched_data="requested_data"></filter-component>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">
@@ -172,7 +190,33 @@ export default {
     name: "sales",
     mixins:[SwitchLangWord],
     components: {ContactOffice, FilterComponent, FooterComponent, NavbarComponent},
-    props:['keywords','search_keywords'],
+    props:['keywords','search_keywords','data','sub_cats','main_cat_info','requested_data','best_users'],
+    data:function(){
+        return {
+            current_url:'',
+            links:[],
+        }
+    },
+    methods:{
+        go_to_sub_cat:function(sub_cat_id){
+            var url = document.URL;
+            var split_url = url.split('category=');
+            var second_part_url = split_url[1].split('&');
+            second_part_url[0] = sub_cat_id;
+            var output = split_url[0]+'category='+second_part_url.join('&');
+            this.$inertia.visit(output);
+        }
+    },
+    created() {
+        this.links = this.data.links;
+        this.links.pop();
+        this.links.shift();
+        if(document.URL.indexOf('&page') > 0) {
+            this.current_url = document.URL.substring(0, document.URL.indexOf('&page'))
+        }else{
+            this.current_url = document.URL;
+        }
+    }
 }
 </script>
 
@@ -267,8 +311,13 @@ export default {
             .image{
                 overflow: hidden;
                 max-width: 300px;
+                width: 300px;
                 img{
                     width: 100%;
+                    max-height: 235px;
+                    display: block;
+                    margin: auto;
+                    object-fit: contain;
                     border-radius: 10px;
                 }
             }
@@ -298,6 +347,9 @@ export default {
                     span:first-of-type{
                         color:$gray;
                     }
+                    img{
+                        height: 20px;
+                    }
                 }
             }
         }
@@ -319,7 +371,7 @@ export default {
                 background-color: $main_color;
                 color: white;
             }
-            a:last-of-type{
+            a:nth-of-type(2){
                 span{
                     background-color: $sub_main_color;
                 }
@@ -414,7 +466,7 @@ export default {
                         margin-left: 25px;
                     }
                     p{
-                        span:first-of-type{
+                        span:first-of-type,img{
                             margin-left: 8px;
                         }
                     }
@@ -490,7 +542,7 @@ export default {
                         margin-right: 25px;
                     }
                     p{
-                        span:first-of-type{
+                        span:first-of-type,img{
                             margin-right: 8px;
                         }
                     }

@@ -13,7 +13,7 @@ class average_price_at_area
             ->join('areas','listings_infos.area_id','=','areas.id')
             ->where('areas.city_id','=',$city_id)
 
-            ->selectRaw('sum(listings_infos.meters_number) / count(listings_infos.id) as average ,count(listings_infos.id) as total_listings,areas.'.app()->getLocale().'_name as name')
+            ->selectRaw('sum(listings_infos.price) / count(listings_infos.meters_number) as average ,count(listings_infos.id) as total_listings,areas.'.app()->getLocale().'_name as name')
             ->groupBy('listings_infos.area_id')
             ->get();
         return $listings;

@@ -97,6 +97,14 @@ $(document).ready(function (){
     /*----------------------------end of compound details page----------------------------------*/
 
 
+    /*----------------------------start of search page filter----------------------------------*/
+    $('.content').on('click','.search-outcoming-data ul li',function(){
+        $(this).parent().parent().hide();
+        $(this).parent().parent().parent().find('input').val($(this).html());
+    })
+    /*----------------------------end of search page filter----------------------------------*/
+
+
 
     /*--------------------------start of compound -------------------------------*/
     $('.content').on('click','.filters form div p span i',function (){

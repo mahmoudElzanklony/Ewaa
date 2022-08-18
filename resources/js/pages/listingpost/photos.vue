@@ -19,7 +19,7 @@
             <p class="alert alert-info">
                 {{ keywords.please_make_sure_each_photo_is_smaller_than }}
             </p>
-            <form>
+            <form method="post" @submit.prevent="save_image">
                 <div class="drag-drop-files">
                     <input type="file" name="photos[]" accept="image/*"
                            :maxlength="10 -  number_of_photos"
@@ -30,6 +30,17 @@
                         <span>{{ keywords.add_files }}</span>
                         <span><i class="ri-add-line"></i></span>
                     </button>
+                </div>
+                <div class="uploaded_images_before">
+                    <div class="image" v-for="(img,index) in photos" :key="index" :class="'image_'+img['id']">
+                        <p>
+                            <span></span>
+                            <span><i
+                                @click="delete_item('listing_photos',img['id'],'.image_'+img['id'])" class="ri-close-line"></i>
+                            </span>
+                        </p>
+                        <img :src="'/images/listings/'+img['image']">
+                    </div>
                 </div>
                 <div class="preview-uploaded-images">
 
@@ -48,18 +59,23 @@
 import NavbarComponent from "../../components/NavbarComponent";
 import FooterComponent from "../../components/FooterComponent";
 import SwitchLangWord from "../../mixin/SwitchLangWord";
+import delete_item from "../../mixin/delete_item";
+import {mapActions} from "vuex";
 export default {
     name: "photos",
-    props:['keywords'],
+    props:['keywords','photos'],
     data:function (){
       return{
           files:[],
           number_of_photos:0,
       }
     },
-    mixins:[SwitchLangWord],
+    mixins:[SwitchLangWord,delete_item],
     components: {FooterComponent, NavbarComponent},
     methods:{
+        ...mapActions({
+           'save_image':'listings/save_photos',
+        }),
         previous_step:function(){
             this.$inertia.visit('/listing/info');
         },
@@ -82,7 +98,7 @@ export default {
                             title:this.switchWord('upload_good_image'),
                         });
                     }else {
-                        var output = '<div class="image"><p><span>' + (Number(this.files[i].size) / 1024 / 1024).toFixed(2) + 'Mb</span><span><i class="ri-close-line"></i></span></p>';
+                        var output = '<div class="image"><p><span>' + (Number(this.files[i].size) / 1024 / 1024).toFixed(2) + 'Mb</span><span style="display:none"><i class="ri-close-line"></i></span></p>';
                         output = output + '<img src="' + URL.createObjectURL(this.files[i]) + '">';
                         output += '</div>';
                         $('.preview-uploaded-images').append(output);

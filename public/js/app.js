@@ -2162,6 +2162,7 @@ __webpack_require__.r(__webpack_exports__);
             }
 
             if (selector != '') {
+              console.log($(selector));
               $(selector).remove();
             }
           });
@@ -2508,6 +2509,14 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
   });
   /*----------------------------end of compound details page----------------------------------*/
 
+  /*----------------------------start of search page filter----------------------------------*/
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.content').on('click', '.search-outcoming-data ul li', function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).parent().parent().hide();
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).parent().parent().parent().find('input').val(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).html());
+  });
+  /*----------------------------end of search page filter----------------------------------*/
+
   /*--------------------------start of compound -------------------------------*/
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('.content').on('click', '.filters form div p span i', function () {
@@ -2668,29 +2677,37 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_auth_login__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/auth/login */ "./resources/js/store/modules/auth/login.js");
 /* harmony import */ var _modules_profile_personal_info__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/profile/personal_info */ "./resources/js/store/modules/profile/personal_info.js");
 /* harmony import */ var _modules_profile_notes__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/profile/notes */ "./resources/js/store/modules/profile/notes.js");
-/* harmony import */ var _modules_dashboard_categories__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/dashboard/categories */ "./resources/js/store/modules/dashboard/categories.js");
-/* harmony import */ var _modules_dashboard_sub_categories__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/dashboard/sub_categories */ "./resources/js/store/modules/dashboard/sub_categories.js");
-/* harmony import */ var _modules_dashboard_questions__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/dashboard/questions */ "./resources/js/store/modules/dashboard/questions.js");
-/* harmony import */ var _modules_dashboard_map_locations__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./modules/dashboard/map_locations */ "./resources/js/store/modules/dashboard/map_locations.js");
-/* harmony import */ var _modules_dashboard_packages__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./modules/dashboard/packages */ "./resources/js/store/modules/dashboard/packages.js");
-/* harmony import */ var _modules_dashboard_currencies__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./modules/dashboard/currencies */ "./resources/js/store/modules/dashboard/currencies.js");
-/* harmony import */ var _modules_dashboard_listings__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./modules/dashboard/listings */ "./resources/js/store/modules/dashboard/listings.js");
-/* harmony import */ var _modules_dashboard_users__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./modules/dashboard/users */ "./resources/js/store/modules/dashboard/users.js");
-/* harmony import */ var _modules_dashboard_support__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./modules/dashboard/support */ "./resources/js/store/modules/dashboard/support.js");
-/* harmony import */ var _modules_dashboard_poindad__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./modules/dashboard/poindad */ "./resources/js/store/modules/dashboard/poindad.js");
-/* harmony import */ var _modules_dashboard_settings__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./modules/dashboard/settings */ "./resources/js/store/modules/dashboard/settings.js");
-/* harmony import */ var _modules_map_data__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./modules/map_data */ "./resources/js/store/modules/map_data.js");
-/* harmony import */ var _modules_notifications__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./modules/notifications */ "./resources/js/store/modules/notifications.js");
-/* harmony import */ var _modules_categories__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./modules/categories */ "./resources/js/store/modules/categories.js");
-/* harmony import */ var _modules_listings_save_listings__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./modules/listings/save_listings */ "./resources/js/store/modules/listings/save_listings.js");
-/* harmony import */ var _modules_questions_get_questions__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./modules/questions/get_questions */ "./resources/js/store/modules/questions/get_questions.js");
+/* harmony import */ var _modules_areas__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/areas */ "./resources/js/store/modules/areas.js");
+/* harmony import */ var _modules_payment_ways__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/payment_ways */ "./resources/js/store/modules/payment_ways.js");
+/* harmony import */ var _modules_dashboard_categories__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/dashboard/categories */ "./resources/js/store/modules/dashboard/categories.js");
+/* harmony import */ var _modules_dashboard_sub_categories__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./modules/dashboard/sub_categories */ "./resources/js/store/modules/dashboard/sub_categories.js");
+/* harmony import */ var _modules_dashboard_questions__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./modules/dashboard/questions */ "./resources/js/store/modules/dashboard/questions.js");
+/* harmony import */ var _modules_dashboard_map_locations__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./modules/dashboard/map_locations */ "./resources/js/store/modules/dashboard/map_locations.js");
+/* harmony import */ var _modules_dashboard_packages__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./modules/dashboard/packages */ "./resources/js/store/modules/dashboard/packages.js");
+/* harmony import */ var _modules_dashboard_currencies__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./modules/dashboard/currencies */ "./resources/js/store/modules/dashboard/currencies.js");
+/* harmony import */ var _modules_dashboard_listings__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./modules/dashboard/listings */ "./resources/js/store/modules/dashboard/listings.js");
+/* harmony import */ var _modules_dashboard_users__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./modules/dashboard/users */ "./resources/js/store/modules/dashboard/users.js");
+/* harmony import */ var _modules_dashboard_support__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./modules/dashboard/support */ "./resources/js/store/modules/dashboard/support.js");
+/* harmony import */ var _modules_dashboard_poindad__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./modules/dashboard/poindad */ "./resources/js/store/modules/dashboard/poindad.js");
+/* harmony import */ var _modules_dashboard_settings__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./modules/dashboard/settings */ "./resources/js/store/modules/dashboard/settings.js");
+/* harmony import */ var _modules_map_data__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./modules/map_data */ "./resources/js/store/modules/map_data.js");
+/* harmony import */ var _modules_notifications__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./modules/notifications */ "./resources/js/store/modules/notifications.js");
+/* harmony import */ var _modules_categories__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./modules/categories */ "./resources/js/store/modules/categories.js");
+/* harmony import */ var _modules_listings_save_listings__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./modules/listings/save_listings */ "./resources/js/store/modules/listings/save_listings.js");
+/* harmony import */ var _modules_listings_payment_points__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./modules/listings/payment_points */ "./resources/js/store/modules/listings/payment_points.js");
+/* harmony import */ var _modules_questions_get_questions__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./modules/questions/get_questions */ "./resources/js/store/modules/questions/get_questions.js");
+/* harmony import */ var _modules_discussions_questions__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./modules/discussions/questions */ "./resources/js/store/modules/discussions/questions.js");
 
 
 vue__WEBPACK_IMPORTED_MODULE_0__.default.use(vuex__WEBPACK_IMPORTED_MODULE_1__.default);
 
 
 
+
+
  //------------------- start of  dashboard---------------------------
+
+
 
 
 
@@ -2716,27 +2733,85 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__.default.Store({
     login: _modules_auth_login__WEBPACK_IMPORTED_MODULE_3__.default,
     personal_info: _modules_profile_personal_info__WEBPACK_IMPORTED_MODULE_4__.default,
     notes: _modules_profile_notes__WEBPACK_IMPORTED_MODULE_5__.default,
+    areas: _modules_areas__WEBPACK_IMPORTED_MODULE_6__.default,
+    payment_ways: _modules_payment_ways__WEBPACK_IMPORTED_MODULE_7__.default,
+    discussions_questions: _modules_discussions_questions__WEBPACK_IMPORTED_MODULE_25__.default,
     // dashboard modules
-    categories_dash: _modules_dashboard_categories__WEBPACK_IMPORTED_MODULE_6__.default,
-    sub_categories_dash: _modules_dashboard_sub_categories__WEBPACK_IMPORTED_MODULE_7__.default,
-    questions_dash: _modules_dashboard_questions__WEBPACK_IMPORTED_MODULE_8__.default,
-    map_locations_dash: _modules_dashboard_map_locations__WEBPACK_IMPORTED_MODULE_9__.default,
-    packages_dash: _modules_dashboard_packages__WEBPACK_IMPORTED_MODULE_10__.default,
-    currencies_dash: _modules_dashboard_currencies__WEBPACK_IMPORTED_MODULE_11__.default,
-    listings_dash: _modules_dashboard_listings__WEBPACK_IMPORTED_MODULE_12__.default,
-    users_dash: _modules_dashboard_users__WEBPACK_IMPORTED_MODULE_13__.default,
-    support_dash: _modules_dashboard_support__WEBPACK_IMPORTED_MODULE_14__.default,
-    pointad_dash: _modules_dashboard_poindad__WEBPACK_IMPORTED_MODULE_15__.default,
-    settings_dash: _modules_dashboard_settings__WEBPACK_IMPORTED_MODULE_16__.default,
+    categories_dash: _modules_dashboard_categories__WEBPACK_IMPORTED_MODULE_8__.default,
+    sub_categories_dash: _modules_dashboard_sub_categories__WEBPACK_IMPORTED_MODULE_9__.default,
+    questions_dash: _modules_dashboard_questions__WEBPACK_IMPORTED_MODULE_10__.default,
+    map_locations_dash: _modules_dashboard_map_locations__WEBPACK_IMPORTED_MODULE_11__.default,
+    packages_dash: _modules_dashboard_packages__WEBPACK_IMPORTED_MODULE_12__.default,
+    currencies_dash: _modules_dashboard_currencies__WEBPACK_IMPORTED_MODULE_13__.default,
+    listings_dash: _modules_dashboard_listings__WEBPACK_IMPORTED_MODULE_14__.default,
+    users_dash: _modules_dashboard_users__WEBPACK_IMPORTED_MODULE_15__.default,
+    support_dash: _modules_dashboard_support__WEBPACK_IMPORTED_MODULE_16__.default,
+    pointad_dash: _modules_dashboard_poindad__WEBPACK_IMPORTED_MODULE_17__.default,
+    settings_dash: _modules_dashboard_settings__WEBPACK_IMPORTED_MODULE_18__.default,
     // end dashboard modules
-    countries_govenrn_cities_areas: _modules_map_data__WEBPACK_IMPORTED_MODULE_17__.default,
-    notifications: _modules_notifications__WEBPACK_IMPORTED_MODULE_18__.default,
-    categories: _modules_categories__WEBPACK_IMPORTED_MODULE_19__.default,
-    listings: _modules_listings_save_listings__WEBPACK_IMPORTED_MODULE_20__.default,
-    questions: _modules_questions_get_questions__WEBPACK_IMPORTED_MODULE_21__.default
+    countries_govenrn_cities_areas: _modules_map_data__WEBPACK_IMPORTED_MODULE_19__.default,
+    notifications: _modules_notifications__WEBPACK_IMPORTED_MODULE_20__.default,
+    categories: _modules_categories__WEBPACK_IMPORTED_MODULE_21__.default,
+    listings: _modules_listings_save_listings__WEBPACK_IMPORTED_MODULE_22__.default,
+    questions: _modules_questions_get_questions__WEBPACK_IMPORTED_MODULE_24__.default,
+    listing_payment: _modules_listings_payment_points__WEBPACK_IMPORTED_MODULE_23__.default
   }
 });
 
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/areas.js":
+/*!*********************************************!*\
+  !*** ./resources/js/store/modules/areas.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  namespaced: true,
+  state: function state() {
+    return {
+      searched_areas: []
+    };
+  },
+  getters: {
+    get_searched_areas: function get_searched_areas(state) {
+      return state.searched_areas;
+    }
+  },
+  mutations: {
+    inialize_searched_areas: function inialize_searched_areas(state, item) {
+      state.searched_areas = item;
+    }
+  },
+  actions: {
+    search_areas: function search_areas(_ref) {
+      var commit = _ref.commit,
+          getters = _ref.getters,
+          state = _ref.state;
+      var val = event.target.value;
+
+      if (document.querySelector('.search-outcoming-data')) {
+        document.querySelector('.search-outcoming-data').style.display = 'block';
+      }
+
+      if (val.length > 0) {
+        axios.post('/areas/search', {
+          search: val
+        }).then(function (e) {
+          commit('inialize_searched_areas', e.data.data);
+        });
+      } else {
+        commit('inialize_searched_areas', []);
+      }
+    }
+  }
+});
 
 /***/ }),
 
@@ -2841,31 +2916,47 @@ __webpack_require__.r(__webpack_exports__);
   namespaced: true,
   state: function state() {
     return {
-      sub_categories: []
+      sub_categories: [],
+      parent_categories: []
     };
   },
   getters: {
     get_sub_categories_data: function get_sub_categories_data(state) {
       return state.sub_categories;
+    },
+    get_parent_categories_data: function get_parent_categories_data(state) {
+      return state.parent_categories;
     }
   },
   mutations: {
     inialize_sub_categories_items: function inialize_sub_categories_items(state, item) {
       state.sub_categories = item;
+    },
+    inialize_parent_categories_items: function inialize_parent_categories_items(state, item) {
+      state.parent_categories = item;
     }
   },
   actions: {
-    get_sub_where_parent_is: function get_sub_where_parent_is(_ref, payload) {
+    get_parent_categories: function get_parent_categories(_ref) {
       var commit = _ref.commit,
           getters = _ref.getters,
           state = _ref.state;
+      axios.post('/categories/get-parent').then(function (e) {
+        commit('inialize_parent_categories_items', e.data.data);
+      });
+    },
+    get_sub_where_parent_is: function get_sub_where_parent_is(_ref2, payload) {
+      var commit = _ref2.commit,
+          getters = _ref2.getters,
+          state = _ref2.state;
 
-      if (typeof payload == 'number') {
+      if (typeof payload == 'number' || payload == null) {
         var value = payload;
       } else {
         var value = event.target.value;
       }
 
+      console.log(value);
       axios.post('/categories/get-subcategories-where', {
         value: value
       }).then(function (e) {
@@ -2903,6 +2994,9 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mutations: {
+    inilalize_data: function inilalize_data(state, item) {
+      return state.data = item;
+    },
     update_data: function update_data(state, item) {
       if (state.data == null) {
         return state.data = item;
@@ -3133,14 +3227,14 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   actions: {
-    save_category: function save_category(_ref) {
+    save_location: function save_location(_ref) {
       var commit = _ref.commit,
           getters = _ref.getters,
           state = _ref.state;
       var target = event.target;
       var data = new FormData(target);
       axios.post('/dashboard/save-location', data).then(function (e) {
-        (0,_formValidation_validation__WEBPACK_IMPORTED_MODULE_0__.default)(e.data, target, '', true); // check if there is no error
+        (0,_formValidation_validation__WEBPACK_IMPORTED_MODULE_0__.default)(e.data, target, document.URL, true); // check if there is no error
 
         if (e.data.status == 200 && e.data.related == 'insert') {
           commit('update_data', e.data.data);
@@ -3316,6 +3410,9 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mutations: {
+    inilalize_data: function inilalize_data(state, item) {
+      return state.data = item;
+    },
     update_data: function update_data(state, item) {
       if (state.data == null) {
         return state.data = item;
@@ -3414,6 +3511,9 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mutations: {
+    inilalize_data: function inilalize_data(state, item) {
+      return state.data = item;
+    },
     update_data: function update_data(state, item) {
       if (state.data == null) {
         return state.data = item;
@@ -3592,6 +3692,116 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/store/modules/discussions/questions.js":
+/*!*************************************************************!*\
+  !*** ./resources/js/store/modules/discussions/questions.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _formValidation_validation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../formValidation/validation */ "./resources/js/formValidation/validation.js");
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  namespaced: true,
+  state: function state() {
+    return {
+      data: []
+    };
+  },
+  getters: {
+    get_data: function get_data(state) {
+      return state.data;
+    }
+  },
+  mutations: {
+    inialize_items: function inialize_items(state, item) {
+      state.data = item;
+    },
+    update_data: function update_data(state, item) {
+      if (state.data == null) {
+        return state.data = item;
+      }
+
+      return state.data.data.unshift(item);
+    }
+  },
+  actions: {
+    save_question: function save_question(_ref) {
+      var commit = _ref.commit,
+          getters = _ref.getters,
+          state = _ref.state;
+      var target = event.target;
+      var data = new FormData(target);
+      axios.post('/discussions/addquestion', data).then(function (e) {
+        (0,_formValidation_validation__WEBPACK_IMPORTED_MODULE_0__.default)(e.data, target, '', true); // check if there is no error
+
+        if (e.data.status == 200 && e.data.related == 'insert' && $('.questions_types li.active').index() == 2) {
+          commit('update_data', e.data.data);
+        } else if (e.data.status == 200 && e.data.related == 'update') {
+          commit('update_index_data', e.data.data);
+        }
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/listings/payment_points.js":
+/*!***************************************************************!*\
+  !*** ./resources/js/store/modules/listings/payment_points.js ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  namespaced: true,
+  state: function state() {
+    return {
+      data: null
+    };
+  },
+  actions: {
+    payment_listing_points: function payment_listing_points(_ref, payload) {
+      var commit = _ref.commit,
+          getters = _ref.getters,
+          state = _ref.state;
+      var id = payload[0];
+      var points = payload[1];
+
+      if (payload[2] != undefined) {
+        var link = payload[2];
+      } else {
+        var link = '';
+      }
+
+      axios.post('/listings/payment', {
+        id: id,
+        points: points
+      }).then(function (e) {
+        Toast.fire({
+          'icon': e.data.status == 200 ? 'success' : 'error',
+          title: e.data.message
+        });
+
+        if (link != '') {
+          window.vm.$inertia.visit(link);
+        }
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./resources/js/store/modules/listings/save_listings.js":
 /*!**************************************************************!*\
   !*** ./resources/js/store/modules/listings/save_listings.js ***!
@@ -3635,10 +3845,16 @@ __webpack_require__.r(__webpack_exports__);
           getters = _ref.getters,
           state = _ref.state;
       var target = event.target;
-      var id = $(target).find('input[name="id"]').val();
       var data = new FormData(target);
+
+      if (document.URL.split('id=')[1] != undefined) {
+        var url = '/listing/info?id=' + document.URL.split('id=')[1];
+      } else {
+        var url = '/listing/info';
+      }
+
       axios.post('/listings/save-inilaize', data).then(function (e) {
-        window.vm.$inertia.visit('/listing/info');
+        window.vm.$inertia.visit(url);
       });
     },
     save_info_listing: function save_info_listing(_ref2) {
@@ -3648,8 +3864,34 @@ __webpack_require__.r(__webpack_exports__);
       var target = event.target;
       var id = $(target).find('input[name="id"]').val();
       var data = new FormData(target);
+
+      if (document.URL.split('id=')[1] != undefined) {
+        var url = '/listing/photos?id=' + document.URL.split('id=')[1];
+      } else {
+        var url = '/listing/photos';
+      }
+
       axios.post('/listings/save-listing-info', data).then(function (e) {
-        window.vm.$inertia.visit('/listing/photos');
+        window.vm.$inertia.visit(url);
+      });
+    },
+    save_photos: function save_photos(_ref3) {
+      var commit = _ref3.commit,
+          getters = _ref3.getters,
+          state = _ref3.state;
+      var target = event.target;
+      var data = new FormData(target);
+
+      if (document.URL.split('id=')[1] != undefined) {
+        data.append('id', document.URL.split('id=')[1]);
+      }
+
+      axios.post('/listings/save-photos', data).then(function (e) {
+        Toast.fire({
+          icon: 'success',
+          title: e.data.message[0]
+        });
+        window.vm.$inertia.visit('/listing/confirm-payment?id=' + e.data.message[1]);
       });
     }
   }
@@ -3939,6 +4181,58 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         document.querySelector('body').style.overflow = 'auto';
         document.querySelector('.loading').style.display = 'none';
       }
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/payment_ways.js":
+/*!****************************************************!*\
+  !*** ./resources/js/store/modules/payment_ways.js ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  namespaced: true,
+  state: function state() {
+    return {
+      payment_ways: []
+    };
+  },
+  getters: {
+    get_payment_ways: function get_payment_ways(state) {
+      return state.payment_ways;
+    }
+  },
+  mutations: {
+    inialize_payment_ways: function inialize_payment_ways(state, item) {
+      state.payment_ways = item;
+    }
+  },
+  actions: {
+    find_payment_ways: function find_payment_ways(_ref, payload) {
+      var commit = _ref.commit,
+          getters = _ref.getters,
+          state = _ref.state;
+      console.log(payload);
+
+      if (typeof payload == 'string') {
+        var val = payload;
+      } else {
+        var val = event.target.value;
+      }
+
+      axios.post('/payment-ways/find', {
+        type: val
+      }).then(function (e) {
+        commit('inialize_payment_ways', e.data.data);
+      });
     }
   }
 });
@@ -99747,7 +100041,7 @@ module.exports = webpackAsyncContext;
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames based on template
-/******/ 			return "js/" + chunkId + "." + {"resources_js_Pages_about_us_vue":"864a711d145e1ba4b2d4","resources_js_Pages_auth_forget_password_vue":"6feb2c51e805b1c57749","resources_js_Pages_auth_new_password_vue":"ff8586b902d5d5cb3a41","resources_js_Pages_auth_sign_in_vue":"d450f2ded4e896d1e639","resources_js_Pages_auth_sign_up_vue":"fe9743e737976be5f47d","resources_js_Pages_compounds_vue":"3ea2111f9602c3c948e7","resources_js_Pages_contactus_vue":"0e4b827654d186bf32f3","resources_js_Pages_dashboard_categories_vue":"55df5a1c13407c8019c6","resources_js_Pages_dashboard_currencies_vue":"82218441fe76ed475516","resources_js_Pages_dashboard_index_vue":"7bc4a92efb209e3a2382","resources_js_Pages_dashboard_listings_vue":"aa98d120dc4ed029cf72","resources_js_Pages_dashboard_map_vue":"f9c459a5c0642a71d936","resources_js_Pages_dashboard_notifications_vue":"4a4491d0275d362b4291","resources_js_Pages_dashboard_packages_vue":"9b59cef948f48d054a89","resources_js_Pages_dashboard_pointad_vue":"6dec97240852c1da5a1a","resources_js_Pages_dashboard_questions_vue":"360c5927305cdd230c71","resources_js_Pages_dashboard_reports_vue":"6bb8b630b5ef93614019","resources_js_Pages_dashboard_settings_vue":"63c50d809a75c93ff7dd","resources_js_Pages_dashboard_specific_statistics_vue":"7efc10d47512d3246f93","resources_js_Pages_dashboard_statistics_vue":"37e4c971ba2d7202d97f","resources_js_Pages_dashboard_sub_categories_vue":"d4a0cd69fef198305742","resources_js_Pages_dashboard_subscriptions_vue":"6a924345473882fffa23","resources_js_Pages_dashboard_support_vue":"783d7bdc63fb21e98aa9","resources_js_Pages_dashboard_users_vue":"86d6e6b55efc289b6828","resources_js_Pages_feedback_vue":"fa34311e7ccd7d7aa943","resources_js_Pages_government_city_vue":"6a0ee7080134e922cf9e","resources_js_Pages_governments_vue":"ea69ccfdccc3151f9de4","resources_js_Pages_home_vue":"a716c18c05e5e4713fd5","resources_js_Pages_listingpost_ContactOffice_vue":"fbfac39d2386e198b6a6","resources_js_Pages_listingpost_details_vue":"0918837d13922c00c7e2","resources_js_Pages_listingpost_info_vue":"bea7395678d992d64faa","resources_js_Pages_listingpost_initialize_vue":"a3ea3a15781723a67320","resources_js_Pages_listingpost_payment_confirmation_vue":"f4f52e5433cfd043719c","resources_js_Pages_listingpost_photos_vue":"c3cf92b30384ff3a1c7b","resources_js_Pages_merchant_balance_vue":"529d446e52c60c15ad89","resources_js_Pages_neighbours_vue":"d3ad7640754483c07eda","resources_js_Pages_notifications_vue":"e15138d9c65ccfd99c08","resources_js_Pages_packages_charge_vue":"8b9cfb57533eeea750b8","resources_js_Pages_packages_packages_info_vue":"5edd8b2063a89a6d0c5a","resources_js_Pages_profile_favourites_vue":"a7b84d40388ce27dde5e","resources_js_Pages_profile_listings_dashboard_vue":"f9e284fdac929fbfff56","resources_js_Pages_profile_main_info_vue":"6a7943eca48b70639cc4","resources_js_Pages_profile_notes_vue":"82acd0c345f84a6bfd69","resources_js_Pages_profile_statistics_vue":"82c4683c458bcba26950","resources_js_Pages_questions_answers_vue":"3f81dd1f3b378f3921dc","resources_js_Pages_questions_ask_neighbors_vue":"8692c7014d051249c57a","resources_js_Pages_sales_vue":"ca104ca81f9b323374a2","resources_js_Pages_search_page_filters_vue":"f7396ec44079ca443c0a","resources_js_Pages_terms_vue":"375f88087ac51e39005c"}[chunkId] + ".js";
+/******/ 			return "js/" + chunkId + "." + {"resources_js_Pages_about_us_vue":"98598515f62b56a53cee","resources_js_Pages_auth_forget_password_vue":"58957884547e54987fac","resources_js_Pages_auth_new_password_vue":"17490283f5329d02081c","resources_js_Pages_auth_sign_in_vue":"3ffcb00b69d3739eeadd","resources_js_Pages_auth_sign_up_vue":"53d0b59714e50c9e3342","resources_js_Pages_compounds_vue":"8329618bca087dc801fa","resources_js_Pages_contactus_vue":"e55b2db2c0c0de9128f2","resources_js_Pages_dashboard_categories_vue":"dc848a169b99db6c2962","resources_js_Pages_dashboard_currencies_vue":"0fc108683be93bd5957f","resources_js_Pages_dashboard_index_vue":"bdb2fb2c06d521795721","resources_js_Pages_dashboard_listings_vue":"d29a53ca36253e608e7d","resources_js_Pages_dashboard_map_vue":"218063c988d06634c6a7","resources_js_Pages_dashboard_notifications_vue":"65b598b679166b85f203","resources_js_Pages_dashboard_packages_vue":"491c02b9d94f3b8a563f","resources_js_Pages_dashboard_pointad_vue":"fe23ca5e8f6a697bc6af","resources_js_Pages_dashboard_questions_vue":"d68522188aff5cd312ba","resources_js_Pages_dashboard_reports_vue":"0dda8dbfd6f4c612b1d0","resources_js_Pages_dashboard_settings_vue":"e66428f1e10416c72961","resources_js_Pages_dashboard_specific_statistics_vue":"e7c745d3dd684b0cb686","resources_js_Pages_dashboard_statistics_vue":"b67ebe5c14516e358b93","resources_js_Pages_dashboard_sub_categories_vue":"ba64cca49f3cbad1affa","resources_js_Pages_dashboard_subscriptions_vue":"fd972aff756e347e3402","resources_js_Pages_dashboard_support_vue":"e12db0d41dc8a5e77e3e","resources_js_Pages_dashboard_users_vue":"0e9d0f16cf7ac4ca3913","resources_js_Pages_feedback_vue":"c0d6157bcf91ae52b2b0","resources_js_Pages_government_city_vue":"93fd3029d36f330d3d2a","resources_js_Pages_governments_vue":"e6d162d0c458416bb8b7","resources_js_Pages_home_vue":"b9fb38a39b5dca4ac7a1","resources_js_Pages_listingpost_ContactOffice_vue":"5c3d60550e5448af8318","resources_js_Pages_listingpost_details_vue":"80d8f1dfeb7ad923e156","resources_js_Pages_listingpost_info_vue":"00b3e4089d7610edf2d7","resources_js_Pages_listingpost_initialize_vue":"462d96d159dd75f9c806","resources_js_Pages_listingpost_payment_confirmation_vue":"3c9461abf9ae188cbfff","resources_js_Pages_listingpost_photos_vue":"d3e558c434c6da593f08","resources_js_Pages_merchant_balance_vue":"f80814496550e0724f5a","resources_js_Pages_neighbours_vue":"e96f1b23315e61d33cac","resources_js_Pages_notifications_vue":"097152d90d2fe9f6a5b6","resources_js_Pages_packages_charge_vue":"1bfb1b9042859940a6d2","resources_js_Pages_packages_packages_info_vue":"25435f181a1aedd954da","resources_js_Pages_profile_favourites_vue":"499de410c203f21cead3","resources_js_Pages_profile_listings_dashboard_vue":"ed896c3f4642a44762a2","resources_js_Pages_profile_main_info_vue":"cc2169ec05dbe9444d7f","resources_js_Pages_profile_notes_vue":"62e0e29dd007ca745ebb","resources_js_Pages_profile_statistics_vue":"912f56c5cb18fda3f417","resources_js_Pages_questions_answers_vue":"6fd30c35870163ad33b0","resources_js_Pages_questions_ask_neighbors_vue":"269b8fc5b4ff266c64c4","resources_js_Pages_sales_vue":"73e8e43e63eca14b0ca4","resources_js_Pages_search_page_filters_vue":"6c82a4efa795732811f4","resources_js_Pages_terms_vue":"8c4fbd39587898d166d0"}[chunkId] + ".js";
 /******/ 		};
 /******/ 	})();
 /******/ 	

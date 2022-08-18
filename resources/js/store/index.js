@@ -6,6 +6,8 @@ import register from "./modules/auth/register";
 import login from "./modules/auth/login";
 import personal_info from "./modules/profile/personal_info";
 import notes from"./modules/profile/notes";
+import areas from "./modules/areas";
+import payment_ways from "./modules/payment_ways";
 //------------------- start of  dashboard---------------------------
 import categories_dash from "./modules/dashboard/categories";
 import sub_categories_dash from "./modules/dashboard/sub_categories";
@@ -23,7 +25,9 @@ import countries_govenrn_cities_areas from "./modules/map_data";
 import notifications from "./modules/notifications";
 import categories from "./modules/categories";
 import listings from "./modules/listings/save_listings";
+import listing_payment from "./modules/listings/payment_points";
 import questions from "./modules/questions/get_questions";
+import discussions_questions from "./modules/discussions/questions";
 //------------------- end of  dashboard---------------------------
 // Create a new store instance.
 const store = new Vuex.Store({
@@ -32,6 +36,9 @@ const store = new Vuex.Store({
         login,
         personal_info,
         notes,
+        areas,
+        payment_ways,
+        discussions_questions,
         // dashboard modules
         categories_dash,
         sub_categories_dash,
@@ -49,7 +56,8 @@ const store = new Vuex.Store({
         notifications,
         categories,
         listings,
-        questions
+        questions,
+        listing_payment
     }
 })
 

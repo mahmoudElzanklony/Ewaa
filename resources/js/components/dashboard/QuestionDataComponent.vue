@@ -30,6 +30,28 @@
                 <p class="alert alert-danger"></p>
             </div>
             <div class="form-group">
+                <select class="form-control" name="cover_appearance"
+                        required>
+                    <option v-for="(i,index) in Object.keys(cover_appearance)"
+                            :key="index" :value="cover_appearance[i]"
+                            :selected="data != null && data['cover_appearance'] == cover_appearance[i]"
+                    >
+                        {{ switchWord(i) }}
+                    </option>
+                </select>
+                <p class="alert alert-danger"></p>
+            </div>
+            <div class="form-group">
+                <div class="drag-drop-files">
+                    <input type="file" class="preview-image" name="icon" accept="image/*"
+                           >
+                    <button type="button" class="btn btn-primary">
+                        <span>{{ switchWord('upload_image') }}</span>
+                        <span><i class="ri-add-line"></i></span>
+                    </button>
+                </div>
+            </div>
+            <div class="form-group">
                 <select class="form-control" name="type"
                         @change="update_question_status"
                         required>
@@ -62,7 +84,7 @@
                                    :value="answer['en_name']" required >
                         </div>
                     </div>
-                    <div class="col-4" >
+                    <div class="col-4" style="display: none">
                         <div class="form-group">
                             <input class="form-control" name="tu_answers[]"
                                    :placeholder="switchWord('question_answer_tu')"
@@ -88,7 +110,7 @@
                                    required >
                         </div>
                     </div>
-                    <div class="col-4" >
+                    <div class="col-4" style="display: none">
                         <div class="form-group">
                             <input class="form-control" name="tu_answers[]"
                                    :placeholder="switchWord('question_answer_tu')">
@@ -122,6 +144,11 @@ export default {
                 question_required:'',
                 required:1,
                 not_required:0
+            },
+            cover_appearance:{
+                appearance:'',
+                yes:1,
+                no:0
             },
         }
     },

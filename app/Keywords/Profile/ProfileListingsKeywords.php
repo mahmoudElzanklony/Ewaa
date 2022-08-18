@@ -34,6 +34,8 @@ class ProfileListingsKeywords
           'update_photos'=>trans('keywords.update_photos'),
           'delete'=>trans('keywords.delete'),
           'clear'=>trans('keywords.clear'),
+          'complete_payment'=>trans('keywords.complete_payment'),
+          'payment_status'=>trans('keywords.payment_status'),
         ];
     }
 }

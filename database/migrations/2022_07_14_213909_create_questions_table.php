@@ -19,6 +19,8 @@ class CreateQuestionsTable extends Migration
             $table->string('en_name');
             $table->string('tu_name')->nullable();
             $table->tinyInteger('required_status')->default(0);
+            $table->string('icon');
+            $table->tinyInteger('cover_appearance')->default(0);
             $table->string('type');
             $table->timestamps();
         });

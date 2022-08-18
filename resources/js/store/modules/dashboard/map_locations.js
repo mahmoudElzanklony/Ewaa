@@ -32,11 +32,11 @@ export default {
         }
     },
     actions:{
-        save_category:function({commit,getters,state}){
+        save_location:function({commit,getters,state}){
             var target = event.target;
             var data = new FormData(target);
             axios.post('/dashboard/save-location',data).then((e)=>{
-                validation(e.data,target,'',true);
+                validation(e.data,target,document.URL,true);
                 // check if there is no error
                 if(e.data.status == 200 && e.data.related == 'insert'){
                     commit('update_data',e.data.data);

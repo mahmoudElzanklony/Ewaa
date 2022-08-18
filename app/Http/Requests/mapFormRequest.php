@@ -27,6 +27,9 @@ class mapFormRequest extends FormRequest
             'ar_name'=>'required|max:199',
             'en_name'=>'required|max:199',
             'tu_name'=>'nullable|max:199',
+            'ar_info'=>'required',
+            'en_info'=>'required',
+            'tu_info'=>'nullable',
             'country_id'=>'nullable|max:199',
             'government_id'=>'nullable|max:199',
             'city_id'=>'nullable|max:199',
@@ -39,6 +42,9 @@ class mapFormRequest extends FormRequest
             'ar_name'=>trans('keywords.ar_name'),
             'en_name'=>trans('keywords.en_name'),
             'tu_name'=>trans('keywords.tu_name'),
+            'ar_info'=>trans('keywords.ar_description'),
+            'en_info'=>trans('keywords.en_description'),
+            'tu_info'=>trans('keywords.tu_description'),
         ];
     }
 }

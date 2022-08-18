@@ -67,7 +67,7 @@ nav .dropdown-menu a span:first-of-type {
   left: 4px;
 }
 
-.preview-uploaded-images .image {
+.preview-uploaded-images .image, .uploaded_images_before .image {
   margin-left: 15px;
 }
 

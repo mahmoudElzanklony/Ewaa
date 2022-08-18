@@ -26,6 +26,9 @@ class ListingPostInfoKeywords
           'contact_me_by_email'=>trans('keywords.contact_me_by_email'),
           'property_details'=>trans('keywords.property_details'),
           'size_in_meters'=>trans('keywords.size_in_meters'),
+          'price'=>trans('keywords.price'),
+          'payment_types'=>trans('keywords.payment_types'),
+          'select_payment_type'=>trans('keywords.select_payment_type'),
           'view'=>trans('keywords.view'),
           'select_view'=>trans('keywords.select_view'),
           'price_egp'=>trans('keywords.price_egp'),
@@ -45,11 +48,14 @@ class ListingPostInfoKeywords
           'without_finish'=>trans('keywords.without_finish'),
           'address'=>trans('keywords.address'),
           'property_address'=>trans('keywords.property_address'),
+          'property_address_arabic'=>trans('keywords.property_address_arabic'),
+          'property_address_english'=>trans('keywords.property_address_english'),
           'mark_your_listing_location'=>trans('keywords.mark_your_listing_location'),
           'next'=>trans('keywords.next'),
           'previous'=>trans('keywords.previous'),
           'kindly_read_terms_and_instructions_of_adding_listings_on_ewaa'=>trans('keywords.kindly_read_terms_and_instructions_of_adding_listings_on_ewaa'),
           'here'=>trans('keywords.here'),
+          'coordinates'=>trans('keywords.coordinates'),
         ];
     }
 }

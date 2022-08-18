@@ -12,9 +12,9 @@
         </span>
         <!--------------if its added to note--------------- -->
 
-        <inertia-link href="#">
+        <inertia-link :href="link">
             <div class="image">
-                <img :src="'/images/sales/'+image">
+                <img :src="image">
                 <p>
                     <span><i class="ri-image-line"></i></span>
                     <span>{{ number_of_images }}</span>
@@ -40,8 +40,7 @@
             <!------------end of its a coumpond --------------- -->
             <p>
                 <span>{{ price }}</span>
-                <span v-if="$page.props.lang == 'ar'">جنيه</span>
-                <span v-else>EGY</span>
+                <span>{{ switchWord('currency') }}</span>
             </p>
             <p v-if="average">
                 <span v-if="$page.props.lang == 'ar'">متوسط سعر المتر</span>
@@ -57,7 +56,7 @@ export default {
     name: "ListingPostComponent",
     mixins:[SwitchLangWord],
     props:['id','image','number_of_images','info','address','price','average',
-        'compound','beds','baths','area','fav','note'],
+        'compound','beds','baths','area','fav','note','link'],
     methods:{
         toggle_fav:function (){
             let title = '';
@@ -109,6 +108,9 @@ export default {
         position: relative;
         img {
             width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-bottom: 1px solid #ddd;
         }
         p {
             position: absolute;

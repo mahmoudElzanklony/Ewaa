@@ -240,6 +240,11 @@ export default {
                   en:'Registered at date',
                   tu:'',
               },
+              ads:{
+                ar:'اعلانات',
+                en:'Ads',
+                tu:'',
+              },
               properties:{
                   ar:'عقارات مصر',
                   en:'Properties',
@@ -289,6 +294,36 @@ export default {
                  ar:'تم الدفع',
                  en:'payment done',
                  tu:'',
+              },
+              cash:{
+                ar:'كاش',
+                en:'cash',
+                tu:'',
+              },
+              installment:{
+                 ar:'تقسيط',
+                 en:'installment',
+                 tu:'',
+              },
+              one_payment:{
+                 ar:'دفعة واحدة',
+                 en:'one payment',
+                 tu:'',
+              },
+              two_payments:{
+                  ar:'دفعتان',
+                  en:'two payments',
+                  tu:'',
+              },
+              three_payments:{
+                  ar:'ثلاث دفعات',
+                  en:'three payments',
+                  tu:'',
+              },
+              four_payments:{
+                  ar:'أربع دفعات',
+                  en:'four payments',
+                  tu:'',
               },
               pending:{
                   ar:'معلقة',
@@ -381,9 +416,9 @@ export default {
                   en:'you can contact with us',
                   tu:'',
               },
-              search_inside_the_cities_of_egypt:{
-                  ar:'عقارات في مدن مصر',
-                  en:'Search inside the cities of Egypt',
+              search_inside_the_cities:{
+                  ar:'عقارات خاصة بالمدن',
+                  en:'Search inside the cities',
                   tu:'',
               },
               rent:{
@@ -552,6 +587,11 @@ export default {
                   en:'upload image',
                   tu:'',
               },
+              upload_images:{
+                  ar:'أرفع الصور',
+                  en:'upload images',
+                  tu:'',
+              },
               select_question:{
                   ar:'اختر السؤال',
                   en:'Select question',
@@ -607,6 +647,16 @@ export default {
                   ar:'غير مطلوب',
                   en:'not required',
                   tu:''
+              },
+              cover_appearance:{
+                 ar:'ظهور السؤال في كافر الاعلان',
+                 en:'show question at cover of ad',
+                 tu:'',
+              },
+              appearance:{
+                  ar:'عملية الظهور',
+                  en:'appearance',
+                  tu:'',
               },
               question_answers:{
                   ar:'اجابات السؤال',
@@ -777,6 +827,26 @@ export default {
               press_here:{
                   ar:'أضغط هنا',
                   en:'Press Here',
+                  tu:'',
+              },
+              select_best_choice:{
+                  ar:'أختر ما يناسبك',
+                  en:'Select best choice',
+                  tu:'',
+              },
+              in:{
+                  ar:'في',
+                  en:'in',
+                  tu:'',
+              },
+              for:{
+                  ar:'ل',
+                  en:'for ',
+                  tu:'',
+              },
+              currency:{
+                  ar:'دولار',
+                  en:'dollar',
                   tu:'',
               }
 

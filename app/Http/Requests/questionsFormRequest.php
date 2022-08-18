@@ -30,6 +30,8 @@ class questionsFormRequest extends FormRequest
             'tu_name'=>'nullable|max:191',
             'required_status'=>['required','max:191',Rule::in(['1','0'])],
             'type'=>['required','max:191',Rule::in(['text','select','radio'])],
+            'icon'=>'nullable|max:191',
+            'cover_appearance'=>'nullable|max:191',
             'ar_answers.*'=>['nullable','max:191'],
             'en_answers.*'=>['nullable','max:191'],
             'tu_answers.*'=>['nullable','max:191'],
@@ -44,6 +46,8 @@ class questionsFormRequest extends FormRequest
             'tu_question'=>trans('keywords.tu_question'),
             'required_status'=>trans('keywords.question_required'),
             'type'=>trans('keywords.question_type'),
+            'icon'=>trans('keywords.icon'),
+            'cover_appearance'=>trans('keywords.cover_appearance'),
 
         ];
     }

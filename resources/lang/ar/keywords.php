@@ -111,7 +111,7 @@ return [
     'to_get_best_results'=>'للحصول على نتائج اسرع و اكثر ، نرشح لك أن نتواصل مع أكبر المكاتب العقارية - لمساعدتك في العثور على ماتبحث عنه .',
     'registered_at_date'=>'سجل في تاريخ',
     'close'=>'أغلاق',
-    'pound'=>'جنية',
+    'pound'=>'دولار',
     'meter'=>'متر',
     'verified'=>'موثق',
     'sponsored'=>'ممول',
@@ -160,7 +160,11 @@ return [
     'select_view'=>'أختر الأطلالة',
     'price_egp'=>'السعر بالجنيه',
     'price'=>'السعر',
+    'payment_types'=>'طرق الدفع',
+    'select_payment_type'=>'اختر طريقة الدفع',
+    'coordinates'=>'الأحداثيات',
     'payment_method'=>'طريقة الدفع',
+    'complete_payment'=>'استكمال عمليه الدفع',
     'rooms'=>'الغرف',
     'floor'=>'الدور',
     'bathrooms'=>'الحمامات',
@@ -172,6 +176,8 @@ return [
     'semi_finished'=>'نص تشطيب',
     'without_finish'=>'بدون تشطيب',
     'property_address'=>'عنوان العقار',
+    'property_address_arabic'=>'العنوان بالعربي',
+    'property_address_english'=>'العنوان بالانجليزي',
     'mark_your_listing_location'=>'حدد مكان العقار على الخريطة',
     'kindly_read_terms_and_instructions_of_adding_listings_on_ewaa'=>'الرجاء قراءة شروط وتعليمات إضافة الإعلانات على ايواء',
     'here'=>'هنا',
@@ -198,7 +204,6 @@ return [
     'listing'=>'اعلان',
     'listing_details'=>'تفاصيل الاعلان',
     'listing_description'=>'وصف الاعلان',
-    'pound'=>'جنية',
     'want_help'=>'هل تحتاج الي مزيد من المساعدة ؟',
     'get_help_from'=>'تواصل مع أكبر الشركات في كمبوندات أخرى بالعاصمة الإدارية الجديدة',
     'view_properties_from_this_seller'=>'اظهر اعلانات هذا البائع',
@@ -390,8 +395,12 @@ return [
 
    // start of confirm payment-------------------------------------------------------------
     'for_rent'=>'للأيجار',
+    'for_sale'=>'للبيع',
+    'take_from_my_points'=>'أخذ من رصيد نقاطي',
+    'press_here_to_complete_process'=>'أضغط هنا لأكمال العملية',
     'publish_listing'=>'أنشر إعلانك',
-    'You_added_listing_in_one_of_our_paid'=>'لقد قمت باضافة اعلان في منطقة من المناطق المدفوعة تحتاح لدفع 0.5 نقطة لنشر اعلانك.',
+    'You_added_listing_in_one_of_our_paid'=>'لقد قمت باضافة اعلان في منطقة من المناطق المدفوعة تحتاح لدفع',
+    'from_points'=>' من النقاط ',
     'you_dont_have_enough_balance'=>'ليس لديك رصيد كافي لنشر هذا الإعلان',
     'click_here_to_buy_one_of_our_packages'=>'اضغط هنا لشراء إحدي هذه الباقات',
     // end of confirm payment-------------------------------------------------------------
@@ -486,6 +495,7 @@ return [
     'all_questions'=>'جميع الأسئلة',
     'answers'=>'إجابة',
     'add_question'=>'أضافة سؤال',
+    'question'=>'سؤال',
     'city'=>'المدينة',
     'neighbour'=>'المنطقة',
     'select'=>'أختر',
@@ -555,6 +565,8 @@ return [
     'tu_question'=>'السؤال بالتركي',
     'question_type'=>'نوع السؤال',
     'question_required'=>'إجبارية السؤال',
+    'icon'=>'صورة الايقون',
+    'cover_appearance'=>'ظهور السؤال في كافر الأعلان',
     'ar_question_values'=>'إجابات السؤال بالعربي',
     'en_question_values'=>'إجابات السؤال بالأنجليزي',
     'tu_question_values'=>'إجابات السؤال بالتركي',
@@ -563,6 +575,7 @@ return [
 
     // start of dashboard questions ----------------------------------------------------------
     'questions_categories'=>'أسئلة الاقسام',
+
     // end of dashboard questions ----------------------------------------------------------
     // start of dashboard statistics ----------------------------------------------------------
     'ewaa_statistics'=>'إحصائيات ايواء',
@@ -669,6 +682,8 @@ return [
 
 
 
+    // some success messages
+    'payment_success'=>'تم عمليه الدفع بنجاح',
 
 
 

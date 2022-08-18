@@ -17,6 +17,7 @@ class SalesKeywords
             'to_get_best_results'=>trans('keywords.to_get_best_results'),
             'registered_at_date'=>trans('keywords.registered_at_date'),
             'rent'=>trans('keywords.rent'),
+            'sale'=>trans('keywords.sale'),
             'properties'=>trans('keywords.properties'),
             'price_range'=>trans('keywords.price_range'),
             'more_filters'=>trans('keywords.more_filters'),

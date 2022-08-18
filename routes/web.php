@@ -47,7 +47,7 @@ Route::group(['middleware'=>'changeLang'],function (){
     // search page filter
     Route::get('/search-page-filter',[SearchFilterController::class,'index']);
     // sale properties
-    Route::get('/for-sale',[SaleController::class,'index']);
+    Route::get('/ads',[SaleController::class,'index']);
     // neighbour ( prices of properties at cairo )
     Route::get('/neighborhood',[NeighbourhoodController::class,'index']);
     // governments
@@ -84,7 +84,7 @@ Route::group(['middleware'=>'changeLang'],function (){
     // credit package
     Route::group(['prefix'=>'/credit'],function(){
         // charge
-        Route::get('/charge',[PackagesController::class,'charge']);
+        Route::get('/charge',[PackagesController::class,'charge']); // remove page
         Route::get('/charge/package',[PackagesController::class,'package_info']);
     });
     // feedback

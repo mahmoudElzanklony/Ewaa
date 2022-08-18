@@ -13,6 +13,9 @@ export default {
         }
     },
     mutations:{
+        inilalize_data:function (state,item){
+            return state.data = item;
+        },
         update_data:function(state,item){
             if(state.data == null){
                 return state.data = item;

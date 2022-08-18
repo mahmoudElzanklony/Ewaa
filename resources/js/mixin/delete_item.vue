@@ -44,6 +44,7 @@ export default {
                             $('.modal').modal('hide')
                         }
                         if(selector != ''){
+                            console.log($(selector));
                             $(selector).remove();
                         }
 

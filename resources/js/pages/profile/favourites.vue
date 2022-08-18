@@ -7,11 +7,9 @@
                 <div class="col-lg-4" v-for="(i,index) in data" :key="index">
                     <ListingPostComponent
                                           fav="true"
-                                          bed="2"
-                                          baths="3"
-                                          area="400"
+                                          :link="'/listing/details?id='+i['id']"
                                           :id="i['id']"
-                                          :image="i['images'][0]['image']"
+                                          :image="'/images/listings/'+i['images'][0]['image']"
                                           :number_of_images="i['images'].length"
                                           :info="i['info']"
                                           :address="i['address']"

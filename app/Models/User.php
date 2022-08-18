@@ -45,6 +45,7 @@ class User extends Authenticatable implements JWTSubject
         'auto_publish',
         'role_id',
         'country_id',
+        'total_points'
 
     ];
 

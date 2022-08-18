@@ -4,28 +4,22 @@
 
         <div class="pages">
             <div class="container">
-                <inertia-link href="#">{{ keywords.egypt_properties }}</inertia-link>
+                <inertia-link href="/neighborhood">{{ switchWord('buildings') }}</inertia-link>
                 <span v-if="$page.props.lang == 'ar'">
                     <i class="ri-arrow-left-s-line"></i>
                 </span>
                 <span v-else>
                     <i class="ri-arrow-right-s-line"></i>
                 </span>
-                <inertia-link href="#">{{ keywords.neighborhood_prices }}</inertia-link>
+                <inertia-link :href="'/neighborhood/'+government['id']">{{ government['name'] }}</inertia-link>
                 <span v-if="$page.props.lang == 'ar'">
                     <i class="ri-arrow-left-s-line"></i>
                 </span>
                 <span v-else>
                     <i class="ri-arrow-right-s-line"></i>
                 </span>
-                <inertia-link href="#">القاهره</inertia-link>
-                <span v-if="$page.props.lang == 'ar'">
-                    <i class="ri-arrow-left-s-line"></i>
-                </span>
-                <span v-else>
-                    <i class="ri-arrow-right-s-line"></i>
-                </span>
-                <inertia-link href="#" class="active">القاهره الجديده</inertia-link>
+                <inertia-link class="active"
+                              :href="'/neighborhood/'+government['id']+'/'+city['id']">{{ city['name'] }}</inertia-link>
 
             </div>
         </div>
@@ -36,52 +30,43 @@
                 <h2 class="d-flex align-items-center mb-4 main-title">
                     <span v-if="$page.props.lang == 'ar'"><i class="ri-arrow-left-s-fill"></i></span>
                     <span v-else><i class="ri-arrow-right-s-fill"></i></span>
-                    <span>القاهره الجديده {{ keywords.meter_size_price }}</span>
+                    <span>
+                        {{ keywords.meter_size_price }}
+                        {{ city['name'] }}
+                    </span>
                 </h2>
                 <div class="row">
-                    <div class="col-md-6 col-12">
+                    <div class="col-12">
                         <div class="statics_per_meter">
                             <p class="d-flex align-items-center justify-content-between">
-                                <span>{{ keywords.neighborhood }}</span>
+                                <span>{{ keywords.area }}</span>
                                 <span>{{ keywords.apartments_average_price_per_meter }}</span>
                             </p>
                             <ul>
-                                <li class="d-flex align-items-center justify-content-between"
-                                    v-for="i in 10" :key="i"
-                                >
-                                    <inertia-link href="#">منطقه الرحاب</inertia-link>
-                                    <p>
-                                        <span>16000</span>
-                                        <span>{{ keywords.pound }}/{{ keywords.meter }}</span>
-                                    </p>
-                                </li>
+                                <div class="row">
+                                    <div class="col-12" v-for="(i,index) in average_areas" :key="index">
+                                        <li class="d-flex align-items-center justify-content-between"
+
+                                        >
+                                            <inertia-link :href="'/ads?area='+i['name']">
+                                                {{ i['name'] }}
+                                            </inertia-link>
+                                            <p>
+                                                <span>{{ i['average'] }}</span>
+                                                <span>{{ keywords.pound }}/{{ keywords.meter }}</span>
+                                            </p>
+                                        </li>
+                                    </div>
+                                </div>
                             </ul>
                         </div>
                     </div>
-                    <div class="col-md-6 col-12">
-                        <div class="statics_per_meter">
-                            <p class="d-flex align-items-center justify-content-between">
-                                <span>{{ keywords.neighborhood }}</span>
-                                <span>{{ keywords.villas_average_price_per_meter }}</span>
-                            </p>
-                            <ul>
-                                <li class="d-flex align-items-center justify-content-between"
-                                    v-for="i in 10" :key="i"
-                                >
-                                    <inertia-link href="#">مدينتي</inertia-link>
-                                    <p>
-                                        <span>16000</span>
-                                        <span>{{ keywords.pound }}/{{ keywords.meter }}</span>
-                                    </p>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>
 
-        <div class="rate_city">
+        <div class="rate_city" v-if="false">
             <div class="container">
                 <h2 class="d-flex align-items-center mb-4 main-title">
                     <span v-if="$page.props.lang == 'ar'"><i class="ri-arrow-left-s-fill"></i></span>
@@ -187,21 +172,25 @@
                 <h2 class="d-flex align-items-center mb-4 main-title">
                     <span v-if="$page.props.lang == 'ar'"><i class="ri-arrow-left-s-fill"></i></span>
                     <span v-else><i class="ri-arrow-right-s-fill"></i></span>
-                    <span>القاهره الجديده {{ keywords.about }}</span>
+                    <span>
+                        {{ keywords.about }}
+                        {{city['name']}}
+                    </span>
                 </h2>
-                <div class="row">
+                <div class="row align-items-center">
                     <div class="col-md-6 col-12">
                         <div class="slider-images">
                             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                                 <ol class="carousel-indicators">
                                     <li data-target="#carouselExampleIndicators"
                                         :data-slide-to="i"
-                                        v-for="i in 5"
-                                        :class="i == 0 ? 'active':''"></li>
+                                        v-for="(i,index) in city['map_images'].length" :key="index"
+                                        :class="index == 0 ? 'active':''"></li>
                                 </ol>
                                 <div class="carousel-inner">
-                                    <div :class="'carousel-item '+(i == 1 ? 'active':'')" v-for="i in 5" :key="i">
-                                        <img class="d-block w-100" src="/images/sales/one.jpg" alt="">
+                                    <div :class="'carousel-item '+(index == 0 ? 'active':'')"
+                                         v-for="(i,index) in city['map_images']" :key="index">
+                                        <img class="d-block w-100" :src="'/images/maps/'+i['image']" alt="">
                                     </div>
                                 </div>
                                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -217,14 +206,7 @@
                     </div>
                     <div class="col-md-6 col-12">
                         <div class="text-content">
-                            <p>نبذة عن مدينة القاهرة الجديدة
-                                القاهرة الجديدة أحد أشهر المدن المتطورة والمشروعات السكنية الجديدة نسبيًا، بدء العمل فيها عام 2000م بهدف التوسع العمراني خارج العاصمة، وتخفيف التكدس السكاني والخدمي داخل القاهرة والتي أصبحت تعاني من التكدس والزحام والاختناقات المرورية.
-
-                                وتقــع مدينة القاهرة الجديدة شرق مدينة القاهرة بجوار الطريق الدائري وطريق العين السخنة القاهرة والسويس القاهرة، وتبعد عن القاهرة حوالي 40 كيلومترًا وعن المعادي 15 كيلومترًا وعن مدينة نصر 5 كيلومترات.
-
-                                وتبلغ مساحة القاهرة الجديدة حوالي 500 كيلومتر مربع، ويبلغ عدد سكانها حوالي مليون ونصف نسمة، ومن المحتمل أن يصل إلى ثلاثة ملايين مع اكتمال البنية التحتية بالمدينة ووصول نسبة الإشغال في المشروعات إلى المرحلة النهائية.
-
-                                وتضم القاهرة الجديدة كافة مستويات الإسكان الفاخر وفوق المتوسط والمتوسط والاقتصادي، وتتنوع الخدمات فيها لتخدم كل هذه المستويات على امتداد أحياء ومناطق المدينة.</p>
+                            <p>{{ city['info'] }}</p>
                         </div>
                     </div>
                 </div>
@@ -239,14 +221,14 @@
                         <span>القاهره الجديده</span>
                     </p>
                     <div>
-                        <p>
-                            https://aqarmap.com.eg/ar/neighborhood/cairo/new-cairo/?utm_source=system&utm_medium=share&utm_campaign=neighborhood
+                        <p class="w-100">
+                           {{ current_url }}
                         </p>
                         <p>
-                            <inertia-link href="https://www.facebook.com/sharer/sharer.php?u=https://aqarmap.com.eg/3429958">
+                            <inertia-link :href="'https://www.facebook.com/sharer/sharer.php?u='+current_url">
                                 <i class="ri-facebook-line"></i>
                             </inertia-link>
-                            <inertia-link href="https://twitter.com/intent/tweet?url=https://aqarmap.com.eg/3429958">
+                            <inertia-link :href="'https://twitter.com/intent/tweet?url='+current_url">
                                 <i class="ri-twitter-line"></i>
                             </inertia-link>
                         </p>
@@ -261,16 +243,16 @@
                     <h2>{{ keywords.do_you_need_help }}</h2>
                     <p class="mt-3 mb-3">{{ keywords.to_get_best_results }}</p>
                     <div  class="row">
-                        <div class="col-lg-4 col-sm-6 col-12" v-for="i in  5" :key="i">
+                        <div class="col-lg-4 col-sm-6 col-12" v-for="(i,index) in  best_users" :key="index">
                             <contact-office
-                                name="Aqar Guide Real Estate"
-                                number_of_listing="4500"
-                                date="20/02/2011"
+                                :name="i['username']"
+                                :phone="i['phone']"
+                                :image="i['image']"
+                                :number_of_listing="i['total_listings']"
+                                :date="new Date(i['created_at']).toLocaleDateString()"
                             ></contact-office>
                         </div>
                     </div>
-                    <input type="button" class="btn btn-primary"
-                           :value="switchWord('request_contact')">
                 </div>
             </div>
         </div>
@@ -283,12 +265,13 @@
                     <span>{{ keywords.explore_questions }}</span>
                 </h2>
                 <p>
-                    <inertia-link href="#">
-                        <span>افضل اماكن وكومبوندات في التجمع الخامس</span>
-                        <span>60 {{ keywords.answer }}</span>
+                    <inertia-link :href="'/ask-neighbours/'+best_question['id']+'/answers'">
+                        <span>{{ best_question['question'] }}</span>
+                        <span>{{best_question['answers_count']}} {{ keywords.answer }}</span>
                     </inertia-link>
                 </p>
-                <inertia-link class="btn btn-primary" href="#">
+                <inertia-link class="btn btn-primary"
+                              href="/ask-neighbours">
                     {{ keywords.ask_explore_questions }}
                 </inertia-link>
             </div>
@@ -302,52 +285,21 @@
                     <span>{{ keywords.nearest_neighbourhoods_explore }}</span>
                 </h2>
                 <div class="row">
-                    <div class="col-lg-4 col-md-6 col-12" v-for="i in 7" :key="i">
+                    <div class="col-lg-4 col-md-6 col-12" v-for="(i,index) in similar_listings" :key="index">
                         <ListingPostComponent
-                              image="one.jpg"
-                              number_of_images="5"
-                              info="لاول مره في العاصمه الاداريه شقه بمقدم 0% واقساط"
-                              address="العاصمه الاداريه-الحي الثامن-كمبوند كارديا"
-                              price="500"
+                              :image="'/images/listings/'+i['first_image']['image']"
+                              :number_of_images="i['images_count']"
+                              :info="i['info']"
+                              :address="i['address']"
+                              :price="i['price']"
+                              :link="'/listing/details?id='+i['id']"
                         ></ListingPostComponent>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="sale_rent">
-            <div class="container">
-                <p>
-                    <span v-if="$page.props.lang == 'ar'"><i class="ri-arrow-left-s-fill"></i></span>
-                    <span v-else><i class="ri-arrow-left-s-fill"></i></span>
-                    <span>{{ keywords.search_inside_the_cities_of_egypt }}</span>
-                    <span class="d-block w-100 mb-2"></span>
-                    <span class="active" @click="switch_city">{{ keywords.rent }}</span>
-                    <span @click="switch_city">{{ keywords.sale }}</span>
-                </p>
-                <div>
-                    <div class="row">
-                        <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-2" v-for="i in 30" :key="i">
-                            <inertia-link href="">
-                                <span>القاهره الكبري</span>
-                                <span>(130)</span>
-                            </inertia-link>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="row">
-                        <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-2" v-for="i in 30" :key="i">
-                            <inertia-link href="">
-                                <span>أسكندريه</span>
-                                <span>(130)</span>
-                            </inertia-link>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        <sale-rent-component :data="cities_data" :country="country"></sale-rent-component>
 
 
         <footer-component></footer-component>
@@ -360,10 +312,17 @@ import FooterComponent from "../components/FooterComponent";
 import ContactOffice from "./listingpost/ContactOffice";
 import SwitchLangWord from "../mixin/SwitchLangWord";
 import ListingPostComponent from "../components/ListingPostComponent";
+import SaleRentComponent from "../components/SaleRentComponent";
 export default {
     name: "government_city",
-    props:['keywords'],
+    props:['keywords','average_areas','city','government','best_users','best_question',
+        'similar_listings','cities_data','country'],
     mixins:[SwitchLangWord],
+    data:function(){
+        return{
+            current_url:document.URL
+        }
+    },
     methods:{
         switch_city:function (){
             $(event.target).parent().find('.active').removeClass('active');
@@ -372,7 +331,7 @@ export default {
             $(event.target).parent().parent().find('>div').eq($(event.target).index() - 3).fadeIn();
         }
     },
-    components: {ListingPostComponent, ContactOffice, FooterComponent, NavbarComponent}
+    components: {SaleRentComponent, ListingPostComponent, ContactOffice, FooterComponent, NavbarComponent}
 }
 </script>
 
@@ -456,6 +415,7 @@ export default {
     .slider-images {
         img {
             width: 100%;
+            height: 400px;
         }
     }
     .text-content{

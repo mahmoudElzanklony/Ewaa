@@ -10,7 +10,7 @@ trait upload_image
         $valid_extensions = ['png','jpg','jpeg','gif'];
         if($type == 'one') {
             if (in_array($file->getClientOriginalExtension(), $valid_extensions)) {
-                $name = time() . '_user.' . $file->getClientOriginalExtension();
+                $name = time().rand(0,9999999999999). '_image.' . $file->getClientOriginalExtension();
                 $file->move(public_path('images/' . $folder_name), $name);
                 return $name;
             } else {

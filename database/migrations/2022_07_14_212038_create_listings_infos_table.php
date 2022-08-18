@@ -34,6 +34,8 @@ class CreateListingsInfosTable extends Migration
             $table->tinyInteger('whatapp_status')->default(0);
             $table->tinyInteger('contact_email_status')->default(0);
             $table->tinyInteger('payment_status')->default(0);
+            $table->string('client_payment_status');
+            $table->string('coordinates');
             $table->string('type');
             $table->softDeletes();
             $table->timestamps();

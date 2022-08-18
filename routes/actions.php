@@ -8,6 +8,9 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ListingPostController;
 use App\Http\Controllers\QuestionsController;
+use App\Http\Controllers\AreasController;
+use App\Http\Controllers\PaymentWaysController;
+use App\Http\Controllers\AskNeighborsController;
 use App\Http\Controllers\classes\general\GeneralServiceController;
 
 use Illuminate\Support\Facades\App;
@@ -49,15 +52,30 @@ Route::group(['middleware'=>'changeLang'],function (){
     // categories
     Route::group(['prefix'=>'/categories'],function(){
        Route::post('/get-subcategories-where',[CategoriesController::class,'get_sub_where']);
+       Route::post('/get-parent',[CategoriesController::class,'get_parent']);
     });
     // listings
     Route::group(['prefix'=>'/listings'],function(){
        Route::post('/save-inilaize',[ListingPostController::class,'save_inilaize']);
        Route::post('/save-listing-info',[ListingPostController::class,'save_listing_info']);
+       Route::post('/save-photos',[ListingPostController::class,'save_photos']);
+       Route::post('/payment',[ListingPostController::class,'payment_points']);
     });
     // questions
     Route::group(['prefix'=>'/questions'],function(){
        Route::post('/get-questions',[QuestionsController::class,'get_questions']);
+    });
+    // areas
+    Route::group(['prefix'=>'/areas'],function(){
+        Route::post('/search',[AreasController::class,'search']);
+    });
+    // payment ways
+    Route::group(['prefix'=>'/payment-ways'],function(){
+        Route::post('/find',[PaymentWaysController::class,'get_payment_methods']);
+    });
+    // discussions
+    Route::group(['prefix'=>'/discussions','middleware'=>['auth']],function(){
+        Route::post('/addquestion',[AskNeighborsController::class,'addquestion']);
     });
 
 });

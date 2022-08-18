@@ -133,10 +133,11 @@ export default {
             'save_category':'categories_dash/save_category'
       }),
       ...mapMutations({
-         'update_data':'categories_dash/update_data'
+         'update_data':'categories_dash/update_data',
+         'inilaize_data':'categories_dash/inilalize_data',
       }),
         initalize_data:function (){
-          this.update_data(this.handling_data['data']);
+          this.inilaize_data(this.handling_data['data']);
         },
     },
     created() {

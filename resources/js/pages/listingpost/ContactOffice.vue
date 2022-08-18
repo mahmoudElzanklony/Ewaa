@@ -3,8 +3,12 @@
         <form>
             <div class="office d-flex
                                     align-items-center justify-content-between flex-wrap">
-                <input type="checkbox">
-                <img src="/images/sales/one.jpg">
+                <a :href="'tel:'+phone">
+                    <span>
+                        <i class="ri-phone-fill"></i>
+                    </span>
+                </a>
+                <img :src="'/images/users/'+image">
                 <div>
                     <p>{{ name }}</p>
 <!--                    <p>{{ switchWord('registered_at_date') }}</p>-->
@@ -15,7 +19,7 @@
                 </div>
                 <div>
                     <p><strong>{{ number_of_listing }}</strong></p>
-                    <p>{{ switchWord('properties') }}</p>
+                    <p>{{ switchWord('ads') }}</p>
                 </div>
             </div>
         </form>
@@ -26,7 +30,7 @@
 import SwitchLangWord from "../../mixin/SwitchLangWord";
 export default {
     name: "ContactOffice",
-    props:['name','number_of_listing','date'],
+    props:['name','number_of_listing','date','image','phone'],
     mixins:[SwitchLangWord],
 }
 </script>
@@ -60,9 +64,19 @@ export default {
             padding-bottom: 10px;
         }
         .office{
-            input{
+            input,a{
                 width: 22px;
                 height: 22px;
+            }
+            a{
+                span{
+                    color:$sub_main_color;
+                    i{
+                        position: relative;
+                        top:-5px;
+                        font-size: $semi_big;
+                    }
+                }
             }
             img{
                 width: 50px;
