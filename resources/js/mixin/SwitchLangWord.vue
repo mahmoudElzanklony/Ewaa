@@ -848,6 +848,21 @@ export default {
                   ar:'دولار',
                   en:'dollar',
                   tu:'',
+              },
+              you_should_login:{
+                  ar:'من فضلك سجل دخول اولا',
+                  en:'You should login first',
+                  tu:'',
+              },
+              seller_phone:{
+                  ar:'رقم تليفون المعلن',
+                  en:'Phone Seller',
+                  tu:'',
+              },
+              reactions_questions:{
+                  ar:'عدد الاجابات لهذا السؤال هي ',
+                  en:'number of answers for this question is',
+                  tu:'',
               }
 
 

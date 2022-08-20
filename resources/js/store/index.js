@@ -20,6 +20,9 @@ import users_dash from "./modules/dashboard/users";
 import support_dash from "./modules/dashboard/support"
 import pointad_dash from "./modules/dashboard/poindad"
 import settings_dash from "./modules/dashboard/settings";
+import favourite from "./modules/users/favourite";
+import show_seller_phone from "./modules/show_seller_phone";
+
 
 import countries_govenrn_cities_areas from "./modules/map_data";
 import notifications from "./modules/notifications";
@@ -39,6 +42,8 @@ const store = new Vuex.Store({
         areas,
         payment_ways,
         discussions_questions,
+        favourite,
+        show_seller_phone,
         // dashboard modules
         categories_dash,
         sub_categories_dash,

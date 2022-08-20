@@ -10,9 +10,15 @@ class filter_listings
 {
     public static function filter_data($data_filtered){
         $data =  listings_info::query()->with(['user','first_image','answers'=>function($a){
-                    $a->with('question');
+                    $a->with('answers_collections')->with('question')->whereHas('question',function($e){
+                        $e->where('cover_appearance','=',1);
+                    });
                  }])
             ->where('payment_status','=','1')
+            // check if i have specific area keyword
+            ->when(array_key_exists('user_id',$data_filtered) && $data_filtered['user_id'] != null , function ($e) use ($data_filtered){
+                $e->where('user_id','=',$data_filtered['user_id']);
+            })
             // check if i have specific area keyword
             ->when(array_key_exists('area',$data_filtered) && $data_filtered['area'] != null , function ($e) use ($data_filtered){
                 $e->join('areas','listings_infos.area_id','=','areas.id')

@@ -13,4 +13,10 @@ class best_question_at_city
             $e->where('city_id','=',$city->id);
         })->withCount('answers')->first();
     }
+
+    public static function get_questions($city){
+        return discussion_questions::query()->whereHas('area',function($e) use ($city){
+            $e->where('city_id','=',$city->id);
+        })->withCount('answers')->get();
+    }
 }

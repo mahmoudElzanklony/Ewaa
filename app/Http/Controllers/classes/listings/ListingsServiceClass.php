@@ -85,7 +85,7 @@ class ListingsServiceClass extends Controller
                         'question_id' => $key
                     ], [
                         'answer' => explode(',', $val)[0],
-                        'type' => explode(',', $val)[0],
+                        'type' => explode(',', $val)[1],
                     ]);
                 }
             }

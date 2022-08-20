@@ -3,32 +3,54 @@
         <navbar-component></navbar-component>
         <div class="container">
             <div class="pages">
-                <inertia-link href="#">{{ keywords.egypt_properties }}</inertia-link>
+                <inertia-link href="/neighborhood">{{ switchWord('buildings') }}</inertia-link>
                 <span><i class="ri-arrow-left-s-line"></i></span>
-                <inertia-link href="#">{{ keywords.properties_for_sale }}</inertia-link>
+                <inertia-link :href="'/neighborhood/'+info['area']['city']['government']['id']">
+                    {{ info['area']['city']['government'][$page.props.lang+'_name'] }}
+                </inertia-link>
                 <span><i class="ri-arrow-left-s-line"></i></span>
-                <inertia-link href="#" >{{ keywords.properties_for_sale }}</inertia-link>
+                <inertia-link
+                    :href="'/neighborhood/'+info['area']['city']['government']['id']+'/'+info['area']['city']['id']">
+                    {{ info['area']['city'][$page.props.lang+'_name'] }}
+                </inertia-link>
                 <span><i class="ri-arrow-left-s-line"></i></span>
-                <inertia-link href="#" class="active">شقة 150م بسعر افتتاح الكمبوند 7500 للمتر بالتقسيط حتي 10 سنوات</inertia-link>
+                <inertia-link href="#" class="active">{{ info['name'] }}</inertia-link>
             </div>
         </div>
         <div class="post-details-fixed"  ref="toggle_details">
                 <div class="container">
-                    <h2 class="mb-2">شقة 150م بسعر افتتاح الكمبوند 7500 للمتر بالتقسيط حتي 10 سنوات
+                    <h2 class="mb-2">
+                        {{ info['info'] }}
                     </h2>
                     <div class="d-flex justify-content-between align-items-center flex-wrap">
-                        <p class="d-flex align-items-center mb-2">
+                        <div class="d-flex align-items-center mb-2">
                             <span><i class="ri-map-pin-line"></i></span>
-                            <inertia-link href="#"> كمبوندات العاصمة الادارية الجديدة </inertia-link>
-                            <span><i class="ri-building-line"></i></span>
-                            <inertia-link href="#">شقق</inertia-link>
-                            <span><i class="ri-hotel-bed-line"></i></span>
-                            <span>3</span>
-                            <span><i class="ri-fullscreen-line"></i></span>
-                            <span>300</span>
-                        </p>
+                            <span>{{ info['address'] }}</span>
+                            <div class="answer d-flex align-items-center"
+                                 v-for="(answer,index) in  info['answers']" :key="index">
+                                <img v-if="answer['question']['icon'] != ''"
+                                     :src="'/images/icons/'+answer['question']['icon']">
+                                <img v-else src="/images/icons/question.png">
+
+                                <span v-if="answer['type'] == 'checkbox' ">
+                                                    {{ answer['answer'] == 1 ? switchWord('yes'):switchWord('no') }}
+                                                </span>
+                                <span v-else-if="answer['type'] == 'select'">
+                                                    {{
+                                        answer['answers_collections'].find((e)=>
+                                            { return e['id'] == answer['answer'] }
+                                        )[$page.props.lang+'_name']
+                                    }}
+                                                </span>
+                                <span v-else>{{ answer['answer'] }}</span>
+
+
+                            </div>
+                        </div>
                         <h2 class="mb-2">
-                            <span>100000</span>
+                            <span>
+                                {{ info['price'] }}
+                            </span>
                             <span>{{ keywords.pound }}</span>
                             <button class="btn btn-primary shadow_animation" data-toggle="modal" data-target="#show_phone_number">{{ keywords.show_phone_number }}</button>
                         </h2>
@@ -41,24 +63,29 @@
                     <div class="col-lg-8 col-md-6 col-12">
                         <div class="images">
                             <div class="image">
-                                <img src="/images/sales/one.jpg">
+                                <img :src="'/images/listings/'+info['images'][0]['image']">
                                 <div class="seller_info d-flex align-items-center">
-                                    <img src="/images/users/one.jpg">
+                                    <img :src="'/images/users/'+info['user']['image']">
                                     <div>
-                                        <p>احمد علي سعد</p>
+                                        <p>
+                                            {{ info['user']['username'] }}
+                                        </p>
                                         <p>
                                             <span><i class="ri-building-line"></i></span>
-                                            <span>151</span>
+                                            <span>
+                                                {{ info['user']['listings_count'] }}
+                                            </span>
                                             <span>{{ keywords.listing }}</span>
                                         </p>
-                                        <inertia-link href="#">
+                                        <inertia-link :href="'/ads?user_id='+info['user']['id']">
                                             {{ keywords.view_properties_from_this_seller }}
                                         </inertia-link>
                                     </div>
                                 </div>
                             </div>
                             <div class="small_images">
-                                <img  v-for="i in 5" :key="i" src="/images/sales/one.jpg">
+                                <img  v-for="(i,index) in info['images']" :key="index"
+                                      :src="'/images/listings/'+i['image']">
                             </div>
                         </div>
                         <div class="details-info mt-5">
@@ -66,12 +93,24 @@
                                 <strong>{{ keywords.listing_details }}</strong>
                             </p>
                             <table class="table table-striped" v-if="type == 'akar'">
-                                <tr v-for="i in 6" :key="i">
-                                    <td>الدور</td>
-                                    <td>2</td>
+                                <tr v-for="(answer,index) in info['answers']" :key="index">
+                                    <td>{{ answer['question'][$page.props.lang+'_name'] }}</td>
+                                    <td>
+                                        <span v-if="answer['type'] == 'checkbox' ">
+                                                    {{ answer['answer'] == 1 ? switchWord('yes'):switchWord('no') }}
+                                                </span>
+                                        <span v-else-if="answer['type'] == 'select'">
+                                                    {{
+                                        answer['answers_collections'].find((e)=>
+                                            { return e['id'] == answer['answer'] }
+                                        )[$page.props.lang+'_name']
+                                    }}
+                                                </span>
+                                        <span v-else>{{ answer['answer'] }}</span>
+                                    </td>
                                 </tr>
                             </table>
-                            <table class="table table-striped compound_table" v-else>
+                            <table class="table table-striped compound_table" v-if="false">
                                 <tr>
                                     <td>{{ keywords.type }}</td>
                                     <td>{{ keywords.price }}</td>
@@ -102,15 +141,15 @@
                             <p class="mt-5 mb-3">
                                 <strong>{{ keywords.listing_description }}</strong>
                             </p>
-                            <p>لموقع: R8 قطعه L5
-                                مساحه المشروع : 18 فدان
-                                مبني علي نسبة 20% من إجمالي مساحة الأرض \</p>
-                            <div class="video">
+                            <p>{{ info['info'] }}</p>
+                            <div class="video" v-if="info['youtube_link'] != null || info['youtube_link'] != ''">
                                 <p class="mt-4 mb-2">
                                     <strong>{{ keywords.video }}</strong>
                                 </p>
-                                <iframe width="100%" height="315" src="https://www.youtube.com/embed/Sv-T-RAPadQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                <div class="developer_data">
+                                <a :href="info['youtube_link']" target="_blank">
+                                    {{ info['youtube_link'] }}
+                                </a>
+                                <div v-if="false" class="developer_data">
                                     <div class="user_info">
                                         <div class="user_image d-flex align-items-center">
                                             <img src="/images/users/one.jpg">
@@ -153,11 +192,14 @@
                     <div class="col-lg-4 col-md-6 col-12">
                         <div class="user-data">
                             <div class="d-flex align-items-center justify-content-between flex-wrap" v-if="type == 'akar'">
-                                <p class="text-center" @click="toggle_fav">
-                                    <span><i class="ri-heart-line"></i></span>
+                                <p class="text-center fav" @click="toggle_fav(info['id'])">
+                                    <span v-if="info['favourite'] == null"><i class="ri-heart-line"></i></span>
+                                    <span v-else style="color:darkred"><i class="ri-heart-fill"></i></span>
                                     <span class="d-block">{{ keywords.favourite }}</span>
                                 </p>
-                                <p class="text-center" data-toggle="modal" data-target="#show_notes">
+                                <p class="text-center" data-toggle="modal"
+                                   v-if="$page.props.user != null"
+                                   data-target="#show_notes">
                                     <span><i class="ri-file-line"></i></span>
                                     <span class="d-block">{{ keywords.note }}</span>
                                 </p>
@@ -170,7 +212,7 @@
                             <button class="btn btn-primary shadow_animation" data-toggle="modal" data-target="#show_phone_number">{{ keywords.show_phone_number }}</button>
                             <button class="btn btn-outline-primary" @click="toggle_email">{{ keywords.send_email }}</button>
                             <div class="send_email">
-                                <form>
+                                <form method="post">
                                     <textarea class="form-control"></textarea>
                                     <input class="btn btn-primary" :value="keywords.send_email">
                                 </form>
@@ -187,21 +229,23 @@
                                 <span v-else><i class="ri-arrow-right-s-fill"></i></span>
                                 <span>{{ keywords.see_this_properties_also }}</span>
                             </p>
-                            <ListingPostComponent v-for="i in 5" :key="i"
-                                image="one.jpg"
-                                number_of_images="5"
-                                info="لاول مره في العاصمه الاداريه شقه بمقدم 0% واقساط"
-                                address="العاصمه الاداريه-الحي الثامن-كمبوند كارديا"
-                                price="500"
+                            <ListingPostComponent  v-for="(i,index) in similar_listings" :key="index"
+                                :image="'/images/listings/'+i['first_image']['image']"
+                                :number_of_images="i['images_count']"
+                                :info="i['info']"
+                                :address="i['address']"
+                                :price="i['price']"
+                                :link="'/listing/details?id='+i['id']"
                             ></ListingPostComponent>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="questions">
-                <QuestionComponent v-for="i in 6" :key="i"
-                    question="ما هي العقارات المنتشرة بأفضل الاسعار في القاهره"
-                    answer="يوجد عقارات كثيره في الشيخ زايد و مدينتي و مدينه نصر"
+                <QuestionComponent v-for="(i,index) in best_questions" :key="index"
+                    :id="i['id']"
+                    :question="i['question']"
+                    :answer="i['answers_count']"
                 ></QuestionComponent>
             </div>
         </div>
@@ -212,24 +256,35 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="show_phone_number_box">{{ keywords.enter_your_info_to_contact_with_seller }}</h5>
+                        <h5 class="modal-title"
+                            v-if="show_number_status != info['id']"
+                            id="show_phone_number_box">{{ keywords.enter_your_info_to_contact_with_seller }}</h5>
+                        <h5 v-else>{{ switchWord('seller_phone') }}</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form method="post" @submit.prevent="show_phone_data"
+                              v-if="show_number_status != info['id']">
+                            <input type="hidden" name="listing_id" :value="info['id']">
                             <div class="form-group">
                                 <label>{{ keywords.username }}</label>
-                                <input class="form-control" name="username" required>
+                                <input class="form-control" name="username"
+                                       :value="$page.props.user != null ? $page.props.user.username : ''"
+                                       required>
                             </div>
                             <div class="form-group">
                                 <label>{{ keywords.email }}</label>
-                                <input class="form-control" name="email" required>
+                                <input class="form-control" name="email"
+                                       :value="$page.props.user != null ? $page.props.user.email : ''"
+                                       required>
                             </div>
                             <div class="form-group">
                                 <label>{{ keywords.phone }}</label>
-                                <input class="form-control" name="phone" required>
+                                <input class="form-control" name="phone"
+                                       :value="$page.props.user != null ? $page.props.user.phone : ''"
+                                       required>
                             </div>
                             <div class="form-group">
                                 <input class="btn btn-primary"
@@ -238,6 +293,9 @@
                                        :value="keywords.show_phone_number" required>
                             </div>
                         </form>
+                        <p v-else>
+                            <strong>{{ info['user']['phone'] }}</strong>
+                        </p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">
@@ -260,10 +318,12 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form method="post" @submit.prevent="send_note">
+                            <input v-if="info['note'] != null" type="hidden" name="id" :value="info['note']['id']">
+                            <input  type="hidden" name="listing_id" :value="info['id']">
                             <div class="form-group">
                                 <label>{{ keywords.note }}</label>
-                                <textarea name="note" class="form-control"></textarea>
+                                <textarea name="note" class="form-control" v-model="note"></textarea>
                             </div>
                             <div class="form-group">
                                 <input class="btn btn-primary"
@@ -297,11 +357,13 @@
                     <div class="modal-body">
                         <form>
                             <div class="form-group">
-                                <label class="d-block w-100">https://aqarmap.com.eg/3429958</label>
-                                <inertia-link href="https://www.facebook.com/sharer/sharer.php?u=https://aqarmap.com.eg/3429958">
+                                <label class="d-block w-100">
+                                    {{ current_url }}
+                                </label>
+                                <inertia-link :href="'https://www.facebook.com/sharer/sharer.php?u='+current_url">
                                     <i class="ri-facebook-line"></i>
                                 </inertia-link>
-                                <inertia-link href="https://twitter.com/intent/tweet?url=https://aqarmap.com.eg/3429958">
+                                <inertia-link :href="'https://twitter.com/intent/tweet?url='+current_url">
                                     <i class="ri-twitter-line"></i>
                                 </inertia-link>
                             </div>
@@ -331,13 +393,13 @@
                     </div>
                     <div class="modal-body">
                         <p class="mb-3">{{ switchWord('to_get_best_results') }}</p>
-                        <contact-office v-for="i in  5" :key="i"
-                                        name="Aqar Guide Real Estate"
-                                        number_of_listing="4500"
-                                        date="20/02/2011"
+                        <contact-office v-for="(i,index) in  best_users" :key="index"
+                                        :name="i['username']"
+                                        :phone="i['phone']"
+                                        :image="i['image']"
+                                        :number_of_listing="i['total_listings']"
+                                        :date="new Date(i['created_at']).toLocaleDateString()"
                         ></contact-office>
-                        <input type="button" class="btn btn-primary"
-                               :value="switchWord('request_contact')">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">
@@ -359,39 +421,66 @@ import ListingPostComponent from "../../components/ListingPostComponent"
 import SwitchLangWord from "../../mixin/SwitchLangWord";
 import ContactOffice from "./ContactOffice";
 import QuestionComponent from "../../components/QuestionComponent";
+import {mapActions , mapMutations , mapGetters} from "vuex";
 export default {
     name: "details",
-    props:['keywords','type'],
+    props:['keywords','type','info','similar_listings','best_users','best_questions'],
     mixins:[SwitchLangWord],
+    data:function(){
+        return {
+            note:'',
+            current_url:document.URL,
+            show_number_status:localStorage.getItem('show_phone_number'),
+        }
+    },
     components: {QuestionComponent, ContactOffice, ListingPostComponent, FooterComponent, NavbarComponent},
     methods:{
+        ...mapActions({
+            'favourite':'favourite/toggle_fav',
+            'send_note':'notes/save_note',
+            'show_phone_number':'show_seller_phone/show_number',
+        }),
+        show_phone_data:function(){
+            var target = event.target;
+            var data = new FormData(target);
+            this.show_phone_number(data);
+            localStorage.setItem('show_phone_number',$(target).find('input[name="listing_id"]').val());
+            this.show_number_status = $(target).find('input[name="listing_id"]').val();
+
+        },
         toggle_post_details_fixed:function (){
             console.log(this.$refs.toggle_details.getBoundingClientRect().top);
         },
         toggle_email:function(){
             $(event.target).next().slideToggle();
         },
-        toggle_fav:function(){
-            if($(event.target).parent().find('i.ri-heart-line').hasClass('ri-heart-line')) {
-                // added to fav
+        toggle_fav:function(id){
+            if(this.$inertia.page.props.user == null){
                 Toast.fire({
-                   icon:'success',
-                   title:this.switchWord('added_to_fav'),
+                    icon:'error',
+                    title:this.switchWord('you_should_login'),
                 });
-                $(event.target).parent().find('i.ri-heart-line').parent().css('color', 'darkred');
-                $(event.target).parent().find('i.ri-heart-line').
-                removeClass('ri-heart-line').addClass('ri-heart-fill');
             }else{
-                // remove from fav
-                Toast.fire({
-                    icon:'success',
-                    title:this.switchWord('removed_from_fav'),
-                });
-                $(event.target).parent().find('i.ri-heart-fill').parent().css('color', '#c9cacf');
-                $(event.target).parent().find('i.ri-heart-fill').
-                removeClass('ri-heart-fill').addClass('ri-heart-line');
+                if($(event.target).parent().find('i.ri-heart-line').hasClass('ri-heart-line')) {
+                    // added to fav
+                    $(event.target).parent().find('i.ri-heart-line').parent().css('color', 'darkred');
+                    $(event.target).parent().find('i.ri-heart-line').
+                    removeClass('ri-heart-line').addClass('ri-heart-fill');
+                }else{
+                    // remove from fav
+                    $(event.target).parent().find('i.ri-heart-fill').parent().css('color', '#c9cacf');
+                    $(event.target).parent().find('i.ri-heart-fill').
+                    removeClass('ri-heart-fill').addClass('ri-heart-line');
+                }
+                this.favourite(id);
             }
+
         },
+    },
+    created() {
+        if(this.info['note'] != null){
+            this.note = this.info['note']['note'];
+        }
     },
     mounted() {
         if(this.$inertia.page.props.lang == 'ar'){
@@ -418,9 +507,12 @@ export default {
 .ar{
     .post-details-fixed{
         >div{
-            span,a{
+            span,a,img{
                 margin-left: 5px;
             }
+        }
+        .answer{
+            margin-left: 15px;
         }
     }
 
@@ -466,9 +558,12 @@ export default {
 .en{
     .post-details-fixed{
         >div{
-            span,a{
+            span,a,img{
                 margin-right: 5px;
             }
+        }
+        .answer{
+            margin-right: 15px;
         }
     }
 
@@ -536,12 +631,13 @@ export default {
 
 .more-info{
     .images{
+        border:1px solid #ddd;
         .image{
             position: relative;
+            height: 300px;
             img{
                 width:100%;
                 height: 100%;
-                object-fit: cover;
             }
             .seller_info{
                 position: absolute;
@@ -673,7 +769,11 @@ table{
         background-color: #eeeeee63;
     }
 }
-
+.answer{
+    img{
+        height: 25px;
+    }
+}
 
 #share_listing{
     form{

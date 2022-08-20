@@ -18,4 +18,8 @@ class listing_questions_answers extends Model
     public function question(){
         return $this->belongsTo(questions::class);
     }
+
+    public function answers_collections(){
+        return $this->hasMany(answers::class,'question_id','question_id');
+    }
 }

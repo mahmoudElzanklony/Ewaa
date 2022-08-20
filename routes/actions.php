@@ -42,6 +42,7 @@ Route::group(['middleware'=>'changeLang'],function (){
     // user
     Route::group(['prefix'=>'/user','middleware'=>['auth']],function(){
         Route::post('/toggle-fav',[UsersController::class,'toggle_fav']);
+        Route::post('/show-seller-phone',[UsersController::class,'show_seller_phone']);
     });
     // general
     Route::post('/deleteitem',[GeneralServiceController::class,'delete_item']);

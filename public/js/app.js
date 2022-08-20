@@ -2505,7 +2505,7 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
   /*----------------------------start of compound details page----------------------------------*/
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('.content').on('click', '.more-info .small_images img', function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).parent().prev().find('img').attr('src', jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('src'));
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).parent().prev().find('img').eq(0).attr('src', jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('src'));
   });
   /*----------------------------end of compound details page----------------------------------*/
 
@@ -2690,13 +2690,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_dashboard_support__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./modules/dashboard/support */ "./resources/js/store/modules/dashboard/support.js");
 /* harmony import */ var _modules_dashboard_poindad__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./modules/dashboard/poindad */ "./resources/js/store/modules/dashboard/poindad.js");
 /* harmony import */ var _modules_dashboard_settings__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./modules/dashboard/settings */ "./resources/js/store/modules/dashboard/settings.js");
-/* harmony import */ var _modules_map_data__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./modules/map_data */ "./resources/js/store/modules/map_data.js");
-/* harmony import */ var _modules_notifications__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./modules/notifications */ "./resources/js/store/modules/notifications.js");
-/* harmony import */ var _modules_categories__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./modules/categories */ "./resources/js/store/modules/categories.js");
-/* harmony import */ var _modules_listings_save_listings__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./modules/listings/save_listings */ "./resources/js/store/modules/listings/save_listings.js");
-/* harmony import */ var _modules_listings_payment_points__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./modules/listings/payment_points */ "./resources/js/store/modules/listings/payment_points.js");
-/* harmony import */ var _modules_questions_get_questions__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./modules/questions/get_questions */ "./resources/js/store/modules/questions/get_questions.js");
-/* harmony import */ var _modules_discussions_questions__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./modules/discussions/questions */ "./resources/js/store/modules/discussions/questions.js");
+/* harmony import */ var _modules_users_favourite__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./modules/users/favourite */ "./resources/js/store/modules/users/favourite.js");
+/* harmony import */ var _modules_show_seller_phone__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./modules/show_seller_phone */ "./resources/js/store/modules/show_seller_phone.js");
+/* harmony import */ var _modules_map_data__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./modules/map_data */ "./resources/js/store/modules/map_data.js");
+/* harmony import */ var _modules_notifications__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./modules/notifications */ "./resources/js/store/modules/notifications.js");
+/* harmony import */ var _modules_categories__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./modules/categories */ "./resources/js/store/modules/categories.js");
+/* harmony import */ var _modules_listings_save_listings__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./modules/listings/save_listings */ "./resources/js/store/modules/listings/save_listings.js");
+/* harmony import */ var _modules_listings_payment_points__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./modules/listings/payment_points */ "./resources/js/store/modules/listings/payment_points.js");
+/* harmony import */ var _modules_questions_get_questions__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./modules/questions/get_questions */ "./resources/js/store/modules/questions/get_questions.js");
+/* harmony import */ var _modules_discussions_questions__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./modules/discussions/questions */ "./resources/js/store/modules/discussions/questions.js");
 
 
 vue__WEBPACK_IMPORTED_MODULE_0__.default.use(vuex__WEBPACK_IMPORTED_MODULE_1__.default);
@@ -2706,6 +2708,8 @@ vue__WEBPACK_IMPORTED_MODULE_0__.default.use(vuex__WEBPACK_IMPORTED_MODULE_1__.d
 
 
  //------------------- start of  dashboard---------------------------
+
+
 
 
 
@@ -2735,7 +2739,9 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__.default.Store({
     notes: _modules_profile_notes__WEBPACK_IMPORTED_MODULE_5__.default,
     areas: _modules_areas__WEBPACK_IMPORTED_MODULE_6__.default,
     payment_ways: _modules_payment_ways__WEBPACK_IMPORTED_MODULE_7__.default,
-    discussions_questions: _modules_discussions_questions__WEBPACK_IMPORTED_MODULE_25__.default,
+    discussions_questions: _modules_discussions_questions__WEBPACK_IMPORTED_MODULE_27__.default,
+    favourite: _modules_users_favourite__WEBPACK_IMPORTED_MODULE_19__.default,
+    show_seller_phone: _modules_show_seller_phone__WEBPACK_IMPORTED_MODULE_20__.default,
     // dashboard modules
     categories_dash: _modules_dashboard_categories__WEBPACK_IMPORTED_MODULE_8__.default,
     sub_categories_dash: _modules_dashboard_sub_categories__WEBPACK_IMPORTED_MODULE_9__.default,
@@ -2749,12 +2755,12 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__.default.Store({
     pointad_dash: _modules_dashboard_poindad__WEBPACK_IMPORTED_MODULE_17__.default,
     settings_dash: _modules_dashboard_settings__WEBPACK_IMPORTED_MODULE_18__.default,
     // end dashboard modules
-    countries_govenrn_cities_areas: _modules_map_data__WEBPACK_IMPORTED_MODULE_19__.default,
-    notifications: _modules_notifications__WEBPACK_IMPORTED_MODULE_20__.default,
-    categories: _modules_categories__WEBPACK_IMPORTED_MODULE_21__.default,
-    listings: _modules_listings_save_listings__WEBPACK_IMPORTED_MODULE_22__.default,
-    questions: _modules_questions_get_questions__WEBPACK_IMPORTED_MODULE_24__.default,
-    listing_payment: _modules_listings_payment_points__WEBPACK_IMPORTED_MODULE_23__.default
+    countries_govenrn_cities_areas: _modules_map_data__WEBPACK_IMPORTED_MODULE_21__.default,
+    notifications: _modules_notifications__WEBPACK_IMPORTED_MODULE_22__.default,
+    categories: _modules_categories__WEBPACK_IMPORTED_MODULE_23__.default,
+    listings: _modules_listings_save_listings__WEBPACK_IMPORTED_MODULE_24__.default,
+    questions: _modules_questions_get_questions__WEBPACK_IMPORTED_MODULE_26__.default,
+    listing_payment: _modules_listings_payment_points__WEBPACK_IMPORTED_MODULE_25__.default
   }
 });
 
@@ -4382,6 +4388,80 @@ __webpack_require__.r(__webpack_exports__);
         category_id: id
       }).then(function (e) {
         commit('inilize_data', e.data.data);
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/show_seller_phone.js":
+/*!*********************************************************!*\
+  !*** ./resources/js/store/modules/show_seller_phone.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  namespaced: true,
+  actions: {
+    show_number: function show_number(_ref, payload) {
+      var commit = _ref.commit,
+          getters = _ref.getters,
+          state = _ref.state;
+      var data = payload;
+      axios.post('/user/show-seller-phone', data).then(function (e) {});
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/users/favourite.js":
+/*!*******************************************************!*\
+  !*** ./resources/js/store/modules/users/favourite.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  namespaced: true,
+  state: function state() {
+    return {
+      data: []
+    };
+  },
+  getters: {
+    get_data: function get_data(state) {
+      return state.data;
+    }
+  },
+  mutations: {
+    inialize_data: function inialize_data(state, item) {
+      state.data = item;
+    }
+  },
+  actions: {
+    toggle_fav: function toggle_fav(_ref, payload) {
+      var commit = _ref.commit,
+          getters = _ref.getters,
+          state = _ref.state;
+      var val = payload;
+      axios.post('/user/toggle-fav', {
+        id: val
+      }).then(function (e) {
+        Toast.fire({
+          icon: 'success',
+          title: e.data['message']
+        });
       });
     }
   }
@@ -100041,7 +100121,7 @@ module.exports = webpackAsyncContext;
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames based on template
-/******/ 			return "js/" + chunkId + "." + {"resources_js_Pages_about_us_vue":"98598515f62b56a53cee","resources_js_Pages_auth_forget_password_vue":"58957884547e54987fac","resources_js_Pages_auth_new_password_vue":"17490283f5329d02081c","resources_js_Pages_auth_sign_in_vue":"3ffcb00b69d3739eeadd","resources_js_Pages_auth_sign_up_vue":"53d0b59714e50c9e3342","resources_js_Pages_compounds_vue":"8329618bca087dc801fa","resources_js_Pages_contactus_vue":"e55b2db2c0c0de9128f2","resources_js_Pages_dashboard_categories_vue":"dc848a169b99db6c2962","resources_js_Pages_dashboard_currencies_vue":"0fc108683be93bd5957f","resources_js_Pages_dashboard_index_vue":"bdb2fb2c06d521795721","resources_js_Pages_dashboard_listings_vue":"d29a53ca36253e608e7d","resources_js_Pages_dashboard_map_vue":"218063c988d06634c6a7","resources_js_Pages_dashboard_notifications_vue":"65b598b679166b85f203","resources_js_Pages_dashboard_packages_vue":"491c02b9d94f3b8a563f","resources_js_Pages_dashboard_pointad_vue":"fe23ca5e8f6a697bc6af","resources_js_Pages_dashboard_questions_vue":"d68522188aff5cd312ba","resources_js_Pages_dashboard_reports_vue":"0dda8dbfd6f4c612b1d0","resources_js_Pages_dashboard_settings_vue":"e66428f1e10416c72961","resources_js_Pages_dashboard_specific_statistics_vue":"e7c745d3dd684b0cb686","resources_js_Pages_dashboard_statistics_vue":"b67ebe5c14516e358b93","resources_js_Pages_dashboard_sub_categories_vue":"ba64cca49f3cbad1affa","resources_js_Pages_dashboard_subscriptions_vue":"fd972aff756e347e3402","resources_js_Pages_dashboard_support_vue":"e12db0d41dc8a5e77e3e","resources_js_Pages_dashboard_users_vue":"0e9d0f16cf7ac4ca3913","resources_js_Pages_feedback_vue":"c0d6157bcf91ae52b2b0","resources_js_Pages_government_city_vue":"93fd3029d36f330d3d2a","resources_js_Pages_governments_vue":"e6d162d0c458416bb8b7","resources_js_Pages_home_vue":"b9fb38a39b5dca4ac7a1","resources_js_Pages_listingpost_ContactOffice_vue":"5c3d60550e5448af8318","resources_js_Pages_listingpost_details_vue":"80d8f1dfeb7ad923e156","resources_js_Pages_listingpost_info_vue":"00b3e4089d7610edf2d7","resources_js_Pages_listingpost_initialize_vue":"462d96d159dd75f9c806","resources_js_Pages_listingpost_payment_confirmation_vue":"3c9461abf9ae188cbfff","resources_js_Pages_listingpost_photos_vue":"d3e558c434c6da593f08","resources_js_Pages_merchant_balance_vue":"f80814496550e0724f5a","resources_js_Pages_neighbours_vue":"e96f1b23315e61d33cac","resources_js_Pages_notifications_vue":"097152d90d2fe9f6a5b6","resources_js_Pages_packages_charge_vue":"1bfb1b9042859940a6d2","resources_js_Pages_packages_packages_info_vue":"25435f181a1aedd954da","resources_js_Pages_profile_favourites_vue":"499de410c203f21cead3","resources_js_Pages_profile_listings_dashboard_vue":"ed896c3f4642a44762a2","resources_js_Pages_profile_main_info_vue":"cc2169ec05dbe9444d7f","resources_js_Pages_profile_notes_vue":"62e0e29dd007ca745ebb","resources_js_Pages_profile_statistics_vue":"912f56c5cb18fda3f417","resources_js_Pages_questions_answers_vue":"6fd30c35870163ad33b0","resources_js_Pages_questions_ask_neighbors_vue":"269b8fc5b4ff266c64c4","resources_js_Pages_sales_vue":"73e8e43e63eca14b0ca4","resources_js_Pages_search_page_filters_vue":"6c82a4efa795732811f4","resources_js_Pages_terms_vue":"8c4fbd39587898d166d0"}[chunkId] + ".js";
+/******/ 			return "js/" + chunkId + "." + {"resources_js_Pages_about_us_vue":"58196c44a1e543f12e6d","resources_js_Pages_auth_forget_password_vue":"7eadf6d0e6df3bde982e","resources_js_Pages_auth_new_password_vue":"797a39f66c44630c8767","resources_js_Pages_auth_sign_in_vue":"63f92407a091a8488eb8","resources_js_Pages_auth_sign_up_vue":"90e231a34c54e25ffb07","resources_js_Pages_compounds_vue":"7d9415adb83ed8a44880","resources_js_Pages_contactus_vue":"ead41d9ed7b64688287a","resources_js_Pages_dashboard_categories_vue":"fae5960db58a4d6844e9","resources_js_Pages_dashboard_currencies_vue":"05f7fb57ab2a356c6f54","resources_js_Pages_dashboard_index_vue":"9c64aa8f16229278e0fd","resources_js_Pages_dashboard_listings_vue":"bc4abba6714b9192415a","resources_js_Pages_dashboard_map_vue":"2789fdda85495e1ca591","resources_js_Pages_dashboard_notifications_vue":"7a5e66b2036fe73d4198","resources_js_Pages_dashboard_packages_vue":"3b8d3db560347fba3918","resources_js_Pages_dashboard_pointad_vue":"9060292835b65db8f400","resources_js_Pages_dashboard_questions_vue":"02463a5f002fd1473ab4","resources_js_Pages_dashboard_reports_vue":"42085df5a7fbd679ad23","resources_js_Pages_dashboard_settings_vue":"8973dc50e434f2c4ef4b","resources_js_Pages_dashboard_specific_statistics_vue":"1ac2f53e8eb36f2410e1","resources_js_Pages_dashboard_statistics_vue":"2d76ed419ceaa1f1be18","resources_js_Pages_dashboard_sub_categories_vue":"60e10fbba4fe5ec496b6","resources_js_Pages_dashboard_subscriptions_vue":"4229211265c4c65411d8","resources_js_Pages_dashboard_support_vue":"f904f0938aaa5309d9e9","resources_js_Pages_dashboard_users_vue":"e5deb2d3b55fc44ee7c9","resources_js_Pages_feedback_vue":"c7d05710a6cc00ada9e0","resources_js_Pages_government_city_vue":"a7c9192c04e78bb88619","resources_js_Pages_governments_vue":"d6d65516396c7af71f64","resources_js_Pages_home_vue":"48f91decb0a8765b01f5","resources_js_Pages_listingpost_ContactOffice_vue":"d8352dafaf689696fef6","resources_js_Pages_listingpost_details_vue":"a0d5bf30bc9a1d336978","resources_js_Pages_listingpost_info_vue":"ff98761a80ed69615733","resources_js_Pages_listingpost_initialize_vue":"8703703deea403461b16","resources_js_Pages_listingpost_payment_confirmation_vue":"095e186cbc41be37098e","resources_js_Pages_listingpost_photos_vue":"ddf142255c61fe544fdb","resources_js_Pages_merchant_balance_vue":"1e525970243c54f6d98a","resources_js_Pages_neighbours_vue":"f552834f7858d0f49d9b","resources_js_Pages_notifications_vue":"76d22af162d33556b365","resources_js_Pages_packages_charge_vue":"c6244eca6b07aa51a47e","resources_js_Pages_packages_packages_info_vue":"f30b5eaff047d685724a","resources_js_Pages_profile_favourites_vue":"2774d5e6fceefd436136","resources_js_Pages_profile_listings_dashboard_vue":"230442b5e11bdaae87c8","resources_js_Pages_profile_main_info_vue":"2541411edea641527b01","resources_js_Pages_profile_notes_vue":"8d6ffb57e14d42798755","resources_js_Pages_profile_statistics_vue":"5b401b7615bb606341dd","resources_js_Pages_questions_answers_vue":"09a5e42aadea5b5b2ce2","resources_js_Pages_questions_ask_neighbors_vue":"f7356d25a78ed5162116","resources_js_Pages_sales_vue":"5615500d160f8195869f","resources_js_Pages_search_page_filters_vue":"6e323b81ebee50a725e1","resources_js_Pages_terms_vue":"ee5f9de77cdf66b11f4c"}[chunkId] + ".js";
 /******/ 		};
 /******/ 	})();
 /******/ 	

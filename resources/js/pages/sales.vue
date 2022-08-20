@@ -66,8 +66,8 @@
                                     <span>{{ keywords.verified }}</span>
                                     <span>{{ keywords.sponsored }}</span>
                                 </p>
-                                <inertia-link :href="'/listing/details?id'+i['id']"
-                                              class="d-flex justify-content-between flex-wrap">
+                                <inertia-link :href="'/listing/details?id='+i['id']"
+                                              class="d-flex justify-content-between align-items-center flex-wrap">
                                     <div class="image">
                                         <img :src="'/images/listings/'+i['first_image']['image']">
                                     </div>
@@ -101,7 +101,17 @@
                                                 <img v-if="answer['question']['icon'] == '' "
                                                      src="/images/icons/question.png">
                                                 <img v-else :src="'/images/icons/'+answer['question']['icon']">
-                                                <span>{{ answer['answer'] }}</span>
+                                                <span v-if="answer['type'] == 'checkbox' ">
+                                                    {{ answer['answer'] == 1 ? switchWord('yes'):switchWord('no') }}
+                                                </span>
+                                                <span v-else-if="answer['type'] == 'select'">
+                                                    {{
+                                                    answer['answers_collections'].find((e)=>
+                                                        { return e['id'] == answer['answer'] }
+                                                    )[$page.props.lang+'_name']
+                                                    }}
+                                                </span>
+                                                <span v-else>{{ answer['answer'] }}</span>
                                             </p>
                                         </div>
                                         <div class="contact d-flex justify-content-between">

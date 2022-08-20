@@ -12,11 +12,16 @@ use App\Keywords\ListingPostKeywords;
 use App\Keywords\ListingPostPhotosKeywords;
 use App\Models\areas;
 use App\Models\categories_questions;
+use App\Models\cities;
 use App\Models\governments;
 use App\Models\listing_photos;
 use App\Models\listings_info;
+use App\Services\discussions\best_question_at_city;
 use App\Services\listings\get_pointsprice_of_place;
+use App\Services\listings\listing_details;
 use App\Services\listings\payment_lising_points;
+use App\Services\listings\similar_listings;
+use App\Services\users\best_users_listings;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -74,9 +79,22 @@ class ListingPostController extends ListingsServiceClass
         }else{
             $type = 'akar';
         }
+
+        // check if i has id
+        if(request()->has('id')){
+             $listing_details = listing_details::get_details(request('id'));
+        }else{
+            return redirect('/ads');
+        }
+        $best_users =  best_users_listings::best_users();
+        $best_questions = best_question_at_city::get_questions(cities::query()->find($listing_details['area']['city_id']));
         return Inertia::render('listingpost/details',[
            'keywords'=>ListIngPostDetailsKeywords::get_keywords(),
            'type'=>$type,
+           'info'=>$listing_details,
+           'similar_listings'=>similar_listings::get_data($listing_details['area']['city_id']),
+           'best_users'=>$best_users,
+           'best_questions'=>$best_questions
         ]);
     }
 

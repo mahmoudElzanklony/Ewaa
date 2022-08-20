@@ -50,6 +50,10 @@ class listings_info extends Model
         return $this->hasOne(favourites::class,'listing_id');
     }
 
+    public function note(){
+        return $this->hasOne(listings_notes::class,'listing_id');
+    }
+
     public function statistics(){
         return $this->hasOne(listing_statistics::class,'listing_id');
     }

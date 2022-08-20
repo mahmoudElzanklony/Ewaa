@@ -92,7 +92,7 @@ $(document).ready(function (){
 
     /*----------------------------start of compound details page----------------------------------*/
     $('.content').on('click','.more-info .small_images img',function (){
-       $(this).parent().prev().find('img').attr('src',$(this).attr('src'));
+       $(this).parent().prev().find('img').eq(0).attr('src',$(this).attr('src'));
     });
     /*----------------------------end of compound details page----------------------------------*/
 

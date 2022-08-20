@@ -5,15 +5,20 @@
             <span ><i @click="toggleAnswer" class="ri-arrow-down-s-line"></i></span>
         </p>
         <p>
-            {{ answer }}
+            <inertia-link :href="'/ask-neighbours/'+id+'/answers'">
+                <span>{{ switchWord('reactions_questions') }}</span>
+                <span>{{ answer }}</span>
+            </inertia-link>
         </p>
     </div>
 </template>
 
 <script>
+import SwitchLangWord from "../mixin/SwitchLangWord";
 export default {
     name: "QuestionComponent",
-    props:['question','answer'],
+    props:['id','question','answer'],
+    mixins:[SwitchLangWord],
     methods:{
         toggleAnswer:function(){
             if($(event.target).hasClass('ri-arrow-down-s-line')){
