@@ -17,6 +17,7 @@ use App\Models\governments;
 use App\Models\listing_photos;
 use App\Models\listings_info;
 use App\Services\discussions\best_question_at_city;
+use App\Services\listings\count_listing_statistics;
 use App\Services\listings\get_pointsprice_of_place;
 use App\Services\listings\listing_details;
 use App\Services\listings\payment_lising_points;
@@ -83,10 +84,18 @@ class ListingPostController extends ListingsServiceClass
         // check if i has id
         if(request()->has('id')){
              $listing_details = listing_details::get_details(request('id'));
+             if($listing_details == null){
+                 return redirect('/ads');
+             }
         }else{
             return redirect('/ads');
         }
+
+        // count seen of this listing
+        count_listing_statistics::count_seen(request('id'));
+        // get best users to call them
         $best_users =  best_users_listings::best_users();
+        // questions of this city
         $best_questions = best_question_at_city::get_questions(cities::query()->find($listing_details['area']['city_id']));
         return Inertia::render('listingpost/details',[
            'keywords'=>ListIngPostDetailsKeywords::get_keywords(),

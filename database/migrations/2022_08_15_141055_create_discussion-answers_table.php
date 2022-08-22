@@ -17,8 +17,6 @@ class CreateDiscussionAnswersTable extends Migration
             $table->id();
             $table->foreignId('question_id')->constrained('discussion-questions')->onUpdate('cascade')->onDelete('cascade');
             $table->text('answer');
-            $table->integer('likes');
-            $table->integer('dis_likes');
             $table->timestamps();
         });
     }

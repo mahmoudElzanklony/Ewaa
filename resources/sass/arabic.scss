@@ -1,7 +1,6 @@
 @import "variables";
 *:not(i){
     text-align: right;
-    color:$black;
     direction:rtl;
 }
 body{
@@ -85,7 +84,7 @@ nav {
 
 .input-has-delete{
     position: relative;
-    span{
+    >span{
         @extend .delete-icon-input;
     }
 }

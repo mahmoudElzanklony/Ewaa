@@ -16,45 +16,42 @@
                 <h2>{{ keywords.company_packages }}</h2>
                 <p>{{ keywords.select_the_package_that_suits_your_budget_and_get_immediate_results }}</p>
                 <div class="row align-items-center">
-                    <div class="col-lg-4 col-md-6 col-12" v-for="i in  5" :key="i">
-                        <div :class="'package ' + (i == 2 ? 'active':'')">
-                            <p v-if="i == 2">
+                    <div class="col-lg-4 col-md-6 col-12" v-for="(i,index) in  packages" :key="index">
+                        <div :class="'package ' + (i == -100 ? 'active':'')">
+                            <p v-if="false">
                                 {{ keywords.recommended }}
                             </p>
                             <p class="text-center">
-                                <span>200000</span>
-                                <span>{{ keywords.pound }}</span>
+                                <span>{{ i['price'] }}</span>
+                                <span>{{ i['currency'][$page.props.lang+'_name'] }}</span>
                             </p>
                             <ul>
                                 <li>
-                                    <span>{{ keywords.points }}  : </span>
-                                    <span>1600</span>
+                                    <span>{{ keywords.min_points }}  : </span>
+                                    <span>{{ i['min_value'] }}</span>
+                                    <span>{{ keywords.point }}</span>
+                                </li>
+
+                                <li>
+                                    <span>{{ keywords.max_points }}  : </span>
+                                    <span>{{ i['max_value'] }}</span>
                                     <span>{{ keywords.point }}</span>
                                 </li>
                                 <li>
-                                    <span>{{ keywords.featured_ads }} : </span>
-                                    <span>20</span>
+                                    <span>{{ keywords.point_price }}  : </span>
+                                    <span>{{ i['price'] }}</span>
                                 </li>
                                 <li>
-                                    <span>{{ keywords.free_points }} : </span>
-                                    <span>10 / {{ keywords.weeks }}</span>
+                                    <span>{{ keywords.currency_used }}  : </span>
+                                    <span>{{ i['currency'][$page.props.lang+'_name'] }}</span>
                                 </li>
                                 <li>
-                                    <span>{{ keywords.points_validity }}: </span>
-                                    <span>30 {{ keywords.day }}</span>
+                                    <span>{{ keywords.expiration_package_date }}  : </span>
+                                    <span>
+                                        {{ i['expiration_date'] == null ? keywords.not_selected:new Date(i['expiration_date']).toLocaleDateString() }}
+                                    </span>
                                 </li>
-                                <li class="d-flex align-items-center">
-                                    <span><i class="ri-check-line"></i></span>
-                                    <span>{{ keywords.ewaa_live }}</span>
-                                </li>
-                                <li  class="d-flex align-items-center">
-                                    <span><i class="ri-check-line"></i></span>
-                                    <span>{{ keywords.logo_exposure }}</span>
-                                </li>
-                                <li  class="d-flex align-items-center">
-                                    <span><i class="ri-check-line"></i></span>
-                                    <span>{{ keywords.online_banner_for }} 20 {{ keywords.day }}</span>
-                                </li>
+
                                 <inertia-link class="btn" href="#">
                                     {{ keywords.buy_now }}
                                 </inertia-link>
@@ -184,7 +181,7 @@ import QuestionComponent from "../../components/QuestionComponent";
 import ContactUsComponent from "../../components/ContactUsComponent";
 export default {
     name: "packages_info",
-    props:['keywords'],
+    props:['keywords','packages'],
     components: {ContactUsComponent, QuestionComponent, FooterComponent, NavbarComponent}
 }
 </script>

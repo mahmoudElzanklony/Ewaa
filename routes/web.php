@@ -104,7 +104,7 @@ Route::group(['middleware'=>'changeLang'],function (){
     // merchant
     Route::group(['prefix'=>'/merchant'],function(){
         // balance
-        Route::get('/balance',[MerchantController::class,'balance']);
+        Route::get('/balance',[MerchantController::class,'balance'])->middleware('auth');
     });
 
     Route::group(['prefix'=>'/dashboard','middleware'=>'auth'],function(){

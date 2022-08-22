@@ -101,7 +101,7 @@ nav {
 }
 .input-has-delete{
     position: relative;
-    span{
+    >span{
         @extend .delete-icon-input;
     }
 }

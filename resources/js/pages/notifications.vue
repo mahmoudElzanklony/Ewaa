@@ -1,27 +1,32 @@
 <template>
     <section class="notifications">
         <navbar-component></navbar-component>
+        <div class="loading align-items-center justify-content-center">
+            <img  src="/images/loading.gif">
+        </div>
         <div class="container mt-4 mb-4">
             <div class="outer-notification">
                 <p>
                     <span>{{  keywords.notifications }}</span>
-                    <span>4</span>
+                    <span>{{ data.total }}</span>
                 </p>
                 <div class="inner">
                     <div class="notification d-flex align-items-center justify-content-between"
-                        v-for="i in 7" :key="i"
+                         v-for="(i,index) in vuex_data" :key="index"
                     >
                         <div class="data d-flex align-items-center">
-                            <img src="/images/users/one.jpg">
+                            <img :src="'/images/users/'+i['receiver']['image']">
                             <div class="text">
                                 <p>
-                                    <strong>الأدارة</strong>
+                                    <strong>{{ i['receiver']['username'] }}</strong>
                                 </p>
-                                <p>لقد تمت الموافقة علي طلب اعلانك</p>
+                                <p>
+                                    {{ i['info'] }}
+                                </p>
                             </div>
                         </div>
                         <p class="d-flex align-items-center">
-                            <span>12/05/2020</span>
+                            <span>{{ new Date(i['created_at']).toLocaleDateString() }}</span>
                             <span><i class="ri-calendar-2-line"></i></span>
                         </p>
                     </div>
@@ -35,10 +40,43 @@
 <script>
 import NavbarComponent from "../components/NavbarComponent";
 import FooterComponent from "../components/FooterComponent";
-
+import {mapGetters , mapActions , mapMutations} from "vuex";
 export default {
     name: "notifications",
-    props:['keywords'],
+    props:['keywords','data'],
+    computed:{
+        ...mapGetters({
+            'vuex_data':'notifications/get_data'
+        })
+    },
+    methods:{
+        ...mapMutations({
+            'inilalize_data':'notifications/inialize_data',
+            'inilalize_type':'notifications/inialize_type',
+        }),
+        ...mapActions({
+            'get_data_when_scroll':'notifications/infinite_scroll',
+        })
+    },
+    created() {
+        var com = this;
+        window.addEventListener("scroll", async function(e){
+            let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight
+            if(bottomOfWindow % 1 != 0){
+                bottomOfWindow = Math.ceil(bottomOfWindow);
+            }
+            console.log(bottomOfWindow);
+            console.log(document.documentElement.offsetHeight);
+            let page_height = document.documentElement.offsetHeight;
+            if(bottomOfWindow === page_height || bottomOfWindow-page_height == 1 || bottomOfWindow-page_height == -1 ){
+                console.log(com);
+                await com.get_data_when_scroll();
+            }
+        });
+        this.inilalize_data(this.data);
+        this.inilalize_type(this.type);
+
+    },
     components: {FooterComponent, NavbarComponent}
 }
 </script>
@@ -104,5 +142,8 @@ export default {
             }
         }
     }
+}
+.loading{
+    display:none;
 }
 </style>

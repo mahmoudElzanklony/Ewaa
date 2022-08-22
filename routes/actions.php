@@ -12,6 +12,7 @@ use App\Http\Controllers\AreasController;
 use App\Http\Controllers\PaymentWaysController;
 use App\Http\Controllers\AskNeighborsController;
 use App\Http\Controllers\classes\general\GeneralServiceController;
+use App\Http\Controllers\classes\listings\ListingsServiceClass;
 
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\URL;
@@ -40,8 +41,8 @@ Route::group(['middleware'=>'changeLang'],function (){
         Route::post('/save-note',[ProfileController::class,'save_note']);
     });
     // user
-    Route::group(['prefix'=>'/user','middleware'=>['auth']],function(){
-        Route::post('/toggle-fav',[UsersController::class,'toggle_fav']);
+    Route::group(['prefix'=>'/user'],function(){
+        Route::post('/toggle-fav',[UsersController::class,'toggle_fav'])->middleware('auth');
         Route::post('/show-seller-phone',[UsersController::class,'show_seller_phone']);
     });
     // general
@@ -62,6 +63,12 @@ Route::group(['middleware'=>'changeLang'],function (){
        Route::post('/save-photos',[ListingPostController::class,'save_photos']);
        Route::post('/payment',[ListingPostController::class,'payment_points']);
     });
+    // listings statics
+    Route::group(['prefix'=>'/listings-statistics'],function(){
+        Route::post('/seen',[ListingsServiceClass::class,'seen']);
+        Route::post('/search',[ListingsServiceClass::class,'search']);
+        Route::post('/call',[ListingsServiceClass::class,'call']);
+    });
     // questions
     Route::group(['prefix'=>'/questions'],function(){
        Route::post('/get-questions',[QuestionsController::class,'get_questions']);
@@ -77,6 +84,8 @@ Route::group(['middleware'=>'changeLang'],function (){
     // discussions
     Route::group(['prefix'=>'/discussions','middleware'=>['auth']],function(){
         Route::post('/addquestion',[AskNeighborsController::class,'addquestion']);
+        Route::post('/answer-react',[AskNeighborsController::class,'answer_react']);
+        Route::post('/add-answer',[AskNeighborsController::class,'add_answer']);
     });
 
 });

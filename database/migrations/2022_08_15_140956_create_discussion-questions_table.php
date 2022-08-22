@@ -15,6 +15,8 @@ class CreateDiscussionQuestionsTable extends Migration
     {
         Schema::create('discussion-questions', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')
+                ->constrained('user_id')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('category_id')->nullable()
                 ->constrained('categories')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('area_id')->constrained('areas')->onUpdate('cascade')->onDelete('cascade');

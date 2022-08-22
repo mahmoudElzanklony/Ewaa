@@ -3,7 +3,7 @@
         <navbar-component></navbar-component>
         <div class="container mb-4 mt-4">
             <div class="row">
-                <div class="col-md-6 col-12">
+                <div :class="$page.props.user == null ? 'col-md-12':'col-md-6' +' col-12'">
                     <h2 class="d-flex align-items-center mb-4 main-title">
                         <span v-if="$page.props.lang == 'ar'"><i class="ri-arrow-left-s-fill"></i></span>
                         <span v-else><i class="ri-arrow-right-s-fill"></i></span>
@@ -70,16 +70,16 @@
                             <p>{{ i['question'] }}</p>
                             <div class="d-flex align-items-center justify-content-between">
                                 <p>
-                                    <inertia-link href="?location=1">
+                                    <inertia-link :href="'/ask-neighbours?question_type=all&area_id='+i['area']['id']">
                                         <span>{{ i['area'][$page.props.lang+'_name'] }}</span>
                                     </inertia-link>
                                     <span>{{ keywords.in }}</span>
-                                    <inertia-link href="/ask-neighbours/10/answers">
+                                    <inertia-link :href="'/ask-neighbours?question_type=all&city_id='+i['area']['city']['id']">
                                         <span>{{ i['area']['city'][$page.props.lang+'_name'] }}</span>
                                     </inertia-link>
                                 </p>
                                 <p>
-                                    <inertia-link href="/ask-neighbours/10/answers">
+                                    <inertia-link :href="'/ask-neighbours/'+i['id']+'/answers'">
                                         <span>{{ i['answers_count'] }} {{ keywords.answers }}</span>
                                     </inertia-link>
                                 </p>
@@ -92,7 +92,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-12 ask_your_neighbors">
+                <div class="col-md-6 col-12 ask_your_neighbors" v-if="$page.props.user != null">
                     <h2 class="d-flex align-items-center mb-2 main-title">
                         <span v-if="$page.props.lang == 'ar'"><i class="ri-arrow-left-s-fill"></i></span>
                         <span v-else><i class="ri-arrow-right-s-fill"></i></span>
@@ -100,10 +100,10 @@
                     </h2>
                     <p class="mb-2">{{ keywords.write_your_question_and_get_answers_from_the_community }}</p>
                     <form method="post" @submit.prevent="add_question">
-                        <div class="row">
+                        <div class="mb-4 row">
                             <div class="col-lg-4 col-sm-6">
                                 <div class="form-group">
-                                    <select class="form-control" name="city_id" @change="update_area">
+                                    <select class="form-control" name="city_id" required @change="update_area">
                                         <option value="">{{ keywords.city }}</option>
                                         <option v-for="(c,index) in map_data('city_id')" :key="index" :value="c['id']">
                                             {{ c[$page.props.lang+'_name'] }}
@@ -113,7 +113,7 @@
                             </div>
                             <div class="col-lg-4 col-sm-6">
                                 <div class="form-group">
-                                    <select class="form-control" name="area_id">
+                                    <select class="form-control" name="area_id" required>
                                         <option value="">{{ keywords.neighbour }}</option>
                                         <option v-for="(c,index) in map_data('area_id')" :key="index" :value="c['id']">
                                             {{ c['name'] }}
@@ -124,7 +124,7 @@
                             <div class="col-lg-4 col-sm-6">
                                 <div class="form-group">
                                     <select class="form-control" name="category_id">
-                                        <option value="all">{{ keywords.all_categories }}</option>
+                                        <option value="">{{ keywords.all_categories }}</option>
                                         <option v-for="(c,index) in categories" :key="index" :value="c['id']">
                                             {{ c['name'] }}
                                         </option>
@@ -139,6 +139,11 @@
                                 <input class="btn btn-primary" type="submit" :value="keywords.add_question">
                             </div>
                         </div>
+                        <p>
+                            <inertia-link :href="'/ask-neighbours?question_type=all&user_id='+$page.props.user.id">
+                                {{ switchWord('press_here_to_show_my_discussions') }}
+                            </inertia-link>
+                        </p>
                     </form>
                 </div>
             </div>
@@ -306,14 +311,6 @@ export default {
         p{
             color:$dark_gray;
             margin-bottom: 5px;
-        }
-        div{
-            a{
-                color:$main_color;
-                span{
-                    color:$main_color;
-                }
-            }
         }
     }
 }

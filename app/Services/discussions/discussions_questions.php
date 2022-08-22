@@ -20,6 +20,9 @@ class discussions_questions
                 $e->join('areas','discussion-questions.area_id','=','areas.id')
                     ->where('areas.city_id','=',$filter_data['city_id']);
             })
+            ->when(array_key_exists('user_id',$filter_data) && $filter_data['user_id'] != '',function($e) use ($filter_data){
+                $e->where('user_id','=',$filter_data['user_id']);
+            })
             ->when(array_key_exists('category_id',$filter_data) && $filter_data['category_id'] != 'all',function($e) use ($filter_data){
                 $e->where('category_id','=',$filter_data['category_id']);
             })

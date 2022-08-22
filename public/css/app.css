@@ -10030,7 +10030,7 @@ a {
   color: #ff6a15;
 }
 a:hover {
-  color: #ff6a15;
+  color: #e45503;
 }
 a:focus {
   background-color: transparent;
@@ -10237,6 +10237,7 @@ h2.main-title span:first-of-type {
   left: 0;
   bottom: 0;
   z-index: 11;
+  display: flex;
 }
 
 .big-button, .btn-main-color-outline, .btn-main-color {
@@ -10641,7 +10642,7 @@ h2.main-title span:first-of-type {
   position: relative;
 }
 
-.delete-icon-input, .input-has-delete span {
+.delete-icon-input, .input-has-delete > span {
   cursor: pointer;
   position: absolute;
   top: 2px;

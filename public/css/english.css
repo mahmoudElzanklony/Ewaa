@@ -75,7 +75,7 @@ nav .dropdown-menu a span:first-of-type {
   margin-right: 5px;
 }
 
-.delete-icon-input, .input-has-delete span {
+.delete-icon-input, .input-has-delete > span {
   right: 15px;
 }
 

@@ -25,7 +25,7 @@ a{
     text-decoration: none !important;
     color:$main_color;
     &:hover{
-        color:$main_color;
+        color:#e45503;
     }
     &:focus{
         background-color: transparent;
@@ -219,6 +219,7 @@ h2.main-title{
     left: 0;
     bottom: 0;
     z-index: 11;
+    display: flex;
 }
 .big-button{
     width: 165px !important;
@@ -633,7 +634,7 @@ h2.main-title{
 }
 .input-has-delete{
     position: relative;
-    span{
+    >span{
         @extend .delete-icon-input;
     }
 }

@@ -60,7 +60,7 @@
         <div class="container">
             <div class="more-info">
                 <div class="row">
-                    <div class="col-lg-8 col-md-6 col-12">
+                    <div class="mb-4 col-lg-8 col-md-6 col-12">
                         <div class="images">
                             <div class="image">
                                 <img :src="'/images/listings/'+info['images'][0]['image']">
@@ -183,7 +183,7 @@
                                     </div>
                                 </div>
 
-                                <div class="map mb-2" style="height: 400px">
+                                <div class="map mb-2" v-if="false" style="height: 400px">
                                     <p>{{ keywords.map }}</p>
                                 </div>
                             </div>

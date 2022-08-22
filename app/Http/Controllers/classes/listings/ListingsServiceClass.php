@@ -11,6 +11,7 @@ use App\Models\listing_questions_answers;
 use App\Models\listing_statistics;
 use App\Models\listings_info;
 use App\Models\User;
+use App\Services\listings\count_listing_statistics;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use App\Http\traits\upload_image;
@@ -122,4 +123,25 @@ class ListingsServiceClass extends Controller
         return messages::success_output([trans('messages.saved_successfully'),$listing_obj->id]);
 
     }
+
+    public function seen(){
+        foreach(request('ids') as $id){
+            count_listing_statistics::count_seen($id);
+        }
+        return 1;
+    }
+
+    public function search(){
+        foreach (request('ids') as $id){
+            count_listing_statistics::count_search($id);
+        }
+    }
+
+    public function call(){
+        foreach (request('ids') as $id){
+            count_listing_statistics::count_calling($id);
+        }
+    }
+
+
 }

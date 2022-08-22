@@ -3,98 +3,145 @@
         <navbar-component></navbar-component>
         <div class="pages mt-4 mb-4">
             <div class="container">
-                <span>{{ keywords.egypt_properties }}</span>
+                <inertia-link href="/ask-neighbours?question_type=all">{{ keywords.ask_your_neighbors }}</inertia-link>
                 <span v-if="$page.props.lang == 'ar'">
                     <i class="ri-arrow-left-s-line"></i>
                 </span>
                 <span v-else>
                     <i class="ri-arrow-right-s-line"></i>
                 </span>
-                <span>{{ keywords.ask_your_neighbors }}</span>
+                <inertia-link :href="'/ask-neighbours?question_type=all&city_id='+data['question']['area']['city']['id']">
+                    {{ data['question']['area']['city'][$page.props.lang+'_name'] }}
+                </inertia-link>
                 <span v-if="$page.props.lang == 'ar'">
                     <i class="ri-arrow-left-s-line"></i>
                 </span>
                 <span v-else>
                     <i class="ri-arrow-right-s-line"></i>
                 </span>
-                <span>القاهرة الجديدة</span>
-                <span v-if="$page.props.lang == 'ar'">
-                    <i class="ri-arrow-left-s-line"></i>
-                </span>
-                <span v-else>
-                    <i class="ri-arrow-right-s-line"></i>
-                </span>
-                <span class="active">التجمع</span>
+                <inertia-link :href="'/ask-neighbours?question_type=all&area_id='+data['question']['area']['id']">
+                    {{ data['question']['area'][$page.props.lang+'_name'] }}
+                </inertia-link>
 
             </div>
         </div>
+
         <div class="container">
 
 
             <div class="row">
                 <div class="col-md-6 col-12">
-                    <h2 class="d-flex align-items-center mb-4 main-title">
-                        <span v-if="$page.props.lang == 'ar'"><i class="ri-arrow-left-s-fill"></i></span>
-                        <span v-else><i class="ri-arrow-right-s-fill"></i></span>
-                        <span>افضل اماكن وكمبوندات للسكن فى التجمع الخامس</span>
-                    </h2>
-                    <p class="user_info d-flex justify-content-between flex-wrap">
-                        <span class="d-block w-100">Amira mohamed</span>
-                        <span>12/20/2022</span>
-                        <span>
-                            <inertia-link href="#">الموقع , </inertia-link>
-                            <inertia-link href="#">القاهرة</inertia-link>
+                    <div class="input-has-delete">
+                        <span
+                            v-if="($page.props.user != null &&
+                                    ($page.props.user.id ==data['question']['user_id'] || $page.props.user.role_id == 5) )">
+                                    <i class="ri-close-line"
+                                       @click="
+                                       delete_item('discussion-questions',data['question']['id'],'',false,'/ask-neighbours?question_type=all')"></i></span>
+                        <h2 class="d-flex align-items-center mb-4 main-title">
+                            <span v-if="$page.props.lang == 'ar'"><i class="ri-arrow-left-s-fill"></i></span>
+                            <span v-else><i class="ri-arrow-right-s-fill"></i></span>
+                            <span>
+                            {{ data['question']['question'] }}
                         </span>
-                    </p>
+                        </h2>
+                        <p class="user_info d-flex justify-content-between flex-wrap">
+                        <span class="d-block w-100">
+                            {{ data['question']['user']['username'] }}
+                        </span>
+                            <span>
+                            {{ new Date(data['question']['created_at']).toLocaleDateString() }}
+                        </span>
+                            <span>
+                            <inertia-link :href="'/ask-neighbours?question_type=all&area_id='+data['question']['area']['id']">
+                    {{ data['question']['area'][$page.props.lang+'_name'] }}
+                </inertia-link>
+                            <inertia-link
+                                :href="'/ask-neighbours?question_type=all&city_id='+data['question']['area']['city']['id']">
+                    {{ data['question']['area']['city'][$page.props.lang+'_name'] }}
+                </inertia-link>
+                        </span>
+                        </p>
+                    </div>
                     <div class="question_answer_data">
                         <div class="d-flex align-items-center justify-content-between mt-3">
-                            <p class="d-flex align-items-center">
+                            <p class="d-flex align-items-center" style="visibility: hidden"
+                               v-if="$page.props.user != null">
                                 <span><i class="ri-user-line"></i></span>
                                 <span class="cursor-pointer" @click="follow_toggle">{{ keywords.follow }}</span>
                             </p>
                             <p class="d-flex align-items-center">
                                 <span><i class="ri-share-line"></i></span>
                                 <span class="cursor-pointer" data-toggle="modal" data-target="#share_answer">{{ keywords.share }}</span>
-                                <span><i class="ri-reply-line"></i></span>
-                                <span class="cursor-pointer" @click="goToBottom">{{ keywords.reply }}</span>
+                                <span v-if="$page.props.user != null"><i class="ri-reply-line"></i></span>
+                                <span v-if="$page.props.user != null" class="cursor-pointer" @click="goToBottom">{{ keywords.reply }}</span>
                             </p>
                         </div>
                         <p class="d-flex align-items-center justify-content-between">
                             <span>
-                                66 {{ keywords.answer }}
+                                {{ data['answers'].length }} {{ keywords.answer }}
                             </span>
                             <span>
                                 <i class="ri-arrow-down-s-line" @click="toggleAnswers"></i>
                             </span>
                         </p>
                         <div class="all_answers">
-                            <div class="answer" v-for="i in 5" :key="i">
-                            <div class="image d-flex align-items-center justify-content-between">
-                                <img src="/images/users/one.jpg">
-                                <div>
-                                    <p>احمد عكاشة</p>
-                                    <p>12/20/2022</p>
+                            <div :class="'answer input-has-delete ans'+i['id']" v-for="(i,index) in data['answers']" :key="index">
+                                <span
+                                    v-if="($page.props.user != null &&
+                                    ($page.props.user.id == i['user']['id'] || $page.props.user.role_id == 5) )">
+                                    <i class="ri-close-line"
+                                       @click="delete_item('discussion-answers',i['id'],'.ans'+i['id'])"></i></span>
+                                <div class="image d-flex align-items-center justify-content-between">
+                                    <img :src="'/images/users/'+i['user']['image']">
+                                    <div>
+                                        <p>
+                                            {{ i['user']['username'] }}
+                                        </p>
+                                        <p>
+                                            {{ new Date(i['created_at']).toLocaleDateString() }}
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
-                            <p>عقارات مصر
-                                اسأل أهل منطقة
-                                أهلا . أميرة موسى ، لقد قمت بمحاولة شراء فيلا أو أرض في الموقع المشار إليه وللأسف إليك ما وصلت إليه من نتيجة :- 1- كل المطورين العقاريين بيكرروا نفس الإسطوانة عند محاولة البيع والتسويق. 2- البعض منهم أكثر إحترافا ليس بالمعنى المقصود في لاتسويق والبيع ولكن في الضحك على العميل. 3. في الخلاصة ... إطلب من البائع أو المطور العقاري يصور لك الحياة اليومية بالفيديو في أي يوم فجأءة وخلي عندك إصرار في الطلب الغريب ده بس واقعي جدا وسهل جدا . 4. لو إترفض طلبك - زي ما حصل معايا - إرفض التحدث مع هذه الشركة نهائيا وشوف غيرها ومضيعشي وقتك معاهم وهكذا لحد ما حد يرضى يصور لك الموقع على الطبيعة في لوقت اللي أنت تختاره وبعدها روح تعاقد على الشقة أو الأرض اللي تعجبك.</p>
-                            <p>
+                             <p>{{ i['answer'] }}</p>
+                             <p v-if="$page.props.user != null">
                                 <span class="cursor-pointer">
-                                    <i @click="like_dislike_answer" value="like" class="ri-thumb-up-line"></i>
+                                    <i @click="like_dislike_answer(i['id'])"
+                                       v-if="i['reactions'].find((e)=>{
+                return e['type'] == 'like' && e['user_id'] == $page.props.user.id &&  e['answer_id'] == i['id']
+            })"
+                                       value="like" class="ri-thumb-up-fill"></i>
+                                    <i @click="like_dislike_answer(i['id'])"
+                                       v-else
+                                       value="like" class="ri-thumb-up-line"></i>
                                 </span>
-                                <span>2</span>
+                                <span>
+                                    {{ i['reactions'].filter((e)=>{return e['type'] == 'like' && e['answer_id'] == i['id']}).length }}
+                                </span>
                                 <span class="cursor-pointer">
-                                    <i @click="like_dislike_answer" value="dislike" class="ri-thumb-down-line"></i>
+                                    <i @click="like_dislike_answer(i['id'])"
+                                       v-if="i['reactions'].find((e)=>{
+                return e['type'] == 'dislike' && e['user_id'] == $page.props.user.id &&  e['answer_id'] == i['id']
+            })"
+
+                                       value="dislike" class="ri-thumb-down-fill"></i>
+                                    <i @click="like_dislike_answer(i['id'])"
+                                       v-else
+                                       value="dislike" class="ri-thumb-down-line"></i>
                                 </span>
-                                <span>0</span>
+                                <span>
+                                    {{ i['reactions'].filter((e)=>{
+                                    return e['type'] == 'dislike' && e['answer_id'] == i['id']
+                                }).length }}
+                                </span>
                             </p>
+                            </div>
                         </div>
-                        </div>
-                        <form>
+                        <form v-if="$page.props.user != null" @submit.prevent="add_answer">
+                            <input type="hidden" name="question_id" :value="data['question']['id']">
                             <div class="form-group">
                                 <label>{{ keywords.reply }}</label>
-                                <textarea name="reply" class="form-control" required></textarea>
+                                <textarea name="answer" class="form-control" required></textarea>
                             </div>
                             <div class="form-group">
                                 <input type="submit"
@@ -111,15 +158,15 @@
                             <span>{{ keywords.properties_you_may_be_interested_in }}</span>
                         </h2>
                         <ul class="d-flex flex-wrap">
-                            <li v-for="i in 6" :key="i">
-                                <inertia-link href="#">القاهرة</inertia-link>
+                            <li v-for="(i,index) in data['similar_listings']" :key="index">
+                                <inertia-link :href="'/listing/details?id='+i['id']">{{ i['name'] }}</inertia-link>
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
-        <share-link-box-component id="share_answer" link="google.com"></share-link-box-component>
+        <share-link-box-component id="share_answer" :link="current_url"></share-link-box-component>
         <footer-component></footer-component>
     </section>
 </template>
@@ -129,11 +176,23 @@ import NavbarComponent from "../../components/NavbarComponent";
 import FooterComponent from "../../components/FooterComponent";
 import ShareLinkBoxComponent from "../../components/ShareLinkBoxComponent";
 import SwitchLangWord from "../../mixin/SwitchLangWord";
+import delete_item from "../../mixin/delete_item";
+import {mapMutations , mapActions , mapGetters} from "vuex";
 export default {
     name: "answers",
-    props:['keywords'],
-    mixins:[SwitchLangWord],
+    props:['keywords','data'],
+    mixins:[SwitchLangWord,delete_item],
+    data:function(){
+        return {
+            current_url:document.URL
+        }
+    },
     methods:{
+        ...mapActions({
+           'react':'answer_reactions/react_answer',
+            'add_answer':'answer/add_answer'
+        }),
+
         goToBottom:function (){
             var body = document.body,
                 html = document.documentElement;
@@ -151,9 +210,8 @@ export default {
         follow_toggle:function (){
 
         },
-        like_dislike_answer:function (){
+        like_dislike_answer:function (answer_id){
             var target = $(event.target);
-            console.log(target.attr('value'));
             if(target.attr('value') == 'like'){
                 // check if make like before
                 if(target.hasClass('ri-thumb-up-fill')){
@@ -194,6 +252,7 @@ export default {
                     target.parent().next().html(parseInt(target.parent().next().html()) + 1);
                 }
             }
+            this.react({id:answer_id,type:target.attr('value')});
         },
         toggleAnswers:function (){
             if($(event.target).hasClass('ri-arrow-down-s-line')){
@@ -273,16 +332,16 @@ export default {
         p:last-of-type{
             display: flex;
             align-items: center;
-            span{
+            >span{
                 transition: 0.5s all;
                 &:hover{
                     color:$main_color;
                 }
             }
-            span:nth-of-type(2){
+            >span:nth-of-type(2){
                 margin-right: 5px;
             }
-            span.active{
+            >span.active{
                 color:$main_color;
             }
         }

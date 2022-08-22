@@ -196,6 +196,7 @@ import FooterComponent from "../components/FooterComponent";
 import FilterComponent from "../components/FilterComponent";
 import ContactOffice from "./listingpost/ContactOffice";
 import SwitchLangWord from "../mixin/SwitchLangWord";
+import {mapActions , mapGetters , mapMutations} from "vuex";
 export default {
     name: "sales",
     mixins:[SwitchLangWord],
@@ -208,6 +209,9 @@ export default {
         }
     },
     methods:{
+        ...mapActions({
+           'seen_listings':'listing_statistics_count/sum_statistics_listing',
+        }),
         go_to_sub_cat:function(sub_cat_id){
             var url = document.URL;
             var split_url = url.split('category=');
@@ -216,6 +220,9 @@ export default {
             var output = split_url[0]+'category='+second_part_url.join('&');
             this.$inertia.visit(output);
         }
+    },
+    mounted() {
+       this.seen_listings({data:this.data['data'].map((e)=>{return e['id']}),type:'seen'})
     },
     created() {
         this.links = this.data.links;

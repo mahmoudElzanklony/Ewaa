@@ -9,36 +9,42 @@
             </h2>
             <p>
                 <span>{{ keywords.account_number }}</span>
-                <span>#3123</span>
+                <span>#{{ $page.props.user.id }}</span>
             </p>
             <div class="current_balance d-flex align-items-center justify-content-between">
                 <p>
                     <span>{{ keywords.current_balance }} :</span>
-                    <span>0</span>
+                    <span>
+                        {{ $page.props.user.total_points }}
+                    </span>
                 </p>
-                <inertia-link href="/credit/charge" class="btn btn-primary">
+                <inertia-link href="credit/charge/package" class="btn btn-primary">
                     {{ keywords.charge_credit }}
                 </inertia-link>
             </div>
             <table class="table table-bordered table-hover table-striped">
                 <thead>
                     <tr>
-                        <td>{{ keywords.amount }}</td>
-                        <td>{{ keywords.balance }}</td>
-                        <td>{{ keywords.description }}</td>
+                        <td>{{ keywords.point_price }}</td>
+                        <td>{{ keywords.package }}</td>
+                        <td>{{ keywords.total }} {{ keywords.points }}</td>
+                        <td>{{ keywords.price }}</td>
                         <td>{{ keywords.date }}</td>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="i in 6" :key="i">
-                        <td>100</td>
-                        <td>2000</td>
-                        <td>عمليه شحن رصيد ناجحه</td>
-                        <td>12/02/2023</td>
+                    <tr v-for="(i,index) in my_balance" :key="index">
+                        <td>{{ i['point_price'] }}</td>
+                        <td>{{ i['package'][$page.props.lang+'_name'] }}</td>
+                        <td>{{ i['points_ordered'] }}</td>
+                        <td>{{ i['points_ordered'] *  i['point_price'] }}</td>
+                        <td>
+                            {{ new Date(i['created_at']).toLocaleDateString() }}
+                        </td>
                     </tr>
                 </tbody>
             </table>
-            <inertia-link href="/credit/charge" class="btn btn-primary d-block m-auto fit-content">
+            <inertia-link href="credit/charge/package" class="btn btn-primary d-block m-auto fit-content">
                 {{ keywords.charge_credit }}
             </inertia-link>
         </div>
@@ -51,7 +57,7 @@ import NavbarComponent from "../../components/NavbarComponent";
 import FooterComponent from "../../components/FooterComponent";
 export default {
     name: "balance",
-    props:['keywords'],
+    props:['keywords','my_balance'],
     components: {FooterComponent, NavbarComponent}
 }
 </script>

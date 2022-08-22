@@ -1,6 +1,5 @@
 *:not(i) {
   text-align: right;
-  color: #03071E;
   direction: rtl;
 }
 
@@ -58,7 +57,7 @@ nav .dropdown-menu a span:first-of-type {
   margin-left: 5px;
 }
 
-.delete-icon-input, .input-has-delete span {
+.delete-icon-input, .input-has-delete > span {
   left: 15px;
 }
 

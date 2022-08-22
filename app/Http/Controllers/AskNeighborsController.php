@@ -7,10 +7,16 @@ use App\Keywords\ask\AskNeighborsKeywords;
 use App\Models\categories;
 use App\Models\cities;
 use App\Models\countries;
+use App\Models\discussion_answers;
+use App\Models\discussion_questions;
 use App\Models\governments;
 use App\Models\listing_statistics;
 use App\Models\listings_info;
+use App\Models\questions;
+use App\Services\discussions\all_discussion_answers;
 use App\Services\discussions\discussions_questions;
+use App\Services\discussions\question_details_info;
+use App\Services\listings\similar_listings;
 use App\Services\map\cities_number_of_listings;
 use App\Services\map\cities_related_to_country;
 use App\Services\users\get_country_of_user;
@@ -39,8 +45,21 @@ class AskNeighborsController extends AskNeighbourService
     }
 
     public function answers(){
+        $question = question_details_info::info(request()->segment(2));
+        if($question == null){
+            return redirect('/ask-neighbours?question_type=all');
+        }
+        $answers = all_discussion_answers::get_answers(request()->segment(2));
+        $similar_listings = similar_listings::get_data($question->area->city->id);
         return Inertia::render('questions/answers',[
            'keywords'=>AnswersKeywords::get_keywords(),
+            'data'=>[
+                'question'=>$question,
+                'answers'=>$answers,
+                'similar_listings'=>$similar_listings
+            ]
         ]);
     }
+
+
 }

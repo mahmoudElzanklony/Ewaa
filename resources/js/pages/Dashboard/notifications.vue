@@ -8,7 +8,7 @@
             <div class="outer-notification">
                 <p>
                     <span>{{  keywords.notifications }}</span>
-                    <span>4</span>
+                    <span>{{ data.total }}</span>
                 </p>
                 <div class="inner">
                     <div class="notification d-flex align-items-center justify-content-between"

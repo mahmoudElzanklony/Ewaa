@@ -12,7 +12,14 @@ class packages extends Model
     //  '',ryal,sr,ksa
     // remove required from inputs that are type text
     use HasFactory;
-    protected $fillable = ['currency_id','ar_name','en_name','image','min_value','max_value','price','is_visible','expiration_date'];
+    protected $fillable = ['currency_id','ar_name','en_name','image','min_value','max_value',
+        'price','is_visible','expiration_date'];
+
+
+    public static function selection(){
+        return self::query()->select('id','currency_id',app()->getLocale().'_name as name','image'
+            ,'min_value','max_value','price','is_visible','expiration_date');
+    }
 
     public function currency(){
         return $this->belongsTo(currencies::class,'currency_id');

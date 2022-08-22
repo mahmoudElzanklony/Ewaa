@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Keywords\packages\ChargeKeywords;
 use App\Keywords\packages\PackagesInfoKeywords;
+use App\Services\packages\all_packages;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -17,8 +18,10 @@ class PackagesController extends Controller
     }
 
     public function package_info(){
+        $packages = all_packages::packages_info();
         return Inertia::render('packages/packages_info',[
             'keywords'=>PackagesInfoKeywords::get_keywords(),
+            'packages'=>$packages
         ]);
     }
 }

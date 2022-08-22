@@ -6,7 +6,7 @@
 export default {
     name: "delete_item",
     methods:{
-        delete_item:function (table,id, selector = '' ,closeall = false){
+        delete_item:function (table,id, selector = '' ,closeall = false , url = false){
             if(window.vm.$inertia.page.props.lang == 'ar'){
                 var msg = 'هل أنت متأكد من عملية المسح';
                 var confirm = 'نعم أنا متأكد';
@@ -42,6 +42,9 @@ export default {
                         });
                         if(closeall == true){
                             $('.modal').modal('hide')
+                        }
+                        if(url != false){
+                            window.vm.$inertia.visit(url)
                         }
                         if(selector != ''){
                             console.log($(selector));

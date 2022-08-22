@@ -22,7 +22,7 @@ import pointad_dash from "./modules/dashboard/poindad"
 import settings_dash from "./modules/dashboard/settings";
 import favourite from "./modules/users/favourite";
 import show_seller_phone from "./modules/show_seller_phone";
-
+import listing_statistics_count from "./modules/listings/listing_statistics_count";
 
 import countries_govenrn_cities_areas from "./modules/map_data";
 import notifications from "./modules/notifications";
@@ -31,6 +31,8 @@ import listings from "./modules/listings/save_listings";
 import listing_payment from "./modules/listings/payment_points";
 import questions from "./modules/questions/get_questions";
 import discussions_questions from "./modules/discussions/questions";
+import answer_reactions from "./modules/discussions/answer_reactions";
+import answer from "./modules/discussions/answer";
 //------------------- end of  dashboard---------------------------
 // Create a new store instance.
 const store = new Vuex.Store({
@@ -44,6 +46,9 @@ const store = new Vuex.Store({
         discussions_questions,
         favourite,
         show_seller_phone,
+        listing_statistics_count,
+        answer_reactions,
+        answer,
         // dashboard modules
         categories_dash,
         sub_categories_dash,

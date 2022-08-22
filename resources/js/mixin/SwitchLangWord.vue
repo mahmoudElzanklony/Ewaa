@@ -863,6 +863,11 @@ export default {
                   ar:'عدد الاجابات لهذا السؤال هي ',
                   en:'number of answers for this question is',
                   tu:'',
+              },
+              press_here_to_show_my_discussions:{
+                  ar:'اضغط هنا لعرض جميع نقاشاتي',
+                  en:'press here to show all my discussions',
+                  tu:'',
               }
 
 
