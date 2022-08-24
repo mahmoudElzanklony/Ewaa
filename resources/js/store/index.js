@@ -4,10 +4,16 @@ Vue.use(Vuex);
 
 import register from "./modules/auth/register";
 import login from "./modules/auth/login";
+import sendmail from "./modules/auth/sendmail";
+import reset_password from "./modules/auth/reset_password";
+
 import personal_info from "./modules/profile/personal_info";
 import notes from"./modules/profile/notes";
 import areas from "./modules/areas";
 import payment_ways from "./modules/payment_ways";
+import send_email_to_seller from "./modules/listings/send_email_to_seller";
+import buy_package from "./modules/packages/buy_package";
+import send_support_question from "./modules/profile/send_support_question";
 //------------------- start of  dashboard---------------------------
 import categories_dash from "./modules/dashboard/categories";
 import sub_categories_dash from "./modules/dashboard/sub_categories";
@@ -39,12 +45,17 @@ const store = new Vuex.Store({
     modules:{
         register,
         login,
+        sendmail,
+        reset_password,
+        send_email_to_seller,
+        buy_package,
         personal_info,
         notes,
         areas,
         payment_ways,
         discussions_questions,
         favourite,
+        send_support_question,
         show_seller_phone,
         listing_statistics_count,
         answer_reactions,

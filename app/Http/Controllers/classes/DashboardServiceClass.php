@@ -31,7 +31,9 @@ use App\Models\support;
 use App\Models\User;
 use App\Services\listings\average_price_at_area;
 use App\Services\listings\get_pointsprice_of_place;
+use App\Services\mail\send_email;
 use App\Services\map\get_location_where;
+use App\Services\notifications\create_notification;
 use App\Services\statistics\filter_statistics_admin;
 use Illuminate\Http\Request;
 use App\Http\traits\upload_image;
@@ -255,6 +257,8 @@ class DashboardServiceClass extends Controller
         ],[
             'type'=>request('status'),
         ]);
+        $ar_info = 'تم تعديل حالة عقار '.$data->ar_name;
+        $en_info = 'listing  '.$data->en_name.' status has been updated successfully';
         // check if its rejected
         if(request('status') == ''){
             // return points to user
@@ -262,7 +266,18 @@ class DashboardServiceClass extends Controller
             $user = User::query()->find($data->user_id);
             $user->total_points = $user->total_points + $no_points;
             $user->save();
+
+            $ar_info = 'تم رفض  عقار '.$data->ar_name;
+            $en_info = 'listing  '.$data->en_name.' has been rejected';
         }
+        create_notification::new_notification([
+            'sender_id'=>auth()->id(),
+            'receiver_id'=>$data->user_id,
+            'ar_info'=>$ar_info,
+            'en_info'=>$en_info,
+            'tu_info'=>'',
+            'seen'=>0
+        ]);
         return messages::success_output(['title'=>trans('messages.saved_successfully'),'icon'=>'success']);
 
     }
@@ -310,6 +325,9 @@ class DashboardServiceClass extends Controller
         $item = support::query()->updateOrCreate([
             'id'=>request()->has('id') ? request('id'):null
         ],$data);
+        // send email
+        $title = 'هذه رساله من اداره موقع ايواء';
+        send_email::send($title,request('reply'),'','',request('email'));
         return messages::success_output(trans('messages.saved_successfully'),$item,request()->has('id') ? 'update':'insert');
 
     }

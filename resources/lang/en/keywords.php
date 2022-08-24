@@ -272,6 +272,9 @@ return [
     'my_favourite'=>'Favourite',
     'statistics'=>'Statics',
     'my_listings'=>'My Listings',
+    'not_selected_yet'=>'Not selected yet',
+    'draft_listing'=>'Draft Listing',
+
 
     'change_your_info'=>'Change Your Info',
     'profile_picture'=>'Profile Picture',
@@ -542,6 +545,7 @@ return [
     'auto_publish'=>'Auto Publish',
 
     'users'=>'Users',
+    'admin'=>'Admin',
     'users_statics'=>'Users Statistics',
 
 
@@ -598,6 +602,8 @@ return [
 
     // start of dashboard packages ----------------------------------------------------------
     'packages'=>'Packages',
+    'best_packages_for_marketing'=>'we provide best packages to market your ads',
+
     'min_value'=>'Min value',
     'max_value'=>'Max value',
     'currency'=>'Currency',
@@ -637,6 +643,8 @@ return [
 
 
     // start of dashboard listings ----------------------------------------------------------
+    'interests'=>'Interests',
+
     'listing_name'=>'Listing name',
     'approval_status'=>'Approval status',
     'change_approval_status'=>'Change Approval status',
@@ -662,6 +670,7 @@ return [
 
     // start of dashboard support ----------------------------------------------------------
     'support'=>'Support',
+    'we_are_here_for_your_help'=>'we are here for your help',
     'message'=>'Message',
     'reply'=>'Reply',
     // end of dashboard support ----------------------------------------------------------

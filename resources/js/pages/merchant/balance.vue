@@ -44,7 +44,7 @@
                     </tr>
                 </tbody>
             </table>
-            <inertia-link href="credit/charge/package" class="btn btn-primary d-block m-auto fit-content">
+            <inertia-link href="/credit/charge/package" class="btn btn-primary d-block m-auto fit-content">
                 {{ keywords.charge_credit }}
             </inertia-link>
         </div>

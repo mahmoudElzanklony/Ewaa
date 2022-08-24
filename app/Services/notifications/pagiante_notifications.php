@@ -9,7 +9,9 @@ use App\Models\notifications;
 class pagiante_notifications
 {
     public static function get_notifications($id = 0 , $type = ''){
-        return notifications::selection()->with('receiver')
+        return notifications::selection()->with('sender',function($e){
+            $e->with('role');
+        })
             ->when($id != 0 , function($e) use($id){
                 $e->where('receiver_id','=',$id);
             })
@@ -19,7 +21,7 @@ class pagiante_notifications
                         $role->where('name','=',$type);
                     });
                 });
-            })
+            })->orderBy('id','DESC')
             ->paginate(12);
     }
 }

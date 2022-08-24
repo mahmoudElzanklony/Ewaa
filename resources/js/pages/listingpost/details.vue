@@ -212,8 +212,9 @@
                             <button class="btn btn-primary shadow_animation" data-toggle="modal" data-target="#show_phone_number">{{ keywords.show_phone_number }}</button>
                             <button class="btn btn-outline-primary" @click="toggle_email">{{ keywords.send_email }}</button>
                             <div class="send_email">
-                                <form method="post">
-                                    <textarea class="form-control"></textarea>
+                                <form method="post" @submit.prevent="send_email">
+                                    <input type="hidden" name="listing_id" :value="info['id']">
+                                    <textarea class="form-control" name="message"></textarea>
                                     <input class="btn btn-primary" :value="keywords.send_email">
                                 </form>
                             </div>
@@ -439,6 +440,7 @@ export default {
             'favourite':'favourite/toggle_fav',
             'send_note':'notes/save_note',
             'show_phone_number':'show_seller_phone/show_number',
+            'send_email':'send_email_to_seller/send_email',
         }),
         show_phone_data:function(){
             var target = event.target;

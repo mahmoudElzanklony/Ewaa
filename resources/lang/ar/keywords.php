@@ -277,6 +277,8 @@ return [
     'my_listings'=>'عقاراتي',
     'my_favourite'=>'المفضلة',
     'statistics'=>'احصائيات',
+    'not_selected_yet'=>'لم يتم تحديدة بعد',
+    'draft_listing'=>'عقار في المسودة',
 
 
     'change_your_info'=>'تعديل البيانات',
@@ -538,6 +540,7 @@ return [
     'auto_publish'=>'النشر التلقائي',
 
     'users'=>'المستخدمين',
+    'admin'=>'الادارة',
     'users_statics'=>'إحصائيات المستخدمين',
 
 
@@ -590,6 +593,7 @@ return [
     'listings_orders'=>'طلبات العقارات',
     'listings'=>'العقارات',
     'packages'=>'الباقات',
+    'best_packages_for_marketing'=>'نوفر افضل الباقات  من اجل تسويق عقارك بأفضل صورة',
     // end of dashboard statistics ----------------------------------------------------------
 
 
@@ -625,6 +629,7 @@ return [
 
 
     // start of dashboard listings ----------------------------------------------------------
+    'interests'=>'الاهتمامات',
     'listing_name'=>'اسم العقار',
     'approval_status'=>'حالة الموافقة',
     'change_approval_status'=>'تغيير الموافقة',
@@ -651,6 +656,7 @@ return [
 
     // start of dashboard support ----------------------------------------------------------
     'support'=>'الدعم الفني',
+    'we_are_here_for_your_help'=>'نحن هنا دوما من اجل مساعدتك',
     'message'=>'الرسالة',
     'reply'=>'الرد',
     // end of dashboard support ----------------------------------------------------------

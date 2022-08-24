@@ -7,12 +7,19 @@
                     <h2 class="text-center">{{ keywords.ewaa_plus_website }}</h2>
                     <p class="text-center">{{ keywords.ewaa_plus_word }}</p>
                     <div class="text-center">
-                        <inertia-link href="#" class="btn btn-main-color">
+                        <inertia-link href="/ads" class="btn btn-main-color">
                             {{ keywords.properties }}
                         </inertia-link>
-                        <inertia-link href="#" class="btn btn-main-color-outline">
-                            {{ keywords.compounds }}
+                        <inertia-link v-if="$page.props.user != null" href="/profile/edit"
+                                      class="btn btn-main-color-outline">
+                            {{ keywords.profile }}
                         </inertia-link>
+
+                        <inertia-link v-else href="/login"
+                                      class="btn btn-main-color-outline">
+                            {{ keywords.login }}
+                        </inertia-link>
+
                     </div>
                     <div style="display: none" class="row">
                         <div class="col-md-8">
@@ -43,7 +50,7 @@
                 <div class="row">
                     <div class="col-lg-4 col-md-6 col-12">
                         <div class="sub">
-                            <inertia-link href="#">
+                            <inertia-link href="/search">
                                 <span>
                                     <i class="ri-building-line"></i>
                                 </span>
@@ -59,7 +66,7 @@
                             </inertia-link>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 col-12">
+                    <div class="col-lg-4 col-md-6 col-12" v-if="false">
                         <div class="sub">
                             <inertia-link href="#">
                                 <span>
@@ -78,7 +85,7 @@
                             </inertia-link>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 col-12" style="display:none">
+                    <div class="col-lg-4 col-md-6 col-12" v-if="false">
                         <div class="sub">
                             <inertia-link href="#">
                                 <span>
@@ -97,7 +104,7 @@
                             </inertia-link>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 col-12" style="display: none">
+                    <div class="col-lg-4 col-md-6 col-12" v-if="false">
                         <div class="sub">
                             <inertia-link href="#">
                                 <span>
@@ -123,7 +130,7 @@
             <div class="container">
                 <h2 class="mb-3">{{ keywords.know }}</h2>
                 <div class="row">
-                    <div class="col-lg-4 col-md-6 col-12">
+                    <div class="col-lg-4 col-md-6 col-12" v-if="false">
                         <div class="sub">
                             <inertia-link href="#">
                                 <span>
@@ -143,7 +150,7 @@
                     </div>
                     <div class="col-lg-4 col-md-6 col-12">
                         <div class="sub">
-                            <inertia-link href="#">
+                            <inertia-link href="/neighborhood">
                                 <span>
                                     <i class="ri-community-line"></i>
                                 </span>
@@ -161,7 +168,7 @@
                     </div>
                     <div class="col-lg-4 col-md-6 col-12">
                         <div class="sub">
-                            <inertia-link href="#">
+                            <inertia-link href="/ask-neighbours">
                                 <span>
                                     <i class="ri-message-3-line"></i>
                                 </span>
@@ -177,7 +184,43 @@
                             </inertia-link>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 col-12">
+                    <div class="col-lg-4 col-md-6 col-12" >
+                        <div class="sub">
+                            <inertia-link href="/feedback">
+                                <span>
+                                    <i class="ri-question-line"></i>
+                                </span>
+                                <div>
+                                    <p>
+                                        <span>{{ keywords.support }}</span>
+                                    </p>
+                                    <p>{{ keywords.we_are_here_for_your_help }}</p>
+                                </div>
+                                <span>
+                                    <i class="ri-arrow-drop-left-line"></i>
+                                </span>
+                            </inertia-link>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-12" >
+                        <div class="sub">
+                            <inertia-link href="/credit/charge/package">
+                                <span>
+                                    <i class="ri-vip-diamond-line"></i>
+                                </span>
+                                <div>
+                                    <p>
+                                        <span>{{ keywords.packages }}</span>
+                                    </p>
+                                    <p>{{ keywords.best_packages_for_marketing }}</p>
+                                </div>
+                                <span>
+                                    <i class="ri-arrow-drop-left-line"></i>
+                                </span>
+                            </inertia-link>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-12" v-if="false">
                         <div class="sub">
                             <inertia-link href="#">
                                 <span>
@@ -195,25 +238,7 @@
                             </inertia-link>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 col-12" style="display: none">
-                        <div class="sub">
-                            <inertia-link href="#">
-                                <span>
-                                    <i class="ri-line-chart-line"></i>
-                                </span>
-                                <div>
-                                    <p>
-                                        <span>{{ keywords.real_state_index }}</span>
-                                    </p>
-                                    <p>{{ keywords.understand_market_demand }}</p>
-                                </div>
-                                <span>
-                                    <i class="ri-arrow-drop-left-line"></i>
-                                </span>
-                            </inertia-link>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-12">
+                    <div class="col-lg-4 col-md-6 col-12" v-if="false">
                         <div class="sub">
                             <inertia-link href="#">
                                 <span>
@@ -231,7 +256,7 @@
                             </inertia-link>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 col-12">
+                    <div class="col-lg-4 col-md-6 col-12" v-if="false">
                         <div class="sub">
                             <inertia-link href="#">
                                 <span>
@@ -260,7 +285,7 @@
                 <div class="row">
                     <div class="col-lg-4 col-md-6 col-12">
                         <div class="sub">
-                            <inertia-link href="#">
+                            <inertia-link href="/listing/initialize">
                                 <span>
                                     <i class="ri-add-line"></i>
                                 </span>
@@ -276,7 +301,7 @@
                             </inertia-link>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 col-12">
+                    <div class="col-lg-4 col-md-6 col-12" v-if="false">
                         <div class="sub">
                             <inertia-link href="#">
                                 <span>
@@ -384,10 +409,14 @@ header{
             p:first-of-type{
                 font-weight: bold;
                 margin-bottom: 5px;
+                span:first-of-type{
+                    color:$black;
+                }
                 span:nth-of-type(2){
                     background-color: $sub_main_color;
                     padding: 2px 6px;
                     border-radius: 3px;
+                    color:$black;
                 }
             }
             p:last-of-type{

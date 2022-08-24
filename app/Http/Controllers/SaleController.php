@@ -20,7 +20,6 @@ class SaleController extends Controller
        //return request()->all();
         $requested = request()->all();
         $data_filtered =  filter_listings::filter_data($requested);
-     //   return $data_filtered;
         $sub_cats = categories_data::get_categories_type(request('main_cat') ?? null,false,true);
         return Inertia::render('sales',[
            'keywords'=>SalesKeywords::get_keywords(),

@@ -456,6 +456,11 @@ export default {
                         font-weight:bold;
                     }
                 }
+                p:last-of-type{
+                    span{
+                        color:$black;
+                    }
+                }
             }
             div:last-of-type{
                 div{

@@ -9,4 +9,6 @@ return [
     'payment_before'=>'تم دفع هذا الاعلان من قبل',
     'payment_unauthorized_user'=>'انت لست صاحب هذا الاعلان',
     'not_enough_points'=>'ليس لديك رصيد كافي من النقاط',
+    'not_found_user'=>'لا يوجد مستخدم بهذه البيانات',
+    'missing_info'=>'هناك بيانات ناقصة في اتمام العملية',
 ];

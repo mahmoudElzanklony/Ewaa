@@ -9,4 +9,6 @@ return [
   'saved_successfully'=>'تم حفظ العملية بنجاح',
   'removed_from_fav_successfully'=>'تمت الازاله من المفضلة بنجاح',
   'added_to_fav_successfully'=>'تمت الاضافة الي المفضلة بنجاح',
+  'sent_successfully'=>'تمت عملية الارسال بنجاح',
+  'confirmed_bought'=>'تمت عملية شراء نقاط الباقة بنجاح',
 ];

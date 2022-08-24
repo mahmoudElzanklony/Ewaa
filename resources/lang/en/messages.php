@@ -9,5 +9,7 @@ return [
     'deleted_successfully'=>'Delete operation done successfully',
     'removed_from_fav_successfully'=>'removed from favourite has done successfully',
     'added_to_fav_successfully'=>'adding to favourite has done successfully',
+    'sent_successfully'=>'operation done successfully',
+    'confirmed_bought'=>'operation of buying this package is done successfully',
 
 ];

@@ -16,13 +16,15 @@
                 <h2>{{ keywords.company_packages }}</h2>
                 <p>{{ keywords.select_the_package_that_suits_your_budget_and_get_immediate_results }}</p>
                 <div class="row align-items-center">
-                    <div class="col-lg-4 col-md-6 col-12" v-for="(i,index) in  packages" :key="index">
+                    <div class="col-lg-4 col-md-6 col-12" v-for="(i,index) in  packages"
+                         :key="index"
+                    >
                         <div :class="'package ' + (i == -100 ? 'active':'')">
                             <p v-if="false">
                                 {{ keywords.recommended }}
                             </p>
                             <p class="text-center">
-                                <span>{{ i['price'] }}</span>
+                                <span>{{ get_price(i) }}</span>
                                 <span>{{ i['currency'][$page.props.lang+'_name'] }}</span>
                             </p>
                             <ul>
@@ -39,7 +41,7 @@
                                 </li>
                                 <li>
                                     <span>{{ keywords.point_price }}  : </span>
-                                    <span>{{ i['price'] }}</span>
+                                    <span>{{ get_price(i) }}</span>
                                 </li>
                                 <li>
                                     <span>{{ keywords.currency_used }}  : </span>
@@ -52,9 +54,15 @@
                                     </span>
                                 </li>
 
-                                <inertia-link class="btn" href="#">
+                                <button v-if="$page.props.user != null"
+                                        class="btn" data-toggle="modal" @click="package = i"
+                                        data-target="#buy_now">
                                     {{ keywords.buy_now }}
-                                </inertia-link>
+                                </button>
+
+                                <button v-else class="btn" @click="$inertia.visit('/login')">
+                                    {{ keywords.buy_now }}
+                                </button>
                             </ul>
                         </div>
                     </div>
@@ -74,6 +82,53 @@
         </div>
 
         <contact-us-component></contact-us-component>
+
+
+
+        <!-----------------------------buy package---------------------->
+
+        <div class="modal fade" v-if="package != null" id="buy_now" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="show_buy_now_box">{{ keywords.buy_now }}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="alert alert-warning">
+                            <span>{{ switchWord('note_that_min_number_of_points_for_this_package_is') }}</span>
+                            <strong>{{ package['min_value'] }}</strong>
+                            <span>{{ switchWord('and_max_number_of_points_for_this_package_is') }}</span>
+                            <strong>{{ package['max_value'] }}</strong>
+                        </p>
+                        <form method="post" @submit.prevent="confirm_buy" >
+                            <div class="form-group">
+                                <label>{{ switchWord('no_points') }}</label>
+                                <input class="form-control" type="number"
+                                       @change="check_package(package)"
+                                       name="points_ordered" :min="package['min_value']" :max="package['max_value']">
+                            </div>
+                            <input v-if="$page.props.user != null"
+                                   type="submit" class="btn btn-primary" :value="switchWord('buy')">
+
+                            <input v-else type="button" class="btn btn-primary"
+                                   @click="$inertia.visit('/login')"
+                                   :value="switchWord('buy')">
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                            {{ keywords.close }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-----------------------------end of buy package---------------------->
 
 
         <!-----------------------------clients feedback---------------------->
@@ -179,9 +234,51 @@ import NavbarComponent from "../../components/NavbarComponent";
 import FooterComponent from "../../components/FooterComponent";
 import QuestionComponent from "../../components/QuestionComponent";
 import ContactUsComponent from "../../components/ContactUsComponent";
+import SwitchLangWord from "../../mixin/SwitchLangWord";
+import {mapActions} from "vuex";
 export default {
     name: "packages_info",
     props:['keywords','packages'],
+    mixins:[SwitchLangWord],
+    data:function (){
+        return {
+            package:null,
+        }
+    },
+    methods:{
+       get_price:function(i){
+           if(this.$page.props.user != null) {
+               var country_id = this.$page.props.user.country_id;
+           }else{
+               var country_id = 0;
+           }
+           return i['countries'].length == 0 ? i['price'] : i['countries'].find((c)=>{return c['country_id'] == country_id }) != null ? i['countries'].find((c)=>{return c['country_id'] == country_id })['price']:i['price']
+       },
+        check_package:function(pack){
+           if(!(event.target.value >= pack['min_value'] && event.target.value <= pack['max_value'])){
+               Toast.fire({
+                   icon:'error',
+                   title:this.switchWord('no_points_isnt_correct')
+               })
+           }
+        },
+        ...mapActions({
+            'buy':'buy_package/buy',
+        }),
+        confirm_buy:function (){
+           var target = event.target;
+           var data = new FormData(target);
+           if($(target).find('input[name="points_ordered"]').val() >= this.package.min_value && $(target).find('input[name="points_ordered"]').val() <= this.package.max_value) {
+               data.append('package_id', this.package.id);
+               this.buy({data:data,target:target});
+           }else{
+               Toast.fire({
+                   icon:'error',
+                   title:this.switchWord('no_points_isnt_correct')
+               })
+           }
+        },
+    },
     components: {ContactUsComponent, QuestionComponent, FooterComponent, NavbarComponent}
 }
 </script>
@@ -311,13 +408,15 @@ export default {
                         }
                     }
                 }
-                a{
+                button{
                     border-radius: 20px;
                     display: block;
                     margin: 10px auto;
                     max-width: 175px;
                     background-color: $sub_main_color;
                     color:white;
+                    padding-right:30px;
+                    padding-left:30px;
                 }
             }
             .package.active{

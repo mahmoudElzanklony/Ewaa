@@ -31,16 +31,17 @@ export default function (data,target,url = '',reset = false){
                 title: typeof data.message == "string" ? data.message:data.message.toString()
             });
         }
+        if(reset == true){
+            target.reset();
+            $('.modal').modal('hide');
+        }
         // check if visit another page
         if(url != ''){
             setTimeout(()=>{
                 window.vm.$inertia.visit(url);
             },2000);
         }
-        if(reset == true){
-            target.reset();
-            $('.modal').modal('hide');
-        }
+
     }
 
 }

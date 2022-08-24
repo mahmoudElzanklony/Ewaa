@@ -71,6 +71,9 @@ export default {
     }
     div{
         width: calc(100% - 45px);
+        span{
+            color:$black;
+        }
         p{
             color:$black;
         }

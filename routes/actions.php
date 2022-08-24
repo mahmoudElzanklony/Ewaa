@@ -13,6 +13,8 @@ use App\Http\Controllers\PaymentWaysController;
 use App\Http\Controllers\AskNeighborsController;
 use App\Http\Controllers\classes\general\GeneralServiceController;
 use App\Http\Controllers\classes\listings\ListingsServiceClass;
+use App\Http\Controllers\classes\support\SupportServiceClass;
+use App\Http\Controllers\PackagesController;
 
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\URL;
@@ -31,6 +33,9 @@ use Illuminate\Support\Facades\DB;
 Route::group(['middleware'=>'changeLang'],function (){
     Route::post('/register',[AuthController::class,'register_post']);
     Route::post('/login',[AuthController::class,'login_post']);
+    Route::post('/sendmail',[AuthController::class,'sendmail']);
+    Route::post('/newpass',[AuthController::class,'newpass']);
+
     // profile
     Route::group(['prefix'=>'/profile','middleware'=>['auth']],function(){
         Route::post('/update-email-image',[ProfileController::class,'update_email_image']);
@@ -62,6 +67,7 @@ Route::group(['middleware'=>'changeLang'],function (){
        Route::post('/save-listing-info',[ListingPostController::class,'save_listing_info']);
        Route::post('/save-photos',[ListingPostController::class,'save_photos']);
        Route::post('/payment',[ListingPostController::class,'payment_points']);
+       Route::post('/sendemail',[ListingPostController::class,'sendemail']);
     });
     // listings statics
     Route::group(['prefix'=>'/listings-statistics'],function(){
@@ -73,6 +79,10 @@ Route::group(['middleware'=>'changeLang'],function (){
     Route::group(['prefix'=>'/questions'],function(){
        Route::post('/get-questions',[QuestionsController::class,'get_questions']);
     });
+    // packages
+    Route::group(['prefix'=>'/packages'],function(){
+        Route::post('/buy',[PackagesController::class,'buy']);
+    });
     // areas
     Route::group(['prefix'=>'/areas'],function(){
         Route::post('/search',[AreasController::class,'search']);
@@ -80,6 +90,10 @@ Route::group(['middleware'=>'changeLang'],function (){
     // payment ways
     Route::group(['prefix'=>'/payment-ways'],function(){
         Route::post('/find',[PaymentWaysController::class,'get_payment_methods']);
+    });
+    // send support question
+    Route::group(['prefix'=>'/support'],function(){
+        Route::post('/send',[SupportServiceClass::class,'send']);
     });
     // discussions
     Route::group(['prefix'=>'/discussions','middleware'=>['auth']],function(){

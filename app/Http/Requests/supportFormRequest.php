@@ -27,7 +27,7 @@ class supportFormRequest extends FormRequest
             'username'=>'required|max:191',
             'email'=>'required|email',
             'message'=>'required',
-            'reply'=>'required',
+            'reply'=>'nullable',
         ];
     }
 

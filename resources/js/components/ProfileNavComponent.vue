@@ -5,7 +5,9 @@
                 <ul class="d-flex align-items-center justify-content-between">
                     <li class="d-flex align-items-center justify-content-center">
                         <span><i class="ri-file-user-line"></i></span>
-                        <span>احمد علي</span>
+                        <span>
+                            {{ $page.props.user.username }}
+                        </span>
                     </li>
                     <li>
                         <inertia-link href="/profile/edit">
@@ -75,6 +77,9 @@ export default {
                 align-items: center;
                 justify-content: center;
                 position: relative;
+                span:last-of-type{
+                    color:$black;
+                }
             }
         }
         li:first-of-type{

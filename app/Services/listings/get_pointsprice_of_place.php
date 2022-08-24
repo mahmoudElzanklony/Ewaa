@@ -43,7 +43,7 @@ class get_pointsprice_of_place
             // no location has points so make it as default = 0
             return 0;
         }else{
-            return $check_price->no_points;
+            return $check_price->first()->no_points;
         }
     }
 }

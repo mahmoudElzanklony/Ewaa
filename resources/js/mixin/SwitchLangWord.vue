@@ -64,6 +64,11 @@ export default {
                   en:'Buildings',
                   tu:'',
               },
+              interests:{
+                 ar:'الاهتمامات',
+                 en:'Interests',
+                 tu:'',
+              },
               ad_points:{
                   ar:'نقاط الاعلان',
                   en:'Ad Points',
@@ -868,6 +873,29 @@ export default {
                   ar:'اضغط هنا لعرض جميع نقاشاتي',
                   en:'press here to show all my discussions',
                   tu:'',
+              },
+              note_that_min_number_of_points_for_this_package_is:{
+                  ar:'انتبة اقل عدد نقاط مسموح به لهذه الباقة هو ',
+                  en:'note that min number of points for this package is ',
+                  tu:'',
+              },
+              and_max_number_of_points_for_this_package_is:{
+                  ar:'واقصي عدد للنقاط هو ',
+                  en:'And max number of points is ',
+              },
+              no_points:{
+                  ar:'عدد النقاط ',
+                  en:'number of points ',
+                  tu:'',
+              },
+              buy:{
+                  ar:'شراء',
+                  en:'buy',
+                  tu:'',
+              },
+              no_points_isnt_correct:{
+                  ar:'عدد النقاط غير صحيح',
+                  en:'number of points isnt correct',
               }
 
 

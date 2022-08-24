@@ -18,6 +18,7 @@ use App\Http\Controllers\classes\DashboardServiceClass;
 use App\Http\Requests\usersFormRequest;
 use App\Keywords\dashboard\CategoriesKeywords;
 use App\Keywords\dashboard\IndexKeywords;
+use App\Keywords\dashboard\InterestsKeywords;
 use App\Keywords\dashboard\ListingsKeywords;
 use App\Keywords\dashboard\StatisticsKeywords;
 use App\Keywords\dashboard\SubCategoriesKeywords;
@@ -30,6 +31,7 @@ use App\Models\listings_info;
 use App\Models\notifications;
 use App\Models\subscriptions;
 use App\Models\User;
+use App\Models\users_contact_seller;
 use App\Services\notifications\pagiante_notifications;
 use App\Services\statistics\filter_statistics_admin;
 use Carbon\Carbon;
@@ -183,6 +185,14 @@ class DashboardController extends DashboardServiceClass
             'data'=>listings_info::selection()->when($id > 0 ,function($e) use ($id){
                 $e->where('user_id','=',$id);
             })->with(['user','category','area'])->get(),
+        ]);
+    }
+
+    public function interests(){
+        return Inertia::render('dashboard/interests', [
+            'main_title'=>trans('keywords.interests'),
+            'keywords' => InterestsKeywords::get_keywords(),
+            'data'=>users_contact_seller::query()->with('listing')->orderBy('id','DESC')->get(),
         ]);
     }
 

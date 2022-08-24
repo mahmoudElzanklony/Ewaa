@@ -48,7 +48,7 @@
             </div>
             <div class="alert alert-danger text-center" v-if="$page.props.user.total_points < data['point_number'] ">
                 <p class="text-center mt-2 mb-2">{{ keywords.you_dont_have_enough_balance }}</p>
-                <button class="btn btn-danger mb-2">
+                <button class="btn btn-danger mb-2" @click="$inertia.visit('/credit/charge/package')">
                     {{ keywords.click_here_to_buy_one_of_our_packages }}
                 </button>
             </div>

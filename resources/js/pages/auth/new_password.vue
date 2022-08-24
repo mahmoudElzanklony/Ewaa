@@ -6,7 +6,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                        <form>
+                        <form method="post" @submit.prevent="new_pass">
+                            <input type="hidden" name="email" :value="email">
                             <h2 class="mb-4">{{ keywords.make_new_password }}</h2>
                             <div class="form-group">
                                 <label>{{ keywords.password }}</label>
@@ -15,7 +16,7 @@
                             </div>
                             <div class="form-group">
                                 <label>{{ keywords.password_confirmed }}</label>
-                                <input name="password_confirmed" type="password" class="form-control" required>
+                                <input name="password_confirmation" type="password" class="form-control" required>
                                 <p class="alert alert-danger"></p>
                             </div>
                             <div class="form-group">
@@ -43,7 +44,7 @@ import NavbarComponent from "../../components/NavbarComponent";
 import FooterComponent from "../../components/FooterComponent";
 export default {
     name: "new_password",
-    props:['keywords'],
+    props:['keywords','email'],
     components: {FooterComponent, NavbarComponent}
 }
 </script>

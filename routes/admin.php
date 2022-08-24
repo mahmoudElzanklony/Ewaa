@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\DB;
 |
 */
 
-Route::group(['middleware'=>'changeLang','prefix'=>'/dashboard'],function (){
+Route::group(['middleware'=>['changeLang','auth'],'prefix'=>'/dashboard'],function (){
     Route::post('/save-category',[DashboardServiceClass::class,'save_category']);
     Route::post('/save-question',[DashboardServiceClass::class,'save_question']);
     Route::post('/save-sub-category',[DashboardServiceClass::class,'save_sub_category']);

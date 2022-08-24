@@ -66,6 +66,7 @@ class filter_listings
                             ->where('listing_questions_answers.answer', '=', $value);
                     }
                 }
+                $data->groupBy('listing_questions_answers.listing_id');
             }
 
             $data->where('listings_infos.type','=','live')
@@ -77,7 +78,7 @@ class filter_listings
             ->when(array_key_exists('sort_by',$data_filtered) && $data_filtered['sort_by'] != null   , function ($e) use ($data_filtered){
                 $e->orderBy(array_keys($data_filtered['sort_by'])[0],array_values($data_filtered['sort_by'])[0]);
             });
-
-        return $data->paginate(1);
+       // return $data->toSql(); -------> problem at question
+        return $data->paginate(9);
     }
 }

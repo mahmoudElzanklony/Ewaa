@@ -64,23 +64,24 @@
                                                     aria-labelledby="dropdownMenuButton">
                                                    <inertia-link
                                                        class="dropdown-item"
-                                                       :href="'/listing/initialize?id='+row_val['id']">
+                                                       :href="'/listing/initialize'+(isNaN(row_val['id']) ?
+                                                       '':'?id='+row_val['id'])">
                                                        {{ keywords.update_info }}
                                                    </inertia-link>
-                                                   <inertia-link
+                                                   <inertia-link v-if="!(isNaN(row_val['id']))"
                                                        class="dropdown-item"
                                                        :href="'/listing/photos?id='+row_val['id']">
                                                        {{ keywords.update_photos }}
                                                    </inertia-link>
                                                </div>
                                            </div>
-                                           <button class="btn btn-danger">
+                                           <button class="btn btn-danger" v-if="!(isNaN(row_val['id']))">
                                                     <span  >
                                                         <i @click="delete_item('listings_infos',row_val['id'],'.tr_'+row_val['id'])" class="ri-close-line"></i>
                                                     </span>
                                            </button>
                                            <inertia-link class="complete_payment btn btn-secondary"
-                                                         v-if="row_val['payment_status'] == 0"
+                                                         v-if="row_val['payment_status'] == 0 && !(isNaN(row_val['id']))"
                                                :title="keywords.complete_payment"
                                                :href="'/listing/confirm-payment?id='+row_val['id']">
                                                <span>
@@ -152,6 +153,9 @@ export default {
             li{
                 padding: 10px;
                 a{
+                    span:first-of-type{
+                        color:$black;
+                    }
                     span:last-of-type{
                         background-color:$red;
                         width: 22px;

@@ -69,6 +69,7 @@ export default {
         p{
             margin: 0px;
             padding: 10px;
+            color:$black;
         }
         img{
             width: 100%;

@@ -8,17 +8,22 @@
             <div class="outer-notification">
                 <p>
                     <span>{{  keywords.notifications }}</span>
-                    <span>{{ data.total }}</span>
+                    <span v-if="new_notifications > 0">{{ new_notifications }}</span>
                 </p>
                 <div class="inner">
                     <div class="notification d-flex align-items-center justify-content-between"
                          v-for="(i,index) in vuex_data" :key="index"
                     >
                         <div class="data d-flex align-items-center">
-                            <img :src="'/images/users/'+i['receiver']['image']">
+                            <img :src="'/images/users/'+i['sender']['image']">
                             <div class="text">
                                 <p>
-                                    <strong>{{ i['receiver']['username'] }}</strong>
+                                    <strong v-if="i['sender']['role']['name'] != 'admin' ">
+                                        {{ i['sender']['username'] }}
+                                    </strong>
+                                    <strong v-else>
+                                        {{ keywords.admin }}
+                                    </strong>
                                 </p>
                                 <p>
                                     {{ i['info'] }}
@@ -43,7 +48,7 @@ import FooterComponent from "../components/FooterComponent";
 import {mapGetters , mapActions , mapMutations} from "vuex";
 export default {
     name: "notifications",
-    props:['keywords','data'],
+    props:['keywords','data','new_notifications'],
     computed:{
         ...mapGetters({
             'vuex_data':'notifications/get_data'
@@ -99,7 +104,7 @@ export default {
             span:first-of-type{
                 margin-left: 5px;
             }
-            span:last-of-type{
+            span:nth-of-type(2){
                 width: 30px;
                 height: 30px;
                 border-radius: 10px;

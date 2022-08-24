@@ -5,6 +5,7 @@ namespace App\Handling_Data\profile;
 
 
 use App\Models\listings_info;
+use Illuminate\Support\Facades\Cookie;
 
 class listing_dashboard
 {
@@ -85,13 +86,25 @@ class listing_dashboard
             listings_info::query()
                 ->where('user_id','=',auth()->id())
                 ->onlyTrashed()->count(),
-            session()->has('listing') ? 1:0,
+            Cookie::has('inilalize') ? 1:0,
         ];
         if($listing_type == "deleted"){
             $data[$type]['data'] = $data[$type]['data'] = listings_info::query()
                 ->where('user_id', '=', auth()->id())
                 ->select('id', app()->getLocale() . '_name as name')
                 ->onlyTrashed()->get();
+        }else if($listing_type == "draft"){
+            if(Cookie::has('inilalize')) {
+                $data[$type]['data'] = [
+                    [
+                        'id'=>trans('keywords.not_selected_yet'),
+                        'info'=>trans('keywords.draft_listing'),
+                        'payment_status'=>0,
+                    ]
+                ];
+            }else{
+                $data[$type]['data'] = [];
+            }
         }else {
             $data[$type]['data'] = listings_info::query()
                 ->where('user_id', '=', auth()->id())

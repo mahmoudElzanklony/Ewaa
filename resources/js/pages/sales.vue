@@ -52,8 +52,8 @@
                     <span>{{ main_cat_info['name'] }}</span>
                 </h2>
                 <div class="tags" v-if="sub_cats.length > 0">
-                    <inertia-link href=""
-                                  @click.prevent="go_to_sub_cat(i['id'])" v-for="(i,index) in sub_cats" :key="index">
+                    <inertia-link href="" @click.prevent="go_to_sub_cat(i['id'])"
+                                   v-for="(i,index) in sub_cats" :key="index">
                         <span>{{ i['name'] }}</span>
                         <span>({{ i['count'] }})</span>
                     </inertia-link>
@@ -295,6 +295,7 @@ export default {
             display: inline-block;
             margin-bottom: 10px;
             transition: 0.5s all;
+            color:$black;
             &:hover{
                 background-color: $sub_main_color;
             }

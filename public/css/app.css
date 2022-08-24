@@ -10606,6 +10606,7 @@ h2.main-title span:first-of-type {
 }
 .dataTables_paginate a {
   cursor: pointer;
+  color: #03071E;
 }
 .dataTables_paginate span {
   display: flex;

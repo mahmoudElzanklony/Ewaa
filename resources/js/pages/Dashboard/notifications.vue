@@ -15,10 +15,10 @@
                          v-for="(i,index) in vuex_data" :key="index"
                     >
                         <div class="data d-flex align-items-center">
-                            <img :src="'/images/users/'+i['receiver']['image']">
+                            <img :src="'/images/users/'+i['sender']['image']">
                             <div class="text">
                                 <p>
-                                    <strong>{{ i['receiver']['username'] }}</strong>
+                                    <strong>{{ i['sender']['username'] }}</strong>
                                 </p>
                                 <p>
                                     {{ i['info'] }}

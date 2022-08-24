@@ -1,5 +1,4 @@
 import validation from "../../../formValidation/validation";
-import delete_item from "../../../mixin/delete_item";
 
 export default {
     namespaced:true,

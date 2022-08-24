@@ -34,27 +34,32 @@
                             <span><i class="ri-arrow-drop-down-fill"></i></span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <inertia-link href="#">
+                            <inertia-link href="#" v-if="false">
                                 <span><i class="ri-price-tag-2-line"></i></span>
                                 <span>{{ switchWord('rate_building') }}</span>
                             </inertia-link>
-                            <inertia-link href="#">
+                            <inertia-link href="/neighborhood">
                                 <span><i class="ri-community-line"></i></span>
                                 <span>{{ switchWord('building_prices') }}</span>
                             </inertia-link>
-                            <inertia-link href="#">
+                            <inertia-link href="/ask-neighbours">
                                 <span><i class="ri-message-3-line"></i></span>
                                 <span>{{ switchWord('ask_people_area') }}</span>
                             </inertia-link>
-                            <inertia-link href="#">
+                            <inertia-link href="/credit/charge/package">
+                                <span><i class="ri-vip-diamond-line"></i></span>
+                                <span>{{ switchWord('packages') }}</span>
+                            </inertia-link>
+
+                            <inertia-link href="#" v-if="false">
                                 <span><i class="ri-group-line"></i></span>
                                 <span>{{ switchWord('premium_people') }}</span>
                             </inertia-link>
-                            <inertia-link href="#">
+                            <inertia-link href="#" v-if="false">
                                 <span><i class="ri-line-chart-line"></i></span>
                                 <span>{{ switchWord('real_state_index') }}</span>
                             </inertia-link>
-                            <inertia-link href="#">
+                            <inertia-link href="#" v-if="false">
                                 <span><i class="ri-lightbulb-line"></i></span>
                                 <span>{{ switchWord('public_advice') }}</span>
                             </inertia-link>
@@ -62,7 +67,7 @@
                         </div>
                     </li>
                     <li class="nav-item d-flex align-items-center">
-                        <inertia-link class="nav-link d-flex align-items-center" href="listing/initialize">
+                        <inertia-link class="nav-link d-flex align-items-center" href="/listing/initialize">
                             <span><i class="ri-home-smile-line"></i></span>
                             <span>{{ switchWord('List') }}</span>
                         </inertia-link>
@@ -94,10 +99,10 @@
                         </inertia-link>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#"  role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <div class="user_profile">
+                        <a class="nav-link dropdown-toggle"   role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <div class="user_profile position-relative">
                                 <img src="/images/icons/profile.svg">
-                                <span>{{ switchWord('Blue') }}</span>
+                                <span v-if="$page.props.numberofnotifications > 0"></span>
                             </div>
                             <div class="dropdown-menu p-0 user-info-auth" aria-labelledby="navbarDropdown">
                                 <div class="sign-form" v-if="user == null">
@@ -120,7 +125,7 @@
                                     <div class="user_image">
                                         <img :src="'/images/users/'+user.image">
                                         <div>
-                                            <p>example@gmail.com</p>
+                                            <p>{{ user.email }}</p>
                                             <p>{{ switchWord('registered_from_date') }}
                                                 {{ new Date(user.created_at).toLocaleDateString() }}
                                             </p>
@@ -130,57 +135,91 @@
                                     <div class="list">
                                         <p>
                                             <inertia-link href="/profile/edit">
-                                                {{ switchWord('activities') }}
+                                                {{ switchWord('Profile') }}
                                             </inertia-link>
                                         </p>
                                         <ul>
                                             <li class="d-flex align-items-center justify-content-between">
                                                 <p>
                                                     <span><i class="ri-heart-line"></i></span>
-                                                    <span>{{ switchWord('my_favourite') }}</span>
+                                                    <span>
+                                                        <inertia-link href="/profile/favourites">
+                                                            {{ switchWord('my_favourite') }}
+                                                        </inertia-link>
+                                                    </span>
                                                 </p>
-                                                <span>4</span>
+                                                <span v-if="$page.props.fav > 0">
+                                                    {{ $page.props.fav }}
+                                                </span>
                                             </li>
                                             <li class="d-flex align-items-center justify-content-between">
                                                 <p>
                                                     <span><i class="ri-file-line"></i></span>
-                                                    <span>{{ switchWord('my_notes') }}</span>
+                                                    <span>
+                                                        <inertia-link href="/profile/notes">
+                                                            {{ switchWord('my_notes') }}
+                                                        </inertia-link>
+                                                    </span>
                                                 </p>
-                                                <span>2</span>
+                                                <span v-if="$page.props.notes > 0">
+                                                    {{ $page.props.notes }}
+                                                </span>
                                             </li>
                                             <li class="d-flex align-items-center justify-content-between">
                                                 <p>
                                                     <span><i class="ri-notification-line"></i></span>
-                                                    <span>{{ switchWord('notifications') }}</span>
+                                                    <span>
+                                                        <inertia-link href="/notifications">
+                                                            {{ switchWord('notifications') }}
+                                                        </inertia-link>
+                                                    </span>
                                                 </p>
-                                                <span>2</span>
+                                                <span v-if="$page.props.numberofnotifications > 0">
+                                                    {{ $page.props.numberofnotifications }}
+                                                </span>
                                             </li>
                                             <hr>
                                             <li class="d-flex align-items-center justify-content-between">
                                                 <p>
                                                     <span><i class="ri-building-line"></i></span>
-                                                    <span>{{ switchWord('my_listings') }}</span>
+                                                    <span>
+                                                        <inertia-link href="/profile/dashboard">
+                                                            {{ switchWord('my_listings') }}
+                                                        </inertia-link>
+                                                    </span>
                                                 </p>
-                                                <span>2</span>
+                                                <span v-if="false">2</span>
                                             </li>
                                             <li class="d-flex align-items-center justify-content-between">
                                                 <p>
                                                     <span><i class="ri-bank-card-line"></i></span>
-                                                    <span>{{ switchWord('my_balance') }}</span>
+                                                    <span>
+                                                        <inertia-link href="/merchant/balance">
+                                                            {{ switchWord('my_balance') }}
+                                                        </inertia-link>
+                                                    </span>
                                                 </p>
                                                 <span></span>
                                             </li>
                                             <li class="d-flex align-items-center justify-content-between">
                                                 <p>
                                                     <span><i class="ri-wallet-3-line"></i></span>
-                                                    <span>{{ switchWord('charge_credit') }}</span>
+                                                    <span>
+                                                        <inertia-link href="/credit/charge/package">
+                                                            {{ switchWord('charge_credit') }}
+                                                        </inertia-link>
+                                                    </span>
                                                 </p>
                                                 <span></span>
                                             </li>
                                             <li class="d-flex align-items-center justify-content-between">
                                                 <p>
                                                     <span><i class="ri-logout-box-line"></i></span>
-                                                    <span>{{ switchWord('logout') }}</span>
+                                                    <span>
+                                                        <inertia-link href="/logout">
+                                                            {{ switchWord('logout') }}
+                                                        </inertia-link>
+                                                    </span>
                                                 </p>
                                                 <span></span>
                                             </li>
@@ -199,7 +238,7 @@
 
 <script>
 import SwitchLangWord from '../mixin/SwitchLangWord';
-import {mapActions , mapGetters} from "vuex";
+import {mapActions , mapGetters , mapMutations} from "vuex";
 export default {
     name: "NavbarComponent",
     mixins:[SwitchLangWord],
@@ -212,7 +251,18 @@ export default {
         }),
     },
     created() {
-        this.get_parent_cats();
+        if(sessionStorage.getItem('parents_categories') == null) {
+            this.get_parent_cats();
+        }else{
+            this.inialize_parent_categories_items(JSON.parse(sessionStorage.getItem('parents_categories')));
+        }
+    },
+    mounted(){
+        setTimeout((e)=>{
+            if(this.get_parent_categories_data != null && this.get_parent_categories_data.length > 0){
+                sessionStorage.setItem('parents_categories',JSON.stringify(this.get_parent_categories_data));
+            }
+        },2000);
     },
     methods:{
         showList:function (){
@@ -226,6 +276,9 @@ export default {
         },
         ...mapActions({
             'get_parent_cats':'categories/get_parent_categories',
+        }),
+        ...mapMutations({
+            'inialize_parent_categories_items':'categories/inialize_parent_categories_items',
         })
     }
 }
@@ -243,7 +296,11 @@ export default {
             margin-left: 5px;
         }
     }
-
+    .user_profile{
+        span{
+            left: 0px;
+        }
+    }
     .nav-link{
         >span:first-of-type{
             margin-left: 7px;
@@ -253,6 +310,11 @@ export default {
         .user_image{
             img{
                 margin-left: 10px;
+            }
+            div{
+                >p:first-of-type{
+                    font-size: $button;
+                }
             }
         }
         .list{
@@ -272,6 +334,11 @@ export default {
 .en{
     .navbar-brand{
         margin-right: 5%;
+    }
+    .user_profile{
+        span{
+            right: 0px;
+        }
     }
     .dropdown-menu{
         right: 0px;
@@ -343,6 +410,7 @@ nav {
             display: flex;
             align-items: center;
             margin-bottom: 15px;
+            color:$black;
             img{
                 height:30px;
             }
@@ -431,6 +499,10 @@ nav {
                             span:last-of-type{
                                 font-weight: bold;
                             }
+                            a{
+                                margin-bottom: 0px;
+                                color:$black;
+                            }
                         }
                         >span{
                             color:white;
@@ -478,13 +550,15 @@ nav {
         span{
             background-color: $main_color;
             color: white;
-            padding: 1px 9px;
-            border-radius: 5px;
             font-size: 10px;
             display: block;
-            position: relative;
             text-align: center;
-            top: -8px;
+            position: absolute;
+            top: 0;
+            width: 10px;
+            height: 10px;
+            border-radius: 50px;
+            padding: 0;
         }
     }
 }

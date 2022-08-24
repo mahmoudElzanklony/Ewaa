@@ -72,6 +72,12 @@ class usersFormRequest extends FormRequest
         ];
     }
 
+    public function reset_psasword(){
+        return [
+            'password'=>'required|confirmed|min:7|max:191',
+        ];
+    }
+
     public function update_personal_data(){
         return [
             'full_name'=>'required|max:191',
@@ -108,6 +114,8 @@ class usersFormRequest extends FormRequest
             return $this->update_email_image();
         }else if(str_contains($this->getRequestUri() , '/profile/update-password')){
             return $this->update_password();
+        }else if(str_contains($this->getRequestUri() , '/newpass')){
+            return $this->reset_psasword();
         }else if(str_contains($this->getRequestUri() , '/profile/update-personal-data')){
             return $this->update_personal_data();
         }else if(str_contains($this->getRequestUri() , '/profile/update-company-data')){

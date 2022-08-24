@@ -22,6 +22,7 @@ use App\Services\listings\get_pointsprice_of_place;
 use App\Services\listings\listing_details;
 use App\Services\listings\payment_lising_points;
 use App\Services\listings\similar_listings;
+use App\Services\mail\send_email;
 use App\Services\users\best_users_listings;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -137,5 +138,17 @@ class ListingPostController extends ListingsServiceClass
         $id = request('id');
         $points = request('points');
         return payment_lising_points::payment_point($id,$points);
+    }
+
+    public function sendemail(){
+        $listing = listings_info::query()->with('user')->find(request('listing_id'));
+        $title = 'رسالة جديدة من '.auth()->user()->username.' بخصوص '.$listing->ar_name;
+
+        send_email::send(
+            $title,
+            request('message'),
+            request()->root().'/listings/details?id='.$listing->id,
+            'اضغط هنا',$listing->user->email
+        );
     }
 }

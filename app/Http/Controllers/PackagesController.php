@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\classes\packages\PackagesServiceClass;
 use App\Keywords\packages\ChargeKeywords;
 use App\Keywords\packages\PackagesInfoKeywords;
 use App\Services\packages\all_packages;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class PackagesController extends Controller
+class PackagesController extends PackagesServiceClass
 {
     //
     public function charge(){

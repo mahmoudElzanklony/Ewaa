@@ -43,6 +43,14 @@ class WelcomeKeyWords
           'join_thousands_of_companies'=>trans('keywords.join_thousands_of_companies'),
           'ewaa_plus_website'=>trans('keywords.ewaa_plus_website'),
           'ewaa_plus_word'=>trans('keywords.ewaa_plus_word'),
+
+
+          'support'=>trans('keywords.support'),
+          'we_are_here_for_your_help'=>trans('keywords.we_are_here_for_your_help'),
+          'packages'=>trans('keywords.packages'),
+          'best_packages_for_marketing'=>trans('keywords.best_packages_for_marketing'),
+          'profile'=>trans('keywords.my_profile'),
+          'login'=>trans('keywords.sign_in'),
         ];
     }
 }

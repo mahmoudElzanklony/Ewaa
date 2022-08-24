@@ -7,14 +7,18 @@
                 <span v-else><i class="ri-arrow-right-s-fill"></i></span>
                 <span>{{ keywords.do_you_have_problem_using_our_website }}</span>
             </h2>
-            <form>
+            <form method="post" @submit.prevent="send_question">
                 <div class="form-group">
                     <label>{{ keywords.your_name }}</label>
-                    <input class="form-control" name="name" required>
+                    <input class="form-control"
+                           :value="$page.props.user != null ? $page.props.user.username : ''"
+                           name="username" required>
                 </div>
                 <div class="form-group">
                     <label>{{ keywords.your_email }}</label>
-                    <input class="form-control" name="email" required>
+                    <input class="form-control" name="email"
+                           :value="$page.props.user != null ? $page.props.user.email : ''"
+                           required>
                 </div>
                 <div class="form-group">
                     <label>{{ keywords.describe_the_problem_that_you_are_facing }}</label>
@@ -33,10 +37,16 @@
 <script>
 import NavbarComponent from "../components/NavbarComponent";
 import FooterComponent from "../components/FooterComponent";
+import {mapActions} from "vuex";
 export default {
     name: "feedback",
     props:['keywords'],
-    components: {FooterComponent, NavbarComponent}
+    components: {FooterComponent, NavbarComponent},
+    methods:{
+        ...mapActions({
+            'send_question':'send_support_question/save_question',
+        })
+    }
 }
 </script>
 

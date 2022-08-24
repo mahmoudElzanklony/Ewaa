@@ -6,7 +6,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                        <form>
+                        <form method="post" @submit.prevent="send_email">
                             <h2 class="mb-4">{{ keywords.forget_password }}</h2>
                             <div class="form-group">
                                 <label>{{ keywords.email }}</label>
@@ -40,9 +40,15 @@
 <script>
 import NavbarComponent from "../../components/NavbarComponent";
 import FooterComponent from "../../components/FooterComponent";
+import {mapActions , mapMutations , mapGetters} from "vuex";
 export default {
     name: "forget_password",
     props:['keywords'],
+    methods:{
+      ...mapActions({
+          'send_email':'sendmail/send_email',
+      })
+    },
     components: {FooterComponent, NavbarComponent}
 }
 </script>

@@ -44,6 +44,9 @@ Route::group(['middleware'=>'changeLang'],function (){
     Route::get('/register',[AuthController::class,'register'])->middleware('guest');;
     Route::get('/forget-password',[AuthController::class,'forget_password']);
     Route::get('/new-password',[AuthController::class,'new_password']);
+    Route::get('/logout',[AuthController::class,'logout'])->middleware('auth');
+
+
     // search page filter
     Route::get('/search-page-filter',[SearchFilterController::class,'index']);
     // sale properties
@@ -54,7 +57,7 @@ Route::group(['middleware'=>'changeLang'],function (){
     Route::get('/neighborhood/{government}',[NeighbourhoodController::class,'governments']);
     Route::get('/neighborhood/{government}/{city}',[NeighbourhoodController::class,'governments_city']);
     // notifications
-    Route::get('/notifications',[NotificationsController::class,'index']);
+    Route::get('/notifications',[NotificationsController::class,'index'])->middleware('auth');
     // post ad
     Route::group(['prefix'=>'/listing'],function(){
         // initialize post
@@ -107,7 +110,7 @@ Route::group(['middleware'=>'changeLang'],function (){
         Route::get('/balance',[MerchantController::class,'balance'])->middleware('auth');
     });
 
-    Route::group(['prefix'=>'/dashboard','middleware'=>'auth'],function(){
+    Route::group(['middleware'=>['auth','checkAdmin'],'prefix'=>'/dashboard'],function(){
         Route::get('/',[DashboardController::class,'index']);
         Route::get('/notifications',[DashboardController::class,'notifications']);
         Route::get('/users',[DashboardController::class,'users']);
@@ -119,11 +122,14 @@ Route::group(['middleware'=>'changeLang'],function (){
         Route::get('/subscriptions',[DashboardController::class,'subscriptions']);
         Route::get('/currencies',[DashboardController::class,'currencies']);
         Route::get('/buildings',[DashboardController::class,'buildings']);
+        Route::get('/interests',[DashboardController::class,'interests']);
         Route::get('/map/{type}',[DashboardController::class,'map']);
         Route::get('/reports',[DashboardController::class,'reports']);
         Route::get('/support',[DashboardController::class,'support']);
         Route::get('/pointad',[DashboardController::class,'pointad']);
         Route::get('/settings',[DashboardController::class,'settings']);
     });
+
+    Route::get('/sendmail',[\App\Http\Controllers\MailController::class,'basic_email']);
 
 });

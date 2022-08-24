@@ -10,6 +10,7 @@ class NotificationsKeywords
         return [
           'notifications'=>trans('keywords.notifications'),
           'your_notifications'=>trans('keywords.your_notifications'),
+          'admin'=>trans('keywords.admin'),
         ];
     }
 }

@@ -9,5 +9,8 @@ return [
     'payment_before'=>'This Ad has been paid before',
     'payment_unauthorized_user'=>'you are not the owner of this ad',
     'not_enough_points'=>'Not enough points',
+    'not_found_user'=>'Not found user with provided info',
+    'missing_info'=>'missing info for this request',
+
 
 ];

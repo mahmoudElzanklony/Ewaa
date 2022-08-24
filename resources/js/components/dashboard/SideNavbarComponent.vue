@@ -79,6 +79,12 @@
                     <span>{{ switchWord('buildings') }}</span>
                 </inertia-link>
             </li>
+            <li custom="interests">
+                <inertia-link  href="/dashboard/interests">
+                    <span><i class="ri-star-line"></i></span>
+                    <span>{{ switchWord('interests') }}</span>
+                </inertia-link>
+            </li>
             <li custom="pointad">
                 <inertia-link  href="/dashboard/pointad">
                     <span><i class="ri-shield-flash-line"></i></span>
