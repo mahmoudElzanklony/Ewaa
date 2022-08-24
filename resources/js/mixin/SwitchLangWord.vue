@@ -896,6 +896,10 @@ export default {
               no_points_isnt_correct:{
                   ar:'عدد النقاط غير صحيح',
                   en:'number of points isnt correct',
+              },
+              if_currency_is_default_or_not:{
+                  ar:'اختر هل العملة هي العملة الافتراضية ام لا',
+                  en:'select if this currency is default or not',
               }
 
 

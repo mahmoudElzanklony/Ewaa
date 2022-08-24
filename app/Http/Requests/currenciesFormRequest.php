@@ -29,6 +29,7 @@ class currenciesFormRequest extends FormRequest
             'tu_name'=>'nullable',
             'currency_code'=>'required',
             'country_code'=>'required',
+            'is_default'=>'required',
         ];
     }
 
@@ -40,6 +41,7 @@ class currenciesFormRequest extends FormRequest
             'tu_name'=>trans('keywords.tu_name'),
             'currency_code'=>trans('keywords.currency_code'),
             'country_code'=>trans('keywords.country_code'),
+            'is_default'=>trans('keywords.default_currency'),
         ];
     }
 }

@@ -38,12 +38,12 @@ class AuthServicesClass extends Controller
                     request()->root().'/new-password?id='.$user->id.'&serial='.$user->serial_number,
                     'اضغط هنا',$user->email
                 );
-                return messages::success_output(['message'=>trans('messages.sent_successfully')]);
+                return messages::success_output(trans('messages.sent_successfully'));
             }else{
-                return messages::error_output(['message'=>trans('errors.not_found_user')]);
+                return messages::error_output(trans('errors.not_found_user'));
             }
         }else{
-            return messages::error_output(['message'=>trans('errors.not_found_user')]);
+            return messages::error_output(trans('errors.not_found_user'));
         }
 
     }

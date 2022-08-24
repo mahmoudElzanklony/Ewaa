@@ -14,7 +14,7 @@ class get_country_listings
             ->when($country_id != 0 , function($e) use ($country_id){
                $e->where('id','=',$country_id);
             } )
-            ->first();
+            ->get();
         return $country_data;
     }
 }

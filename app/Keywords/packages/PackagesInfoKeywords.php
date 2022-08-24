@@ -8,6 +8,7 @@ class PackagesInfoKeywords
 {
     public static function get_keywords(){
         return [
+          'package_name'=>trans('keywords.package'),
            'reach_more_clients_with_ewaa'=>trans('keywords.reach_more_clients_with_ewaa'),
            'list_all_your_properties_to_be_viewed_by_thousands_of_potential_clients'=>trans('keywords.list_all_your_properties_to_be_viewed_by_thousands_of_potential_clients'),
            'company_packages'=>trans('keywords.company_packages'),

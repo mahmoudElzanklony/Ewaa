@@ -44,6 +44,7 @@ class packages_dashboard
                 }])->get(),
                 'currencies'=>currencies::selection()->get(),
                 'countries'=>countries::selection()->get(),
+                'default_currency'=>currencies::query()->where('is_default','=',1)->first()
             ]
         ];
     }

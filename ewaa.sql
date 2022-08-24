@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 23, 2022 at 12:37 AM
+-- Generation Time: Aug 24, 2022 at 09:48 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -430,7 +430,7 @@ CREATE TABLE `listings_infos` (
 
 INSERT INTO `listings_infos` (`id`, `user_id`, `category_id`, `area_id`, `ar_name`, `en_name`, `tu_name`, `ar_info`, `en_info`, `tu_info`, `ar_address`, `en_address`, `tu_address`, `rent_or_sale`, `price`, `meters_number`, `youtube_link`, `whatapp_status`, `contact_email_status`, `payment_status`, `client_payment_status`, `coordinates`, `type`, `deleted_at`, `created_at`, `updated_at`) VALUES
 (29, 14, 18, 1, 'test', 'test', NULL, 'test', 'test', NULL, 'aaaaaaaaa', 'aaaaaaaaaa', NULL, 'sale', 100, 2000, 'https://test.com', 0, 0, 1, 'cash', '103123123,3123123123', 'live', NULL, '2022-08-10 22:38:16', '2022-08-18 22:01:00'),
-(30, 14, 18, 4, 'dasd', 'dad', NULL, 'adsd', 'dasd', NULL, 'das', 'dasw', NULL, 'sale', 400, 200, 'dasd', 0, 0, 1, 'cash', '103123123,3123123123', 'live', NULL, '2022-08-13 21:43:06', '2022-08-18 22:01:39'),
+(30, 14, 18, 4, 'dasd', 'dad', NULL, 'adsd', 'dasd', NULL, 'das', 'dasw', NULL, 'sale', 400, 200, 'dasd', 0, 0, 0, 'cash', '103123123,3123123123', 'live', NULL, '2022-08-13 21:43:06', '2022-08-18 22:01:39'),
 (34, 10, 18, 4, 'wwqqqqqqqqq', 'wwqqqqqqqqq', NULL, 'wwqqqqqqqqq', 'wwqqqqqqqqq', NULL, 'wwqqqqqqqqq', 'wwqqqqqqqqq', NULL, 'rent', 120, 400, NULL, 0, 0, 1, 'one_payment', '103123123,3123123123', 'live', NULL, '2022-08-14 21:10:53', '2022-08-14 21:10:53');
 
 -- --------------------------------------------------------
@@ -540,8 +540,8 @@ CREATE TABLE `listing_statistics` (
 --
 
 INSERT INTO `listing_statistics` (`id`, `listing_id`, `no_search`, `no_seen`, `no_contact_tried`, `created_at`, `updated_at`) VALUES
-(4, 34, 35, 1, 1, '2022-08-14 21:10:53', '2022-08-21 16:08:45'),
-(5, 29, 0, 16, 0, '2022-08-14 23:13:59', '2022-08-21 18:02:44'),
+(4, 34, 35, 3, 1, '2022-08-14 21:10:53', '2022-08-24 05:41:19'),
+(5, 29, 0, 68, 0, '2022-08-14 23:13:59', '2022-08-24 05:41:11'),
 (6, 30, 5, 16, 2, '2022-08-14 23:13:59', '2022-08-21 21:12:14');
 
 -- --------------------------------------------------------
@@ -648,11 +648,11 @@ CREATE TABLE `notifications` (
 --
 
 INSERT INTO `notifications` (`id`, `sender_id`, `receiver_id`, `ar_info`, `en_info`, `tu_info`, `seen`, `created_at`, `updated_at`) VALUES
-(1, 5, 14, 'تيست', 'test', '', 0, '2022-08-06 18:58:53', NULL),
-(2, 5, 14, 'تيست', 'test', '', 0, '2022-08-06 18:58:53', NULL),
-(3, 5, 14, 'تيست', 'test', '', 0, '2022-08-06 18:58:53', NULL),
-(4, 5, 14, 'تيست', 'test', '', 0, '2022-08-06 18:58:53', NULL),
-(5, 5, 14, 'تيست', 'test', '', 0, '2022-08-06 18:58:53', NULL),
+(1, 5, 14, 'تيست', 'test', '', 1, '2022-08-06 18:58:53', '2022-08-23 17:04:52'),
+(2, 5, 14, 'تيست', 'test', '', 1, '2022-08-06 18:58:53', '2022-08-23 17:04:52'),
+(3, 5, 14, 'تيست', 'test', '', 1, '2022-08-06 18:58:53', '2022-08-23 17:04:52'),
+(4, 5, 14, 'تيست', 'test', '', 1, '2022-08-06 18:58:53', '2022-08-23 17:04:52'),
+(5, 5, 14, 'تيست', 'test', '', 1, '2022-08-06 18:58:53', '2022-08-23 17:04:52'),
 (6, 5, 3, 'تيست', 'test', '', 0, '2022-08-06 18:58:53', NULL),
 (7, 5, 3, 'تيست', 'test', '', 0, '2022-08-06 18:58:53', NULL),
 (8, 5, 3, 'تيست', 'test', '', 0, '2022-08-06 18:58:53', NULL),
@@ -705,7 +705,12 @@ INSERT INTO `notifications` (`id`, `sender_id`, `receiver_id`, `ar_info`, `en_in
 (55, 5, 3, 'تيست', 'test', '', 0, '2022-08-06 18:58:53', NULL),
 (56, 14, 13, 'قام محمود عبد الله بالغاء التفاعل من علي رد استني الفتره دي لان الاسعار عاليه', 'محمود عبد الله remove react from answer استني الفتره دي لان الاسعار عاليه', '', 0, '2022-08-21 20:40:47', '2022-08-21 20:40:47'),
 (57, 14, 13, 'قام محمود عبد الله  بالتفاعل  علي رد استني مش دلوقتي خالص', 'محمود عبد الله  react on answer استني مش دلوقتي خالص', '', 0, '2022-08-21 20:43:14', '2022-08-21 20:43:14'),
-(58, 14, 13, 'قام محمود عبد الله  بالتفاعل  علي رد استني مش دلوقتي خالص', 'محمود عبد الله  react on answer استني مش دلوقتي خالص', '', 0, '2022-08-21 20:46:03', '2022-08-21 20:46:03');
+(58, 14, 13, 'قام محمود عبد الله  بالتفاعل  علي رد استني مش دلوقتي خالص', 'محمود عبد الله  react on answer استني مش دلوقتي خالص', '', 0, '2022-08-21 20:46:03', '2022-08-21 20:46:03'),
+(59, 5, 14, 'تمت عملية شراء نقاط الباقة بنجاح و تم اضافه النقاط الي رصيدك', 'sale of points has been done successfully and points added to your wallet', '', 1, '2022-08-23 21:05:33', '2022-08-23 21:12:22'),
+(60, 5, 14, 'تمت عملية شراء نقاط الباقة بنجاح و تم اضافه النقاط الي رصيدك', 'sale of points has been done successfully and points added to your wallet', '', 1, '2022-08-23 22:33:08', '2022-08-23 22:56:37'),
+(61, 5, 14, 'تمت عملية شراء نقاط الباقة بنجاح و تم اضافه النقاط الي رصيدك', 'sale of points has been done successfully and points added to your wallet', '', 1, '2022-08-23 22:35:48', '2022-08-23 22:56:37'),
+(62, 5, 14, 'تمت عملية شراء نقاط الباقة بنجاح و تم اضافه النقاط الي رصيدك', 'sale of points has been done successfully and points added to your wallet', '', 1, '2022-08-23 22:36:51', '2022-08-23 22:56:37'),
+(63, 5, 14, 'تمت عملية شراء نقاط الباقة بنجاح و تم اضافه النقاط الي رصيدك', 'sale of points has been done successfully and points added to your wallet', '', 1, '2022-08-23 22:38:12', '2022-08-23 22:56:37');
 
 -- --------------------------------------------------------
 
@@ -733,7 +738,7 @@ CREATE TABLE `packages` (
 --
 
 INSERT INTO `packages` (`id`, `ar_name`, `en_name`, `min_value`, `max_value`, `price`, `image`, `is_visible`, `currency_id`, `expiration_date`, `created_at`, `updated_at`) VALUES
-(1, 'dasd', 'dsa', 1, 10, 2.00, 'default.png', 1, 1, '2024-01-01', '2022-07-30 17:21:10', '2022-08-06 11:50:37'),
+(1, 'dasd', 'dsa', 1, 10, 2.00, 'default.png', 1, 1, NULL, '2022-07-30 17:21:10', '2022-08-06 11:50:37'),
 (41, 'الذهبية', 'gold', 1, 100, 14.00, '1659222438_user.png', 1, 2, NULL, '2022-07-30 21:05:55', '2022-08-06 12:00:40');
 
 -- --------------------------------------------------------
@@ -851,7 +856,12 @@ CREATE TABLE `subscriptions` (
 --
 
 INSERT INTO `subscriptions` (`id`, `user_id`, `package_id`, `points_ordered`, `min_points`, `max_points`, `point_price`, `created_at`, `updated_at`) VALUES
-(1, 14, 41, 5, 2, 10, 3.00, '2022-08-06 13:39:30', NULL);
+(1, 14, 41, 5, 2, 10, 3.00, '2022-08-06 13:39:30', NULL),
+(6, 14, 1, 5, 1, 10, 2.00, '2022-08-23 21:05:33', '2022-08-23 21:05:33'),
+(7, 14, 1, 9, 1, 10, 2.00, '2022-08-23 22:33:08', '2022-08-23 22:33:08'),
+(8, 14, 41, 15, 1, 100, 14.00, '2022-08-23 22:35:48', '2022-08-23 22:35:48'),
+(9, 14, 41, 15, 1, 100, 14.00, '2022-08-23 22:36:51', '2022-08-23 22:36:51'),
+(10, 14, 41, 25, 1, 100, 14.00, '2022-08-23 22:38:12', '2022-08-23 22:38:12');
 
 -- --------------------------------------------------------
 
@@ -874,7 +884,8 @@ CREATE TABLE `supports` (
 --
 
 INSERT INTO `supports` (`id`, `username`, `email`, `message`, `reply`, `created_at`, `updated_at`) VALUES
-(1, 'احمد عل', 'mahmoud_elzanklony@yahoo.com', 'test test', 'reply message', '2022-08-06 18:01:53', '2022-08-06 16:35:02');
+(1, 'احمد عل', 'mahmoud_elzanklony@yahoo.com', 'test test', 'reply message', '2022-08-06 18:01:53', '2022-08-06 16:35:02'),
+(3, 'محمود عبد الله', 'mahmoud_elzanklony@yahoo.com', 'dsa', '', '2022-08-23 22:53:20', '2022-08-23 22:53:20');
 
 -- --------------------------------------------------------
 
@@ -910,7 +921,7 @@ INSERT INTO `users` (`id`, `role_id`, `country_id`, `username`, `email`, `email_
 (1, 2, 1, 'dasdsa', 'mahmoud_elzanklony1234@yahoo.com', NULL, '1657932959', '1234567', '1090576399', 'قاهؤه', 'default.png', 0, 0, 0, NULL, '2022-07-15 22:55:59', '2022-07-15 22:55:59'),
 (3, 3, 1, 'adsa', 'alyaa@yahoo.com', NULL, '1657933400', '1234567', '1090576399', '', 'default.png', 0, 0, 0, NULL, '2022-07-15 23:03:20', '2022-07-15 23:03:20'),
 (4, 1, 1, 'dasaaaaaaaa', 'aaaaaaaaa@yahoo.com', NULL, '1657934348', '1234567', '0', '', 'default.png', 0, 0, 0, NULL, '2022-07-15 23:19:08', '2022-07-15 23:19:08'),
-(5, 2, 1, 'ahmed', 'ahmed@yahoo.com', NULL, '1657934962', '12345789', '123', '', 'default.png', 0, 0, 0, NULL, '2022-07-15 23:29:22', '2022-07-15 23:29:22'),
+(5, 5, 1, 'ahmed', 'ahmed@yahoo.com', NULL, '1657934962', '12345789', '123', '', 'default.png', 0, 0, 0, NULL, '2022-07-15 23:29:22', '2022-07-15 23:29:22'),
 (6, 2, 1, 'api user', 'ahmed_ali@yahoo.com', NULL, '1657986689', '$2y$10$l.8YJGqT9MGT9ENZ3fl9xeYVLQChQV.1FHlcUag3CENqPZXhWphOW', '0115229222', '', '1658163675_user.png', 0, 0, 0, NULL, '2022-07-16 13:51:29', '2022-07-20 14:15:41'),
 (7, 2, 1, 'ali', 'ali@yahoo.com', NULL, '1657996316', '$2y$10$/3F2fUEZYfFJ8SNi3laARuYkO7O9OxPs59aEGkXhb2wMJqDOkYthW', '01005663932', '', 'default.png', 0, 0, 0, NULL, '2022-07-16 16:31:56', '2022-07-16 16:31:56'),
 (8, 2, 1, 'ahmed', 'api_user@yahoo.com', NULL, '1658163459', '$2y$10$dT5BrViw6MarWWpZs7pzle0Ys2eTUDCtcm/eRd0ZJSfU1mGF9hZQq', '123567890', '', 'default.png', 0, 0, 0, NULL, '2022-07-18 14:57:40', '2022-07-18 14:57:40'),
@@ -919,7 +930,7 @@ INSERT INTO `users` (`id`, `role_id`, `country_id`, `username`, `email`, `email_
 (11, 2, 1, 'test', 'test@yahoo.com', NULL, '1659400700', '$2y$10$lWBGPQEncih3jHa6toVxle9fGx10rmx.Vbiu9MSCzuQebIwjdl0PW', '01041413123', '', 'default.png', 0, 0, 0, NULL, '2022-08-01 22:38:20', '2022-08-01 22:38:20'),
 (12, 2, 1, 'dsad', 'dsa@yahoo.com', NULL, '1659400744', '$2y$10$HduagOzUckkj1kY.Zy678e.cBo2j4kdfsPQoRwyV5U0me3JzfGPoO', '3123123', '', 'default.png', 0, 0, 0, NULL, '2022-08-01 22:39:04', '2022-08-01 22:39:04'),
 (13, 2, 4, 'ads', 'dasdasd@yahoo.com', NULL, '1659400995', '$2y$10$lyHKwY2b4nPxwxO8xRZsOecpSSksJyDOqBDj7z0pF3qiCRDSV9vEG', '3123123111', 'dasd', '1659402361_user.jpg', 0, 1, 0, NULL, '2022-08-01 22:43:15', '2022-08-01 23:09:20'),
-(14, 2, 1, 'محمود عبد الله', 'mahmoud_elzanklony@yahoo.com', NULL, '1659958982', '$2y$10$jNHXV7h/Sva98PWdzCH.dOkJInf2Jw6XS0u6Be5cVnmg4/A9FrQWG', '01152296646', '', 'default.png', 0, 0, 3, NULL, '2022-08-08 09:43:02', '2022-08-10 17:30:09');
+(14, 5, 1, 'محمود عبد الله', 'mahmoud_elzanklony@yahoo.com', NULL, '1659958982', '$2y$10$jNHXV7h/Sva98PWdzCH.dOkJInf2Jw6XS0u6Be5cVnmg4/A9FrQWG', '01152296646', '', 'default.png', 0, 0, 67, NULL, '2022-08-08 09:43:02', '2022-08-23 22:38:12');
 
 -- --------------------------------------------------------
 
@@ -1380,7 +1391,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT for table `packages`
@@ -1410,13 +1421,13 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `subscriptions`
 --
 ALTER TABLE `subscriptions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `supports`
 --
 ALTER TABLE `supports`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`

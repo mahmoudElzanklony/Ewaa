@@ -625,6 +625,7 @@ return [
     'currency_code'=>'كود العملة',
     'country_code'=>'كود الدولة',
     'select_country'=>'اختر الدولة',
+    'default_currency'=>'العملة الافتراضية',
     // end of dashboard currencies ----------------------------------------------------------
 
 

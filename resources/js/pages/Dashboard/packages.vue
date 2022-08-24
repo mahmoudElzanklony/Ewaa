@@ -65,6 +65,9 @@
                     <div class="modal-body">
                         <form method="post" @submit.prevent="save_package">
                             <input v-if="item != null" type="hidden" name="id" :value="item['id']">
+                            <input type="hidden"
+                                   name="currency_id"
+                                   :value="handling_data['data']['default_currency']['id']">
                             <div class="form-group">
                                 <img v-if="item == null" class="box-image"
                                      src="/images/packages/default.png">
@@ -74,12 +77,11 @@
                             <div class="form-group"
                                  v-for="input in modal_data" :key="input">
                                 <label>{{ handling_data['data_model'][input] }}</label>
-                                <select name="currency_id" class="form-control" v-if="input == 'currency_id'" required>
-                                    <option>{{ switchWord('select_currency') }}</option>
+                                <select name="currency_id" class="form-control" v-if="input == 'currency_id'" disabled>
                                     <option
                                         v-for="(curr,index) in handling_data['data']['currencies']"
                                         :key="index" :value="curr['id']"
-                                        :selected="item != null && item['currency_id'] == curr['id']">
+                                        :selected="curr['id'] == handling_data['data']['default_currency']['id']">
                                         {{ curr.name }}
                                     </option>
                                 </select>

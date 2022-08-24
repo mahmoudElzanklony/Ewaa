@@ -22,6 +22,7 @@ class CreateCurrenciesTable extends Migration
             $table->string('tu_name');
             $table->string('currency_code');
             $table->string('country_code');
+            $table->tinyInteger('is_default');
             $table->timestamps();
         });
     }

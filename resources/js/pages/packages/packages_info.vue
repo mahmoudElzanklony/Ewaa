@@ -23,11 +23,20 @@
                             <p v-if="false">
                                 {{ keywords.recommended }}
                             </p>
-                            <p class="text-center">
-                                <span>{{ get_price(i) }}</span>
-                                <span>{{ i['currency'][$page.props.lang+'_name'] }}</span>
-                            </p>
                             <ul>
+                                <li class="text-center">
+                                    <img :src="'/images/packages/'+i['image']">
+                                </li>
+                                <li>
+                                    <h3 class="text-center">
+                                        <strong>{{ get_price(i) }}</strong>
+                                        <span>{{ i['currency'][$page.props.lang+'_name'] }}</span>
+                                    </h3>
+                                </li>
+                                <li>
+                                    <span>{{ keywords.package_name }}  : </span>
+                                    <span>{{ i['name'] }}</span>
+                                </li>
                                 <li>
                                     <span>{{ keywords.min_points }}  : </span>
                                     <span>{{ i['min_value'] }}</span>
@@ -293,6 +302,12 @@ export default {
                 .package{
                     ul{
                         li{
+                            img{
+                                width:80px;
+                                height: 80px;
+                                border-radius: 50%;
+                                border: 1px solid #dddddd;
+                            }
                             span:not(:last-of-type){
                                 margin-left: 5px;
                             }

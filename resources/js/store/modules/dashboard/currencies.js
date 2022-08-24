@@ -36,7 +36,7 @@ export default {
             var target = event.target;
             var data = new FormData(target);
             axios.post('/dashboard/save-currency',data).then((e)=>{
-                validation(e.data,target,'',true);
+                validation(e.data,target,'/dashboard/currencies',true);
                 // check if there is no error
                 if(e.data.status == 200 && e.data.related == 'insert'){
                     commit('update_data',e.data.data);

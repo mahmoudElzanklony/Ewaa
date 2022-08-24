@@ -639,6 +639,8 @@ return [
     'currency_code'=>'Currency Code',
     'country_code'=>'Country Code',
     'select_country'=>'Select Country',
+    'default_currency'=>'Default currency',
+
     // end of dashboard currencies ----------------------------------------------------------
 
 

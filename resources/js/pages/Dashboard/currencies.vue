@@ -27,6 +27,7 @@
 <!--                            <td style="display: none">{{ i['tu_name'] }}</td>-->
                             <td>{{ i['currency_code'] }}</td>
                             <td>{{ i['country_code'] }}</td>
+                            <td>{{ i['is_default'] == 0 ? switchWord('no') : switchWord('yes') }}</td>
                             <td class="actions">
                                 <span><i data-toggle="modal" data-target="#update_box"
                                          @click="update_item(i)"
@@ -55,8 +56,13 @@
                             <div class="form-group"
                                  v-for="input in Object.keys(handling_data['data_model'])" :key="input">
                                 <label>{{ handling_data['data_model'][input] }}</label>
-                                <input :name="input" class="form-control"
+                                <input :name="input" class="form-control" v-if="input != 'is_default'"
                                        :value="item != null ? item[input]:''" :required="input.indexOf('tu') == -1">
+                                <select v-else :name="input" class="form-control" required>
+                                    <option value="">{{ switchWord('if_currency_is_default_or_not') }}</option>
+                                    <option value="1" :selected="item != null && item[input] == 1">{{ switchWord('yes') }}</option>
+                                    <option value="0" :selected="item == null || (item != null && item[input] == 0)">{{ switchWord('no') }}</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <input type="submit" name="save" class="btn btn-primary"

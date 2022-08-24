@@ -15,17 +15,17 @@
         <div class="form-group">
             <label>{{ keywords.type }}</label>
             <div class="special_radio_container">
-                <div class="special_radio" @click="change_type('sale')">
-                    <span>{{ keywords.sale }}</span>
-                    <input :class="(searched_data == undefined || searched_data != undefined && searched_data.hasOwnProperty('type') && searched_data['type'] == 'sale')?'active':''"
-
-                           type="radio" name="type" value="sale" :checked="searched_data == undefined || (searched_data != undefined && searched_data.hasOwnProperty('type') && searched_data['type'] != null && searched_data['type'] == 'sale') ">
-                </div>
                 <div class="special_radio" @click="change_type('rent')">
                     <span>{{ keywords.rent }}</span>
+                    <input :class="(searched_data == undefined || searched_data != undefined && searched_data.hasOwnProperty('type') && searched_data['type'] == 'rent')?'active':''"
+
+                           type="radio" name="type" value="rent" :checked="searched_data == undefined || (searched_data != undefined && searched_data.hasOwnProperty('type') && searched_data['type'] != null && searched_data['type'] == 'rent') ">
+                </div>
+                <div class="special_radio" @click="change_type('sale')">
+                    <span>{{ keywords.sale }}</span>
                     <input
-                        :class="(searched_data != undefined && searched_data.hasOwnProperty('type') && searched_data['type'] == 'rent')?'active':''"
-                        type="radio" name="type" value="rent" :checked="searched_data != undefined && searched_data.hasOwnProperty('type') && searched_data['type'] != null && searched_data['type'] == 'rent' ">
+                        :class="(searched_data != undefined && searched_data.hasOwnProperty('type') && searched_data['type'] == 'sale')?'active':''"
+                        type="radio" name="type" value="sale" :checked="searched_data != undefined && searched_data.hasOwnProperty('type') && searched_data['type'] != null && searched_data['type'] == 'sale' ">
                 </div>
             </div>
         </div>

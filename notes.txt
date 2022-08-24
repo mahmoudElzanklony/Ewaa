@@ -31,3 +31,11 @@
 // questions from 
 NeighbourhoodController index data of $governments_data is not right at case not authenticated
 best question at government city
+
+
+
+
+
+
+// ad is_default at table currencies
+// remove curreny_id from packages

@@ -11,17 +11,19 @@
                 </div>
                 <div class="col-md-3"></div>
             </div>
-            <div class="sales mt-4">
-                <h2>{{ category_name }} {{ switchWord('in') }} {{ country_data['name'] }} </h2>
-                <div class="row">
-                    <div class="col-lg-3 col-md-4 col-sm-6" v-for="(i,index) in country_data['my_areas']" :key="index">
-                        <div>
-                            <p>
-                                <inertia-link href="#">
-                                    <span>{{ i['name'] }}</span>
-                                    <span>({{ i['count_listings'] }})</span>
-                                </inertia-link>
-                            </p>
+            <div class="sales mt-4" >
+                <div v-for="(c,index) in country_data" :key="index" v-if="c['my_areas'].length > 0">
+                    <h2>{{ category_name }} {{ switchWord('in') }} {{ c['name'] }} </h2>
+                    <div class="row" >
+                        <div class="col-lg-3 col-md-4 col-sm-6" v-for="(i,index) in c['my_areas']" :key="index">
+                            <div>
+                                <p>
+                                    <inertia-link href="#">
+                                        <span>{{ i['name'] }}</span>
+                                        <span>({{ i['count_listings'] }})</span>
+                                    </inertia-link>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>

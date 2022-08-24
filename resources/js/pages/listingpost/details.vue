@@ -215,7 +215,7 @@
                                 <form method="post" @submit.prevent="send_email">
                                     <input type="hidden" name="listing_id" :value="info['id']">
                                     <textarea class="form-control" name="message"></textarea>
-                                    <input class="btn btn-primary" :value="keywords.send_email">
+                                    <input class="btn btn-primary" type="submit" :value="keywords.send_email">
                                 </form>
                             </div>
                         </div>

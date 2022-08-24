@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Handling_Data\listings\info_listing;
 use App\Handling_Data\listings\inilalize_listing;
 use App\Http\Controllers\classes\listings\ListingsServiceClass;
+use App\Http\traits\messages;
 use App\Keywords\ListingPostConfirmPaymentKeywords;
 use App\Keywords\ListIngPostDetailsKeywords;
 use App\Keywords\ListingPostInfoKeywords;
@@ -150,5 +151,7 @@ class ListingPostController extends ListingsServiceClass
             request()->root().'/listings/details?id='.$listing->id,
             'اضغط هنا',$listing->user->email
         );
+        return messages::success_output(trans('messages.sent_successfully'));
+
     }
 }

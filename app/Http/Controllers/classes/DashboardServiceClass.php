@@ -245,6 +245,15 @@ class DashboardServiceClass extends Controller
 
     public function save_currency(currenciesFormRequest $request){
         $data = $request->validated();
+
+        // check if this currency is default
+        if($data['is_default'] == 1){
+            // get all currencies and make default = 0
+            currencies::query()->update([
+               'is_default'=>0
+            ]);
+        }
+
         $result = currencies::query()->updateOrCreate([
             'id'=>request()->has('id') ? request('id'):null,
         ],$data);
