@@ -188,7 +188,7 @@ return [
 
     // start of listing photos  ----------------------------------------------------
     'add_your_photos'=>'أصف صور عقارك',
-    'please_make_sure_each_photo_is_smaller_than'=>'برجاء تحميل صور أصغر حجما من 2 ميجابايت و عليك اختيار 10 صور فقط على الأكثر',
+    'please_make_sure_each_photo_is_smaller_than'=>'برجاء تحميل صور أصغر حجما من 2 ميجابايت و عليك اختيار 10 صور فقط على الأكثر لابد ان يكون امتداد الصور كالاتي png , jpg , jpeg , gif',
     'drop_your_images_here'=>'قم بسحب وإلقاء الصور هنا',
     'add_files'=>'تصفح',
 

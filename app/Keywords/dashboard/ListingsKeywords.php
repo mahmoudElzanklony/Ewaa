@@ -19,7 +19,7 @@ class ListingsKeywords
             'meters_number' => trans('keywords.meters_number'),
             'payment_status' => trans('keywords.payment_status'),
             'type' => trans('keywords.approval_status'),
-            'change_approval_status' => trans('keywords.change_approval_status'),
+       //     'change_approval_status' => trans('keywords.change_approval_status'),
             'actions' => trans('keywords.actions'),
         ];
     }

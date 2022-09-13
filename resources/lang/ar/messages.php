@@ -11,4 +11,5 @@ return [
   'added_to_fav_successfully'=>'تمت الاضافة الي المفضلة بنجاح',
   'sent_successfully'=>'تمت عملية الارسال بنجاح',
   'confirmed_bought'=>'تمت عملية شراء نقاط الباقة بنجاح',
+  'payment_success'=>'تمت عملية الدفع بنجاح',
 ];

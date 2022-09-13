@@ -8,7 +8,7 @@
                     <div class="row">
                         <input type="hidden" name="id" :value="$inertia.page.props.user['id']">
                         <div class="col-6" v-for="(i,index) in Object.keys(keywords)" :key="index">
-                            <div class="form-group" >
+                            <div class="form-group input-icon" >
                                 <label>{{ keywords[i] }}</label>
                                 <select class="form-control" :name="i" v-if="i == 'country_id'">
                                     <option value="">{{ switchWord('select_country') }}</option>
@@ -23,6 +23,10 @@
                                        :required="i != 'password'"
                                        :placeholder="i == 'password'?switchWord('leave_password'):''"
                                        class="form-control">
+                                <span v-if="i == 'password'">
+                                    <i class="ri-eye-line show_password cursor-pointer"></i>
+                                </span>
+
                                 <p class="alert-danger alert"></p>
                             </div>
                         </div>

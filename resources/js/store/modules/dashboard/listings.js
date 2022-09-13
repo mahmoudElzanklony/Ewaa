@@ -34,10 +34,19 @@ export default {
     actions:{
         save_listing:function({commit,getters,state}){
             var target = event.target;
-            var data = event.target.value;
+            var data = event.target.getAttribute('val');
+            console.log(target);
             var id = event.target.id;
+            var msg = data;
             if(data == ''){
                 return false;
+            }
+            if(window.vm.$inertia.page.props.lang == 'ar'){
+                if(msg == 'live'){
+                    msg = 'نشطه';
+                }else if(msg == 'rejected'){
+                    msg = 'مرفوضة'
+                }
             }
             axios.post('/dashboard/update-listing',{
                 status:data,
@@ -48,7 +57,7 @@ export default {
                    icon:e.data.message.icon,
                    title:e.data.message.title,
                 });
-                $(target).parent().prev().html($(target).find('option:selected').text());
+                $(target).parent().parent().prev().html(msg);
             });
         }
     }

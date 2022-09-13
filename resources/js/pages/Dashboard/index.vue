@@ -7,7 +7,7 @@
                     <div class="layer d-flex flex-wrap">
                         <h2>{{ keywords.ewaa_word }}</h2>
                         <p>{{ keywords.ewaa_listings }}</p>
-                        <inertia-link href="/dashboard/listings"
+                        <inertia-link href="/dashboard/buildings"
                                       class="btn btn-primary">{{ switchWord('explore_listings') }}
                         </inertia-link>
                         <inertia-link href="/dashboard/statistics"

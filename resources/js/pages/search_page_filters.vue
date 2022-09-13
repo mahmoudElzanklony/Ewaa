@@ -2,11 +2,16 @@
     <section class="search_page_filters">
         <navbar-component></navbar-component>
         <div class="container mt-4 mb-4">
-            <h1>{{ keywords.search }}</h1>
             <div class="row">
                 <div class="col-md-9">
+                    <h1 class="d-flex align-items-center justify-content-between">
+                        <span>{{ keywords.search }}</span>
+                        <inertia-link href="/ads">{{ switchWord('search_without_filter') }}</inertia-link>
+                    </h1>
                     <div class="filter">
-                        <filter-component :keywords="keywords" :sub_cats="sub_cats"></filter-component>
+                        <filter-component :keywords="keywords"
+                                          :countries="countries"
+                                          :sub_cats="sub_cats"></filter-component>
                     </div>
                 </div>
                 <div class="col-md-3"></div>
@@ -54,14 +59,18 @@ import SwitchLangWord from "../mixin/SwitchLangWord";
 export default {
     name: "search_page_filters",
     components: {FilterComponent, FooterComponent, NavbarComponent},
-    props:['keywords','sub_cats','country_data','all_listing_per_category','category_name'],
+    props:['keywords','sub_cats','country_data','all_listing_per_category','category_name','countries'],
     mixins:[SwitchLangWord],
 }
 </script>
 
 <style lang="scss" scoped>
 @import "resources/sass/variables";
-
+h1{
+    a{
+        font-size: $paragraph;
+    }
+}
 .sales{
     h2{
         font-weight: bold;

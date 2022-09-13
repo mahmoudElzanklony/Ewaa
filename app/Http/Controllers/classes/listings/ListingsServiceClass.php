@@ -51,7 +51,6 @@ class ListingsServiceClass extends Controller
     }
 
     public function save_photos(){
-
         if(Cookie::has('inilalize') && Cookie::has('listing_info_data')) {
             $inilalize = json_decode(request()->cookie('inilalize'), true);
             $listing = json_decode(request()->cookie('listing_info_data'), true);
@@ -65,6 +64,13 @@ class ListingsServiceClass extends Controller
             $user = User::query()->with('role')->find(auth()->id());
             if ($user->role->name != 'admin') {
                 $listing_info['user_id'] = auth()->id();
+            }else{
+                // this is update want to create or update
+                if (array_key_exists('id', $listing_info)){
+                    $listing_info['user_id'] = listings_info::query()->find($listing_info['id'])->user_id;
+                }else{
+                    $listing_info['user_id'] = auth()->id();
+                }
             }
             if (!(array_key_exists('id', $listing_info))) {
                 // check about auto publish for user

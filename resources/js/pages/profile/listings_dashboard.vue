@@ -29,7 +29,9 @@
                                </li>
                            </ul>
                            <div class="data-table-box">
-                               <table class="myTable table table-bordered table-striped table-hover">
+                               <table class="myTable table table-bordered table-striped table-hover"
+                                      data-order='[[ 0, "desc" ]]'
+                               >
                                    <thead>
                                    <tr>
                                        <td

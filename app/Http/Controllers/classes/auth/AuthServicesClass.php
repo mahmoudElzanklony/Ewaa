@@ -24,7 +24,7 @@ class AuthServicesClass extends Controller
     public function login_post(usersFormRequest $request){
         if(auth()->attempt($request->validated())){
             session()->put('type',roles::query()->find(auth()->user()->role_id)->name);
-            return messages::success_output(['message'=>'','user'=>auth()->user()]);
+            return messages::success_output(['message'=>'','user'=>User::query()->with('role')->find(auth()->id())]);
         }
         return messages::error_output(['message'=>trans('messages.unauthenticated_err_form')]);
     }

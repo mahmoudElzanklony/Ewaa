@@ -50,18 +50,27 @@ export default {
                 window.vm.$inertia.visit(url);
             });
         },
-        save_photos:function ({commit,getters,state}){
+        save_photos:function ({commit,getters,state},payload){
             var target = event.target;
-            var data = new FormData(target);
+
+            document.querySelector('.loading').style.display = 'flex';
+            var data = new FormData();
+            console.log(payload['photos']);
+            $.each(payload['photos'], function(i, value){
+                data.append('photos['+i+']', value);
+            });
             if(document.URL.split('id=')[1] != undefined){
                 data.append('id',document.URL.split('id=')[1]);
             }
-            axios.post('/listings/save-photos',data).then((e)=>{
-                Toast.fire({
-                    icon:'success',
-                    title:e.data.message[0],
-                })
-                window.vm.$inertia.visit('/listing/confirm-payment?id='+e.data.message[1]);
+            axios.post('/listings/save-photos',data)
+                .then((e)=>{
+                    Toast.fire({
+                        icon:'success',
+                        title:e.data.message[0],
+                    })
+                    window.vm.$inertia.visit('/listing/confirm-payment?id='+e.data.message[1]);
+            }).finally(()=>{
+                document.querySelector('.loading').style.display = 'none';
             });
         }
     }

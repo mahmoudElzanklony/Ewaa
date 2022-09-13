@@ -171,8 +171,8 @@ export default {
                   tu:'',
               },
               footer_info:{
-                  ar:'خدمات أيواء تساعدك على بيع وشراء العقارات بسهولة بالإضافة إلى تزويدك بمعلومات أساسية لإتخاذ واحد من أهم القرارات المالية في حياتك.',
-                  en:'Ewaa services allow you to buy or sell a property while providing essential information to help you take one of life’s biggest financial decisions.',
+                  ar:'تتيح لك خدمات Ewaa استئجار عقار أو شرائه أو بيعه مع توفير المعلومات الأساسية لمساعدتك في اتخاذ أحد أكبر القرارات المالية في حياتك.',
+                  en:'Ewaa services allow you to rent, buy or sell a property while providing essential information to help you take one of life’s biggest financial decisions.',
                   tu:'',
               },
               jobs:{
@@ -283,6 +283,16 @@ export default {
               rejected_listings:{
                   ar:'مرفوضة',
                   en:'Rejected',
+                  tu:'',
+              },
+              reject:{
+                ar:'رفض',
+                en:'reject',
+                tu:'',
+              },
+              accept:{
+                  ar:'موافقة',
+                  en:'Accept',
                   tu:'',
               },
               expired_listings:{
@@ -451,6 +461,11 @@ export default {
                   tu:'',
               },
               // dashboard words
+              dashboard:{
+                  ar:'الادارة',
+                  en:'dashboard',
+                  tu:'',
+              },
               users:{
                   ar:'المستخدمين',
                   en:'Users',
@@ -900,6 +915,11 @@ export default {
               if_currency_is_default_or_not:{
                   ar:'اختر هل العملة هي العملة الافتراضية ام لا',
                   en:'select if this currency is default or not',
+              },
+              search_without_filter:{
+                  ar:'عرض جميع الاعلانات بدون الحاجه للفلاتر',
+                  en:'show all ads without any using filters',
+                  tu:'',
               }
 
 

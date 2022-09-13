@@ -94,9 +94,16 @@ class ProfileServiceClass extends Controller
                 return messages::error_output(['unauthorized' => [trans('errors.unauthorized')]], 401);
             }
         }
+        if($note != null){
+            $listing_id = $note->listing_id;
+        }else{
+            $listing_id = request('listing_id');
+        }
         // save note
         listings_notes::query()->updateOrCreate([
             'id'=>request()->has('id') ? request('id') : null,
+            'listing_id'=>$listing_id,
+            'user_id'=>auth()->id(),
         ],$noteFormRequest->validated());
         return messages::success_output([trans('messages.saved_successfully')]);
 

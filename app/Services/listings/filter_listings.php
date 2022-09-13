@@ -19,6 +19,17 @@ class filter_listings
             ->when(array_key_exists('user_id',$data_filtered) && $data_filtered['user_id'] != null , function ($e) use ($data_filtered){
                 $e->where('user_id','=',$data_filtered['user_id']);
             })
+            ->when(array_key_exists('country_id',$data_filtered) && $data_filtered['country_id'] != null , function ($e) use ($data_filtered){
+                $e->whereHas('area',function ($a) use ($data_filtered){
+                   $a->whereHas('city',function($c) use ($data_filtered){
+                      $c->whereHas('government',function($g) use ($data_filtered){
+                          $g->whereHas('country',function($country) use ($data_filtered){
+                             $country->where('id','=',$data_filtered['country_id']);
+                          });
+                      });
+                   });
+                });
+            })
             // check if i have specific area keyword
             ->when(array_key_exists('area',$data_filtered) && $data_filtered['area'] != null , function ($e) use ($data_filtered){
                 $e->join('areas','listings_infos.area_id','=','areas.id')

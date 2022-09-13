@@ -10,27 +10,27 @@
                     <div class="info">
                         <ul>
                             <li>
-                                <inertia-link href="#">
+                                <inertia-link href="/jobs">
                                     {{ switchWord('jobs') }}
                                 </inertia-link>
                             </li>
                             <li>
-                                <inertia-link href="#">
+                                <inertia-link href="/feedback">
                                     {{ switchWord('contact_us') }}
                                 </inertia-link>
                             </li>
                             <li>
-                                <inertia-link href="#">
+                                <inertia-link href="/sitemap">
                                     {{ switchWord('site_map') }}
                                 </inertia-link>
                             </li>
                             <li>
-                                <inertia-link href="#">
+                                <inertia-link href="conditions">
                                     {{ switchWord('conditions') }}
                                 </inertia-link>
                             </li>
                             <li>
-                                <inertia-link href="#">
+                                <inertia-link href="/searches">
                                     {{ switchWord('searches') }}
                                 </inertia-link>
                             </li>
@@ -47,26 +47,26 @@
                             </inertia-link>
                         </div>
                         <div class="social">
-                            <inertia-link href="#">
+                            <a target="_blank" href="https://www.facebook.com/">
                                 <span>
                                     <i class="ri-facebook-line"></i>
                                 </span>
-                            </inertia-link>
-                            <inertia-link href="#">
+                            </a>
+                            <a target="_blank" href="https://twitter.com/?lang=en">
                                 <span>
                                     <i class="ri-twitter-line"></i>
                                 </span>
-                            </inertia-link>
-                            <inertia-link href="#">
+                            </a>
+                            <a target="_blank" href="https://www.instagram.com/">
                                 <span>
                                     <i class="ri-instagram-line"></i>
                                 </span>
-                            </inertia-link>
-                            <inertia-link href="#">
+                            </a>
+                            <a target="_blank" href="https://www.youtube.com/">
                                 <span>
                                     <i class="ri-youtube-line"></i>
                                 </span>
-                            </inertia-link>
+                            </a>
                         </div>
                     </div>
                 </div>

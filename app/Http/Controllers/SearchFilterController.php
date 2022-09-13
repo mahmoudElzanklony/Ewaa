@@ -27,6 +27,7 @@ class SearchFilterController extends Controller
                 'country_data'=>$country_data,
                 'all_listing_per_category'=>$sub_cats_listings,
                 'category_name'=>categories::selection()->find(request('cat_id'))->name,
+                'countries'=>countries::selection()->get(),
             ]);
         }else{
             return redirect('/');

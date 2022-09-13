@@ -17,9 +17,10 @@
                                 <input name="email" type="email" class="form-control" required>
                                 <p class="alert alert-danger"></p>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group input-icon">
                                 <label>{{ keywords.password }}</label>
                                 <input name="password" type="password" class="form-control" required>
+                                <span><i class="ri-eye-line show_password cursor-pointer"></i></span>
                                 <p class="alert alert-danger"></p>
                             </div>
                             <div class="form-group">

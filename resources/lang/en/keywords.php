@@ -181,8 +181,8 @@ return [
     'semi_finished'=>'Semi Finished',
     'without_finish'=>'Without Finish',
     'property_address'=>'Property Address',
-    'property_address_arabic'=>'Property in arabic',
-    'property_address_english'=>'Property in english',
+    'property_address_arabic'=>'Address in arabic',
+    'property_address_english'=>'Address in english',
     'mark_your_listing_location'=>'Mark your listing location',
     'kindly_read_terms_and_instructions_of_adding_listings_on_ewaa'=>'Kindly read terms and instructions of adding listings on ewaa',
     'here'=>'here',
@@ -191,7 +191,7 @@ return [
 
     // start of listing photos  ----------------------------------------------------
     'add_your_photos'=>'Add Your Photos',
-    'please_make_sure_each_photo_is_smaller_than'=>'Please, make sure each photo is smaller than 2 megabytes and the max of selected photos is 10',
+    'please_make_sure_each_photo_is_smaller_than'=>'Please, make sure each photo is smaller than 2 megabytes and the max of selected photos is 10 , images extensions must be jpg or png or jpeg or gif',
     'drop_your_images_here'=>'DROP YOUR IMAGES HERE',
     'add_files'=>'Add Files',
 

@@ -14,6 +14,6 @@ class all_listings_notes
                     ,app()->getLocale().'_name as name',app()->getLocale().'_info as info',app()->getLocale().'_address as address',
                     'price','youtube_link','whatapp_status','contact_email_status','type')
                     ->with('images');
-            })->get();
+            })->orderBy('id','DESC')->get();
     }
 }

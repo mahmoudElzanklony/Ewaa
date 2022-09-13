@@ -8,7 +8,8 @@
             <div class="outer-notification">
                 <p>
                     <span>{{  keywords.notifications }}</span>
-                    <span>{{ data.total }}</span>
+                    <span v-if="false">{{ data.total }}</span>
+                    <span>{{ data.length }}</span>
                 </p>
                 <div class="inner">
                     <div class="notification d-flex align-items-center justify-content-between"
@@ -60,19 +61,19 @@ export default {
     },
     created() {
         var com = this;
-        window.addEventListener("scroll", async function(e){
+       /* window.addEventListener("scroll", async function(e){
             let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight
             if(bottomOfWindow % 1 != 0){
                 bottomOfWindow = Math.ceil(bottomOfWindow);
             }
-            console.log(bottomOfWindow);
-            console.log(document.documentElement.offsetHeight);
+           /!* console.log(bottomOfWindow);
+            console.log(document.documentElement.offsetHeight);*!/
             let page_height = document.documentElement.offsetHeight;
            if(bottomOfWindow === page_height || bottomOfWindow-page_height == 1 || bottomOfWindow-page_height == -1 ){
                console.log(com);
                await com.get_data_when_scroll();
            }
-        });
+        });*/
         this.inilalize_data(this.data);
         this.inilalize_type(this.type);
 

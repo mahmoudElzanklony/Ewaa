@@ -2370,6 +2370,14 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
     } else {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).removeClass('ri-arrow-up-s-line').addClass('ri-arrow-down-s-line');
     }
+  }); // show password
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.content').on('mouseenter', '.show_password', function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).parent().parent().find('input').attr('type', 'text');
+  }); // hide password
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.content').on('mouseout', '.show_password', function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).parent().parent().find('input').attr('type', 'password');
   }); // preview image at box
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('.content').on('change', '.preview-image', function () {
@@ -2812,8 +2820,20 @@ __webpack_require__.r(__webpack_exports__);
           commit('setUser', e.data.success.user);
         }
 
-        (0,_formValidation_validation__WEBPACK_IMPORTED_MODULE_0__.default)(e.data, target, '/');
+        if (e.data.hasOwnProperty('message')) {
+          if (e.data['message']['user']['role']['name'] == 'admin') {
+            var url = '/dashboard';
+          } else {
+            var url = '/profile/edit';
+          }
+
+          (0,_formValidation_validation__WEBPACK_IMPORTED_MODULE_0__.default)(e.data, target, url);
+        } else {
+          (0,_formValidation_validation__WEBPACK_IMPORTED_MODULE_0__.default)(e.data, target);
+        }
       })["catch"](function (e) {
+        console.log(e);
+        return false;
         window.location = document.URL;
       });
     }
@@ -3175,11 +3195,21 @@ __webpack_require__.r(__webpack_exports__);
           getters = _ref.getters,
           state = _ref.state;
       var target = event.target;
-      var data = event.target.value;
+      var data = event.target.getAttribute('val');
+      console.log(target);
       var id = event.target.id;
+      var msg = data;
 
       if (data == '') {
         return false;
+      }
+
+      if (window.vm.$inertia.page.props.lang == 'ar') {
+        if (msg == 'live') {
+          msg = 'نشطه';
+        } else if (msg == 'rejected') {
+          msg = 'مرفوضة';
+        }
       }
 
       axios.post('/dashboard/update-listing', {
@@ -3191,7 +3221,7 @@ __webpack_require__.r(__webpack_exports__);
           icon: e.data.message.icon,
           title: e.data.message.title
         });
-        $(target).parent().prev().html($(target).find('option:selected').text());
+        $(target).parent().parent().prev().html(msg);
       });
     }
   }
@@ -3986,12 +4016,17 @@ __webpack_require__.r(__webpack_exports__);
         window.vm.$inertia.visit(url);
       });
     },
-    save_photos: function save_photos(_ref3) {
+    save_photos: function save_photos(_ref3, payload) {
       var commit = _ref3.commit,
           getters = _ref3.getters,
           state = _ref3.state;
       var target = event.target;
-      var data = new FormData(target);
+      document.querySelector('.loading').style.display = 'flex';
+      var data = new FormData();
+      console.log(payload['photos']);
+      $.each(payload['photos'], function (i, value) {
+        data.append('photos[' + i + ']', value);
+      });
 
       if (document.URL.split('id=')[1] != undefined) {
         data.append('id', document.URL.split('id=')[1]);
@@ -4003,6 +4038,8 @@ __webpack_require__.r(__webpack_exports__);
           title: e.data.message[0]
         });
         window.vm.$inertia.visit('/listing/confirm-payment?id=' + e.data.message[1]);
+      })["finally"](function () {
+        document.querySelector('.loading').style.display = 'none';
       });
     }
   }
@@ -4293,7 +4330,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       var commit = _ref.commit,
           getters = _ref.getters,
           state = _ref.state;
-      console.log(state.page);
       var type = state.type;
       var obj_page = state.data_obj['links'].find(function (e) {
         return e['label'] == state.page;
@@ -4302,9 +4338,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       if (obj_page != undefined) {
         document.querySelector('body').style.overflow = 'hidden';
         document.querySelector('.loading').style.display = 'flex';
-        axios.post('/paginate-notifications?page=' + obj_page.label, {
+        axios.post('/paginate-notifications?page=' + state.page, {
           type: type
         }).then(function (e) {
+          console.log('/paginate-notifications?page=' + state.page);
+          console.log(e.data);
+
           var _iterator = _createForOfIteratorHelper(e.data.data),
               _step;
 
@@ -4395,6 +4434,20 @@ __webpack_require__.r(__webpack_exports__);
           state = _ref.state;
       console.log(payload);
 
+      if (event != undefined) {
+        console.log(event.target.tagName);
+
+        if (event.target.tagName == 'SPAN') {
+          event.target.nextElementSibling.checked = true;
+        } else if (event.target.tagName == 'DIV') {
+          event.target.children[1].checked = true;
+        } else {
+          event.target.checked = true;
+        }
+
+        console.log(document.querySelector('input[name="type"]:checked'));
+      }
+
       if (typeof payload == 'string') {
         var val = payload;
       } else {
@@ -4475,7 +4528,7 @@ __webpack_require__.r(__webpack_exports__);
       var target = event.target;
       var data = new FormData(target);
       axios.post('/profile/update-password', data).then(function (e) {
-        (0,_formValidation_validation__WEBPACK_IMPORTED_MODULE_0__.default)(e.data, target);
+        (0,_formValidation_validation__WEBPACK_IMPORTED_MODULE_0__.default)(e.data, target, '', true);
       });
     },
     // update username , full name  , phone , what app status
@@ -99468,6 +99521,22 @@ var map = {
 		"./resources/js/Pages/home.vue",
 		"resources_js_Pages_home_vue"
 	],
+	"./info_pages/conditions.vue": [
+		"./resources/js/Pages/info_pages/conditions.vue",
+		"resources_js_Pages_info_pages_conditions_vue"
+	],
+	"./info_pages/jobs.vue": [
+		"./resources/js/Pages/info_pages/jobs.vue",
+		"resources_js_Pages_info_pages_jobs_vue"
+	],
+	"./info_pages/searches.vue": [
+		"./resources/js/Pages/info_pages/searches.vue",
+		"resources_js_Pages_info_pages_searches_vue"
+	],
+	"./info_pages/sitemap.vue": [
+		"./resources/js/Pages/info_pages/sitemap.vue",
+		"resources_js_Pages_info_pages_sitemap_vue"
+	],
 	"./listingpost/ContactOffice.vue": [
 		"./resources/js/Pages/listingpost/ContactOffice.vue",
 		"resources_js_Pages_listingpost_ContactOffice_vue"
@@ -99689,7 +99758,7 @@ module.exports = webpackAsyncContext;
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames based on template
-/******/ 			return "js/" + chunkId + "." + {"resources_js_Pages_about_us_vue":"905ac2e799bd9c606dca","resources_js_Pages_auth_forget_password_vue":"505fe4bb10952d0e468f","resources_js_Pages_auth_new_password_vue":"42232c8e5d8139b86318","resources_js_Pages_auth_sign_in_vue":"88c1c7c1a48cc5de6bef","resources_js_Pages_auth_sign_up_vue":"6be99b41c9a9aa047e31","resources_js_Pages_compounds_vue":"6b9df4ef3eaf55354e89","resources_js_Pages_contactus_vue":"b5434d94309a5ae4aab9","resources_js_Pages_dashboard_categories_vue":"584bedbcda18685db49e","resources_js_Pages_dashboard_currencies_vue":"abbdfd7a727d8e2c62dd","resources_js_Pages_dashboard_index_vue":"e17b0f2b14a2d8e7d8aa","resources_js_Pages_dashboard_interests_vue":"f9780d86c934344813ff","resources_js_Pages_dashboard_listings_vue":"c00626d58dfd045bd67e","resources_js_Pages_dashboard_map_vue":"4ab804ed683b3864c253","resources_js_Pages_dashboard_notifications_vue":"26e6190c1585d968fd91","resources_js_Pages_dashboard_packages_vue":"fb40d821298f87234f2f","resources_js_Pages_dashboard_pointad_vue":"e61b41fe533ccd208f47","resources_js_Pages_dashboard_questions_vue":"f44e5cadd9412c2afee7","resources_js_Pages_dashboard_reports_vue":"53af0692f5d5aeee1ff3","resources_js_Pages_dashboard_settings_vue":"8103d30c4948da1fdef8","resources_js_Pages_dashboard_specific_statistics_vue":"bcab8fdcecbfaf675fe0","resources_js_Pages_dashboard_statistics_vue":"e4cb726b5c9deafbf6fe","resources_js_Pages_dashboard_sub_categories_vue":"b55d64b9672594781c98","resources_js_Pages_dashboard_subscriptions_vue":"471f8f32956e9f824531","resources_js_Pages_dashboard_support_vue":"bfd97f3809f8d3f5d5f1","resources_js_Pages_dashboard_users_vue":"c3d5eb8e94056d04d187","resources_js_Pages_feedback_vue":"13f51a8e4b9e01037eba","resources_js_Pages_government_city_vue":"c42a2fbff3f4790d5e33","resources_js_Pages_governments_vue":"3d96a6842eb00fcc4096","resources_js_Pages_home_vue":"9b3bc363c120e2c6b793","resources_js_Pages_listingpost_ContactOffice_vue":"e998d465a587267d3565","resources_js_Pages_listingpost_details_vue":"6864aede28f56eb2335f","resources_js_Pages_listingpost_info_vue":"6a6cb178d0c418b76fe7","resources_js_Pages_listingpost_initialize_vue":"e88eb03af426ef2334b9","resources_js_Pages_listingpost_payment_confirmation_vue":"08eb66621c121b56fe5b","resources_js_Pages_listingpost_photos_vue":"4eb058f3a08d90749d49","resources_js_Pages_merchant_balance_vue":"db713c820568024087dc","resources_js_Pages_neighbours_vue":"01e84f9b05f94b42226a","resources_js_Pages_notifications_vue":"8d822eb4652818fcfa11","resources_js_Pages_packages_charge_vue":"775a1df92ce7a21971c6","resources_js_Pages_packages_packages_info_vue":"701585d662894f8c05f6","resources_js_Pages_profile_favourites_vue":"0c8f4351d9c02b7d4f6e","resources_js_Pages_profile_listings_dashboard_vue":"3a87aa1028193d98be75","resources_js_Pages_profile_main_info_vue":"7d7cc2e1dfaf5e5628a8","resources_js_Pages_profile_notes_vue":"371c3e6c4d791a1bc354","resources_js_Pages_profile_statistics_vue":"cbd08d41a776151f3154","resources_js_Pages_questions_answers_vue":"95e0197229614330329d","resources_js_Pages_questions_ask_neighbors_vue":"f2d6a258d53befb34b70","resources_js_Pages_sales_vue":"92756418ecc4b6e5f2f3","resources_js_Pages_search_page_filters_vue":"37e9d90ea0fa8d5d6080","resources_js_Pages_terms_vue":"7a14031ea41b6e7b095a"}[chunkId] + ".js";
+/******/ 			return "js/" + chunkId + "." + {"resources_js_Pages_about_us_vue":"754886b8ae5336c7e598","resources_js_Pages_auth_forget_password_vue":"f4ee12f16da4fcab57d0","resources_js_Pages_auth_new_password_vue":"e9d13124e20858272ebf","resources_js_Pages_auth_sign_in_vue":"fd3b8baaf4ae3413db18","resources_js_Pages_auth_sign_up_vue":"22801cd7ce31619b0dc5","resources_js_Pages_compounds_vue":"f95adec8ecca8d1bdca5","resources_js_Pages_contactus_vue":"1ede0f57df0fba854ca8","resources_js_Pages_dashboard_categories_vue":"faaea83c1c4a6499d4bb","resources_js_Pages_dashboard_currencies_vue":"95472a14d3cfc7c5c93f","resources_js_Pages_dashboard_index_vue":"daba2db7c58ba92b4460","resources_js_Pages_dashboard_interests_vue":"e1010e1c82df9198c376","resources_js_Pages_dashboard_listings_vue":"cb7fa822e1e3c80eae78","resources_js_Pages_dashboard_map_vue":"da7e4fcd747c30063cb0","resources_js_Pages_dashboard_notifications_vue":"a42b9126f95ee4d13d74","resources_js_Pages_dashboard_packages_vue":"dcdcb43cc68e65c9474f","resources_js_Pages_dashboard_pointad_vue":"fdd2be464b03debecbb4","resources_js_Pages_dashboard_questions_vue":"629057656f67f6198143","resources_js_Pages_dashboard_reports_vue":"d7e16b6c9a2b52754f0f","resources_js_Pages_dashboard_settings_vue":"b0711b564139a44ec7c1","resources_js_Pages_dashboard_specific_statistics_vue":"cd166c9e973712247723","resources_js_Pages_dashboard_statistics_vue":"59dd2ac1e31867a1231d","resources_js_Pages_dashboard_sub_categories_vue":"bcc8bec16af5c30a1b49","resources_js_Pages_dashboard_subscriptions_vue":"7ec675a4e7e93ed3e827","resources_js_Pages_dashboard_support_vue":"b98075ea9c658570bc43","resources_js_Pages_dashboard_users_vue":"15838e1075996e97c570","resources_js_Pages_feedback_vue":"505faa9a2d13c8e6cc2a","resources_js_Pages_government_city_vue":"ad24d109e2fe5723bef8","resources_js_Pages_governments_vue":"712772a2835bd38c53b6","resources_js_Pages_home_vue":"f40c2da6b7a2bb620b32","resources_js_Pages_info_pages_conditions_vue":"d39a9d89e959a59ad721","resources_js_Pages_info_pages_jobs_vue":"f3988d8523320b32d106","resources_js_Pages_info_pages_searches_vue":"e4d7c5731c4d4fbd58ee","resources_js_Pages_info_pages_sitemap_vue":"88c7333f5d6f48e66ef2","resources_js_Pages_listingpost_ContactOffice_vue":"17502680c432a3426d24","resources_js_Pages_listingpost_details_vue":"be0af1a0b5eb31e4a0ce","resources_js_Pages_listingpost_info_vue":"f0bd5e8f9b4d9970392b","resources_js_Pages_listingpost_initialize_vue":"1d7df2567066fdbb26c0","resources_js_Pages_listingpost_payment_confirmation_vue":"df0cacbd06b26f3fcf27","resources_js_Pages_listingpost_photos_vue":"759c48ec7965ef0ccb29","resources_js_Pages_merchant_balance_vue":"996cf11775dbebbb1e7b","resources_js_Pages_neighbours_vue":"31bd592058112cb418de","resources_js_Pages_notifications_vue":"efc29fb678edda0d2db5","resources_js_Pages_packages_charge_vue":"81791d180942ac0c8608","resources_js_Pages_packages_packages_info_vue":"ab6abfd70ceb4aa304f1","resources_js_Pages_profile_favourites_vue":"225659368a1239ded081","resources_js_Pages_profile_listings_dashboard_vue":"ba24fff64c9d6bf0fc9e","resources_js_Pages_profile_main_info_vue":"17ac9b05f1dea7d3cf71","resources_js_Pages_profile_notes_vue":"ab33b548bf9923638e79","resources_js_Pages_profile_statistics_vue":"c5c80ea545377ff207f8","resources_js_Pages_questions_answers_vue":"3e9b45773ecad9d7aba8","resources_js_Pages_questions_ask_neighbors_vue":"243f88e92861b364e7d9","resources_js_Pages_sales_vue":"c57e4a2d25e379c3dde9","resources_js_Pages_search_page_filters_vue":"1e67c2203815ffc2c090","resources_js_Pages_terms_vue":"7dff9642d7b7722a7f34"}[chunkId] + ".js";
 /******/ 		};
 /******/ 	})();
 /******/ 	

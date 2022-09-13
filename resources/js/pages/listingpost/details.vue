@@ -183,8 +183,9 @@
                                     </div>
                                 </div>
 
-                                <div class="map mb-2" v-if="false" style="height: 400px">
+                                <div class="map mb-2">
                                     <p>{{ keywords.map }}</p>
+                                    <div id="map"></div>
                                 </div>
                             </div>
                         </div>
@@ -478,6 +479,22 @@ export default {
             }
 
         },
+        show_map:function(){
+
+            // The location of Uluru
+            var cordinates = this.info.coordinates.split(',');
+            const uluru = { lat: Number(cordinates[0]), lng: Number(cordinates[1]) };
+            // The map, centered at Uluru
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 15,
+                center: uluru,
+            });
+            // The marker, positioned at Uluru
+            const marker = new google.maps.Marker({
+                position: uluru,
+                map: map,
+            });
+        }
     },
     created() {
         if(this.info['note'] != null){
@@ -499,6 +516,7 @@ export default {
                 $('.post-details-fixed button').fadeOut();
             }
         })
+        this.show_map();
     }
 }
 </script>

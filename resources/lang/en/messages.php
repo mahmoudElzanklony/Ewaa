@@ -11,5 +11,6 @@ return [
     'added_to_fav_successfully'=>'adding to favourite has done successfully',
     'sent_successfully'=>'operation done successfully',
     'confirmed_bought'=>'operation of buying this package is done successfully',
+    'payment_success'=>'Payment has been done successfully',
 
 ];

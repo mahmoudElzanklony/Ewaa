@@ -22,7 +22,9 @@
                 <span><i class="ri-check-line"></i></span>
             </div>
             <form method="post" @submit.prevent="save_listing_info">
-                <input type="hidden" name="coordinates" value="103123123,3123123123">
+                <input type="hidden"
+                       :value="listing_obj != null ? listing_obj['coordinates']:''"
+                       name="coordinates" >
 
 
                 <input v-if="listing_obj != null && listing_obj.hasOwnProperty('id')"
@@ -112,7 +114,7 @@
                                 <inertia-link href="/profile/edit">{{ keywords.my_account }}</inertia-link>
                             </p>
                             <input name="phone_number" class="form-control fit-content-input"
-                                   value="01003123123123"
+                                   :value="$page.props.user.phone"
                                    disabled required>
                             <div class="what_app_status">
                                 <span><i class="ri-whatsapp-line"></i></span>
@@ -170,6 +172,7 @@
                             {{ keywords.address }}
                         </p>
                     </div>
+
                     <div class="col-12">
                         <label>{{ keywords.property_address_arabic }}</label>
                         <input  class="form-control" name="ar_address"
@@ -184,6 +187,12 @@
                     </div>
 
                 </div>
+                <input
+                    id="pac-input"
+                    class="controls form-control"
+                    type="text"
+                    placeholder="Search"
+                />
                 <div id="map"></div>
                 <div class="text-center mt-3 mb-3">
                     <input type="submit" class="btn btn-primary" :value="keywords.next">
@@ -216,7 +225,7 @@ export default {
         this.get_questions_where(this.listing_obj['category_id']);
     },
     mounted:function (){
-
+        this.init_map();
     },
     computed:{
         ...mapGetters({
@@ -234,6 +243,114 @@ export default {
         previous_step:function(){
             this.$inertia.visit('/listing/initialize');
         },
+        /*show_position:function(position){
+            return {lat : position.coords.latitude , lng :  position.coords.longitude}
+        },*/
+        init_map(){
+            // The location of Uluru
+            if(!(this.listing_obj.hasOwnProperty('coordinates'))){
+
+                navigator.geolocation.getCurrentPosition(function(e){
+                    uluru['lat'] = e.coords.latitude;
+                    uluru['lng'] = e.coords.longitude;
+                    console.log(uluru);
+                })
+                console.log(uluru);
+                console.log('abc');
+                uluru = {lat: 30.5793978, lng: 31.5232873};
+                var zoom = 14;
+            }else{
+                var cordinates = this.listing_obj.coordinates.split(',');
+                var uluru = { lat: Number(cordinates[0]), lng: Number(cordinates[1]) };
+                var zoom = 15;
+            }
+
+            // The map, centered at Uluru
+            let map = new google.maps.Map(document.getElementById("map"), {
+                zoom: zoom,
+                center: uluru,
+            });
+            // The marker, positioned at Uluru
+            let marker = new google.maps.Marker({
+                position: uluru,
+                map: map,
+            });
+
+            // Configure the click listener.
+            map.addListener("click", (mapsMouseEvent) => {
+
+
+                uluru = JSON.parse(JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2));
+
+                document.querySelector('input[name="coordinates"]').value = uluru['lat'] + ','+uluru['lng'];
+                var latlng = new google.maps.LatLng(uluru['lat'], uluru['lng']);
+                marker.setPosition(latlng);
+
+            });
+
+            // Create the search box and link it to the UI element.
+            const input = document.getElementById("pac-input");
+            const searchBox = new google.maps.places.SearchBox(input);
+
+            map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+            // Bias the SearchBox results towards current map's viewport.
+            map.addListener("bounds_changed", () => {
+                searchBox.setBounds(map.getBounds());
+            });
+
+            let markers = [];
+
+            // Listen for the event fired when the user selects a prediction and retrieve
+            // more details for that place.
+            searchBox.addListener("places_changed", () => {
+                const places = searchBox.getPlaces();
+
+                if (places.length == 0) {
+                    return;
+                }
+
+                // Clear out the old markers.
+                markers.forEach((marker) => {
+                    marker.setMap(null);
+                });
+                markers = [];
+
+                // For each place, get the icon, name and location.
+                const bounds = new google.maps.LatLngBounds();
+
+                places.forEach((place) => {
+                    if (!place.geometry || !place.geometry.location) {
+                        return;
+                    }
+
+                    const icon = {
+                        url: place.icon,
+                        size: new google.maps.Size(71, 71),
+                        origin: new google.maps.Point(0, 0),
+                        anchor: new google.maps.Point(17, 34),
+                        scaledSize: new google.maps.Size(25, 25),
+                    };
+
+                    // Create a marker for each place.
+                    markers.push(
+                        new google.maps.Marker({
+                            map,
+                            icon,
+                            title: place.name,
+                            position: place.geometry.location,
+                        })
+                    );
+                    if (place.geometry.viewport) {
+                        // Only geocodes have viewport.
+                        bounds.union(place.geometry.viewport);
+                    } else {
+                        bounds.extend(place.geometry.location);
+                    }
+                });
+                map.fitBounds(bounds);
+            });
+
+        }
     }
 }
 </script>
@@ -243,7 +360,10 @@ export default {
 .alert-info{
     padding: 15px;
 }
-
+#pac-input{
+    width: 50%;
+    left:25% !important;
+}
 .fit-content-input{
     width: fit-content;
     margin-top: 10px;

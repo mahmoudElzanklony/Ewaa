@@ -22,4 +22,8 @@ class areas extends Model
     public function map_images(){
         return $this->hasMany(map_images::class,'map_id');
     }
+
+    public function listings(){
+        return $this->hasMany(listings_info::class,'area_id');
+    }
 }

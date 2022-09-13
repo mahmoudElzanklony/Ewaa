@@ -32,6 +32,6 @@ class discussions_questions
             ->when(array_key_exists('question_type',$filter_data) && $filter_data['question_type'] != '' && $filter_data['question_type'] == 'has_not_answers' ,function($e) use ($filter_data){
                 $e->whereDoesntHave('answers');
             })
-            ->withCount('answers')->orderBy('id','DESC')->paginate(1);
+            ->withCount('answers')->orderBy('id','DESC')->paginate(9);
     }
 }

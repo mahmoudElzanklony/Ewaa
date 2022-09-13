@@ -62,7 +62,6 @@ class DashboardController extends DashboardServiceClass
                    ->orderByDesc('id')->limit(5)->get(),
                'pending_listings'=>listings_info::selection()->with('user')
                    ->where('type','=','pending')
-                   ->where('payment_status','=','0')
                    ->orderByDesc('id')->limit(5)->get(),
                'subscriptions'=>subscriptions::query()
                    ->join('packages','subscriptions.package_id','=','packages.id')
@@ -92,7 +91,7 @@ class DashboardController extends DashboardServiceClass
             'keywords'=>[
                 'notifications'=>trans('keywords.notifications'),
             ],
-            'data'=>pagiante_notifications::get_notifications(),
+            'data'=>['data'=>pagiante_notifications::get_notifications()],
             'type'=>$type
         ]);
     }
@@ -184,7 +183,7 @@ class DashboardController extends DashboardServiceClass
             'keywords' => ListingsKeywords::get_keywords(),
             'data'=>listings_info::selection()->when($id > 0 ,function($e) use ($id){
                 $e->where('user_id','=',$id);
-            })->with(['user','category','area'])->get(),
+            })->with(['user','category','area'])->orderBy('id','DESC')->get(),
         ]);
     }
 

@@ -20,7 +20,7 @@ class categories_data
             ->when($branches == true , function ($e){
                 $e->with('branches');
             })
-            ->when($count == true , function ($e){
+            ->when($count == true && $type != null, function ($e){
                 $e->addSelect([
                     'count'=>listings_info::query()->whereColumn('listings_infos.category_id','categories.id')
                         ->where('payment_status','=',1)

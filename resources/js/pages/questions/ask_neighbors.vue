@@ -236,7 +236,6 @@ export default {
         this.inilaize_cities({name:'cities',value:this.cities});
         // check if i has city_id from url ==> go and get areas
         if(this.requested_data != null && this.requested_data.hasOwnProperty('city_id')){
-            console.log('areas......');
             var data = {
                 name:'areas',
                 where:'city_id',
@@ -255,6 +254,11 @@ export default {
             this.current_url = document.URL.substring(0, document.URL.indexOf('&page'))
         }else{
             this.current_url = document.URL;
+        }
+
+        // check if url has nothing as parameters
+        if(document.URL.split('/')[document.URL.split('/').length - 1]== 'ask-neighbours'){
+            this.current_url = document.URL+'?city_id=&area_id=&category_id=all';
         }
     },
     mounted() {

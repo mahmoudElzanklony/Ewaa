@@ -25,9 +25,20 @@ export default {
                 if(e.data.hasOwnProperty('success')){
                     commit('setUser',e.data.success.user);
                 }
-                validation(e.data,target,'/');
+                if(e.data.hasOwnProperty('message')) {
+                    if (e.data['message']['user']['role']['name'] == 'admin') {
+                        var url = '/dashboard';
+                    } else {
+                        var url = '/profile/edit';
+                    }
+                    validation(e.data, target, url);
+                }else{
+                    validation(e.data, target);
+                }
 
             }).catch((e)=>{
+                console.log(e);
+                return false;
                 window.location = document.URL;
             });
         }

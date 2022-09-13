@@ -18,7 +18,7 @@
                         {{ $page.props.user.total_points }}
                     </span>
                 </p>
-                <inertia-link href="credit/charge/package" class="btn btn-primary">
+                <inertia-link href="/credit/charge/package" class="btn btn-primary">
                     {{ keywords.charge_credit }}
                 </inertia-link>
             </div>

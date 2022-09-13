@@ -27,7 +27,7 @@
                                 <option value="">{{ keywords.choose_property_type }}</option>
                                 <option v-for="(cat,index) in data['categories']"
                                         :key="index" :value="cat['id']"
-                                        :selected="data['listing_info'] != null && data['listing_info']['category']['parent_id']">
+                                        :selected="data['listing_info'] != null && data['listing_info']['category']['parent_id'] == cat['id']">
                                     {{ cat['name'] }}
                                 </option>
                             </select>

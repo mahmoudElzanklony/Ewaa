@@ -42,10 +42,16 @@
 <script>
 import NavbarComponent from "../../components/NavbarComponent";
 import FooterComponent from "../../components/FooterComponent";
+import {mapActions , mapGetters , mapMutations} from "vuex";
 export default {
     name: "new_password",
     props:['keywords','email'],
-    components: {FooterComponent, NavbarComponent}
+    components: {FooterComponent, NavbarComponent},
+    methods:{
+        ...mapActions({
+            'new_pass':'reset_password/reset_pass'
+        })
+    }
 }
 </script>
 

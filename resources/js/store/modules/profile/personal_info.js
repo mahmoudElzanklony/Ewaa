@@ -23,7 +23,7 @@ export default {
           var target = event.target;
           var data = new FormData(target);
           axios.post('/profile/update-password',data).then((e)=>{
-              validation(e.data,target);
+              validation(e.data,target,'',true);
           })
       },
       // update username , full name  , phone , what app status

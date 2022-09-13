@@ -10238,6 +10238,8 @@ h2.main-title span:first-of-type {
   bottom: 0;
   z-index: 11;
   display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .big-button, .btn-main-color-outline, .btn-main-color {

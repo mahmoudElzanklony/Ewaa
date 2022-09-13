@@ -11,4 +11,5 @@ return [
     'not_enough_points'=>'ليس لديك رصيد كافي من النقاط',
     'not_found_user'=>'لا يوجد مستخدم بهذه البيانات',
     'missing_info'=>'هناك بيانات ناقصة في اتمام العملية',
+    'not_enough_points_to_pay_for_this_listing'=>'نقاطك لا تكفي لاكمال عمليه نشر هذا الاعلان',
 ];

@@ -2,9 +2,19 @@
 
     <form action="/ads">
         <input type="hidden" name="main_cat" :value="main_cat_id_query">
+        <div class="form-group">
+          <label>{{ keywords.country }}</label>
+          <select class="form-control" name="country_id">
+            <option value="">{{ switchWord('select_best_choice') }}</option>
+            <option v-for="(c,index) in countries" :key="index" :value="c['id']">{{ c['name'] }}</option>
+          </select>
+        </div>
         <div class="form-group input-icon" >
             <label>{{ keywords.area }}</label>
-            <input class="form-control" name="area" @keyup="search_areas" :value="(searched_data != undefined && searched_data.hasOwnProperty('area') && searched_data['area'] != null) ? searched_data['area']:'' ">
+            <input class="form-control" name="area"
+                   @blur="hide_result_areas"
+                   @keyup="search_areas"
+                   v-model="search_val">
             <span style="top:32px"><i class="ri-map-line"></i></span>
             <div class="search-outcoming-data">
                 <ul>
@@ -206,10 +216,11 @@ import {mapGetters , mapActions , mapMutations} from "vuex";
 import SwitchLangWord from "../mixin/SwitchLangWord";
 export default {
     name: "FilterComponent",
-    props:['keywords','sub_cats','searched_data','parent_cat_id'],
+    props:['keywords','sub_cats','searched_data','parent_cat_id','countries'],
     mixins:[SwitchLangWord],
     data:function(){
         return {
+            search_val:'',
             main_cat_id_query:this.parent_cat_id,
         }
     },
@@ -221,6 +232,11 @@ export default {
        })
     },
     methods:{
+        hide_result_areas:function(){
+           setTimeout(()=>{
+             $('.search-outcoming-data').hide();
+           },2000);
+        },
         show_hide_filters:function(){
             $(event.target).parent().parent().parent().find('.reset_of_filter').slideToggle();
         },
@@ -242,6 +258,16 @@ export default {
                 this.main_cat_id_query = document.URL.split('cat_id=')[1];
             }
         }
+
+        if(this.searched_data != undefined &&
+            this.searched_data.hasOwnProperty('area') &&
+            this.searched_data['area'] != null
+        ){
+            this.search_val = this.searched_data['area'];
+        }else{
+            this.search_val = '';
+        }
+
     },
     mounted() {
         this.change_type(document.querySelector('input[name="type"]').value);

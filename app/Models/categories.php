@@ -33,4 +33,8 @@ class categories extends Model
     public function listings(){
         return $this->hasMany(listings_info::class,'category_id');
     }
+
+    public function parent_listings(){
+        return $this->hasManyThrough(listings_info::class,categories::class,'parent_id','category_id');
+    }
 }

@@ -52,11 +52,22 @@
                     <span>{{ main_cat_info['name'] }}</span>
                 </h2>
                 <div class="tags" v-if="sub_cats.length > 0">
-                    <inertia-link href="" @click.prevent="go_to_sub_cat(i['id'])"
-                                   v-for="(i,index) in sub_cats" :key="index">
-                        <span>{{ i['name'] }}</span>
-                        <span>({{ i['count'] }})</span>
-                    </inertia-link>
+                    <p class="d-inline-block" v-for="(i,index) in sub_cats"  :key="index">
+                        <inertia-link href=""
+                                      v-if="i.hasOwnProperty('count')"
+                                      @click.prevent="go_to_sub_cat(i['id'])"
+                                     >
+                            <span>{{ i['name'] }}</span>
+                            <span>({{  i['count'] }})</span>
+                        </inertia-link>
+
+                        <inertia-link :href="'/ads?main_cat='+i['id']+'&country_id=&area=&type=rent&category=all'"  v-else>
+                            <span>{{ i['name'] }}</span>
+                            <span>({{  i['parent_listings'].length }})</span>
+                        </inertia-link>
+                    </p>
+
+
                 </div>
                 <div class="properties">
                     <div class="row">
@@ -133,7 +144,7 @@
                                     </div>
                                 </inertia-link>
                             </div>
-                            <div class="pages text-center mt-4 mb-2">
+                            <div class="pages text-center mt-4 mb-2" v-if="data.data.length > 0">
                                 <inertia-link :class="index + 1 == data.current_page ? 'active':''"
                                               :href="current_url+'&page='+(index+1)" v-for="(page,index) in links" :key="index">
                                     {{ index + 1 }}
@@ -173,6 +184,7 @@
                     <div class="modal-body">
                        <filter-component :keywords="search_keywords"
                                          :sub_cats="sub_cats"
+                                         :countries="countries"
                                          :parent_cat_id="main_cat_info!= null ? main_cat_info['id']:undefined"
                                          :searched_data="requested_data"></filter-component>
                     </div>
@@ -201,7 +213,7 @@ export default {
     name: "sales",
     mixins:[SwitchLangWord],
     components: {ContactOffice, FilterComponent, FooterComponent, NavbarComponent},
-    props:['keywords','search_keywords','data','sub_cats','main_cat_info','requested_data','best_users'],
+    props:['keywords','search_keywords','data','sub_cats','main_cat_info','requested_data','best_users','countries'],
     data:function(){
         return {
             current_url:'',
@@ -218,6 +230,7 @@ export default {
             var second_part_url = split_url[1].split('&');
             second_part_url[0] = sub_cat_id;
             var output = split_url[0]+'category='+second_part_url.join('&');
+            console.log(output);
             this.$inertia.visit(output);
         }
     },
@@ -352,7 +365,7 @@ export default {
                 color:$dark_gray;
             }
             p:nth-of-type(2){
-                span:first-of-type{
+                span{
                     color: $dark_gray;
                 }
                 display: flex;

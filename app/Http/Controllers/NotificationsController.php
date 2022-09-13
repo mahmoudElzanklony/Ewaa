@@ -17,7 +17,7 @@ class NotificationsController extends Controller
         $data = pagiante_notifications::get_notifications(auth()->id());
         return Inertia::render('notifications',[
             'keywords'=>NotificationsKeywords::get_keywords(),
-            'data'=>$data,
+            'data'=>['data'=>$data],
             'new_notifications'=>no_of_unseen_notifications::get_number(auth()->id())
         ]);
     }

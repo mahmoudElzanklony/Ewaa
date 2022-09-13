@@ -22,6 +22,7 @@ class pagiante_notifications
                     });
                 });
             })->orderBy('id','DESC')
-            ->paginate(12);
+            ->get();
+           // ->paginate(12);
     }
 }

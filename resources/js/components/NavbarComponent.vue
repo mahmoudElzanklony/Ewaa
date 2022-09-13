@@ -76,8 +76,13 @@
                     <li class="nav-item d-flex align-items-center">
                         <inertia-link class="nav-link" href="#">{{ switchWord('about_us') }}</inertia-link>
                     </li>
+
                     <li class="nav-item d-flex align-items-center">
-                        <inertia-link class="nav-link" href="#">{{ switchWord('ask_home') }}</inertia-link>
+                        <inertia-link class="nav-link" href="/ads?type=rent">{{ switchWord('ask_home') }}</inertia-link>
+                    </li>
+                    <li class="nav-item d-flex align-items-center" v-if="$page.props.user != null && $page.props.user.role_id == 5">
+                        <inertia-link class="nav-link" href="/dashboard"
+                                      style="font-weight: bold; color:orange !important;">{{ switchWord('dashboard') }}</inertia-link>
                     </li>
 
                 </ul>
@@ -87,9 +92,9 @@
                             <i class="ri-global-line"></i>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="/lang/ar">{{ switchWord('Arabic_Language') }}</a>
-                            <a class="dropdown-item" href="/lang/en">{{ switchWord('English_Language') }}</a>
-                            <a class="dropdown-item" href="/lang/tu">{{ switchWord('Turkish_Language') }}</a>
+                            <a class="dropdown-item" href="/lang/ar" @click="resetparentcats">{{ switchWord('Arabic_Language') }}</a>
+                            <a class="dropdown-item" href="/lang/en"  @click="resetparentcats">{{ switchWord('English_Language') }}</a>
+                            <a v-if="false" class="dropdown-item" href="/lang/tu">{{ switchWord('Turkish_Language') }}</a>
                             <!--                            <div class="dropdown-divider"></div>-->
                         </div>
                     </li>
@@ -251,7 +256,8 @@ export default {
         }),
     },
     created() {
-        if(sessionStorage.getItem('parents_categories') == null) {
+        if(sessionStorage.getItem('parents_categories') == null || sessionStorage.getItem('parents_categories')
+        == 'null') {
             this.get_parent_cats();
         }else{
             this.inialize_parent_categories_items(JSON.parse(sessionStorage.getItem('parents_categories')));
@@ -265,6 +271,9 @@ export default {
         },2000);
     },
     methods:{
+        resetparentcats:function(){
+            sessionStorage.setItem('parents_categories',null);
+        },
         showList:function (){
             let arrow = $(event.target).parent().find('span i');
             if(arrow.hasClass('ri-arrow-drop-down-fill')){

@@ -20,6 +20,7 @@ use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\AskNeighborsController;
 use App\Http\Controllers\MerchantController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\InfoPagesController;
 
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\URL;
@@ -45,6 +46,12 @@ Route::group(['middleware'=>'changeLang'],function (){
     Route::get('/forget-password',[AuthController::class,'forget_password']);
     Route::get('/new-password',[AuthController::class,'new_password']);
     Route::get('/logout',[AuthController::class,'logout'])->middleware('auth');
+
+    // info pages
+    Route::get('/searches',[InfoPagesController::class,'searches']);
+    Route::get('/jobs',[InfoPagesController::class,'jobs']);
+    Route::get('/conditions',[InfoPagesController::class,'conditions']);
+    Route::get('/sitemap',[InfoPagesController::class,'sitemap']);
 
 
     // search page filter
@@ -109,6 +116,8 @@ Route::group(['middleware'=>'changeLang'],function (){
         // balance
         Route::get('/balance',[MerchantController::class,'balance'])->middleware('auth');
     });
+
+
 
     Route::group(['middleware'=>['auth','checkAdmin'],'prefix'=>'/dashboard'],function(){
         Route::get('/',[DashboardController::class,'index']);

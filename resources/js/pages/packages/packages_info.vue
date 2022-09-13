@@ -302,12 +302,6 @@ export default {
                 .package{
                     ul{
                         li{
-                            img{
-                                width:80px;
-                                height: 80px;
-                                border-radius: 50%;
-                                border: 1px solid #dddddd;
-                            }
                             span:not(:last-of-type){
                                 margin-left: 5px;
                             }
@@ -410,6 +404,12 @@ export default {
                 ul{
                     li{
                         margin-bottom: 12px;
+                        img{
+                            width:80px;
+                            height: 80px;
+                            border-radius: 50%;
+                            border: 1px solid #dddddd;
+                        }
                         span:first-of-type{
                             font-weight: bold;
                             color:$dark_gray;

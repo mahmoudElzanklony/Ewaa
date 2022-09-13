@@ -92,7 +92,7 @@ class listing_dashboard
             $data[$type]['data'] = $data[$type]['data'] = listings_info::query()
                 ->where('user_id', '=', auth()->id())
                 ->select('id', app()->getLocale() . '_name as name')
-                ->onlyTrashed()->get();
+                ->onlyTrashed()->orderBy('id','DESC')->get();
         }else if($listing_type == "draft"){
             if(Cookie::has('inilalize')) {
                 $data[$type]['data'] = [
@@ -110,6 +110,7 @@ class listing_dashboard
                 ->where('user_id', '=', auth()->id())
                 ->where('type', '=', $listing_type)
                 ->select('id', app()->getLocale() . '_info as info','payment_status')
+                ->orderBy('id','DESC')
                 ->get();
         }
 

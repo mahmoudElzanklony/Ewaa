@@ -53,7 +53,7 @@ class AuthController extends AuthServicesClass
             if($user != null){
                 return Inertia::render('auth/new_password',[
                     'keywords'=>[
-                        'password'=>trans('keywords.email'),
+                        'password'=>trans('keywords.password'),
                         'password_confirmed'=>trans('keywords.password_confirmed'),
                         'save'=>trans('keywords.save'),
                         'have_already_account'=>trans('keywords.have_already_account'),

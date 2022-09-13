@@ -11,6 +11,6 @@ return [
     'not_enough_points'=>'Not enough points',
     'not_found_user'=>'Not found user with provided info',
     'missing_info'=>'missing info for this request',
-
+    'not_enough_points_to_pay_for_this_listing'=>'Not enough points to pay for this listing',
 
 ];

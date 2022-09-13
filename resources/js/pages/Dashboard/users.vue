@@ -71,15 +71,19 @@
                                 <img class="box-image"
                                      :src="'/images/users/'+item['image']">
                             </div>
-                            <div class="form-group"
+                            <div class="form-group input-icon"
                                  v-for="input in modal_data"
                                  v-if="input != 'block' && input != 'auto_publish' && input != 'country_id'"
                                  :key="input">
                                  <label>{{ handling_data['data_model'][input] }}</label>
                                  <input :name="input"
+                                        :type="input == 'password' ? 'password':'text'"
                                         :placeholder="input == 'password' ? switchWord('leave_password'):''"
                                         :value="item != null ? item[input]:''"
                                         class="form-control" :required="input != 'password'">
+                                <span v-if="input == 'password'">
+                                    <i class="ri-eye-line show_password cursor-pointer"></i>
+                                </span>
                                 <p class="alert alert-danger"></p>
                             </div>
                             <div class="form-group" v-else-if="input == 'country_id'">

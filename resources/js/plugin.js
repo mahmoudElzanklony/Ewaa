@@ -30,6 +30,16 @@ $(document).ready(function (){
        }
     });
 
+    // show password
+    $('.content').on('mouseenter','.show_password',function(){
+        $(this).parent().parent().find('input').attr('type','text');
+    })
+
+    // hide password
+    $('.content').on('mouseout','.show_password',function(){
+        $(this).parent().parent().find('input').attr('type','password');
+    })
+
 
     // preview image at box
     $('.content').on('change','.preview-image',function (){
@@ -51,6 +61,7 @@ $(document).ready(function (){
             })
         }
     });
+
 
 
     // delete input

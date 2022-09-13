@@ -30,7 +30,7 @@
                             <td>{{ i['meters_number'] }}</td>
                             <td>{{ i['payment_status'] == 1 ? switchWord('payment_done'):switchWord('pending') }}</td>
                             <td>{{ switchWord(i['type']+'_listings') }}</td>
-                            <td>
+<!--                            <td v-if="false" class="change_status">
                                     <select class="form-control" :id="i['id']" @change="save_status">
                                         <option value="">{{ switchWord('select_status') }}</option>
                                         <option v-for="(op,index) in ['pending','live','expired','rejected']"
@@ -38,14 +38,34 @@
                                            {{ switchWord(op+'_listings') }}
                                         </option>
                                     </select>
-<!--                                <input name="toggle" type="checkbox" class="toggle-checkbox-status">-->
-                            </td>
+&lt;!&ndash;                                <input name="toggle" type="checkbox" class="toggle-checkbox-status">&ndash;&gt;
+                            </td>-->
                             <td class="actions">
                                 <inertia-link :href="'/listing/initialize?id='+i['id']">
                                     <i class="ri-edit-line"></i>
                                 </inertia-link>
+                                <span
+                                      v-if="i['type'] != 'live'" class="accept"
+                                      :title="switchWord('accept')"
+                                     >
+                                    <i  @click="save_status"
+                                        :id="i['id']" val="live"
+                                        class="ri-check-line"></i>
+                                </span>
+                                <span
+                                    v-if="i['type'] != 'rejected'"
+                                       class="rejected"  :title="switchWord('reject')">
+                                    <i
+                                        @click="save_status"
+                                        :id="i['id']"
+                                        val="rejected"
+                                        class="ri-eye-off-line"></i>
+                                </span>
+
                                 <span><i @click="delete_item('listings_infos',i['id'],
-                                '.tr_'+i['id'])" class="ri-close-line"></i></span>
+                                '.tr_'+i['id'])" class="ri-close-line"></i>
+                                </span>
+
                             </td>
                         </tr>
                         </tbody>
@@ -96,5 +116,23 @@ export default {
 
 <style lang="scss" scoped>
 @import "resources/sass/variables";
-
+table tr {
+    td{
+        /*width: 145px !important;
+        max-width: 145px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;*/
+    }
+    td:last-of-type{
+        span.accept{
+            color: #029d6d !important;
+            background-color: #0080001c !important;
+        }
+        span.rejected{
+            background-color: #6d0a0a30;
+            color: #e00606;
+        }
+    }
+}
 </style>

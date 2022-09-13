@@ -8,12 +8,12 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@if(array_key_exists('head_data',$page['props'])){{  $page['props']['head_data']['title'] }}@else Ewaa plus @endif</title>
     <meta name="description" content="{{  array_key_exists('head_data',$page['props']) ? $page['props']['head_data']['description']:'إيواء بلس كل ما تود البحث عنه من تأجير وبيع اي شئ يخص العقارات ستجده هنا بأفضل الاسعار'  }}">
-    <meta name="keywords" content="{{  array_key_exists('head_data',$page['props']) ? $page['props']['head_data']['keywords']:'akar map ,  إيواء بلس , تأجير وبيع العقارات عن طريق الانترنت , افضل مواقع شراء العقارات'  }}">
+    <meta name="keywords" content="{{  array_key_exists('head_data',$page['props']) ? $page['props']['head_data']['keywords']:'Ewaa Plus ,  إيواء بلس , تأجير وبيع العقارات عن طريق الانترنت , افضل مواقع شراء العقارات'  }}">
     <meta name="author" content="ahmed mamdouh">
     <meta property="og:type" content="website">
     <meta property="og:url" content="bneksy.com">
     <meta property="og:title" content="إيواء بلس">
-    <meta property="og:image" content="https://bneksy.com/public/images/logo.png">
+    <meta property="og:image" content="http://ewaa.first-meeting.net/public/images/logo.png">
     <meta property="og:description" content=" موقع متخصص فى بيع العقارات وتأجيرها بأفضل الاسعار ">
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" ></script>
@@ -62,7 +62,10 @@
             overflow: auto;
             direction: ltr;
         }*/
-
+        #map{
+            height: 400px;
+            margin-top: 15px;
+        }
     </style>
 </head>
 <body class="{{ session()->get('lang') == 'tu' ? 'en': session()->get('lang') }}">
@@ -74,9 +77,11 @@
     @inertia
 </div>
 <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDgIAtyby96ja8LMC5kTGfKuAfTgBEXDnk&callback=initMap&v=weekly"
-
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDU_mct20AyfPwpVa1iWQu4MoOo9ErRfi0&v=weekly&libraries=places"
+    defer
 ></script>
+
+
 
 </body>
 </html>

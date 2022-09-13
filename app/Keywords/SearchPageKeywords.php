@@ -10,6 +10,7 @@ class SearchPageKeywords
         return [
           'search'=>trans('keywords.search'),
           'area'=>trans('keywords.area'),
+          'country'=>trans('keywords.country'),
           'category'=>trans('keywords.category'),
           'sale'=>trans('keywords.sale'),
           'rent'=>trans('keywords.rent'),

@@ -42,7 +42,6 @@ export default {
     },
     actions:{
         infinite_scroll:function({commit,getters,state}){
-            console.log(state.page);
             var type = state.type;
             var obj_page = state.data_obj['links'].find((e)=>{
                 return e['label'] == state.page;
@@ -50,9 +49,11 @@ export default {
             if(obj_page != undefined){
                 document.querySelector('body').style.overflow = 'hidden';
                 document.querySelector('.loading').style.display = 'flex';
-                axios.post('/paginate-notifications?page='+obj_page.label,{
+                axios.post('/paginate-notifications?page='+state.page,{
                     type
                 }).then((e)=>{
+                    console.log('/paginate-notifications?page='+state.page);
+                    console.log(e.data);
                     for(let item of e.data.data){
                         commit('update_data',item);
                     }
